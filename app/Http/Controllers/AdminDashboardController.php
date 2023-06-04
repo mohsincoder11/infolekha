@@ -27,6 +27,9 @@ class AdminDashboardController extends Controller
 {
     public function dashboard()
     {
+
+
+        
         $student_data = DB::table('users')->select('users.*', 'user_student.*')
 
             ->join('user_student', 'user_student.user_id', '=', 'users.id')
