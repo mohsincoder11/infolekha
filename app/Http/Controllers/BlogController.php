@@ -120,12 +120,9 @@ class BlogController extends Controller
     // $updateblog->blogs=$request->get('blogs');
     $updateblog->save();
     // return redirect(route('admin.blog')); 
- 
-
      return redirect()->route('admin.blog')->with(['success'=>'Successfully Updated !']);
    
  }
-
 
  public function destroy($id)
  {
