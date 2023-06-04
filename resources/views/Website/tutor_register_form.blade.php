@@ -170,13 +170,14 @@ $("#form1").validate({
                 },
                 email: {
                     required: true,
-                    email:true,
+                    customEmail:true,
                     remote: "{{url('check_email_exist')}}",
 
                 },
                 password: {
                     required: true,
-                    minlength:6
+                    minlength: 8,
+                    strongPassword:true,
                 },
                 password_confirmation: {
                     required: true,
@@ -201,12 +202,13 @@ $("#form1").validate({
                 },
                 email: {
                     required: "This field is required.",
-                    email: "Please enter valid email address.",
+                    customEmail: "Please enter valid email address.",
                     remote: "This email address is already registered with us."
                 },
                 password: {
                     required: "This field is required.",
-                    minlength: "Minimum length should be 6 character.",
+                    minlength: "Minimum password length should be 8 character.",
+                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
@@ -291,12 +293,12 @@ $("#form1").validate({
 
         $("#mob").on('keyup', function(e) {
             $("#login-button1").prop('disabled', true);
+            var value = $(this).val();
 
-            if ($(this).val().length == 10)
+            if (/^\d+$/.test(value) && value.length === 10)
                 $("#login-button2").prop('disabled', false);
             else
                 $("#login-button2").prop('disabled', true);
-
         })
    
 

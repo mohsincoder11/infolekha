@@ -93,11 +93,11 @@
 
 
                         <span class="input-login icon-form">
-                            <input type="password" placeholder="Password*" id="password" name="password" required="required"><i toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                            <input type="password" placeholder="Password*" id="password" name="password" required="required"><i toggle="#password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
                         <span class="input-login icon-form">
-                            <input type="password" placeholder="Confirm Password*" name="password_confirmation" id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                            <input type="password" placeholder="Confirm Password*" name="password_confirmation" id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
                      
@@ -208,13 +208,14 @@
                 },
                 email: {
                     required: true,
-                    email:true,
+                    customEmail: true,
                     remote: "{{url('check_email_exist')}}",
 
                 },
                 password: {
                     required: true,
-					 minlength: 6,
+					minlength: 8,
+                    strongPassword:true,
                 },
                 password_confirmation: {
                     required: true,
@@ -241,12 +242,13 @@
                 },
                 email: {
                     required: "This field is required.",
-                    email: "Please enter valid email address.",
+                    customEmail: "Please enter valid email address.",
                     remote: "This email address is already registered with us."
                 },
                 password: {
                     required: "This field is required.",
-					minlength: "Minimum password length should be 6 character.",
+					minlength: "Minimum password length should be 8 character.",
+                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
@@ -334,12 +336,12 @@
 
         $("#mob").on('keyup', function(e) {
             $("#login-button1").prop('disabled', true);
+            var value = $(this).val();
 
-            if ($(this).val().length == 10)
+            if (/^\d+$/.test(value) && value.length === 10)
                 $("#login-button2").prop('disabled', false);
             else
                 $("#login-button2").prop('disabled', true);
-
         })
    
 
