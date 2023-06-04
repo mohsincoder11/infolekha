@@ -110,11 +110,10 @@
                                                     <div class="form-group">
                                                       <label class="form-label">Select Type</label>
                                                       <select class="form-select select country-select" name="job_type">
-                                                        <option>Select </option>
-                                                        <option>Part Time</option>
-                                                        <option>Full Time</option>
-                                                        <option>Remote</option>
-                                                        <option></option>
+                                                        <option value="">Select option</option>
+                                                        <option value="Part Time">Part Time</option>
+                                                        <option value="Full Time">Full Time</option>
+                                                        <option value="Remote">Remote</option>
                                                       </select>
                                                     </div>
                                                   </div>
@@ -399,6 +398,9 @@
       experiance: {
         required: true,
       },
+      job_type: {
+        required: true,
+      },
       pin_code: {
         required: true,
         digits: true,
@@ -425,6 +427,9 @@
       subject: {
         required: "This field is required.",
        },
+       job_type: {
+        required: "Please select a option.",
+       },
         pin_code: {
         required: "This field is required.",
         minlength: "Please enter 6 digit pincode.",
@@ -444,7 +449,7 @@
         if (element.attr("name") ==="policy_checkbox") { 
                     error.insertAfter(element.closest('.policy_checkbox_class'));
                 }
-                else if (element.attr("name") ==="facilities[]" || element.attr("name") ==="course[]") { 
+                else if (element.attr("name") ==="facilities[]" || element.attr("name") ==="course[]" || element.attr("name") ==="job_type") { 
                     error.insertAfter(element.closest('.form-group'));
                 }else{
                     error.insertAfter(element); // Corrected error placement

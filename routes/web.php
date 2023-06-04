@@ -50,6 +50,8 @@ Route::get('choosing',[WebsiteformController::class,'choosing'])->name('choosing
 Route::get('opportunites',[WebsiteformController::class,'opportunites'])->name('opportunites');
 Route::get('benifite',[WebsiteformController::class,'benifite'])->name('benifite');
 
+Route::view('admin/login','admin.login')->name('admin.login');
+Route::post('admin/post_login',[AdminLoginController::class,'login_submit'])->name('admin.post_login');
 
 Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function () {
     Route::get('dashboard',[AdminDashboardController::class,'dashboard'])->name('dashboard');
@@ -208,8 +210,6 @@ Route::post('tutor_register_user_create',[WebsiteformController::class,'tutor_re
 Route::post('tutor_detail_create/{data}',[WebsiteformController::class,'tutor_detail_create'])->name('tutor_detail_create');
 // --------------------------------------------------------end school institutude college ----------------------------------------------------//
 
-Route::view('admin/login','admin.login')->name('admin.login');
-Route::post('admin/post_login',[AdminLoginController::class,'login_submit'])->name('admin.post_login');
 
 Route::get('login',[logincontroller::class,'login'])->name('login');
 Route::post('login_submit',[logincontroller::class,'login_submit'])->name('login_submit');
@@ -272,33 +272,6 @@ Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'
 Route::get('logout',[WebsiteformController::class,'log_out'])->name('logout');
 // Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'])->name('get_mobile_number');
 Route::post('post_enquiry',[WebsiteformController::class,'post_enquiry'])->name('post_enquiry');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
