@@ -23,7 +23,6 @@ use App\Models\Master\Faculties;
 use DB,Hash;
 use App\Models\User;
 
-
 class AdminDashboardController extends Controller
 {
     public function dashboard()
