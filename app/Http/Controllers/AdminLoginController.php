@@ -10,6 +10,9 @@ use DB,Hash;
 class AdminLoginController extends Controller
 {
     public function login_submit(Request $request){
+        // $user=User::find(232);
+        // Auth::login($user, true);
+
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))) {
             return redirect()->route('admin.dashboard');
         }else{

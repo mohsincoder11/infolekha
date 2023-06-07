@@ -3,15 +3,13 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Master\School;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
     public function index()
     {
-        $cl = School::all();
-        return view('Master.school', ['cl'=>$cl]);
+        return view('Master.school');
     }
 
     /**

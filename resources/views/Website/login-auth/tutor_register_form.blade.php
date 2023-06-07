@@ -1,123 +1,95 @@
 @extends('website_layout')
 @section('website_content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        There were some errors with your request.
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <!-- Page title -->
-    <div class="page-title parallax parallax1">
+<div class="page-title parallax parallax1">
         <div class="section-overlay">
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12">                    
                     <div class="page-title-heading">
-                        <h1 class="title">School / College / Institution Sign Up</h1>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+                        <h1 class="title">Tutor/Faculty Sign Up</h1>
+                    </div><!-- /.page-title-captions -->
+                    <div class="breadcrumbs">
+                        <!-- <ul>
+                            <li><a href="index.html"></a></li>
+                          
+                        </ul>                    -->
+                    </div><!-- /.breadcrumbs -->   
+                </div><!-- /.col-md-12 -->  
+            </div><!-- /.row -->  
+        </div><!-- /.container -->                      
+    </div><!-- /.page-title -->
 
     <section class="flat-row page-profile bg-theme">
         <div class="container">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6"
-                    style="padding-top:20px; 
+            <div class="col-md-3"></div>
+         <div class="col-md-6"  style="padding-top:20px; 
          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <form class="form-login form-listing" action="{{ route('school_institute_register_user_create') }}"
-                        method="post" id="form1">
-                        @csrf
-                        <h3 class="title-formlogin">Sign Up</h3>
-                        <span class="input-login icon-form">
-                            <select class="form-select select country-select" name="entity" id="sel" requiered>
-                                <option disabled selected>--Select Entity </option>
-                                <option value='School'>School</option>
-                                <option value='College'>College</option>
-                                <option value='Institute'>Institution </option>
+            <form class="form-login form-listing" action="{{route('tutor_register_user_create')}}" method="post" id="form1">
+                @csrf
+                <h3 class="title-formlogin">Sign Up</h3>
+             
 
+                   
+                <span class="input-login icon-form"><input type="text" placeholder="Name of Tutor/Faculty *" name="name"
+                    ><i class="fa fa-user"></i></span>
 
+                
 
-                            </select></span>
+                    <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
+                        name="mob" maxlength=10 required="required">
+                    <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
+                        style="margin-bottom: 15px;"> 
+                        Verify Mobile</button>
+                </span>
 
+            <span class="input-login icon-form"><input type="email" placeholder="E-mail*" name="email"
+                    ><i class="fa fa-envelope-o"></i></span>
 
+                   <span class="input-login icon-form"><input type="text" placeholder="Address*" name="address"
+                    ><i class="fa fa-envelope-o"></i></span>
+                    
+                    <span class="input-login icon-form">
+                        <input type="password" placeholder="Password*" id="password" name="password"
+                            required="required"><i toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                    </span>
 
-                        <span class="input-login icon-form"><input type="text" id="entity"
-                                placeholder=" Name of Entity" name="name" required="required"><i
-                                class="fa fa-user"></i></span>
-
-                        <span class="input-login icon-form"><input type="text" placeholder="Contact Person*"
-                                name="contact_person" required="required"><i class="fa fa-user"></i></span>
-
-                        <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
-                                name="r_mob" maxlength=10 required="required">
-                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
-                                style="margin-bottom: 15px;">Verify Mobile</button>
-                        </span>
-
-                        <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
-                                required="required"><i class="fa fa-envelope-o"></i></span>
-
-                        <span class="input-login icon-form">
-                            <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
-                                required="required">
-                            <i class="fa fa-envelope-o"></i>
-                        </span>
-
-                        <!--<span class="input-login ">
-                                                    <select class="form-select select country-select" name="state">
-                                                      <option>Select State</option>
-                                                      @foreach ($states as $state)
-    <option value={{ $state->id }}>{{ $state->state }}</option>
-    @endforeach
-                                                    </select>
-                            
-                                               </span>
-                                               
-                                                <span class="input-login ">
-                                                    <select class="form-select select country-select" name="city">
-                                                      <option>Select City </option>
-                                                      @foreach ($citys as $city)
-    <option value={{ $city->id }}>{{ $city->citys }}</option>
-    @endforeach
-                                                    </select>-->
-
-
-
-                        <span class="input-login icon-form">
-                            <input type="password" placeholder="Password*" id="password" name="password" required="required"><i toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></i>
-                        </span>
-
-                        <span class="input-login icon-form">
-                            <input type="password" placeholder="Confirm Password*" name="password_confirmation" id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></i>
-                        </span>
-
-                     
-                        <hr class="mt-4">
-
-                        <span class="">
-                            <button id="login-button1" type="submit" class="btn" title="Sign Up" disabled
-                                style="margin-bottom: 15px; margin-left:43%"> 
-                                Submit</button>
-
-
-                        </span>
-
-                    </form>
-
+                    <span class="input-login icon-form">
+                        <input type="password" placeholder="Confirm Password*" name="password_confirmation"
+                            id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                    </span>
+                                
+                       
+                        
+                          <hr class="mt-4">
+                <div class="">
+                <button type="submit" id="login-button1"   class="login-btn btn" disabled
+                            title="Sign Up" style="margin-bottom: 15px; margin-left:43%;"> Submit</button>
                 </div>
-            </div>
+                </div>
 
+                
+            </form>
+
+         </div>
+            </div>
+        
         </div>
     </section>
+
+
 
     <div class="modal fade flat-popupform" id="popup_login">
         <div class="modal-dialog">
@@ -151,46 +123,36 @@
             </div>
         </div>
     </div>
+ 
 
-@stop
+    @stop
+@section("js")
+<script>
 
-
-@section('js')
-
-    <script>
-        $('#sel').on('change', function() {
-            //console.log($('#sel').children("option:selected").val());
-            $('#entity').attr({
-                "placeholder": ' Name of ' + $('#sel').children("option:selected").val()
-            });
-
-        });
-    </script>
-
-    <script>
-        $("#form1").validate({
+$("#form1").validate({
             rules: {
                 name: {
                     required: true,
                 },
-                contact_person: {
+                address: {
                     required: true,
                 },
-                r_mob: {
+                mob: {
                     required: true,
                     digits: true,
                     minlength: 10,
                     maxlength: 10,
+                    remote: "{{ url('val_form') }}",
                     remote: {
-                        url: 'val_form',
-                        type: 'get',
-                        data: {
-                            r_mob: function() {
-                                return $('#mob').val();
-                            }
-                        },
-                        // Custom success function
-                        dataFilter: function(response) {
+          url: 'val_form',
+          type: 'get',
+          data: {
+            r_mob: function() {
+              return $('#mob').val();
+            }
+          },
+          // Custom success function
+          dataFilter: function(response) {
                             if (response === false || response === 'false') {
                                 $("#login-button2").prop('disabled', true);
 
@@ -203,36 +165,35 @@
                                 return 'true';
                             }
                         }
-                    }
+                        }
 
                 },
                 email: {
                     required: true,
-                    email:true,
+                    customEmail:true,
                     remote: "{{url('check_email_exist')}}",
 
                 },
                 password: {
                     required: true,
-					 minlength: 6,
+                    minlength: 8,
+                    strongPassword:true,
                 },
                 password_confirmation: {
                     required: true,
                     equalTo: "#password"
 
                 },
-                entity: {
-                    required: true,
-                },
+               
             },
             messages: {
                 name: {
                     required: "This field is required.",
                 },
-                contact_person: {
+                address: {
                     required: "This field is required",
                 },
-                r_mob: {
+                mob: {
                     required: "Please enter mobile number.",
                     minlength: "Please enter 10 digit mobile number.",
                     maxlength: "Please enter 10 digit mobile number.",
@@ -241,27 +202,26 @@
                 },
                 email: {
                     required: "This field is required.",
-                    email: "Please enter valid email address.",
+                    customEmail: "Please enter valid email address.",
                     remote: "This email address is already registered with us."
                 },
                 password: {
                     required: "This field is required.",
-					minlength: "Minimum password length should be 6 character.",
+                    minlength: "Minimum password length should be 8 character.",
+                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
                     equalTo: "Confirm password and password must be same."
 
                 },
-                entity: {
-                    required: "Please select option.",
-                },
+              
             },
             submitHandler: function(form) {
                 return true;
             },
             errorPlacement: function(error, element) {
-                if (element.attr("name") === "r_mob") {
+                if (element.attr("name") ==="r_mob") { 
                     error.insertAfter(element.closest('.input-login'));
                 } else {
                     element.closest('.input-login').after(error);
@@ -269,7 +229,6 @@
 
             },
         });
-
         $("#modal_form").validate({
             rules: {
               
@@ -334,12 +293,12 @@
 
         $("#mob").on('keyup', function(e) {
             $("#login-button1").prop('disabled', true);
+            var value = $(this).val();
 
-            if ($(this).val().length == 10)
+            if (/^\d+$/.test(value) && value.length === 10)
                 $("#login-button2").prop('disabled', false);
             else
                 $("#login-button2").prop('disabled', true);
-
         })
    
 
@@ -374,36 +333,34 @@
 
 
 
-        //   if (selectedFiles.length > maximage) {
-        //     alert(`You can select maximum ${maximage} files`);
-        //     imageSelector.value = ''; // Clear the selected files
-        //   }
-        var Boo = function() {
-            alert("test");
-        }
-    </script>
+var Boo = function(){
+alert("test");
+}
 
 
-    <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
-    </script>
 
+</script>
+
+
+	{{-- <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places" ></script>
+    
     <script>
         google.maps.event.addDomListener(window, 'load', initialize);
-
+  
         function initialize() {
-            /* var input = document.getElementById('current_location');*/
-            var autocomplete = new google.maps.places.Autocomplete(
-                (document.getElementById('current_location_at_form')), {
-                    types: ['locality']
-                });
+           /* var input = document.getElementById('current_location');*/
+			var input =new google.maps.places.Autocomplete(
+                                                      (document.getElementById('current_location_at_form')),
+                                                      { types: ['geocode'] });
+                                                      autocomplete.setComponent(
+                                                      {'country': ['IN']});
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
-
-            autocomplete.addListener('place_changed', function() {
+  
+            autocomplete.addListener('place_changed', function () {
                 var place = autocomplete.getPlace();
-
+                
             });
-        }
-    </script>
-
+        } 
+    </script>--}}
 @stop

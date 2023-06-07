@@ -91,9 +91,10 @@
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">About
                                                                         School/College/institution (Max. 500 
-                                                                        Alphabets)</label><br>
+                                                                        Alphabets)  <span id="charcount">0 out of 500 characters</span></label><br>
                                                                     <span id=charcount></span>
-																	<textarea minlength="20"  name="about" id="about"  > </textarea>
+																	<textarea minlength="20" onkeyup="charcountupdate(this.value)" name="about" id="about"></textarea>
+
                                                                        @error('about')
                                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                                         @enderror
@@ -655,17 +656,12 @@
 @section("js")
 
 <script>
-// function charcountupdate(str) {
-// 	var lng = str.length;
-// 	if (lng<20){
-// 		document.getElementById("textbox").disabled = true;
-// 		alert("About School/College/institution Minimum 20 Alphabets excide)");
-		
-// 	}
-// 	document.getElementById("textbox").disabled = false;
-// 	document.getElementById("charcount").innerHTML = lng + ' out of 20 characters';
+function charcountupdate(str) {
+	var lng = str.length;
+    console.log(lng);
+	document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
 	
-// }
+}
 </script>
 <script>
         function openPopup1() {

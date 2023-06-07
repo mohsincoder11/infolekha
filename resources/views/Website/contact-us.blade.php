@@ -92,7 +92,7 @@
                         @csrf
                         <p class="input-info"><input type="text" name="name" id="name" value="" placeholder="Your Name" required="required"></p>
                         <p class="input-info"><input type="text" name="email" id="email" value="" placeholder="E-mail" required="required"></p>
-                        <p class="input-info"><input type="text" name="mob" id="phone" value="" placeholder="Telephone" required="required"></p>
+                        <p class="input-info"><input type="text" name="mob" id="phone" value="" placeholder="Mobile No" required="required"></p>
                         <p class="textarea-info clearfix"><textarea id="message-contact" name="msg" placeholder="Message" required="required"></textarea></p>
                         <p class="submit-info" align="center" style="margin-bottom:1%;">
                             <button type="submit" class="effect-button">Send now</button></p>
@@ -126,7 +126,7 @@
                 },
                 email: {
                     required: true,
-                    email:true,
+                    customEmail:true,
                 },
                 msg: {
                     required: true,
@@ -145,7 +145,7 @@
                 },
                 email: {
                     required: "This field is required.",
-                    email: "Please enter valid email address.",
+                    customEmail: "Please enter valid email address.",
                 },
                 msg: {
                     required: "This field is required.",

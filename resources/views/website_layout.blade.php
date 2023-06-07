@@ -599,7 +599,31 @@ opacity: 1;
     transform: rotate(90deg);
 
   }
+
+  .active_heart{
+    background-color: #e8280b !important;
+    color: #fff !important;
+    animation: likeAnimation 0.35s ease-in-out;
+
+  }
+ 
+  @keyframes likeAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+    box-shadow: rgb(246, 166, 166) 0px 4px 10px;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.star.filled{
+color: gold;
+}
  </style>
+ 
         @yield('css')
 
 
@@ -747,7 +771,9 @@ opacity: 1;
                                             class="fa fa-user-plus"></i>  Login</a>
                                     </li>
 
-                                    <li><a href="#" style="color: #fff;"> <i class="fa fa-users" aria-hidden="true"></i> Shivani</a>
+                                    @if(auth()->check())
+                                    <li>
+                                        <a href="#" style="color: #fff;"> <i class="fa fa-users" aria-hidden="true"></i> {{auth()->check() ? auth()->user()->name : ''}}</a>
                                         <ul class="submenu">
                                             <li><a href="#" style="color: #fff;">Profile</a>
                                             </li>
@@ -755,6 +781,7 @@ opacity: 1;
                                             </li>
                                         </ul><!-- /.submenu -->
                                     </li>
+                                    @endif
                                  
                                    
                                 </ul><!-- /.menu -->
@@ -1116,7 +1143,23 @@ let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+ posi
 
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+<script>
+    $.validator.addMethod("customEmail", function(value, element) {
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return this.optional(element) || emailRegex.test(value);
+  }, "Invalid email format");
 
+  $.validator.addMethod(
+  "strongPassword",
+  function (value, element) {
+    return (
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
+    );
+  },
+  "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+);
+
+</script>
     @yield("js")
     <!-- <script>
         function initialize() {
