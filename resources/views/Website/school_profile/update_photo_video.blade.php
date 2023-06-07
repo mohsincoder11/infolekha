@@ -1,11 +1,11 @@
-@extends('school_institute_profile_layout')
+@extends('Website.school_profile.layout')
 @section('profile_content')
 <div class="dashboard-content">
                     <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
                     <div class="container dasboard-container">
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
-                            <div class="dashboard-title-item">Post Your Result</div>
+                            <div class="dashboard-title-item">Upload Photo/Video </div>
                             <div class="dashbard-menu-header">
                                 <div class="dashbard-menu-avatar fl-wrap">
                                     <img src="images/avatar/user.png" alt="">
@@ -33,7 +33,7 @@
                                 <div class="col-md-6">
                                 <div class="listsearch-input-item">
 
-                                    <label>Post Your Result</label>
+                                    <label>Uload Photo/Video</label>
                                     <input type="file" onClick="this.select()" value=""/>										
                                 </div>
                                 </div>

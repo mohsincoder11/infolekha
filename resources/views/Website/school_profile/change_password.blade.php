@@ -1,4 +1,4 @@
-@extends('school_institute_profile_layout')
+@extends('Website.school_profile.layout')
 @section('profile_content')
 
 <div class="dashboard-content">

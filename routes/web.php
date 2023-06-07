@@ -23,6 +23,7 @@ use App\Http\Controllers\Easebuzzpay;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\UserLikeFeedback;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\SchoolProfile;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -234,6 +235,17 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     
     Route::post('post_enquiry',[UserLikeFeedback::class,'post_enquiry'])->name('post_enquiry');
 
+Route::group(['middleware' => ['role:1']], function () {
+        Route::get('profile',[SchoolProfile::class,'home'])->name('school_profile.home');
+    Route::get('school_profile/update_profile',[SchoolProfile::class,'update_profile'])->name('school_profile.update_profile');
+Route::get('school_profile/create_job_vacancy',[SchoolProfile::class,'create_job_vacancy'])->name('school_profile.create_job_vacancy');
+Route::get('school_profile/post_result',[SchoolProfile::class,'post_result'])->name('school_profile.post_result');
+Route::get('school_profile/pramote_bussiness',[SchoolProfile::class,'pramote_bussiness'])->name('school_profile.pramote_bussiness');
+Route::get('school_profile/change_password',[SchoolProfile::class,'change_password'])->name('school_profile.change_password');
+Route::get('school_profile/update_photo_video',[SchoolProfile::class,'update_photo_video'])->name('school_profile.update_photo_video');
+
+
+});
 });
 
 
@@ -284,13 +296,7 @@ Route::get('logout',[WebsiteformController::class,'log_out'])->name('logout');
 
 //------------------------------------------------school and institute profile dashboard
 
-Route::get('profile',[school_institute_profile_dashboard::class,'home'])->name('school_institute_profile_dashboard.home');
-Route::get('school_institute_profile_dashboard/update_profile',[school_institute_profile_dashboard::class,'update_profile'])->name('school_institute_profile_dashboard.update_profile');
-Route::get('school_institute_profile_dashboard/create_job_vacancy',[school_institute_profile_dashboard::class,'create_job_vacancy'])->name('school_institute_profile_dashboard.create_job_vacancy');
-Route::get('school_institute_profile_dashboard/post_result',[school_institute_profile_dashboard::class,'post_result'])->name('school_institute_profile_dashboard.post_result');
-Route::get('school_institute_profile_dashboard/pramote_bussiness',[school_institute_profile_dashboard::class,'pramote_bussiness'])->name('school_institute_profile_dashboard.pramote_bussiness');
-Route::get('school_institute_profile_dashboard/change_password',[school_institute_profile_dashboard::class,'change_password'])->name('school_institute_profile_dashboard.change_password');
-Route::get('school_institute_profile_dashboard/update_photo_video',[school_institute_profile_dashboard::class,'update_photo_video'])->name('school_institute_profile_dashboard.update_photo_video');
+
 
 
 Route::get('/clear-cache', function () {

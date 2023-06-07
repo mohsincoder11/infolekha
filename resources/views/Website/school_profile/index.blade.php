@@ -1,4 +1,4 @@
-@extends('school_institute_profile_layout')
+@extends('Website.school_profile.layout')
 @section('profile_content')
 
 <div class="dashboard-content">
@@ -52,7 +52,7 @@
                                         <div class="custom-form">
                                            
 
-                                            <img src="{{asset('public')."/".($data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{$data->entity_name ?? ''}}</label>
+                                            <img src="{{asset('public')."/".($data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($data->entity_name) ?? ''}}</label>
                                             <label style="text-align:center; color:#144273; font-size:16px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label>
 
 

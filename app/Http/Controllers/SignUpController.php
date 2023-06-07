@@ -382,9 +382,6 @@ class SignUpController extends Controller
 
     public function student_detail_update(request $request)
     {
-
-
-
         if ($request->isMethod('post')) {
 
             $validator = Validator::make(
