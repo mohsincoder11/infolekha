@@ -9,6 +9,8 @@
         <meta name="robots" content="index, follow"/>
         <meta name="keywords" content=""/>
         <meta name="description" content=""/>
+        <link href="{{asset('website_asset/images/favicon.png')}}" rel="shortcut icon">
+
         <!--=============== css  ===============-->	
         <link type="text/css" rel="stylesheet" href="{{asset('website_asset/school_dashboard/css/plugins.css')}}">
         <link type="text/css" rel="stylesheet" href="{{asset('website_asset/school_dashboard/css/style.css')}}">

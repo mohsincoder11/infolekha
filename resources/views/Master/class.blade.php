@@ -52,21 +52,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									@foreach ($cl as $clss)
-								
-									<tr>
-										<td>{{$loop->index+1}}</td>
-										<td>{{$clss->class}}</td>										
-										<td>
-											<a href="{{route('admin.master.edit_clsss',$clss->id)}}">
-											<button type="button" class="btn1 btn-outline-success"><i class='bx bx-edit-alt me-0'></i></button></a>
-											<a href="{{route('admin.master.destroy_clsss',$clss->id)}}">
-											 <button type="button" class="btn1 btn-outline-danger"><i class='bx bx-trash me-0'></i></button> </a>
-										</td>
-							
-									</tr>
 									
-									@endforeach
 								</tbody>
 							</table>
 						</div>

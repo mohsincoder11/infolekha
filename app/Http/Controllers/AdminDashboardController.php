@@ -40,38 +40,35 @@ class AdminDashboardController extends Controller
         $tutor_data = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
             ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
             ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)
             ->get();
 
         $tutor_data_count = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
             ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
             ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)
             ->count();
 
         $school_institute_data = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)
             ->get();
             
 
         $school_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)->where('r_entity', "school")
+            ->where('r_entity', "school")
             ->count();
 
         $college_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)->where('r_entity', "College")
+            ->where('r_entity', "College")
             ->count();
 
         $institute_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('subscription_status', 1)->where('r_entity', "Institute")
+            ->where('r_entity', "Institute")
             ->count();
 
 

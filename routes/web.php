@@ -21,7 +21,8 @@ use App\Http\Controllers\Master\SliderlinkController;
 use App\Http\Controllers\school_institute_profile_dashboard;
 use App\Http\Controllers\Easebuzzpay;
 use App\Http\Controllers\AdminLoginController;
-
+use App\Http\Controllers\UserLikeFeedback;
+use App\Http\Controllers\SignUpController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -174,10 +175,10 @@ Route::get('destroy_contact/{id}',[ContactController::class,'destroy'])->name('d
 
 // -------------------------------------------student parent form routes------------------------------------------------------//
 
-Route::get('student_register_form',[WebsiteformController::class,'student_register_form'])->name('student_register_form');
-Route::post('student_register_user_create',[WebsiteformController::class,'student_register_user_create'])->name('student_register_user_create');
-Route::post('student_detail_create/{data}',[WebsiteformController::class,'student_detail_create'])->name('student_detail_create');
-Route::post('student_detail_update',[WebsiteformController::class,'student_detail_update'])->name('student_detail_update');
+Route::get('student_register_form',[SignUpController::class,'student_register_form'])->name('student_register_form');
+Route::post('student_register_user_create',[SignUpController::class,'student_register_user_create'])->name('student_register_user_create');
+Route::post('student_detail_create/{data}',[SignUpController::class,'student_detail_create'])->name('student_detail_create');
+Route::post('student_detail_update',[SignUpController::class,'student_detail_update'])->name('student_detail_update');
 
 // --------------------------------------------------------end student form ----------------------------------------------------//
 // 
@@ -190,9 +191,9 @@ Route::post('student_detail_update',[WebsiteformController::class,'student_detai
 // 
 // -------------------------------------------school institutude college form routes------------------------------------------------------//
 
-Route::get('school_institute_register_form',[WebsiteformController::class,'school_institute_register_form'])->name('school_institute_register_form');
-Route::post('school_institute_register_user_create',[WebsiteformController::class,'school_institute_register_user_create'])->name('school_institute_register_user_create');
-Route::post('school_institute_detail_create/{data}',[WebsiteformController::class,'school_institute_detail_create'])->name('school_institute_detail_create');
+Route::get('school_institute_register_form',[SignUpController::class,'school_institute_register_form'])->name('school_institute_register_form');
+Route::post('school_institute_register_user_create',[SignUpController::class,'school_institute_register_user_create'])->name('school_institute_register_user_create');
+Route::post('school_institute_detail_create/{data}',[SignUpController::class,'school_institute_detail_create'])->name('school_institute_detail_create');
 
 // --------------------------------------------------------end school institutude college ----------------------------------------------------//
 // 
@@ -205,9 +206,9 @@ Route::post('school_institute_detail_create/{data}',[WebsiteformController::clas
 // 
 // ------------------------------------------------------tutor college form routes-----------------------------------------------------------//
 
-Route::get('tutor_register_form',[WebsiteformController::class,'tutor_register_form'])->name('tutor_register_form');
-Route::post('tutor_register_user_create',[WebsiteformController::class,'tutor_register_user_create'])->name('tutor_register_user_create');
-Route::post('tutor_detail_create/{data}',[WebsiteformController::class,'tutor_detail_create'])->name('tutor_detail_create');
+Route::get('tutor_register_form',[SignUpController::class,'tutor_register_form'])->name('tutor_register_form');
+Route::post('tutor_register_user_create',[SignUpController::class,'tutor_register_user_create'])->name('tutor_register_user_create');
+Route::post('tutor_detail_create/{data}',[SignUpController::class,'tutor_detail_create'])->name('tutor_detail_create');
 // --------------------------------------------------------end school institutude college ----------------------------------------------------//
 
 
@@ -224,12 +225,19 @@ Route::post('city_create',[state_city::class,'city_create'])->name('city_create'
 
 Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('payment_form',[WebsiteformController::class,'payment_form'])->name('payment_form');
-    Route::get('school_institute_detail_form/{data}',[WebsiteformController::class,'school_institute_detail_form'])->name('school_institute_detail_form');
-    Route::get('student_detail_form/{data}',[WebsiteformController::class,'student_detail_form'])->name('student_detail_form');
-    Route::get('tutor_detail_form/{data}',[WebsiteformController::class,'tutor_detail_form'])->name('tutor_detail_form');
+    Route::get('school_institute_detail_form/{data}',[SignUpController::class,'school_institute_detail_form'])->name('school_institute_detail_form');
+    Route::get('student_detail_form/{data}',[SignUpController::class,'student_detail_form'])->name('student_detail_form');
+    Route::get('tutor_detail_form/{data}',[SignUpController::class,'tutor_detail_form'])->name('tutor_detail_form');
 
+    Route::post('like_unlike',[UserLikeFeedback::class,'like_unlike'])->name('like_unlike');
+    Route::post('insert_feedback',[UserLikeFeedback::class,'insert_feedback'])->name('insert_feedback');
+    
+    Route::post('post_enquiry',[UserLikeFeedback::class,'post_enquiry'])->name('post_enquiry');
 
 });
+
+
+Route::get('like-login-redirect',[UserLikeFeedback::class,'like_login_redirect'])->name('like-login-redirect');
 
 Route::get('/',[WebsiteformController::class,'index'])->name('index');
 Route::get('event',[WebsiteformController::class,'event'])->name('event');
@@ -238,7 +246,7 @@ Route::get('anouncement/{city}',[WebsiteformController::class,'anouncement'])->n
 
 Route::get('announcementweb/{id}',[WebsiteformController::class,'announwebs'])->name('announweb');
 
-Route::get('college_listing/{val}',[WebsiteformController::class,'college_listing'])->name('college_listing');
+Route::get('college_listing/{type?}',[WebsiteformController::class,'college_listing'])->name('college_listing');
 Route::get('send_mobile_verify_otp/{mob}',[WebsiteformController::class,'send_mobile_verify_otp'])->name('send_mobile_verify_otp');
 Route::get('about_us',[WebsiteformController::class,'about_us'])->name('about_us');
 Route::get('blog',[WebsiteformController::class,'blog'])->name('blog');
@@ -271,13 +279,12 @@ Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'
 //send enquiry
 Route::get('logout',[WebsiteformController::class,'log_out'])->name('logout');
 // Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'])->name('get_mobile_number');
-Route::post('post_enquiry',[WebsiteformController::class,'post_enquiry'])->name('post_enquiry');
 
 
 
 //------------------------------------------------school and institute profile dashboard
 
-Route::get('school_institute_profile_dashboard/home',[school_institute_profile_dashboard::class,'home'])->name('school_institute_profile_dashboard.home');
+Route::get('profile',[school_institute_profile_dashboard::class,'home'])->name('school_institute_profile_dashboard.home');
 Route::get('school_institute_profile_dashboard/update_profile',[school_institute_profile_dashboard::class,'update_profile'])->name('school_institute_profile_dashboard.update_profile');
 Route::get('school_institute_profile_dashboard/create_job_vacancy',[school_institute_profile_dashboard::class,'create_job_vacancy'])->name('school_institute_profile_dashboard.create_job_vacancy');
 Route::get('school_institute_profile_dashboard/post_result',[school_institute_profile_dashboard::class,'post_result'])->name('school_institute_profile_dashboard.post_result');
