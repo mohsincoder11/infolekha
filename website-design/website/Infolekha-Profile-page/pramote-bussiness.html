@@ -1,0 +1,987 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <!--=============== basic  ===============-->
+    <meta charset="UTF-8">
+    <title>Infolekha</title>
+
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <!--=============== css  ===============-->
+    <link type="text/css" rel="stylesheet" href="css/plugins.css">
+    <link type="text/css" rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="css/dashboard-style.css">
+    <link type="text/css" rel="stylesheet" href="css/color.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+    <!--=============== favicons ===============-->
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" />
+</head>
+
+<body>
+    <!--loader-->
+    <div class="loader-wrap">
+        <div class="loader-inner">
+            <svg>
+                <defs>
+                    <filter id="goo">
+                        <fegaussianblur in="SourceGraphic" stdDeviation="2" result="blur" />
+                        <fecolormatrix in="blur" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 5 -2" result="gooey" />
+                        <fecomposite in="SourceGraphic" in2="gooey" operator="atop" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    <!--loader end-->
+    <!-- main -->
+    <div id="main">
+        <!-- header -->
+        <header class="main-header">
+            <!--  logo  -->
+            <div class="logo-holder"><a href="index.html"><img src="images/logonew.png" alt=""></a></div>
+            <!-- logo end  -->
+
+
+
+            <!-- header-search-wrapper -->
+            <div class="header-search-wrapper novis_search">
+                <div class="header-serach-menu">
+                    <div class="custom-switcher fl-wrap">
+                        <div class="fieldset fl-wrap">
+                            <input type="radio" name="duration-1" id="buy_sw" class="tariff-toggle" checked>
+                            <label for="buy_sw">Buy</label>
+                            <input type="radio" name="duration-1" class="tariff-toggle" id="rent_sw">
+                            <label for="rent_sw" class="lss_lb">Rent</label>
+                            <span class="switch color-bg"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-form">
+                    <form method="post" name="registerform">
+                        <label>Keywords </label>
+                        <input type="text" placeholder="Address , Street , State..." value="" />
+                        <label>Categories</label>
+                        <select data-placeholder="Categories" class="chosen-select on-radius no-search-select">
+                            <option>All Categories</option>
+                            <option>House</option>
+                            <option>Apartment</option>
+                            <option>Hotel</option>
+                            <option>Villa</option>
+                            <option>Office</option>
+                        </select>
+                        <label style="margin-top:10px;">Price Range</label>
+                        <div class="price-rage-item fl-wrap">
+                            <input type="text" class="price-range" data-min="100" data-max="100000" name="price-range1"
+                                data-step="1" value="1" data-prefix="$">
+                        </div>
+                        <button onclick="location.href='listing.html'" type="button" class="btn float-btn color-bg"><i
+                                class="fal fa-search"></i> Search</button>
+                    </form>
+                </div>
+            </div>
+            <!-- header-search-wrapper end  -->
+            <!-- wishlist-wrap-->
+            <div class="header-modal novis_wishlist tabs-act">
+                <ul class="tabs-menu fl-wrap no-list-style">
+                    <li class="current"><a href="#tab-wish"> Wishlist <span>- 3</span></a></li>
+                    <li><a href="#tab-compare"> Compare <span>- 2</span></a></li>
+                </ul>
+                <!--tabs -->
+                <div class="tabs-container">
+                    <div class="tab">
+                        <!--tab -->
+                        <div id="tab-wish" class="tab-content first-tab">
+                            <!-- header-modal-container-->
+                            <div class="header-modal-container scrollbar-inner fl-wrap" data-simplebar>
+                                <!--widget-posts-->
+                                <div class="widget-posts  fl-wrap">
+                                    <ul class="no-list-style">
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img
+                                                        src="images/all/small/1.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Affordable Urban Room</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i
+                                                            class="fas fa-map-marker-alt"></i> 40 Journal Square , NJ,
+                                                        USA</a></div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $ 1500 / per
+                                                    month</div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img
+                                                        src="images/all/small/2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Family House</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i
+                                                            class="fas fa-map-marker-alt"></i> 34-42 Montgomery St , NY,
+                                                        USA</a></div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $ 50.000
+                                                </div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="widget-posts-img"><a href="listing-single.html"><img
+                                                        src="images/all/small/3.jpg" alt=""></a>
+                                            </div>
+                                            <div class="widget-posts-descr">
+                                                <h4><a href="listing-single.html">Apartment to Rent</a></h4>
+                                                <div class="geodir-category-location fl-wrap"><a href="#"><i
+                                                            class="fas fa-map-marker-alt"></i>75 Prince St, NY, USA</a>
+                                                </div>
+                                                <div class="widget-posts-descr-price"><span>Price: </span> $100 / per
+                                                    night</div>
+                                                <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- widget-posts end-->
+                            </div>
+                            <!-- header-modal-container end-->
+                            <div class="header-modal-top fl-wrap">
+                                <div class="clear_wishlist color-bg"><i class="fal fa-trash-alt"></i> Clear all</div>
+                            </div>
+                        </div>
+                        <!--tab end -->
+                        <!--tab -->
+                        <div class="tab">
+                            <div id="tab-compare" class="tab-content">
+                                <!-- header-modal-container-->
+                                <div class="header-modal-container scrollbar-inner fl-wrap" data-simplebar>
+                                    <!--widget-posts-->
+                                    <div class="widget-posts  fl-wrap">
+                                        <ul class="no-list-style">
+                                            <li>
+                                                <div class="widget-posts-img"><a href="listing-single.html"><img
+                                                            src="images/all/small/4.jpg" alt=""></a>
+                                                </div>
+                                                <div class="widget-posts-descr">
+                                                    <h4><a href="listing-single.html">Gorgeous house for sale</a></h4>
+                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i
+                                                                class="fas fa-map-marker-alt"></i> 70 Bright St New
+                                                            York, USA </a></div>
+                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 52.100
+                                                    </div>
+                                                    <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="widget-posts-img"><a href="listing-single.html"><img
+                                                            src="images/all/small/5.jpg" alt=""></a>
+                                                </div>
+                                                <div class="widget-posts-descr">
+                                                    <h4><a href="listing-single.html">Family Apartments</a></h4>
+                                                    <div class="geodir-category-location fl-wrap"><a href="#"><i
+                                                                class="fas fa-map-marker-alt"></i> W 85th St, New York,
+                                                            USA </a></div>
+                                                    <div class="widget-posts-descr-price"><span>Price: </span> $ 72.400
+                                                    </div>
+                                                    <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <!-- widget-posts end-->
+                                </div>
+                                <!-- header-modal-container end-->
+                                <div class="header-modal-top fl-wrap">
+                                    <a class="clear_wishlist color-bg" href="compare.html"><i class="fal fa-random"></i>
+                                        Compare</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--tab end -->
+                    </div>
+                    <!--tabs end -->
+                </div>
+            </div>
+            <!--wishlist-wrap end -->
+            <!--header-opt-modal-->
+            <div class="header-opt-modal novis_header-mod">
+                <div class="header-opt-modal-container hopmc_init">
+                    <div class="header-opt-modal-item lang-item fl-wrap">
+                        <h4>Language: <span>EN</span></h4>
+                        <div class="header-opt-modal-list fl-wrap">
+                            <ul>
+                                <li><a href="#" class="current-lan" data-lantext="EN">English</a></li>
+                                <li><a href="#" data-lantext="FR">Franais</a></li>
+                                <li><a href="#" data-lantext="ES">Espaol</a></li>
+                                <li><a href="#" data-lantext="DE">Deutsch</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="header-opt-modal-item currency-item fl-wrap">
+                        <h4>Currency: <span>USD</span></h4>
+                        <div class="header-opt-modal-list fl-wrap">
+                            <ul>
+                                <li><a href="#" class="current-lan" data-lantext="USD">USD</a></li>
+                                <li><a href="#" data-lantext="EUR">EUR</a></li>
+                                <li><a href="#" data-lantext="GBP">GBP</a></li>
+                                <li><a href="#" data-lantext="RUR">RUR</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--header-opt-modal end -->
+        </header>
+        <!-- header end  -->
+        <!-- wrapper  -->
+        <div id="wrapper">
+            <!-- dashbard-menu-wrap -->
+            <div class="dashbard-menu-overlay"></div>
+            <div class="dashbard-menu-wrap">
+                <div class="dashbard-menu-close"><i class="fal fa-times"></i></div>
+                <div class="dashbard-menu-container">
+                    <!-- user-profile-menu-->
+                    <div class="user-profile-menu">
+                        <h3>Main</h3>
+                        <ul class="no-list-style">
+                            <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a></li> -->
+                            <li><a href="profile.html" class="user-profile-act"><i class="fal fa-user-edit"></i> Home
+                                    Page</a></li>
+                            <li><a href="Update-profile.html"><i class="fal fa-envelope"></i>Update Profile</a></li>
+                            <li><a href="Post-result.html"><i class="fal fa-users"></i> Post Your Results</a></li>
+                            <li>
+                                <a href="Create-job-vacancy.html"><i class="fa fa-file"></i>Create Job Vacancy</a>
+
+                            </li>
+
+                            <li>
+                                <a href="pramote-bussiness.html"><i class="fa fa-check-square"></i>Pramote Your
+                                    Bussines</a>
+
+                            </li>
+
+
+                            <li>
+                                <a href="Upload-photo-video.html"><i class="fa fa-cloud-upload"></i>Upload
+                                    Photo/Video</a>
+
+                            </li>
+
+                            <li>
+                                <a href="Change-password.html"><i class="fal fa-plus"></i>Change Password</a>
+
+                            </li>
+
+                            <li>
+                                <a href="#"><i class="fa fa-cloud-download"></i>Download Profile</a>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!-- dashbard-menu-wrap end  -->
+            <!-- content -->
+            <div class="dashboard-content">
+                <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
+                <div class="container dasboard-container">
+                    <!-- dashboard-title -->
+                    <div class="dashboard-title fl-wrap">
+                        <div class="dashboard-title-item">Pramote Your Bussiness</div>
+                        <div class="dashbard-menu-header">
+                            <div class="dashbard-menu-avatar fl-wrap">
+                                <img src="images/avatar/user.png" alt="">
+                                <h4>Welcome, <span>Amit Tawani</span></h4>
+                            </div>
+                            <a href="index.html" class="log-out-btn   tolt" data-microtip-position="bottom"
+                                data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
+                        </div>
+
+                    </div>
+                    <!-- dashboard-title end -->
+
+
+                    <div class="col-md-12">
+                  
+                        <div class="list-searh-input-wrap-title fl-wrap"></div>
+                        
+                        <div class="block-box fl-wrap search-sb" id="filters-column">
+                            <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px;"><b>Listing</b></h4>
+                            <!-- listsearch-input-item -->
+                            
+
+                          <div class="col-md-2"></div>
+                            <div class="col-md-4">
+                                <div class="box-widget bwt-first fl-wrap">
+                                    <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">
+                                        Monthly</div>
+                                 
+                                    <div class="box-widget-content fl-wrap">
+                                        <div class="contats-list clm fl-wrap">
+                                            <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.500</b> </h4>
+                                            <ul class="no-list-style">
+                                                <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                        href="#">500</li>
+                                                        <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                            80%</a></li>
+                                                <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                    100.00</a></li>
+                                                <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                        href="#">ILEKHA80</a></li>
+                                            </ul>
+
+                                            <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-md-4">
+                                <div class="box-widget bwt-first fl-wrap">
+                                    <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                        Yearly</div>
+                                 
+                                    <div class="box-widget-content fl-wrap">
+                                        <div class="contats-list clm fl-wrap">
+                                            <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.5000</b> </h4>
+                                            <ul class="no-list-style">
+                                                <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                        href="#">500</li>
+                                                        <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                            80%</a></li>
+                                                <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                    1000.00</a></li>
+                                                <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                        href="#">ILEKHA80</a></li>
+                                            </ul>
+
+                                            <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <hr>
+                            </div>
+
+                            <div class="col-md-12">
+                           
+                              <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Announcement Home Page</b></h4>
+                              <!-- listsearch-input-item -->
+                              
+  
+                          
+                              <div class="col-lg-4">
+                                  <div class="box-widget bwt-first fl-wrap">
+                                      <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">
+                                        1 - 9 day</div>
+                                   
+                                      <div class="box-widget-content fl-wrap">
+                                          <div class="contats-list clm fl-wrap">
+                                              <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.500</b> </h4>
+                                              <ul class="no-list-style">
+                                                  <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                          href="#">100</li>
+                                                          <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                            50%</a></li>
+                                                  <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                    50.00</a></li>
+                                                  <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                          href="#">ILEKHA50</a></li>
+                                              </ul>
+  
+                                              <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                          </div>
+                                   
+                                      </div>
+                                  </div>
+                              </div>
+  
+                              
+                              <div class="col-lg-4">
+                                  <div class="box-widget bwt-first fl-wrap">
+                                      <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                        10 - 29 day</div>
+                                   
+                                      <div class="box-widget-content fl-wrap">
+                                          <div class="contats-list clm fl-wrap">
+                                              <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.5000</b> </h4>
+                                              <ul class="no-list-style">
+                                                  <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                          href="#">900</li>
+                                                          <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                              80%</a></li>
+                                                  <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                    450.00</a></li>
+                                                  <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                          href="#">ILEKHA80</a></li>
+                                              </ul>
+  
+                                              <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                          </div>
+                                   
+                                      </div>
+                                  </div>
+                              </div>
+  
+  
+                              <div class="col-lg-4">
+                                <div class="box-widget bwt-first fl-wrap">
+                                    <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                        More than 30 day</div>
+                                 
+                                    <div class="box-widget-content fl-wrap">
+                                        <div class="contats-list clm fl-wrap">
+                                            <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.5000</b> </h4>
+                                            <ul class="no-list-style">
+                                                <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                        href="#">2500</li>
+                                                        <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                            80%</a></li>
+                                                <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                    1250.00</a></li>
+                                                <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                        href="#">ILEKHA80</a></li>
+                                            </ul>
+
+                                            <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+
+  
+                          </div>
+
+                       
+                                <div class="col-md-12">
+                                 <hr>
+                                  </div>
+                          
+                          <div class="col-md-12">
+                           
+                            <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Announcement Home Page  650 x 450</b></h4>
+                            <!-- listsearch-input-item -->
+                            
+
+                        
+                            <div class="col-lg-4">
+                                <div class="box-widget bwt-first fl-wrap">
+                                    <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">
+                                      1 - 9 day</div>
+                                 
+                                    <div class="box-widget-content fl-wrap">
+                                        <div class="contats-list clm fl-wrap">
+                                            <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.100</b> </h4>
+                                            <ul class="no-list-style">
+                                                <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                        href="#">100</li>
+                                                        <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                          50%</a></li>
+                                                <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                  50.00</a></li>
+                                                <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                        href="#">ILEKHA50</a></li>
+                                            </ul>
+
+                                            <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="col-lg-4">
+                                <div class="box-widget bwt-first fl-wrap">
+                                    <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                      10 - 29 day</div>
+                                 
+                                    <div class="box-widget-content fl-wrap">
+                                        <div class="contats-list clm fl-wrap">
+                                            <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.900</b> </h4>
+                                            <ul class="no-list-style">
+                                                <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                        href="#">900</li>
+                                                        <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                            80%</a></li>
+                                                <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                  450.00</a></li>
+                                                <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                        href="#">ILEKHA80</a></li>
+                                            </ul>
+
+                                            <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                        </div>
+                                 
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                      More than 30 day</div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.2500</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">2500</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                          80%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                  1250.00</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA80</a></li>
+                                          </ul>
+
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+
+
+                        </div>
+                          <div class="col-md-12">
+                            <hr>
+                        </div>
+
+                        <div class="col-md-12">
+                       
+                          <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Announcement Home Page 370 x 450</b></h4>
+                          <!-- listsearch-input-item -->
+                          
+
+                      
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">1 Day
+                                    </div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.500</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">500</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        50%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                250.00</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+
+                          
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    10 Day</div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.12500</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">12500</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                          80%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                6250.00</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+
+
+                          <div class="col-lg-4">
+                            <div class="box-widget bwt-first fl-wrap">
+                                <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    30 Day</div>
+                             
+                                <div class="box-widget-content fl-wrap">
+                                    <div class="contats-list clm fl-wrap">
+                                        <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.4500</b> </h4>
+                                        <ul class="no-list-style">
+                                            <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                    href="#">2250.00</li>
+                                                    <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        80%</a></li>
+                                            <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                9000.00</a></li>
+                                            <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                    href="#">ILEKHA50</a></li>
+                                        </ul>
+
+                                        <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                    </div>
+                             
+                                </div>
+                            </div>
+                        </div>
+
+
+                      </div>
+                   
+                      <div class="col-md-12">
+                      <hr>
+                             </div>
+
+                      <div class="col-md-12">
+                       
+                        <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Student View Main Banner</b></h4>
+                        <!-- listsearch-input-item -->
+                        
+
+                    
+                        <div class="col-lg-4">
+                            <div class="box-widget bwt-first fl-wrap">
+                                <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">1 Day
+                                  </div>
+                             
+                                <div class="box-widget-content fl-wrap">
+                                    <div class="contats-list clm fl-wrap">
+                                        <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.1000</b> </h4>
+                                        <ul class="no-list-style">
+                                            <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                    href="#">1000</li>
+                                                    <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                      50%</a></li>
+                                            <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                500</a></li>
+                                            <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                    href="#">ILEKHA50</a></li>
+                                        </ul>
+
+                                        <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                    </div>
+                             
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="col-lg-4">
+                            <div class="box-widget bwt-first fl-wrap">
+                                <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    10 Day</div>
+                             
+                                <div class="box-widget-content fl-wrap">
+                                    <div class="contats-list clm fl-wrap">
+                                        <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.9000</b> </h4>
+                                        <ul class="no-list-style">
+                                            <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                    href="#">9000</li>
+                                                    <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        80%</a></li>
+                                            <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                4500</a></li>
+                                            <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                    href="#">ILEKHA50</a></li>
+                                        </ul>
+
+                                        <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                    </div>
+                             
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-4">
+                          <div class="box-widget bwt-first fl-wrap">
+                              <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                  30 Day</div>
+                           
+                              <div class="box-widget-content fl-wrap">
+                                  <div class="contats-list clm fl-wrap">
+                                      <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.25000</b> </h4>
+                                      <ul class="no-list-style">
+                                          <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                  href="#">25000</li>
+                                                  <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                      80%</a></li>
+                                          <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                            12500</a></li>
+                                          <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                  href="#">ILEKHA50</a></li>
+                                      </ul>
+
+                                      <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                  </div>
+                           
+                              </div>
+                          </div>
+                      </div>
+
+
+                    </div>
+
+                    <div class="col-md-12">
+                        <hr>
+                               </div>
+  
+                        <div class="col-md-12">
+                         
+                          <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Student View Side Posters</b></h4>
+                          <!-- listsearch-input-item -->
+                          
+  
+                      
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">1 Day
+                                    </div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.750</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">750</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        50%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                375</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+  
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+  
+                          
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                      10 Day</div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.6500</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">6500</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                          80%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                3250</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+  
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+  
+  
+                          <div class="col-lg-4">
+                            <div class="box-widget bwt-first fl-wrap">
+                                <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    30 Day</div>
+                             
+                                <div class="box-widget-content fl-wrap">
+                                    <div class="contats-list clm fl-wrap">
+                                        <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.18000</b> </h4>
+                                        <ul class="no-list-style">
+                                            <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                    href="#">18000</li>
+                                                    <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        80%</a></li>
+                                            <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                9000</a></li>
+                                            <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                    href="#">ILEKHA50</a></li>
+                                        </ul>
+  
+                                        <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                    </div>
+                             
+                                </div>
+                            </div>
+                        </div>
+  
+  
+                      </div>
+
+
+                      <div class="col-md-12">
+                        <hr>
+                               </div>
+  
+                        <div class="col-md-12">
+                         
+                          <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>For Tutor/Faculty</b></h4>
+                          <!-- listsearch-input-item -->
+                          
+  
+                      
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin" align="center">1 Day
+                                    </div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.1000</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> One Time :</span> <a
+                                                      href="#">1000</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        50%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                500</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+  
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+  
+                          
+                          <div class="col-lg-4">
+                              <div class="box-widget bwt-first fl-wrap">
+                                  <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    For 15 Days</div>
+                               
+                                  <div class="box-widget-content fl-wrap">
+                                      <div class="contats-list clm fl-wrap">
+                                          <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.10000</b> </h4>
+                                          <ul class="no-list-style">
+                                              <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                      href="#">10000</li>
+                                                      <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                          80%</a></li>
+                                              <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                5000</a></li>
+                                              <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                      href="#">ILEKHA50</a></li>
+                                          </ul>
+  
+                                          <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                      </div>
+                               
+                                  </div>
+                              </div>
+                          </div>
+  
+  
+                          <div class="col-lg-4">
+                            <div class="box-widget bwt-first fl-wrap">
+                                <div class="box-widget-title fl-wrap box-widget-title-color color-bg no-top-margin">
+                                    30 Day</div>
+                             
+                                <div class="box-widget-content fl-wrap">
+                                    <div class="contats-list clm fl-wrap">
+                                        <h4 style="color: #073D5F; font-size: 19px; margin-top: 2px; margin-bottom: 5px;;"><b>Rs.18000</b> </h4>
+                                        <ul class="no-list-style">
+                                            <li><span style="margin-left:5px;"> Original Price :</span> <a
+                                                    href="#">18000</li>
+                                                    <li><span style="margin-left:5px;"> Discounted :</span> <a href="#">
+                                                        80%</a></li>
+                                            <li><span style="margin-left:5px;"> Discounted Price :</span> <a href="#">
+                                                9000.00</a></li>
+                                            <li><span style="margin-left:5px;"> COUPON CODE :</span> <a
+                                                    href="#">ILEKHA50</a></li>
+                                        </ul>
+  
+                                        <button class="btn color-bg " style="padding: 4px; margin-bottom:4px;;">Send Enquiry</button>
+                                    </div>
+                             
+                                </div>
+                            </div>
+                        </div>
+  
+  
+                      </div>
+
+
+
+
+                        </div>
+                          </div>
+
+                        </div>
+
+                     
+
+
+                    </div>
+
+                </div>
+
+                <!-- dasboard-wrapper-->
+
+            </div>
+
+        </div>
+    </div>
+
+
+    </div>
+    </div>
+    </div>
+    <!-- dasboard-wrapper end -->
+    </div>
+
+    </div>
+    <!-- content end -->
+    <div class="dashbard-bg gray-bg"></div>
+    </div>
+    <!-- wrapper end -->
+    </div>
+    <!-- Main end -->
+    <!--=============== scripts  ===============-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            alert('in');
+            $('#inputDate').datepicker({
+            });
+        })
+
+    </script>
+</body>
+
+</html>
