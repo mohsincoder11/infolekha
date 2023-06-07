@@ -191,7 +191,7 @@
                                                             <th>Contact No</th>
                                                             <th>Email</th>
                                                             <th>Entity Name</th>
-                                                            <th>Activation/Deactivation</th>
+                                                            <th>Active [Payment Status]</th>
                                                             <th style="background-color: #ffff;">Action</th>
                                                         </tr>
                                                     </thead>
@@ -240,6 +240,9 @@
                                                                                 id="id{{ $dt->user_id }}"
                                                                                 @if ($dt->active == 1) checked='true' @endif @if($dt->subscription_status==0) disabled @endif>
                                                                         </div>
+                                                                        @if($dt->subscription_status==0)
+                                                                        Not Paid
+                                                                        @endif
                                                                     </button>
                                                                 </td>
 

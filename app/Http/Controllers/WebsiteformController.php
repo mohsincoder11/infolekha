@@ -34,670 +34,10 @@ class WebsiteformController extends Controller
 
 {
 
-    public function student_register_form()
-    {
-        $city = city::get();
-        $state = state::get();
-        return view('Website.student_register_form', ['citys' => $city, 'states' => $state]);
-    }
+  
 
 
-    public function student_register_user_create(Request $request)
-
-    {
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|string|max:255',
-                    'current_school_institute' => 'required|string|max:255',
-                    'mob' => 'required|max:10|unique:user_student',
-                    'email' => 'required|string|email|max:255', //|unique:users
-                    'password' => 'required|string|min:6|confirmed'
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-
-
-                $users3 = User::create([
-                    'name' => $request->get('name'),
-                    'password' => Hash::make($request->get('password')),
-                    'email' => $request->get('email'),
-                    'active' => '1',
-                    'role' => '3',
-
-                ]);
-
-
-
-                $inst = user_student::create([
-                    'r_name' => $request->get('name'),
-                    'r_current_school_institute' => $request->get('current_school_institute'),
-                    'mob' => $request->get('mob'),
-                    'address' => $request->get('address'),
-                    'user_id' => $users3->id,
-
-
-                ]);
-                Auth::attempt(array('email' => $request->email, 'password' => $request->password));
-
-                $data = Auth::user()->id;
-                return redirect()->route('college_listing', $data);
-            }
-        }
-    }
-
-
-    public function student_detail_form(Request $request)
-    {
-        $data = user_student::find($request->data);
-        return view('Website.student_details_form')->with('data', $data);
-    }
-
-
-    public function student_detail_create(Request $request)
-
-    {
-
-
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|string|max:255',
-                    'class' => 'required',
-                    'mob' => 'required|max:10',
-                    'email' => 'required|string|email|max:255|unique:student_detail', //|unique:student_detail
-                    // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-
-                if (Student_detail::where('user_student_id', $request->data)->exists()) {
-                    return  redirect()->back();
-                }
-
-                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->image->move(public_path('database_files/student/photo', $image));
-
-                $inst = Student_detail::create([
-                    'name' => $request->get('name'),
-                    'class' => $request->get('class'),
-                    'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
-                    'address' => $request->get('address'),
-                    'state' => $request->get('state'),
-                    'city' => $request->get('city'),
-                    'pin_code' => $request->get('pin_code'),
-                    'image' => 'database_files/student/photo/' . $image,
-                    'user_student_id' => $request->data
-
-
-
-                ]);
-                return redirect('college_listing');
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // ------------------------------------------------school institute form controller function---------------------------------------------//
-
-
-
-
-
-    public function school_institute_register_form()
-    {
-        $city = city::get();
-        $state = state::get();
-        $Entity = Entity::get();
-        return view('Website.school_institute_register_form', ['citys' => $city, 'states' => $state, 'entitys' => $Entity]);
-    }
-
-
-    public function school_institute_register_user_create(Request $request)
-
-    {
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|string|max:255',
-                    'contact_person' => 'required|string|max:255',
-                    'r_mob' => 'required|min:10|max:10|unique:user_school_institute',
-                    'email' => 'required|string|email|max:255|unique:users', //
-                    'password' => 'required|string|min:6|confirmed',
-                    'entity' => 'required'
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-
-
-                $users1 = User::create([
-                    'name' => $request->get('name'),
-                    'password' => Hash::make($request->get('password')),
-                    'email' => $request->get('email'),
-                    'active' => '0',
-                    'role' => '1',
-
-                ]);
-
-                $inst = user_school_institute::create([
-                    'r_name' => $request->get('name'),
-                    'r_contact_person' => $request->get('contact_person'),
-                    'r_mob' => $request->get('r_mob'),
-                    'address' => $request->get('address'),
-                    'user_id' => $users1->id,
-                    'r_entity' => $request->get('entity'),
-                ]);
-
-
-                Auth::attempt(array('email' => $request->email, 'password' => $request->password));
-                return redirect()->route('school_institute_detail_form', ['data' => Auth::user()->id]);
-            }
-        } else {
-            dd(1);
-        }
-    }
-
-
-    public function school_institute_detail_form(Request $request)
-    {
-
-        $schools = School::get();
-        $colleges = College::get();
-        $institutes = Institute::get();
-        $courses = Cources::get();
-        $facalitys = Faculties::get();
-
-        $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
-
-
-
-        return view('Website.school_institute_details_form', [
-            'data' => $data,
-            'schools' => $schools,
-            'colleges' => $colleges,
-            'institutes' => $institutes,
-            'courses' => $courses,
-            'facalitys' => $facalitys
-        ]);
-    }
-
-
-    public function school_institute_detail_create(Request $request)
-
-    {
-
-
-
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    // 'logo'=>'required',
-                    'school_institute' => 'required',
-                    'address' => 'required',
-                    'about'=>'max:500',
-                    'pin_code' => 'required',
-                    'oprating_since' => 'required',
-                    //'registration_no'=>'required',
-                    'mob' => 'required|max:10',
-                    'email' => 'required|email|max:255', //
-                    //'website'=>'required',
-                    //'fb'=>'required',
-                    //'insta'=>'required',
-                    //'google'=>'required',
-                    //'yt'=>'required',
-                    'course' => 'required',
-                    //'opening_time'=>'required',
-                    //'closing_time'=>'required',
-                    'facilities' => 'required',
-                    // 'image'=>'required',
-                    // 'video'=>'required',
-
-                    // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-
-                if (school_institute_detail::where('user_id', auth::user()->id)->exists()) {
-                    //   dd(auth::user()->id);
-                    return  redirect()->back();
-                }
-
-                $test = user_school_institute::where('user_id', auth::user()->id)->first();
-
-                $inst = new school_institute_detail();
-                if ($request->image) {
-                    $array_image = [];
-                    foreach ($request->image as $images) {
-                        $image = time() . '.' . $images->getClientOriginalExtension();
-                        $images->move(public_path('database_files/school_institute/photo'), $image);
-                        array_push($array_image, "database_files/school_institute/photo/" . $image);
-                    }
-                    $image_name = json_encode($array_image);
-                }
-
-                if ($request->video) {
-                    $array_video = [];
-                    foreach ($request->video as $videos) {
-                        $video = time() . '.' . $videos->getClientOriginalExtension();
-                        $videos->move(public_path('database_files/school_institute/video'), $video);
-                        array_push($array_video, 'database_files/school_institute/video/' . $video);
-                    }
-                    $video_name = json_encode($array_video);
-                }
-
-
-
-                //$video= time().'.'.$request->file("video")->GetClientOriginalName();
-                //$request->video->move(base_path('database_files/school_institute/video'),$video);
-                $logo = '';
-                if ($request->hasfile('logo')) {
-                    $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
-                    $request->logo->move(public_path('database_files/school_institute/logo'), $logo);
-                }
-                $course = json_encode($request->get('course'));
-                $facilities = json_encode($request->get('facilities'));
-
-
-
-
-
-                $inst->entity_name = $request->get('school_institute');
-                $inst->address = $request->get('address');
-                $inst->about = $request->get('about');
-                $inst->pin_code = $request->get('pin_code');
-                $inst->oprating_since = $request->get('oprating_since');
-                $inst->registration_no = $request->get('registration_no');
-                $inst->mob = $request->get('mob');
-                $inst->email = $request->get('email');
-                $inst->website = $request->get('website');
-                $inst->fb = $request->get('fb');
-                $inst->insta = $request->get('insta');
-                $inst->google = $request->get('google');
-                $inst->yt = $request->get('yt');
-
-                if ($test->r_entity == 'School') {
-                    $inst->entity_select = $request->get('school');
-                } elseif ($test->r_entity == 'College') {
-                    $inst->entity_select = $request->get('college');
-                } elseif ($test->r_entity == 'Institute') {
-                    $inst->entity_select = $request->get('institute');
-                }
-
-                $inst->course = $course;
-                $inst->opening_time = $request->get('opening_time');
-                $inst->closing_time = $request->get('closing_time');
-                $inst->facilities = $facilities;
-                if ($request->image) {
-                    $inst->image = $image_name;
-                }
-                if ($request->video) {
-                    $inst->video = $video_name;
-                }
-                $inst->logo = 'database_files/school_institute/logo/' . $logo;
-                //$inst->declaration=$request->get('declaration');
-                $inst->user_id = auth::user()->id;
-                $inst->subscription_status = 0;
-               // $inst->activate = 0;
-
-                $inst->save();
-                return redirect('payment_form');
-            }
-        }
-    }
-
-
-
-
-
-    // --------------------------------------------------------------------tutor form controller------------------------------------------//
-
-
-
-
-
-    public function tutor_register_form()
-    {
-
-        return view('Website.tutor_register_form');
-    }
-
-
-    public function tutor_register_user_create(Request $request)
-
-    {
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|string|max:255',
-                    'mob' => 'required|min:10|max:10|unique:user_tutor',
-                    'email' => 'required|string|email|max:255|unique:users', //|unique:users
-                    'password' => 'required|string|min:6|confirmed'
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-                $users2 = User::create([
-                    'name' => $request->get('name'),
-                    'password' => Hash::make($request->get('password')),
-                    'email' => $request->get('email'),
-                    'active' => '0',
-                    'role' => '2',
-
-                ]);
-
-
-
-                $inst = user_tutor::create([
-                    'r_name' => $request->get('name'),
-                    'mob' => $request->get('mob'),
-                    'address' => $request->get('address'),
-
-
-                    'user_id' => $users2->id,
-
-
-                ]);
-
-                Auth::attempt(array('email' => $request->email, 'password' => $request->password));
-                $data = auth::user()->id;
-                return redirect()->route('tutor_detail_form', $data);
-            }
-        }
-    }
-
-
-    public function tutor_detail_form(Request $request)
-    {
-        $data = DB::table('users')->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
-            ->select("user_tutor.*", "users.*")->where('user_tutor.user_id', auth::user()->id)->first();
-
-
-        return view('Website.tutor_details_form', ['data' => $data]);
-    }
-
-
-    public function tutor_detail_create(Request $request)
-
-    {
-
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required|string|max:255',
-                    'experiance' => 'required',
-                    'subject' => 'required',
-                    'mob' => 'required|max:10',
-                    'email' => 'required|string|email|max:255', //|unique:tutor_detail
-                    // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-
-
-                if (tutor_detail::where('user_id', auth::user()->id)->exists()) {
-                    return  redirect()->back();
-                }
-
-
-                $inst = tutor_detail::create([
-                    'name' => $request->get('name'),
-                    'subject' => $request->get('subject'),
-                    'experiance' => $request->get('experiance'),
-                    'job_type' => $request->get('job_type'),
-                    'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
-                    'address' => $request->get('address'),
-                    'pin_code' => $request->get('pin_code'),
-                    'declaration' => $request->get('declaration'),
-                    'user_id' => auth::user()->id,
-                    'subscription_status' => 0,
-                    'activate' => 0
-
-
-
-
-                ]);
-                return redirect('payment_form');
-            }
-        }
-    }
-
-    public function student_detail_update(request $request)
-    { 
-        
-
-
-            if ($request->isMethod('post')) {
-
-                $validator = Validator::make(
-                    $request->all(),
-                    [
-                        'name' => 'required|string|max:255',
-                        'class' => 'required',
-                        'mob' => 'required|max:10',
-                        'email' => 'required|string|email|max:255', //|unique:student_detail
-                        // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-                    ]
-                );
-
-                if ($validator->fails()) {
-                    //  return redirect()->back()->with('error',$validator->errors());
-                    return  redirect()
-                        ->back()
-                        ->withErrors($validator)
-                        ->withInput();
-                }
-
-                if ($validator->passes()) {
-
-
-                    $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                    $request->image->move(public_path('database_files\student\photo'), $image);
-
-                    $inst = Student_detail::where("id", $request->data)->update([
-                        'name' => $request->get('name'),
-                        'class' => $request->get('class'),
-                        'mob' => $request->get('mob'),
-                        'email' => $request->get('email'),
-                        'address' => $request->get('address'),
-                        'state' => $request->get('state'),
-                        'city' => $request->get('city'),
-                        'pin_code' => $request->get('pin_code'),
-                        'image' => $image,
-                        'user_student_id' => $request->user_student_id
-
-
-
-                    ]);
-                    return redirect()->route('login');
-                }
-            
-        }
-    }
-
-
-
-    public function school_institute_detail_upload(Request $request)
-
-    {
-
-
-        if ($request->isMethod('post')) {
-
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'school_institute' => 'required',
-                    'address' => 'required',
-                    'about' => 'required',
-                    'pin_code' => 'required',
-                    'oprating_since' => 'required',
-                    'registration_no' => 'required',
-                    'mob' => 'required|max:10',
-                    'email' => 'required|email|max:255', //
-                    'website' => 'required',
-                    'fb' => 'required',
-                    'insta' => 'required',
-                    'google' => 'required',
-                    'yt' => 'required',
-                    'school' => 'required',
-                    'college' => 'required',
-                    'institute' => 'required',
-                    'course' => 'required',
-                    'opening_time' => 'required',
-                    'closing_time' => 'required',
-                    'facilities' => 'required',
-                    // 'image'=>'required',
-                    // 'video'=>'required',
-                    'declaration' => 'required'
-                    // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-                ]
-            );
-
-            if ($validator->fails()) {
-                //  return redirect()->back()->with('error',$validator->errors());
-                return  redirect()
-                    ->back()
-                    ->withErrors($validator)
-                    ->withInput();
-            }
-
-            if ($validator->passes()) {
-                if (school_institute_detail::where('user_school_institute_id', $request->data)->exists()) {
-                    return  redirect()->back();
-                }
-
-
-                //
-                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->image->move(public_path('database_files\school_institute\photo'), $image);
-
-                $video = time() . '.' . $request->file("video")->GetClientOriginalName();
-                $request->video->move(public_path('database_files\school_institute\video'), $video);
-
-
-
-                $inst = school_institute_detail::create([
-                    'school_institute' => $request->get('school_institute'),
-                    'address' => $request->get('address'),
-                    'about' => $request->get('about'),
-                    'pin_code' => $request->get('pin_code'),
-                    'oprating_since' => $request->get('oprating_since'),
-                    'registration_no' => $request->get('registration_no'),
-                    'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
-                    'website' => $request->get('website'),
-                    'fb' => $request->get('fb'),
-                    'insta' => $request->get('insta'),
-                    'google' => $request->get('google'),
-                    'yt' => $request->get('yt'),
-                    'school' => $request->get('school'),
-                    'college' => $request->get('college'),
-                    'institute' => $request->get('institute'),
-                    'course' => $request->get('course'),
-                    'opening_time' => $request->get('opening_time'),
-                    'closing_time' => $request->get('closing_time'),
-                    'facilities' => $request->get('facilities'),
-                    'image' => $image,
-                    'video' => $video,
-                    'declaration' => $request->get('declaration'),
-                    'user_school_institute_id' => $request->user_school_institute_id
-
-
-
-                ]);
-                return redirect()->route('school_institute_register_form');
-            }
-        }
-    }
-
+ 
 
 
 
@@ -733,24 +73,19 @@ class WebsiteformController extends Controller
 
     public function event()
     {
-
         return view('Website.event');
     }
 
     public function coming_soon()
     {
-
         return view('Website.coming_soon');
     }
 
 
     public function anouncement(Request $request)
     {
-
         $inst = user_student::where('r_city', $request->city);
         $inst1 = user_student::where('r_city', $request->city);
-
-
         return response()->json(['status' => true, 'data' => $inst, 'second' => $inst1]);
     }
 
@@ -765,58 +100,43 @@ class WebsiteformController extends Controller
 
     public function college_listing(Request $request)
     {
-
-        if ($request->val == 1) {
-            $college_list = DB::table('user_school_institute_detail')
-            ->join('users','users.id','=','user_school_institute_detail.user_id')
-                ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-                ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        $main_query = DB::table('user_school_institute_detail')
+            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
+            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
+            ->where('users.active', '1')
+            ->where('user_school_institute_detail.subscription_status', '1')
+            ->select('user_school_institute_detail.*', 'user_school_institute.*');
+        if ($request->type == 1) {
+            $college_list = $main_query
                 ->where('user_school_institute.r_entity', 'School')
-                ->where('users.active', 1)
-                ->where('user_school_institute_detail.subscription_status', 1)
                 ->paginate(10);
-        } elseif ($request->val == 2) {
-            $college_list = DB::table('user_school_institute_detail')
-            ->join('users','users.id','=','user_school_institute_detail.user_id')
-                ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-                ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        } elseif ($request->type == 2) {
+            $college_list = $main_query
                 ->where('user_school_institute.r_entity', 'College')
-                ->where('users.active', 1)
-                ->where('user_school_institute_detail.subscription_status', 1)
                 ->paginate(10);
-        } elseif ($request->val == 3) {
-            $college_list = DB::table('user_school_institute_detail')
-            ->join('users','users.id','=','user_school_institute_detail.user_id')
-                ->join('user_school_institute', 'user_school_institute.user_id', 'user_school_institute_detail.user_id')
-                ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        } elseif ($request->type == 3) {
+            $college_list = $main_query
                 ->where('user_school_institute.r_entity', 'Institute')
-                ->where('users.active', 1)
-                ->where('user_school_institute_detail.subscription_status', 1)
                 ->paginate(10);
         } else {
-
-            $college_list = school_institute_detail::
-            join('users','users.id','=','user_school_institute_detail.user_id')
-            ->where('active', 1)
-            ->where('subscription_status', 1)
-            ->paginate(10);
+            $college_list =  $main_query
+                ->paginate(10);
         }
 
-        return view('Website.college_listing', ['college_list' => $college_list]);
+        return view('Website.college-listing.listing', ['college_list' => $college_list]);
     }
 
-    public function post_enquiry(Request $request)
+    public function college_listing_details(Request $request)
     {
-        $contact = new CollegelistingEnquiry;
-        $contact->name = $request->get('name');
-        $contact->email = $request->get('email');
-        $contact->mobile_no = $request->get('mobile_no');
-        $contact->message = $request->get('message');
-        $contact->save();
-        return redirect()->back();
+        $main_query = DB::table('user_school_institute_detail')
+            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
+            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
+            ->where('users.active', '1')
+            ->where('user_school_institute_detail.subscription_status', '1')
+            ->select('user_school_institute_detail.*', 'user_school_institute.*')
+            ->first();
+        return view('Website.college-listing.listing-details', compact('main_query'));
     }
-
-
 
     public function log_out()
     {
@@ -850,7 +170,6 @@ class WebsiteformController extends Controller
 
     public function val_form(Request $request)
     {
-
         if (user_student::where('mob', $request->r_mob)->exists()) {
             return response()->json(false);
         } elseif (user_school_institute::where('r_mob', $request->r_mob)->exists()) {
@@ -864,7 +183,6 @@ class WebsiteformController extends Controller
 
     public function check_email_exist(Request $request)
     {
-
         if (User::where('email', $request->email)->exists()) {
             return response()->json(false);
         } else {
@@ -872,13 +190,8 @@ class WebsiteformController extends Controller
         }
     }
 
-
-
-   
-
     public function about_us(Request $request)
     {
-
         return view('Website.about');
     }
 
@@ -888,45 +201,32 @@ class WebsiteformController extends Controller
 
         return view('Website.privacy_policy');
     }
+
     public function term(Request $request)
     {
-
         return view('Website.term');
     }
 
     public function refund(Request $request)
     {
-
         return view('Website.refund');
     }
 
-
     public function blog(Request $request)
     {
-
         return view('Website.blog');
     }
-
-
-
-
 
     public function payfail(Request $request)
     {
         transaction::where('transaction_id', $request->txnid)->update([
             'transaction_status' => $request->status,
         ]);
-
-
         return redirect('payfail-complete');
     }
 
-
     public function success(Request $request)
     {
-
-
-
         if ($request->udf1 == 1) {
             DB::table('transaction')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'transaction.user_id')
                 ->where('transaction.transaction_id', $request->txnid)->update([
@@ -943,41 +243,37 @@ class WebsiteformController extends Controller
                 ]);
         }
 
-
         return redirect('success-complete');
     }
 
-
     public function payment_form(Request $request)
     {
-
         return view('Website.payment_form');
     }
 
-
-
     public function role(Request $request)
     {
-
         return view('Website.role-blog-5');
     }
-
 
     public function opportunites(Request $request)
     {
 
         return view('Website.opportunites-after-10th-blog-1');
     }
+
     public function choosing(Request $request)
     {
 
         return view('Website.choosing-carrier-blog2');
     }
+
     public function stratigic(Request $request)
     {
 
         return view('Website.stratigic-blog3');
     }
+
     public function benifite(Request $request)
     {
 

@@ -16,13 +16,13 @@ use App\Models\transaction;
 
 use Illuminate\Http\Request;
 
-class logincontroller extends Controller
+class LoginController extends Controller
 {
 
     public function login()
     {
-        // User::find(227)->update(['password'=>Hash::make(12345)]);
-        return view('Website.login');
+         //User::find(242)->update(['password'=>Hash::make(123456)]);
+        return view('Website.login-auth.login');
     }
 
     public function login_submit(Request $request)
@@ -75,7 +75,12 @@ class logincontroller extends Controller
                 } else {
                     return redirect('payment_form');
                 }
-            } 
+            } else{
+                Auth::logout();
+                return redirect()->back()->with('error', 'Invalid Login Credentials.');
+
+
+            }
         }else{
             return redirect()->back()->with('error', 'Invalid Login Credentials.');
 
