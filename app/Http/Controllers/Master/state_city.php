@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
 use App\Models\Master\state;
-use App\Models\Master\city;
+use App\Models\City;
 use Illuminate\Http\Request;
 use DB;
 use Validator;

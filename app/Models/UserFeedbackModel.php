@@ -13,6 +13,8 @@ class UserFeedbackModel extends Model
         'user_id',
         'college_id',
         'rating',
-        'comment'
+        'comment',
+        'name',
+        'email'
     ];
 }
