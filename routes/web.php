@@ -194,7 +194,7 @@ Route::post('student_detail_update',[SignUpController::class,'student_detail_upd
 
 Route::get('school_institute_register_form',[SignUpController::class,'school_institute_register_form'])->name('school_institute_register_form');
 Route::post('school_institute_register_user_create',[SignUpController::class,'school_institute_register_user_create'])->name('school_institute_register_user_create');
-Route::post('school_institute_detail_create/{data}',[SignUpController::class,'school_institute_detail_create'])->name('school_institute_detail_create');
+Route::post('school_institute_detail_create',[SignUpController::class,'school_institute_detail_create'])->name('school_institute_detail_create');
 
 // --------------------------------------------------------end school institutude college ----------------------------------------------------//
 // 
@@ -234,6 +234,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::post('insert_feedback',[UserLikeFeedback::class,'insert_feedback'])->name('insert_feedback');
     
     Route::post('post_enquiry',[UserLikeFeedback::class,'post_enquiry'])->name('post_enquiry');
+    Route::get('listing-details/{id}',[WebsiteformController::class,'listing_details'])->name('listing-details');
 
 Route::group(['middleware' => ['role:1']], function () {
         Route::get('profile',[SchoolProfile::class,'home'])->name('school_profile.home');
@@ -247,6 +248,8 @@ Route::get('school_profile/update_photo_video',[SchoolProfile::class,'update_pho
 
 });
 });
+Route::get('save-city',[WebsiteformController::class,'save_city'])->name('save-city');
+
 
 
 Route::get('like-login-redirect',[UserLikeFeedback::class,'like_login_redirect'])->name('like-login-redirect');

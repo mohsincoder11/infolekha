@@ -7,13 +7,8 @@
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
                             <div class="dashboard-title-item"> Change Password</div>
-                            <div class="dashbard-menu-header">
-                                <div class="dashbard-menu-avatar fl-wrap">
-                                    <img src="images/avatar/user.png" alt="">
-                                     <h4>Welcome, <span>Amit Tawanee</span></h4>
-                                </div>
-                                <a href="index.html" class="log-out-btn   tolt" data-microtip-position="bottom"  data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
-                            </div>
+                            @include('Website.school_profile.profile_header')
+
                             <!--Tariff Plan menu-->
                             <!-- <div class="tfp-det-container">
                                 <div   class="tfp-btn"><span>Your Tariff Plan : </span> <strong>Extended</strong></div>

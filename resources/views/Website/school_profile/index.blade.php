@@ -7,13 +7,8 @@
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
                             <div class="dashboard-title-item"><span>Profile</span></div>
-                            <div class="dashbard-menu-header">
-                                <div class="dashbard-menu-avatar fl-wrap">
-                                    <img src="{{asset('public')."/".($data->logo ?? '')}}" alt="">
-                                    <h4>Welcome, <span>{{$data->entity_name ?? ''}}</span></h4>
-                                </div>
-                                <a href="{{route('logout')}}" class="log-out-btn   tolt" data-microtip-position="bottom"  data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
-                            </div>
+                            @include('Website.school_profile.profile_header')
+
                             <!--Tariff Plan menu-->
                             <!-- <div class="tfp-det-container">
                                 <div   class="tfp-btn"><span>Your Tariff Plan : </span> <strong>Extended</strong></div>
@@ -36,7 +31,7 @@
                                     <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
                                        
                                         <div class="bg-wrap bg-parallax-wrap-gradien">
-                                            <div class="bg" data-bg="{{asset('public')."/".($data->logo ?? '')}}"></div>
+                                            <div class="bg" data-bg="{{asset('public')."/".($user_data->logo ?? '')}}"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
                                             <div class="photoUpload color-bg">
@@ -52,7 +47,7 @@
                                         <div class="custom-form">
                                            
 
-                                            <img src="{{asset('public')."/".($data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($data->entity_name) ?? ''}}</label>
+                                            <img src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($user_data->entity_name) ?? ''}}</label>
                                             <label style="text-align:center; color:#144273; font-size:16px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label>
 
 
@@ -62,7 +57,7 @@
 
                                           
                                            
-                                          @foreach(json_decode($data->course) as $c)
+                                          @foreach(json_decode($user_data->course) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
                                           @endif
@@ -81,7 +76,7 @@
 
 
                                            <div class="col-md-12" id="demo" style="margin-top:2%;   " >
-                                           @foreach(json_decode($data->facilities) as $c)
+                                           @foreach(json_decode($user_data->facilities) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
                                           @endif
@@ -95,7 +90,7 @@
                                             </div>
                                             
                                             <label style="color:#144273; text-align:center; margin-top: 10%;">About Us</label>
-                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:20px;  color:#144273;">{{$data->about}}</textarea>	
+                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:20px;  color:#144273;">{{$user_data->about}}</textarea>	
                                             
                                                <!-- section -->
                     <section >
@@ -107,17 +102,18 @@
                             </div>
                             <!-- section-title end -->
                             <div class="clearfix"></div>
+
                             <div class="listing-carousel-wrapper lc_hero carousel-wrap fl-wrap">
                                 <div class="listing-carousel carousel ">
                                     <!-- slick-slide-item -->
-                                    @if($data->image !=null)
-                                    @foreach(json_decode($data->image) as $i)
+                                    @if($user_data->image !=null)
+                                    @foreach(json_decode($user_data->image) as $i)
                                     <div class="slick-slide-item">
                                         <!--  agent card item -->
                                         <div class="listing-item">
                                             <article class="geodir-category-listing fl-wrap">
                                                 <div class="geodir-category-img fl-wrap  agent_card">
-                                                    <a href="agent-single.html" class="geodir-category-img_item">
+                                                    <a target="_blank" href="{{asset('public').'/'.$i}}" class="geodir-category-img_item">
                                                         <img src="{{asset('public').'/'.$i}}" alt="">
                                                         
                                                     </a>
@@ -130,14 +126,45 @@
                                     </div>
                                     @endforeach
                                   @endif
-                                    <!-- slick-slide-item end-->
-                                    <!-- slick-slide-item -->
-                                    
-                                    <!-- slick-slide-item end-->								
                                 </div>
                                 <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
                                 <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
                             </div>
+
+
+
+                            {{-- <div class="listing-carousel-wrapper lc_hero carousel-wrap fl-wrap">
+                                <div class="listing-carousel carousel ">
+                                    <!-- slick-slide-item -->
+                                    @if($user_data->video !=null)
+                                    @foreach(json_decode($user_data->video) as $i)
+                                    <div class="slick-slide-item">
+                                        <!--  agent card item -->
+                                        <div class="listing-item">
+                                            <article class="geodir-category-listing fl-wrap">
+                                                <div class="geodir-category-img fl-wrap  agent_card">
+                                                    <a target="_blank" href="{{asset('public').'/'.$i}}" class="geodir-category-img_item">
+                                                        <video controls>
+                                                            <source src=""{{asset('public').'/'.$i}}" type="video/mp4">
+                                                            </video>
+
+                                                        
+                                                    </a>
+                                                
+                                                </div>
+                                          
+                                            </article>
+                                        </div>
+                                        <!--  agent card item end -->
+                                    </div>
+                                    @endforeach
+                                  @endif
+                                </div>
+                                <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
+                                <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
+                            </div> --}}
+
+
                         </div>
                     </section>
                     

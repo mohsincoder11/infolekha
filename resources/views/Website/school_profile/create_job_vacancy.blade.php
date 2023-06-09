@@ -1,76 +1,87 @@
 @extends('Website.school_profile.layout')
 @section('profile_content')
-<div class="dashboard-content">
+   <div class="dashboard-content">
                     <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
                     <div class="container dasboard-container">
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
                             <div class="dashboard-title-item">Create job Vacancy</div>
-                            <div class="dashbard-menu-header">
-                                <div class="dashbard-menu-avatar fl-wrap">
-                                    <img src="images/avatar/user.png" alt="">
-                                     <h4>Welcome, <span>Amit Tawanee</span></h4>
-                                </div>
-                                <a href="index.html" class="log-out-btn   tolt" data-microtip-position="bottom"  data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
-                            </div>
+                            @include('Website.school_profile.profile_header')
+
                             <!--Tariff Plan menu-->
-                            <!-- <div class="tfp-det-container">
-                                <div   class="tfp-btn"><span>Your Tariff Plan : </span> <strong>Extended</strong></div>
-                                <div class="tfp-det">
-                                    <p>You Are on <a href="#">Extended</a> . Use link bellow to view details or upgrade. </p>
-                                    <a href="#" class="tfp-det-btn color-bg">Details</a>
-                                </div>
-                            </div> -->
+                          
                             <!--Tariff Plan menu end-->						
                         </div>
                         <!-- dashboard-title end -->
                         <!-- dasboard-wrapper-->
-                        
+
+                        <div class="dasboard-widget-box fl-wrap">
                         <div class="col-md-12">
-                            <div class="list-searh-input-wrap-title fl-wrap"></div>
-                            <div class="block-box fl-wrap search-sb" id="filters-column">
-                                <!-- listsearch-input-item -->
+                                <div class="custom-form">
+                            <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="listsearch-input-item ">
+                                            <label>Job Vacancy posting</label>
+                                            <select class="chosen-select on-radius no-search-select" >
+                                                <option>All</option>
+                                                <option> Teaching Staff</option>
+                                                <option>Admin Staff</option>
+                                            </select>
+                                        </div>
+                                     </div>
+                         
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Name of Subject<span class="dec-icon"><i class="fas fa-user"></i></span></label>
+                                        <input type="text" placeholder="Name of Subject" value=""/>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Post <span class="dec-icon"><i class="fas fa-school"></i></span></label>
+                                        <input type="text" placeholder="Post" value=""/>
+                                    </div>
+
+                                    <div class="col-md-6" >
+                                        <label style="font-size:16px;">Scope of work <span class="dec-icon"><i class="fas fa-school"></i></span></label>
+                                        <input type="text" placeholder="Scope of work" value=""/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Experience required<span class="dec-icon"><i class="fas fa-school"></i></span></label>
+                                        <input type="text" placeholder="Experience required" value=""/>
+                                    </div>
+                                   
+
+                                      <div class="col-md-6">
+                                        <label style="font-size:16px;">Skills Required<span class="dec-icon"><i class="fas fa-school"></i></span></label>
+                                        <input type="text" placeholder="Skills Required" value=""/>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Estimated Package <span class="dec-icon"><i class="fas fa-school"></i></span></label>
+                                        <input type="text" placeholder="Estimated Package " value=""/>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="listsearch-input-item ">
+                                            <label>Seelct Type</label>
+                                            <select class="chosen-select on-radius no-search-select" >
+                                                <option value="">Select Type</option>
+                                                <option value="Part Time">Part Time</option>
+                                                <option value="Full Time">Full Time</option> 
+                                                <option value="Remote">Remote</option>
+                                            </select>
+                                        </div>
+                                     </div>
+                                  
+                                  
+                                </div>
+                                
+
                                
-                                <!-- listsearch-input-item end-->
-                                <!-- listsearch-input-item -->
-                                <div class="col-md-6">
-                                <div class="listsearch-input-item">
-                                    <label>Teaching Staff</label>
-                                    <select data-placeholder="All Cities" class="chosen-select on-radius no-search-select" >
-                                        <option>All</option>
-                                        <option> Name of Subject</option>
-                                        <option>Experience Required</option>
-                                        <option>Skills Required</option>
-                                        <option>Estimated Package (Optional)</option>
-                                        <option>Part Time/ Full Time/ Remote</option>
-                                       
-                                       
-                                        
-                                    </select>
-                                </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="listsearch-input-item">
-                                        <label>Admin Staff</label>
-                                        <select data-placeholder="All Cities" class="chosen-select on-radius no-search-select" >
-                                            <option>All</option>
-                                            <option>Post</option>
-                                            <option>scope Of Work</option>
-                                            <option>Experience required</option>
-                                            <option>Skills Required</option>
-                                            <option>Estimated Package</option>
-                                            <option>Part Time/ Full Time/ Remote</option>
-                                           
-                                            
-                                        </select>
-                                    </div>
-                                    </div>
-                                    
-                                <div class="col-md-12"><button class="btn color-bg " style="margin-top:4vh;">Save Changes</button></div>
-                            
-                            
-                            
+                                    <button class="btn color-bg  float-btn" style="float:center;">Save Changes</button>
+                             
+                            </div>
                         </div>
+                           
                         </div>
                         </div>
                        

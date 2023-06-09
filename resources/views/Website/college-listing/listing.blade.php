@@ -157,9 +157,11 @@
 
                                                     <div style="width:290px; height: 220px ; margin:0px ">
 
+                                                       <a href="{{route('listing-details',$anno->user_id)}}"> 
                                                         <img style="width:100%; height:100% ; "
                                                             src="{{ asset('public') . '/' . $anno->logo }}"
                                                             alt="" />
+                                                        </a>
 
                                                     </div>
 
@@ -171,8 +173,10 @@
                                                     <div class="link-review clearfix">
 
                                                         <div class="info-product">
-                                                            <h4 class="title"> {{ $anno->entity_name }}</h4>
-                                                            <p>{{ $anno->about }}</p>
+                                                            <a href="{{route('listing-details',$anno->user_id)}}"> 
+                                                                <h4 class="title"> {{ $anno->entity_name }}</h4>
+                                                            </a>
+                                                            <p>{{ Str::limit($anno->about,40) }}</p>
                                                             @if(auth()->check())
                                                             <a  class="heart like_college {{check_if_like($anno->user_id)}}"
                                                                 college_id="{{ $anno->user_id }}"
@@ -332,8 +336,8 @@
             $(".send_enquiry_modal").on("click", function() {
                 $("#popup_register").modal("show");
                 $("#college_id").val($(this).attr('college_id'));
-
             })
+            
             $(".like_college").on("click", function() {
                 $(this).toggleClass("active_heart");
                 $.ajax({
@@ -355,7 +359,6 @@
             $(".mobile1").on('click', function() {
                 $("#popup_login").modal('show');
                 $("#mobile_number").text($(this).attr('mobile_number'));
-
 
             })
         });

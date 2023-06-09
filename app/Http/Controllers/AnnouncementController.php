@@ -3,15 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Anouncement;
+use App\Models\Announcement;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Master\city;
+use App\Models\City;
 
 
 class AnnouncementController extends Controller
 {
  public function index(){
-    $anu=Anouncement::
+    $anu=Announcement::
 
     // join ('city','city.id','=','announcements.City_id')
     // // ->join('medicals','medicals.id','=','doctors.medical_id')
@@ -58,7 +58,7 @@ class AnnouncementController extends Controller
 
 
 
-    $announce= new Anouncement;
+    $announce= new Announcement;
 
     $announce->date=$request->get('date');
     $announce->city_id=$request->get('city');
@@ -69,8 +69,8 @@ class AnnouncementController extends Controller
  }
  public function edit($id)
  {
-     $anouncement = Anouncement::find($id); 
-     $annos = Anouncement::
+     $anouncement = Announcement::find($id); 
+     $annos = Announcement::
      join ('city','city.id','=','announcements.city_id')
      // ->join('medicals','medicals.id','=','doctors.medical_id')
      ->orderby('announcements.id','desc')
@@ -115,7 +115,7 @@ class AnnouncementController extends Controller
 
 
     
-    $anounupdate=Anouncement::find($request->id);
+    $anounupdate=Announcement::find($request->id);
     // if($request->hasFile('announcement_image')){
     //     $file= $request->file('announcement_image');
     //     $filename=rand(0123,9999).time().'.'.$file->getClientOriginalExtension();
@@ -138,7 +138,7 @@ class AnnouncementController extends Controller
 
  public function destroy($id)
  {
-     $anno=Anouncement::where('id',$id)->delete();
+     $anno=Announcement::where('id',$id)->delete();
      return redirect('admin.announcement');
  }
 

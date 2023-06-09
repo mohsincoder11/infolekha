@@ -32,11 +32,14 @@ class UserLikeFeedback extends Controller
 
     public function insert_feedback(Request $request)
     {
-        UserLikeModel::create(
+        echo json_encode($request->all());
+        UserFeedbackModel::create(
             [
                 'user_id' => Auth::user()->id,
                 'college_id' => $request->college_id,
-                'rating' => $request->rating,
+                'name' => $request->name,
+                'email' => $request->email,
+                'rating' => $request->rating ? intval($request->rating) : 0,
                 'comment' => $request->comment,
             ]
         );
