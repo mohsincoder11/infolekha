@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function login()
     {
-         //User::find(242)->update(['password'=>Hash::make(123456)]);
+         //User::find(252)->update(['password'=>Hash::make(12345678)]);
         return view('Website.login-auth.login');
     }
 
@@ -32,12 +32,7 @@ class LoginController extends Controller
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))) {
             if (Auth::user()->role == 3) {
 
-                $int = DB::table('users')->join('user_student', 'user_student.user_id', '=', 'users.id')
-                    ->join('student_detail', 'student_detail.user_id', '=', 'users.id')
-                    ->select('users.*', 'user_student.*', 'student_detail.*')
-                    ->where('users.id', Auth::user()->id)->first();
-                $data = auth::user()->id;
-                return redirect()->route('college_listing', $data);
+                return redirect()->route('college_listing');
             } elseif (Auth::user()->role == 2) {
                 if (transaction::where('user_id', Auth::user()->id)->where('transaction_status','success')->exists()) {
 
@@ -71,7 +66,7 @@ class LoginController extends Controller
                         return view('Website.school_institute_details_form', ['data' => $data]);
                     }
 
-                    return view('school_institute_profile_dashboard.index', ['data' => $int]);
+                    return view('school_profile.index', ['data' => $int]);
                 } else {
                     return redirect('payment_form');
                 }

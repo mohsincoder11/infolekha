@@ -10,7 +10,6 @@ class school_institute_detail extends Model
     use HasFactory;
     protected $table = "user_school_institute_detail";
     protected $fillable = [
-        'logo',
         'subscription_status',
         'entity_name',
         'entity_select',

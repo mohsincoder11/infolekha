@@ -10,7 +10,7 @@ use App\Models\user_tutor;
 use App\Models\Student_detail;
 use App\Models\school_institute_detail;
 use App\Models\tutor_detail;
-use App\Models\Master\city;
+use App\Models\City;
 use App\Models\Master\state;
 use App\Models\Master\Entity;
 use App\Models\Master\School;
@@ -18,7 +18,7 @@ use App\Models\Master\College;
 use App\Models\Master\Institute;
 use App\Models\Master\Cources;
 use App\Models\Master\Faculties;
-
+use App\Models\SchoolType;
 use DB;
 use Hash;
 use Session;
@@ -30,17 +30,15 @@ class SignUpController extends Controller
 {
     public function school_institute_register_form()
     {
-        $city = city::get();
         $state = state::get();
         $Entity = Entity::get();
-        return view('Website.login-auth.school_institute_register_form', ['citys' => $city, 'states' => $state, 'entitys' => $Entity]);
+        return view('Website.login-auth.school_institute_register_form', ['states' => $state, 'entitys' => $Entity]);
     }
 
 
     public function school_institute_register_user_create(Request $request)
 
     {
-        if ($request->isMethod('post')) {
 
             $validator = Validator::make(
                 $request->all(),
@@ -87,18 +85,14 @@ class SignUpController extends Controller
                 Auth::attempt(array('email' => $request->email, 'password' => $request->password));
                 return redirect()->route('school_institute_detail_form', ['data' => Auth::user()->id]);
             }
-        } else {
-            dd(1);
-        }
+       
     }
 
 
     public function school_institute_detail_form(Request $request)
     {
 
-        $schools = School::get();
-        $colleges = College::get();
-        $institutes = Institute::get();
+        $school_type = SchoolType::get();
         $courses = Cources::get();
         $facalitys = Faculties::get();
 
@@ -109,9 +103,7 @@ class SignUpController extends Controller
 
         return view('Website.login-auth.school_institute_details_form', [
             'data' => $data,
-            'schools' => $schools,
-            'colleges' => $colleges,
-            'institutes' => $institutes,
+            'school_type' => $school_type,
             'courses' => $courses,
             'facalitys' => $facalitys
         ]);
@@ -121,7 +113,6 @@ class SignUpController extends Controller
     public function school_institute_detail_create(Request $request)
     {
 
-        if ($request->isMethod('post')) {
 
             $validator = Validator::make(
                 $request->all(),
@@ -160,7 +151,6 @@ class SignUpController extends Controller
                     ->withInput();
             }
 
-            if ($validator->passes()) {
 
                 if (school_institute_detail::where('user_id', auth::user()->id)->exists()) {
                     //   dd(auth::user()->id);
@@ -173,7 +163,7 @@ class SignUpController extends Controller
                 if ($request->image) {
                     $array_image = [];
                     foreach ($request->image as $images) {
-                        $image = time() . '.' . $images->getClientOriginalExtension();
+                        $image = 'i'.rand(0000,9999).time() . '.' . $images->getClientOriginalExtension();
                         $images->move(public_path('database_files/school_institute/photo'), $image);
                         array_push($array_image, "database_files/school_institute/photo/" . $image);
                     }
@@ -183,7 +173,7 @@ class SignUpController extends Controller
                 if ($request->video) {
                     $array_video = [];
                     foreach ($request->video as $videos) {
-                        $video = time() . '.' . $videos->getClientOriginalExtension();
+                        $video = 'v'.rand(0000,9999).time(). '.' . $videos->getClientOriginalExtension();
                         $videos->move(public_path('database_files/school_institute/video'), $video);
                         array_push($array_video, 'database_files/school_institute/video/' . $video);
                     }
@@ -198,13 +188,15 @@ class SignUpController extends Controller
                 if ($request->hasfile('logo')) {
                     $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
                     $request->logo->move(public_path('database_files/school_institute/logo'), $logo);
+                    $user=User::find(Auth::user()->id);
+                    $user->logo='database_files/school_institute/logo/' . $logo;
+                    $user->save();
+                }else{
+                    $user->logo='icon/user.png';
+                    $user->save();
                 }
                 $course = json_encode($request->get('course'));
                 $facilities = json_encode($request->get('facilities'));
-
-
-
-
 
                 $inst->entity_name = $request->get('school_institute');
                 $inst->address = $request->get('address');
@@ -238,7 +230,6 @@ class SignUpController extends Controller
                 if ($request->video) {
                     $inst->video = $video_name;
                 }
-                $inst->logo = 'database_files/school_institute/logo/' . $logo;
                 //$inst->declaration=$request->get('declaration');
                 $inst->user_id = auth::user()->id;
                 $inst->subscription_status = 0;
@@ -246,8 +237,6 @@ class SignUpController extends Controller
 
                 $inst->save();
                 return redirect('payment_form');
-            }
-        }
     }
 
 
@@ -382,9 +371,6 @@ class SignUpController extends Controller
 
     public function student_detail_update(request $request)
     {
-
-
-
         if ($request->isMethod('post')) {
 
             $validator = Validator::make(

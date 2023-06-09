@@ -10,9 +10,9 @@ use App\Models\Student_detail;
 use App\Models\school_institute_detail;
 use App\Models\tutor_detail;
 use App\Models\transaction;
-use App\Models\Anouncement;
+use App\Models\Announcement;
+use App\Models\City;
 use App\Models\Contact_Us;
-use App\Models\Master\city;
 use App\Models\Master\state;
 use App\Models\Master\Entity;
 use App\Models\Master\School;
@@ -26,7 +26,7 @@ use DB;
 use Hash;
 use Session;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class WebsiteformController extends Controller
@@ -34,22 +34,16 @@ class WebsiteformController extends Controller
 
 {
 
-  
-
-
- 
-
-
-
-
     public function index()
     {
-        $state = state::get();
 
-        $anu = Anouncement::get();
-        return view('Website.index', ['state' => $state, 'anu' => $anu]);
+        $announcements = Announcement::where('status','Active');
+        // if(Auth::check()){
+        //     $announcements=$announcements->where('city_id',Auth::user()->city_id);
+        // }
+        $announcements= $announcements->get();
+        return view('Website.index', ['announcements' => $announcements]);
     }
-
 
 
 
@@ -91,7 +85,7 @@ class WebsiteformController extends Controller
 
     public function announwebs(Request $request)
     {
-        $anu = Anouncement::where('id', $request->id)->first();
+        $anu = Announcement::where('id', $request->id)->first();
         // echo json_encode($anu);
         // exit();
         return view('Website.announcementweb', ['anu' => $anu]);
@@ -105,7 +99,7 @@ class WebsiteformController extends Controller
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
             ->where('users.active', '1')
             ->where('user_school_institute_detail.subscription_status', '1')
-            ->select('user_school_institute_detail.*', 'user_school_institute.*');
+            ->select('user_school_institute_detail.*', 'user_school_institute.*','users.logo');
         if ($request->type == 1) {
             $college_list = $main_query
                 ->where('user_school_institute.r_entity', 'School')
@@ -122,20 +116,19 @@ class WebsiteformController extends Controller
             $college_list =  $main_query
                 ->paginate(10);
         }
-
         return view('Website.college-listing.listing', ['college_list' => $college_list]);
     }
 
-    public function college_listing_details(Request $request)
+    public function listing_details(Request $request)
     {
-        $main_query = DB::table('user_school_institute_detail')
+        $details = DB::table('user_school_institute_detail')
             ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
             ->where('users.active', '1')
             ->where('user_school_institute_detail.subscription_status', '1')
             ->select('user_school_institute_detail.*', 'user_school_institute.*')
             ->first();
-        return view('Website.college-listing.listing-details', compact('main_query'));
+        return view('Website.college-listing.listing-details', compact('details'));
     }
 
     public function log_out()
@@ -278,5 +271,23 @@ class WebsiteformController extends Controller
     {
 
         return view('Website.benifite');
+    }
+
+    public function save_city(Request $request){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'city' => 'required',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return response()->json(false);
+            }
+            $createOrupdate=City::firstOrCreate(['city'=>$request->city]);
+            if(Auth::check()){
+                User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
+            }
+        return response()->json(true);
     }
 }

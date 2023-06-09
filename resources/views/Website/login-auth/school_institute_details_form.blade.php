@@ -54,8 +54,8 @@
                                 <div class="content-inner ">
                                     <div class="basic-info">
                                         <h5>{{$data->r_entity}}</h5>
-										<!--action="{{url('initiatePaymentAPI')}}" {('school_institute_detail_create',$data->id)}-->
-                                         <form method="post" action="{{url('school_institute_detail_create',$data->id)}}"  class="form-profile" enctype="multipart/form-data" id="form2">
+									
+                                         <form method="post" action="{{url('school_institute_detail_create')}}"  class="form-profile" enctype="multipart/form-data" id="form2">
                                              @csrf
                                         <div class="row">
                                       
@@ -70,9 +70,7 @@
                                                                     <label class="form-control-label">Name of {{$data->r_entity}}</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Name" value="{{$data->r_name}}" name="school_institute"  required="required" ><!--name="school_institute" -->
-                                                                        @error('school_institute')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -81,9 +79,7 @@
                                                                     <label class="form-control-label">Address*</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Address" name="address" required="required" value="{{$data->address}}" >
-                                                                        @error('address')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -95,9 +91,7 @@
                                                                     <span id=charcount></span>
 																	<textarea minlength="20" onkeyup="charcountupdate(this.value)" name="about" id="about"></textarea>
 
-                                                                       @error('about')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                     
 
 
                                                                 </div>
@@ -110,9 +104,7 @@
                                                                     <label class="form-control-label">Pin Code*</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Enter your Pin code" name="pin_code" required="required">
-                                                                        @error('pin_code')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -138,9 +130,7 @@
                                                                         No</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Registration No" name="registration_no" >
-                                                                        @error('registration_no')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -150,9 +140,7 @@
                                                                     <label class="form-control-label">Contact No</label>
                                                                     <input type="text" readonly class="form-control"
                                                                         placeholder="Contact No" name="mob" value="{{$data->r_mob}}" required="required" >
-                                                                        @error('mob')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -161,9 +149,7 @@
                                                                     <label class="form-control-label">Email ID*</label>
                                                                     <input readonly type="text" class="form-control"
                                                                         placeholder="Email ID" value="{{$data->email}}" name="email" required="required">
-                                                                        @error('email')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                       
                                                                 </div>
                                                             </div>
 
@@ -172,9 +158,7 @@
                                                                     <label class="form-control-label">Website</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Website-URL" name="website" >
-                                                                        @error('website')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                     
                                                                 </div>
                                                             </div>
 
@@ -183,9 +167,7 @@
                                                                     <label class="form-control-label">Facebook </label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Facebook-URL " name="fb">
-                                                                        @error('fb')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                       
                                                                 </div>
                                                             </div>
 
@@ -194,9 +176,7 @@
                                                                     <label class="form-control-label">Instagram</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Instagram-URL " name="insta" >
-                                                                        @error('insta')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                        
                                                                 </div>
                                                             </div>
 
@@ -207,9 +187,7 @@
                                                                         Business</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Google Business URL" name="google" >
-                                                                        @error('google')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
 
@@ -218,9 +196,7 @@
                                                                     <label class="form-control-label">Youtube</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Youtube-URL " name="yt" >
-                                                                        @error('yt')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
                                                          
@@ -232,10 +208,11 @@
                                                                     <select class="form-select select country-select"
                                                                         name="school" required="required"> 
                                                                         <option>Select </option>
+                                                                        @foreach ($school_type as $school_type )
+                                                                            <option value="{{$school_type->id}}">{{$school_type->type}}</option>
+                                                                        @endforeach
 																		
-                                                                        <option>State Board</option>
-                                                                        <option>CBSC</option>
-                                                                        <option>ICSE</option>
+                                                                       
                                                                         <option>Other (Please Specify)</option>
                                                                         <option></option>
                                                                     </select>
@@ -432,9 +409,7 @@
                                                                     <label class="form-control-label"> Office
                                                                         Timings (From)</label>
                                                                     
-                                                                    <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">@error('opening_time')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                    @enderror
+                                                                    <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
                                                                 </div>
                                                             </div>
 
@@ -443,9 +418,7 @@
                                                                     <label class="form-control-label">Office
                                                                         Timings (To)</label>
                                                                         <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
-                                                                       @error('closing_time')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                      
                                                                 </div>
                                                             </div>
                                                             <div class="col-lg-6">
@@ -513,10 +486,8 @@
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Upload Photos of
                                                                         School (Max. 5 )</label>
-                                                                    <input type="file" class="form-control" name="image[]"  multiple >
-                                                                    @error('image')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                    <input type="file" class="form-control" name="image[]"  multiple accept="image/*">
+                                                                    
                                                                 </div>
                                                             </div>
 
@@ -524,29 +495,13 @@
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Upload Video of
                                                                         School (Max. 2)</label>
-                                                                    <input type="file" class="form-control" name="video[]" multiple   >
-                                                                    @error('video')
-                                                                        <div class="alert alert-danger">{{ $message }}</div>
-                                                                        @enderror
+                                                                    <input type="file" class="form-control" name="video[]" multiple  accept="video/*" >
+                                                                   
                                                                 </div>
                                                             </div>
 
                                             
-                                                            <!-- <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                      <label class="form-control-label">Fees Structure</label>
-                                                      <input type="text" class="form-control" placeholder="Fees Structure" >
-                                                    </div>
-                                                  </div> -->
-                                                  <!--<div class="col-lg-12">
-                                                    <div class="form-group">
-                                                      <label class="form-control-label">Declaration</label>
-                                                      <textarea id="declaration-contact" name="declaration" placeholder="Declaration" required="required"></textarea>
-                                                      @error('declaration')
-                                                      <div class="alert alert-danger">{{ $message }}</div>
-                                                      @enderror
-                                                    </div>
-                                                  </div>-->
+                                                      
 														
 														
                                                            <div class="col-lg-12">
@@ -734,7 +689,39 @@ $('#facilities').select2({closeOnSelect:false});
 
 <script>
     $(document).ready(function() {
-        
+        jQuery.validator.addMethod("imageFileonly", function(value, element) {
+        // Get the file extension
+        var extension = value.split('.').pop().toLowerCase();
+        // Check if the extension is one of the image formats
+        return ['jpg', 'jpeg', 'png', 'gif'].indexOf(extension) !== -1;
+      }, "Please select a valid image file (jpg, jpeg, png).");
+
+      jQuery.validator.addMethod("videoFileonly", function(value, element) {
+        // Get the file extension
+        var extension = value.split('.').pop().toLowerCase();
+        // Check if the extension is one of the image formats
+        return ['mp4', 'mov', 'avi'].indexOf(extension) !== -1;
+      }, "Please select a valid video file (mp4, mov, avi).");
+
+      
+      jQuery.validator.addMethod("maxFileSize", function(value, element, params) {
+        // Get the selected file count
+        var fileCount = element.files.length;
+        // Check if the file count is within the specified limit
+        return fileCount <= params;
+      }, jQuery.validator.format("You can select a maximum of {0} image files."));
+
+      jQuery.validator.addMethod("maxVideoSize", function(value, element, params) {
+        // Get the file size in bytes
+        var fileSize = element.files[0].size;
+        // Convert file size to megabytes
+        var fileSizeInMB = fileSize / (1024 * 1024);
+        // Check if file size is less than the specified limit
+        return fileSizeInMB <= params;
+      }, jQuery.validator.format("File size must be less than {0}MB."));
+
+
+
   $("#form2").validate({
     rules: {
       school_institute: {
@@ -771,7 +758,21 @@ $('#facilities').select2({closeOnSelect:false});
       },
       policy_checkbox:{
         required:true
-      }
+      },
+      'image[]': {
+        required:true,
+            imageFileonly: true,
+            maxFileSize: 5 // Maximum file count
+
+          },
+           'video[]': {
+            required:true,
+            videoFileonly: true,
+            maxVideoSize: 5,
+            maxFileSize: 2 
+
+          }
+
     },
     messages: {
       school_institute: {
@@ -808,8 +809,19 @@ $('#facilities').select2({closeOnSelect:false});
       },
       policy_checkbox:{
         required: "Accept terms and conditions to submit.",
+      },
+      'image[]': {
+            required: "Please select at least one image file.",
+            imageFileonly: "Please select valid image files only (jpg, jpeg, png).",
+            maxFileSize: "You can select a maximum of 5 image files."
 
-      }
+          },
+          'video[]': {
+            required: "Please select at least one video file.",
+            videoFileonly: "Please select valid video file only (mp4,mov,avi).",
+            maxFileSize: "You can select a maximum of 2 video files.",
+            maxVideoSize:"File size must be less than 5MB."
+          }
     },
     submitHandler: function(form) {
       return true;

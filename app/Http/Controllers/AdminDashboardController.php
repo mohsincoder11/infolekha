@@ -12,7 +12,7 @@ use App\Models\tutor_detail;
 use App\Models\transaction;
 use App\Models\Anouncement;
 use App\Models\Contact_Us;
-use App\Models\Master\city;
+use App\Models\City;
 use App\Models\Master\state;
 use App\Models\Master\Entity;
 use App\Models\Master\School;
