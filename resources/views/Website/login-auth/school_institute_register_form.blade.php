@@ -72,23 +72,7 @@
                             <i class="fa fa-envelope-o"></i>
                         </span>
 
-                        <!--<span class="input-login ">
-                                                    <select class="form-select select country-select" name="state">
-                                                      <option>Select State</option>
-                                                      @foreach ($states as $state)
-    <option value={{ $state->id }}>{{ $state->state }}</option>
-    @endforeach
-                                                    </select>
-                            
-                                               </span>
-                                               
-                                                <span class="input-login ">
-                                                    <select class="form-select select country-select" name="city">
-                                                      <option>Select City </option>
-                                                      @foreach ($citys as $city)
-    <option value={{ $city->id }}>{{ $city->citys }}</option>
-    @endforeach
-                                                    </select>-->
+                       
 
 
 

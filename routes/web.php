@@ -241,9 +241,13 @@ Route::group(['middleware' => ['role:1']], function () {
     Route::get('school_profile/update_profile',[SchoolProfile::class,'update_profile'])->name('school_profile.update_profile');
 Route::get('school_profile/create_job_vacancy',[SchoolProfile::class,'create_job_vacancy'])->name('school_profile.create_job_vacancy');
 Route::get('school_profile/post_result',[SchoolProfile::class,'post_result'])->name('school_profile.post_result');
+Route::post('school_profile/create_post_result',[SchoolProfile::class,'create_post_result'])->name('school_profile.create_post_result');
+Route::get('school_profile/destroy_post_result/{id}',[SchoolProfile::class,'destroy_post_result'])->name('school_profile.destroy_post_result');
+
 Route::get('school_profile/pramote_bussiness',[SchoolProfile::class,'pramote_bussiness'])->name('school_profile.pramote_bussiness');
 Route::get('school_profile/change_password',[SchoolProfile::class,'change_password'])->name('school_profile.change_password');
 Route::get('school_profile/update_photo_video',[SchoolProfile::class,'update_photo_video'])->name('school_profile.update_photo_video');
+Route::post('school_profile/update_profiledata',[SchoolProfile::class,'update_profiledata'])->name('school_profile.update_profiledata');
 
 
 });
@@ -294,7 +298,6 @@ Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'
 //send enquiry
 Route::get('logout',[WebsiteformController::class,'log_out'])->name('logout');
 // Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'])->name('get_mobile_number');
-
 
 
 //------------------------------------------------school and institute profile dashboard
