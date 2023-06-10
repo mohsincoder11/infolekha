@@ -984,7 +984,7 @@ nav li ul a:before , nav li ul a:after {
     margin-top: 15px;
 }
 .float-btn {
-    float:center;
+    float:left;
 }
 .small-btn {
     padding:12px 30px;  
@@ -2382,7 +2382,7 @@ section {
 	position: relative;
 	float: left;
 	width: 100%;
-	padding: 70px 0;
+	padding: 90px 0;
 	background: #fff;
 }
 .hidden-section {
@@ -4281,7 +4281,7 @@ section.single-par2  .scroll-down-wrap{
 .box-widget-title.box-widget-title-color {
     margin-bottom:0;
     color: #fff;
-    padding: 7px 20px;
+    padding: 15px 20px;
     border-radius: 6px 6px 0 0;
     font-size: 16px;
 }
@@ -4290,7 +4290,7 @@ section.single-par2  .scroll-down-wrap{
 	border-bottom: 1px solid #eee;
 }
 .box-widget-content , .profile-widget-content {
-	padding:1px 3px;
+	padding:2px 43px;
 	background:#fff;
 	border-radius:6px;
 	border:1px solid #eee;
@@ -4687,7 +4687,7 @@ section.single-par2  .scroll-down-wrap{
 	margin-right:6px;
 }
 .contats-list li a   {
-	float:center;
+	float:right;
 	color: #144273;
 }
 .contats-list.contats-list-inline li {

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>Infolekha</title>
+
+    <meta name="author" content="themesflat.com">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/responsive.css">
+
+
+    <!-- dropzone -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/dropzone.css">
+
+    <!-- Animation Style -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+
+    <!-- Favicon and touch icons  -->
+    <link href="icon/apple-touch-icon-48-precomposed.png" rel="apple-touch-icon-precomposed" sizes="48x48">
+    <link href="icon/apple-touch-icon-32-precomposed.png" rel="apple-touch-icon-precomposed">
+    <link href="images/favicon.png" rel="shortcut icon">
+
+</head>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+/* body {
+  font-family: "Inter", sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f9;
+} */
+
+.radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.radio-group > * {
+  margin: 0.5rem 0.5rem;
+}
+
+.radio-group-legend {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #9c9c9c;
+  text-align: center;
+  line-height: 1.125;
+  margin-bottom: 1.25rem;
+}
+
+.radio-input {
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(100%);
+          clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.radio-input:checked + .checkbox-tile {
+  border-color: #073D5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  color: #073D5F;
+}
+.radio-input:checked + .checkbox-tile:before {
+  transform: scale(1);
+  opacity: 1;
+  background-color: #073D5F;
+  border-color: #073D5F;
+}
+.radio-input:checked + .checkbox-tile .checkbox-icon, .radio-input:checked + .checkbox-tile .checkbox-label {
+  color: #073D5F;
+}
+.radio-input:focus + .checkbox-tile {
+  border-color: #073D5F;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), 0 0 0 4px #b5c9fc;
+}
+.radio-input:focus + .checkbox-tile:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.checkbox-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  min-height: 8rem;
+  border-radius: 0.5rem;
+  border: 2px solid #b5bfd9;
+  background-color: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: 0.15s ease;
+  cursor: pointer;
+  position: relative;
+}
+.checkbox-tile:before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid #b5bfd9;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 0.25rem;
+  left: 0.25rem;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.25s ease;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E");
+  background-size: 12px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+.checkbox-tile:hover {
+  border-color: #073D5F;
+}
+.checkbox-tile:hover:before {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.checkbox-icon {
+  transition: 0.375s ease;
+  color: #494949;
+}
+.checkbox-icon svg {
+  width: 3rem;
+  height: 3rem;
+}
+
+.checkbox-label {
+  color: #707070;
+  transition: 0.375s ease;
+  text-align: center;
+}
+</style>
+<!--radio-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+    .popup1 {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        height: 80%;
+        max-width: 400px;
+        max-height: 400px;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1;
+    }
+
+    @media screen and (max-width: 480px) {
+        .popup1 {
+            width: 90%;
+            height: 90%;
+            max-width: none;
+            max-height: none;
+        }
+    }
+</style>
+
+<script>
+    function openPopup1() {
+        if (document.getElementById('checkbox').checked) {
+            document.getElementById('popup1').style.display = 'block';
+        } else {
+            document.getElementById('popup1').style.display = 'none';
+        }
+    }
+    function closePopup1() {
+        document.getElementById('popup1').style.display = 'none';
+    }
+</script>
+<style>
+    .btn {
+        border: none;
+        background-color: #073D5F;
+        padding: 11px 26px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #477ea0;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .info {
+        color: dodgerblue;
+    }
+
+    .warning {
+        color: orange;
+    }
+
+    .danger {
+        color: red;
+    }
+
+    .default {
+        color: black;
+    }
+
+    .dropbtn {
+
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+<style>
+    .btn {
+        border: none;
+        background-color: #073D5F;
+        /* padding: 11px 26px; */
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #477ea0;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .info {
+        color: dodgerblue;
+    }
+
+    .warning {
+        color: orange;
+    }
+
+    .danger {
+        color: red;
+    }
+
+    .default {
+        color: black;
+    }
+
+    .dropbtn {
+
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .dropdown1 {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+
+<body class="header_sticky">
+    <!-- Preloader -->
+    <section class="loading-overlay">
+        <div class="Loading-Page">
+            <h2 class="loader">Loading</h2>
+        </div>
+    </section>
+
+    <!-- Boxed -->
+    <div class="boxed">
+
+        <!-- Header -->
+        <header id="header" class="header clearfix" style="margin-top:-2%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div id="logo" class="logo float-left">
+                            <a href="index.html" rel="home">
+                                <img src="images/logo.png" alt="image">
+                            </a>
+                        </div><!-- /.logo -->
+                        <div class="btn-menu">
+                            <span></span>
+                        </div><!-- //mobile menu button -->
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-10">
+                        <div class="nav-wrap">
+                            <nav id="mainnav" class="mainnav float-right">
+                                <ul class="menu">
+
+
+                                    <li style="margin-top: 5%;">
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="login1.html
+                                        "><button type="button" class="btn" href='page-addlisting.html'><i
+                                                        class="fa fa-map-marker"></i> Aurangabad</button></a>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="index.html
+                                        "><button type="button" class="btn" href='index.html'><i class="fa fa-home"
+                                                        aria-hidden="true"></i> Home</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="events.html
+                                        "><button type="button" class="btn" href='events.html'><i
+                                                        class="fa fa-check-square-o"></i> Events</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="blogs.html
+                                        "><button type="button" class="btn" href='blogs.html'><i
+                                                        class="fa fa-file-text" aria-hidden="true"></i>
+                                                    Blogs</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="login1.html
+                                            "><button type="button" class="btn" href='page-addlisting.html'><i
+                                                        class="fa fa-user-plus"></i> Login</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown">
+                                            <button type="button" onclick="myFunction()" class="btn dropbtn"
+                                                onclick="location.href='page-addlisting.html'"><i
+                                                    class="fa fa-sign-in"></i>
+                                                Sign Up</button>
+                                            <div id="myDropdown" class="dropdown-content" style="z-index: 1000;">
+                                                <a href="sign-up.html">School/College/Institution</a>
+                                                <a href="sign-up-student.html">Student/Parent </a>
+                                                <a href="sign-up-tutor.html">Tutor/Faculty </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li style="color: black !important;"> <img src="images/user.png"> Shivani
+
+                                        <ul class="submenu">
+                                            <li><a href="#">Profile</a>
+                                            </li>
+                                            <li><a href="#">Log out</a>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                </ul><!-- /.menu -->
+                            </nav><!-- /.mainnav -->
+
+
+                        </div><!-- /.nav-wrap -->
+                    </div>
+                    <!-- /.col-lg-8 -->
+                </div><!-- /.row -->
+            </div>
+        </header><!-- /.header -->
+
+        <!-- Page title -->
+        <div class="page-title parallax parallax1">
+            <div class="section-overlay">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title-heading">
+                            <h1 class="title">User</h1>
+                        </div><!-- /.page-title-captions -->
+                        <div class="breadcrumbs">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li> - </li>
+                                <li><a href="index.html">Page</a></li>
+                                <li> - </li>
+                                <li>User</li>
+                            </ul>
+                        </div><!-- /.breadcrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.page-title -->
+
+        <section class="flat-row page-profile bg-theme">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="flat-tabs style2" data-effect="fadeIn">
+
+
+                            <div class="content-tab listing-user profile">
+                                <div class="content-inner active">
+                                    <div class="basic-info">
+                                        <h3 align="center" style="color: #073D5F; margin-bottom:7% !important;">Subscription Plans
+                                        </h3>
+                                        <div class="row">
+
+
+
+                                            <div class="col-md-12">
+
+                                                <div>
+                                                    <form method="post" action="#" class="form-profile">
+                                                        <div class="row" style="margin-right: 5%;">
+                                                            <div class="col-md-3"></div>
+                                                            <div class="col-md-3">
+                                                            <div class="">
+                                                                <label class="checkbox-wrapper">
+                                                                    <input type="radio" name="name1" value="sub" class="radio-input" />
+                                                                    <span class="checkbox-tile">
+                                                                        <span class="checkbox-icon">
+                                                                            <div class="box-content">
+                                                                                <h4 for="vehicle1" style="color: #073D5F; ">
+                                                                                    <b>Monthly</b></h4>
+                                                                                <h6
+                                                                                    style="color:#073D5F; margin-top: 2%;  ">
+                                                                                    ₹ 500 / Per Month</h6>
+                                                                            
+                                                                            </div>
+                                                                        </span>
+                                                                    
+                                                                    </span>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-3">
+                                                        <div class="">
+                                                            <label class="checkbox-wrapper">
+                                                                <input type="radio" name="name1" value="add" class="radio-input" />
+                                                                <span class="checkbox-tile">
+                                                                    <span class="checkbox-icon">
+                                                                        <div class="box-content">
+                                                                            <h3 for="vehicle1" style="color: #073D5F; ">
+                                                                                <b>Yearly</b></h3>
+                                                                            <h6
+                                                                                style="color:#073D5F; margin-top: 2%;  ">
+                                                                                ₹ 5000 / Per Year</h6>
+                                                                            
+                                                                        </div>
+                                                                    </span>
+                                                                
+                                                                </span>
+                                                            </label>
+                                                        </div>
+                                                        </div>
+
+
+                                                        <!-- <div class="update-profile" style="margin-left:42%;">
+                                                  <button type="button" class="btn btn-primary">Submit</button>
+                                                </div> -->
+                                                </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12" style="margin-top: 5%;">
+
+                                            <table width="60%" align="center" style="margin-left: 26%;">
+                                                <td width="30%">
+                                                    <p class="form-control-label"
+                                                                            style="color: #073D5F; font-size:16px">
+                                                                            <b>Apply Coupon Code</b></p>
+                                                </td>
+                                                <td width="30%">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Cupon Code"></td>
+                                            </table>
+                                    
+
+                                            <div class="update-profile" style="margin-left:38%; ">
+                                                <button type="button" class="btn btn-primary"   style="width: 40%;">Pay Now</button>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-widgets">
+
+        <div class="container">
+            <div class="bottom">
+                <div class="row">
+                    <div class="col-md-4" style="margin-bottom: 2%;">
+                        <div class="copyright">
+                            <p>© 2023 Infolekha <a href="https://themeforest.net/user/themesflat/portfolio"></a> All
+                                Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </p>
+                        </div>
+                    </div><!-- /.col-md-12 -->
+                    <div class="col-md-4" style="margin-top: 15px; margin-bottom: 2%;">
+                        <h6 class="widget-title"><a href="about-us.html">About us &nbsp;&nbsp;&nbsp;</a> <a
+                                href="blogs.html">Blogs &nbsp;&nbsp;&nbsp;</a>
+                            <a href="contact-us.html">Contact&nbsp;&nbsp;&nbsp;</a>
+                        </h6>
+                    </div>
+                    <div class="col-md-4" style="margin-bottom: 2%;">
+                        <div class="social-links float-right">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-youtube-play"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-6" style=" margin-bottom: 2%; ">
+                        <h6 class="widget-title">
+                            <a href="privacy-policy.html">Privacy/Policy&nbsp;&nbsp;&nbsp;</a><a
+                                href="terms-condition.html">Terms & Condition&nbsp;&nbsp;&nbsp;</a><a
+                                href="refund.html">Refund & Cancellation&nbsp;&nbsp;&nbsp;</a>
+                        </h6>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Go Top -->
+    <a class="go-top effect-button">
+        <i class="fa fa-angle-up"></i>
+    </a>
+
+    </div>
+
+    <!-- Javascript -->
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/tether.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/jquery.easing.js"></script>
+    <script src="javascript/jquery-waypoints.js"></script>
+    <script src="javascript/dropzone.js"></script>
+    <script src="javascript/jquery.cookie.js"></script>
+    <script src="javascript/parallax.js"></script>
+    <script src="javascript/smoothscroll.js"></script>
+
+    <script src="javascript/main.js"></script>
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

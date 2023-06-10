@@ -33,5 +33,5 @@ function get_college_rating($college_id)
     $averageRating = DB::table('user_feedback')
     ->where('college_id', $college_id)
     ->avg('rating');
-    return round($averageRating);
+    return number_format($averageRating,1);
 }

@@ -1344,6 +1344,24 @@
                      }
                  });
                 }
+
+                $(".like_college").on("click", function() {
+                $(this).toggleClass("active_heart");
+                $.ajax({
+                    url: '{{ route("like_unlike") }}',
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "college_id": $(this).attr('college_id')
+                    },
+                    success: function(response) {
+                        console.log('Like request successful');
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error sending like request:', error);
+                    }
+                });
+            })
      </script>
 
 

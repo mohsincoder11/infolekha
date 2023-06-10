@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\UserFeedbackModel;
 
 class User extends Authenticatable
 {
@@ -45,4 +46,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getCollegeReviewAttribute(){
+        $reviews=UserFeedbackModel::join('users','users.id','user_feedback.user_id')->where('college_id',$this->user_id)->orderBy('id','desc')
+        ->select('user_feedback.*','users.logo')
+        ->get();
+        return $reviews;
+
+    }
 }

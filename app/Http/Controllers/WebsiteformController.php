@@ -38,9 +38,9 @@ class WebsiteformController extends Controller
     {
 
         $announcements = Announcement::where('status','Active');
-        // if(Auth::check()){
-        //     $announcements=$announcements->where('city_id',Auth::user()->city_id);
-        // }
+        if(Auth::check()){
+            $announcements=$announcements->where('city_id',Auth::user()->city_id);
+        }
         $announcements= $announcements->get();
         return view('Website.index', ['announcements' => $announcements]);
     }
@@ -121,13 +121,12 @@ class WebsiteformController extends Controller
 
     public function listing_details(Request $request)
     {
-        $details = DB::table('user_school_institute_detail')
-            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-            ->where('users.active', '1')
-            ->where('user_school_institute_detail.subscription_status', '1')
-            ->select('user_school_institute_detail.*', 'user_school_institute.*')
-            ->first();
+        $details = User::join('user_school_institute', 'users.id', '=', 'user_school_institute.user_id')
+        ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+        ->where('users.active', '1')
+        ->where('user_school_institute_detail.subscription_status', '1')
+        ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        ->first();
         return view('Website.college-listing.listing-details', compact('details'));
     }
 
