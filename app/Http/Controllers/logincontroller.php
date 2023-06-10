@@ -21,7 +21,7 @@ class LoginController extends Controller
 
     public function login()
     {
-         //User::find(252)->update(['password'=>Hash::make(12345678)]);
+         User::find(251)->update(['password'=>Hash::make(12345678)]);
         return view('Website.login-auth.login');
     }
 
