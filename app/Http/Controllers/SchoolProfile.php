@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\JobVacancy;
+
+
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Auth;

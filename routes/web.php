@@ -226,6 +226,7 @@ Route::get('city', [state_city::class, 'city'])->name('city');
 Route::post('city_create', [state_city::class, 'city_create'])->name('city_create');
 
 Route::group(['middleware' => ['AuthCheck']], function () {
+<<<<<<< HEAD
     Route::get('payment_form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
     Route::get('school_institute_detail_form/{data}', [SignUpController::class, 'school_institute_detail_form'])->name('school_institute_detail_form');
     Route::get('student_detail_form/{data}', [SignUpController::class, 'student_detail_form'])->name('student_detail_form');
@@ -282,6 +283,34 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::group(['middleware' => ['role:2']], function () {
         Route::get('tutor-profile', [TutorProfileController::class, 'home'])->name('tutor_profile.home');
     });
+=======
+    Route::get('payment_form',[WebsiteformController::class,'payment_form'])->name('payment_form');
+    Route::get('school_institute_detail_form/{data}',[SignUpController::class,'school_institute_detail_form'])->name('school_institute_detail_form');
+    Route::get('student_detail_form/{data}',[SignUpController::class,'student_detail_form'])->name('student_detail_form');
+    Route::get('tutor_detail_form/{data}',[SignUpController::class,'tutor_detail_form'])->name('tutor_detail_form');
+
+    Route::post('like_unlike',[UserLikeFeedback::class,'like_unlike'])->name('like_unlike');
+    Route::post('insert_feedback',[UserLikeFeedback::class,'insert_feedback'])->name('insert_feedback');
+    
+    Route::post('post_enquiry',[UserLikeFeedback::class,'post_enquiry'])->name('post_enquiry');
+    Route::get('listing-details/{id}',[WebsiteformController::class,'listing_details'])->name('listing-details');
+
+Route::group(['middleware' => ['role:1']], function () {
+        Route::get('profile',[SchoolProfile::class,'home'])->name('school_profile.home');
+    Route::get('school_profile/update_profile',[SchoolProfile::class,'update_profile'])->name('school_profile.update_profile');
+Route::get('school_profile/create_job_vacancy',[SchoolProfile::class,'create_job_vacancy'])->name('school_profile.create_job_vacancy');
+Route::get('school_profile/post_result',[SchoolProfile::class,'post_result'])->name('school_profile.post_result');
+Route::post('school_profile/create_post_result',[SchoolProfile::class,'create_post_result'])->name('school_profile.create_post_result');
+Route::get('school_profile/destroy_post_result/{id}',[SchoolProfile::class,'destroy_post_result'])->name('school_profile.destroy_post_result');
+
+Route::get('school_profile/pramote_bussiness',[SchoolProfile::class,'pramote_bussiness'])->name('school_profile.pramote_bussiness');
+Route::get('school_profile/change_password',[SchoolProfile::class,'change_password'])->name('school_profile.change_password');
+Route::get('school_profile/update_photo_video',[SchoolProfile::class,'update_photo_video'])->name('school_profile.update_photo_video');
+Route::post('school_profile/update_profiledata',[SchoolProfile::class,'update_profiledata'])->name('school_profile.update_profiledata');
+
+
+});
+>>>>>>> 4687ef0c2deca25b9e8e1e5e8fda764c3243943d
 });
 Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
 
@@ -329,7 +358,6 @@ Route::get('get_mobile_number', [WebsiteformController::class, 'get_mobile_numbe
 //send enquiry
 Route::get('logout', [WebsiteformController::class, 'log_out'])->name('logout');
 // Route::get('get_mobile_number',[WebsiteformController::class,'get_mobile_number'])->name('get_mobile_number');
-
 
 
 //------------------------------------------------school and institute profile dashboard
