@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+
+<head>
+    <!-- Basic Page Needs -->
+    <meta charset="utf-8">
+    <title>Infolekha</title>
+
+    <meta name="author" content="themesflat.com">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+
+    <!-- Responsive -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/responsive.css">
+
+
+    <!-- dropzone -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/dropzone.css">
+
+    <!-- Animation Style -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/animate.css">
+
+    <!-- Favicon and touch icons  -->
+    <link href="icon/apple-touch-icon-48-precomposed.png" rel="apple-touch-icon-precomposed" sizes="48x48">
+    <link href="icon/apple-touch-icon-32-precomposed.png" rel="apple-touch-icon-precomposed">
+    <link href="images/favicon.png" rel="shortcut icon">
+
+</head>
+<style>
+    .btn {
+        border: none;
+        background-color: #073D5F;
+        /* padding: 11px 26px; */
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .btn:hover {
+        background: #477ea0;
+    }
+
+    .success {
+        color: green;
+    }
+
+    .info {
+        color: dodgerblue;
+    }
+
+    .warning {
+        color: orange;
+    }
+
+    .danger {
+        color: red;
+    }
+
+    .default {
+        color: black;
+    }
+
+    .dropbtn {
+
+        border: none;
+        cursor: pointer;
+    }
+
+
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 3px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+<style>
+     @media only screen and (max-width: 768px) {
+        .l3 {
+           padding-left:2%;
+           padding-right:2%;
+        }
+      
+    }
+</style>
+
+
+
+<body class="header_sticky">
+    <!-- Preloader -->
+    <section class="loading-overlay">
+        <div class="Loading-Page">
+            <h2 class="loader">Loading</h2>
+        </div>
+    </section>
+
+    <!-- Boxed -->
+    <div class="boxed">
+
+        <!-- Header -->
+        <header id="header" class="header clearfix" style="margin-top:-2%;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div id="logo" class="logo float-left">
+                            <a href="index.html" rel="home">
+                                <img src="images/logo.png" alt="image">
+                            </a>
+                        </div><!-- /.logo -->
+                        <div class="btn-menu">
+                            <span></span>
+                        </div><!-- //mobile menu button -->
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-lg-8">
+                        <div class="nav-wrap">
+                            <nav id="mainnav" class="mainnav float-right">
+                                <ul class="menu">
+                                    <!-- <li class="home">
+                                    <a href="index.html">Home</a>
+                                </li>
+                                <li><a href="listing-grid.html">Listing</a>
+                                    <ul class="submenu">
+                                        <li><a href="listing-grid.html">Listing Grid</a>
+                                        </li>
+                                        <li><a href="listing-list.html">Listing List</a>
+                                        </li>
+                                        <li><a href="listing-full.html">Listing Full Width</a>
+                                        </li>
+                                        <li><a href="listing-map1.html">Listing Map V1</a>
+                                        </li>
+                                        <li><a href="listing-map2.html">Listing Map V2</a>
+                                        </li>
+                                        <li><a href="listing-single.html">Listing Single</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="blog.html">Blog</a>
+                                    <ul class="submenu">
+                                        <li><a href="blog.html">Blog</a>
+                                        </li>
+                                        <li><a href="blog-single.html">Blog Single</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="page-about.html">Page</a>
+                                    <ul class="submenu">
+                                        <li><a href="page-about.html">About Us</a>
+                                        </li>
+                                        <li><a href="page-services.html">Services</a>
+                                        </li>
+                                        <li><a href="page-user.html">User</a>
+                                        </li>
+                                        <li><a href="page-profile.html">User profile</a>
+                                        </li>
+                                        <li><a href="page-addlisting.html">Add Listing</a>
+                                        </li>
+                                        <li><a href="page-pricing.html">pricing</a>
+                                        </li>
+                                        <li><a href="page-contact.html">Contact Us</a>
+                                        </li>
+                                    </ul>
+                                </li> -->
+                                    <!-- <li>
+                                    <a data-toggle="modal" href="#popup_login"><i class="fa fa-user"></i> Sign
+                                        in</a>
+                                </li>
+                                <li>
+                                    <a data-toggle="modal" href="#popup_register"><i class="fa fa-user-plus"></i>
+                                        Register</a>
+                                </li> -->
+
+                                    <!-- <li >
+                    
+                                    <div class="button-addlist  dropdown">
+                                        <a class="nav-link " align="center">
+                                             <img src="images/pin (1).png" width=""><br>Aurangabad </a>
+        
+                                    </div>
+                                </li> -->
+
+                                    <!-- <li style="padding-top: 5%;">
+                    
+                                    <div class="button-addlist  dropdown"  >
+                                        <a class="nav-link " > <i class="fa fa-map-marker"></i><br>Aurangabad </a>
+        
+                                    </div>
+                                </li> -->
+
+                                    <li style="margin-top: 5%;">
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="login1.html
+                                        "><button type="button" class="btn" href='page-addlisting.html'><i
+                                                        class="fa fa-map-marker"></i> Aurangabad</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="index.html
+                                        "><button type="button" class="btn" href='index.html'><i class="fa fa-home"
+                                                        aria-hidden="true"></i> Home</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="events.html
+                                        "><button type="button" class="btn" href='events.html'><i
+                                                        class="fa fa-check-square-o"></i> Events</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="blogs.html
+                                        "><button type="button" class="btn" href='blogs.html'><i
+                                                        class="fa fa-file-text" aria-hidden="true"></i>
+                                                    Blogs</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown ">
+                                            <a href="login1.html
+                                            "><button type="button" class="btn" href='page-addlisting.html'><i
+                                                        class="fa fa-user-plus"></i> Login</button></a>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="button-addlist  dropdown">
+                                            <button type="button" onclick="myFunction()" class="btn dropbtn"
+                                                onclick="location.href='page-addlisting.html'"><i
+                                                    class="fa fa-sign-in"></i>
+                                                Sign Up</button>
+                                            <div id="myDropdown" class="dropdown-content" style="z-index: 1000;">
+                                                <a href="sign-up.html">School/College/Institution</a>
+                                                <a href="sign-up-student.html">Student/Parent </a>
+                                                <a href="sign-up-tutor.html">Tutor/Faculty </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+
+                                </ul><!-- /.menu -->
+                            </nav><!-- /.mainnav -->
+
+                            <!-- <div class="button-addlist float-right">
+                            <button type="button" class="flat-button"
+                                onclick="location.href='page-addlisting.html'">Add Listing</button>
+                        </div> -->
+                        </div><!-- /.nav-wrap -->
+                    </div>
+                    <!-- /.col-lg-8 -->
+                </div><!-- /.row -->
+            </div>
+        </header><!-- /.header -->
+
+        <!-- Page title -->
+        <div class="page-title parallax parallax1">
+            <div class="section-overlay">
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-title-heading">
+                            <h1 class="title">About Us</h1>
+                        </div><!-- /.page-title-captions -->
+                        <div class="breadcrumbs">
+                            <!-- <ul>
+                            <li><a href="index.html"></a></li>
+                          
+                        </ul>                    -->
+                        </div><!-- /.breadcrumbs -->
+                    </div><!-- /.col-md-12 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.page-title -->
+
+        <section class="flat-row section-about1 parallax parallax3">
+            <div class="container">
+              
+                <div class="row " style="padding-left:4%; padding-right:4%; margin-bottom: 4%;">
+                    <div class="col-md-12 l3" style="padding-top:20px; padding-left:5%; padding-right:5%; padding-top:5%; padding-bottom:5%;
+                    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+
+
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-md-6" style="margin-top:2%">
+                                    <div class=" icon-text text-left">
+                                        <div class="box-content">
+                                            <div class="box-title" ><h4>Greetings from<a href="https://infolekha.org/" style="color: black;"> INFOlekha.org</a></h4></div>    
+                                            <p align="justify">	  INFOlekha.org <b>is a Startup India Recognized Educational Platform </b>and also India's leading educational platform. We're dedicated to providing reliable, up-to-date information about the best schools, colleges, and institutions near you. Our team of experts works tirelessly to research and compile accurate information about various educational institutions, making it easy for students and parents to find the perfect fit.
+                                                    We understand that finding the right school or college can be a daunting task, especially with so many options available. That's why we've created a user-friendly website that allows you to easily browse and compare different institutions based on criteria such as location, programs offered, and admission requirements. 
+                                                    In addition to providing information about educational institutions, we also help connect tutors and other support staff with job vacancies in the education sector. Our platform serves as a one-stop-shop for all things education-related, making it easier for everyone to access the information they need to succeed.
+                                                    At INFOlekha.org, we believe that education is not limited to academic institutions. That's why we also conduct events, seminars, and other such activities that promote holistic learning and personal growth. Our events bring together students, parents, educators, and experts from various fields to share knowledge and insights on a wide range of topics. From career guidance to skill-building workshops, we offer something for everyone.
+                                                    We're committed to providing the most accurate and up-to-date information possible, and we believe that education is the key to a brighter future. Thank you for choosing us as your trusted source for education-related information and activities in India!
+                                                
+                                            </p> 
+        
+                                       
+                                                <h1 class="title" style="margin-top:2.5% ;">Vision</h1>
+                                               
+                                           
+                                    
+                                            <p align="justify">To be the leading educational platform in India, empowering individuals to make informed decisions about their educational journey and promoting lifelong learning for personal and professional growth.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="margin-top:2%;">
+                                    <div class=" icon-text text-left">
+                                        <div class="box-content">
+                                            <div class="box-title" >	
+                                              <h4>Features at <a href="https://infolekha.org/" style="color: black;">INFOlekha.org</a></h4>  
+                                            </div> 
+                                            
+                                           <marquee width="100%" direction="up" height="600px" behavior="alternate" loop="30" onmouseover="this.stop();"
+                                                onmouseout="this.start();" style="margin-bottom:0px;" loop="infinite">
+                                            <div class="widget widget_categories">
+                                                  
+                                                <!-- <h5 class="widget-title">Category</h5> -->
+                                                <ul>
+                                                    <li align="justify">	Dedicated Portal for Educational Organizations: INFOlekha.org is a platform designed specifically for educational institutions, making it easier for them to find the perfect fit for their needs. It serves as a one-stop solution for schools, colleges, institutions, students/parents, and tutors.
+                                                        </li>
+        
+                                                        <li align="justify">	Location-Based Search Engine: Our location-based search engine enables users to easily find educational institutions in their area, ensuring that they can attend the school or college of their choice without having to travel far.
+                                                        </li> 
+                                                        
+                                                        <li align="justify">	Advanced Filter-Based Search: Our platform allows users to search for educational institutions based on various filters such as location, type of institution, facilities, ratings, courses offered, and many more.
+        
+                                                        </li> 
+        
+                                                        <li align="justify">Listings of Schools, Colleges, and Institutions: On INFOlekha.org, educational institutions can list themselves and take their institution to the next level by registering with our online portal. Our user-friendly platform connects institutions with prospective students and parents who are searching for the perfect educational institution for their needs.</li>
+                                                        <li align="justify">Access to a Wide Audience: By registering with us, institutions gain access to a wide audience, greater visibility, and increased opportunities to showcase their unique strengths and programs. Our resources and support help institutions attract more students, boost admissions, and make a difference in the world of education.</li>
+        <li align="justify">Advertising and Marketing: By advertising with us, institutions gain access to a wide and engaged audience and the opportunity to showcase their services. Our social media integration allows institutions to share their strengths and programs on popular social media platforms such as Facebook, Instagram, YouTube, and more.</li>
+        <li align="justify">	Ratings and Reviews: INFOlekha.org offers a ratings and reviews feature that allows institutions to showcase their strengths and build their reputation. By encouraging current and former students to leave honest reviews about their experiences, institutions can provide valuable insight and gain a competitive edge.</li>
+        <li align="justify">Post Job Vacancies for Tutors and Other Support Staff: Our online portal connects institutions with a pool of talented and qualified candidates who are searching for the perfect job opportunity. By posting job vacancies on our platform, institutions can review resumes, shortlist candidates, and schedule interviews with ease</li>
+        <li align="justify">	Organizing Educational Events, Competitions, and Seminars: INFOlekha.org organizes a wide range of educational events and programs, including workshops, seminars, conferences, and competitions such as Science Fair, Spelling Bee, Debate Competition, Essay Writing Contest, Quiz Bowl, Speech Contest, Music Competition, Art Competition, and more. Institutions can promote themselves by allowing their students to participate in these events. Winning institutions and students will be showcased on the front page of our website with results.</li>
+        
+        
+                                                </ul>
+        
+                                       
+                                            </div>
+                                            </marquee>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+
+
+                                <div class="col-md-6" style="margin-top:2%;">
+                                    <div class=" icon-text text-left">
+                                        <div class="box-content">
+                                            <img src="images/startup-india-certificate.jpg">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+
+                   
+                      
+                    </div>
+                </div>     
+            </section> 
+                 
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    
+       
+        <!-- Footer -->
+        <footer class="footer footer-widgets">
+
+            <div class="container">
+                <div class="bottom">
+                    <div class="row">
+                        <div class="col-md-4" style="margin-bottom: 2%;">
+                            <div class="copyright">
+                                <p>© 2023 Infolekha <a href="https://themeforest.net/user/themesflat/portfolio"></a> All
+                                    Rights Reserved.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </p>
+                            </div>
+                        </div><!-- /.col-md-12 -->
+                        <div class="col-md-4" style="margin-top: 15px; margin-bottom: 2%;">
+                            <h6 class="widget-title"><a href="about-us.html">About us &nbsp;&nbsp;&nbsp;</a> <a
+                                    href="blogs.html">Blogs &nbsp;&nbsp;&nbsp;</a>
+                                <a href="contact-us.html">Contact&nbsp;&nbsp;&nbsp;</a>
+                            </h6>
+                        </div>
+                        <div class="col-md-4" style="margin-bottom: 2%;">
+                            <div class="social-links float-right">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                <a href="#"><i class="fa fa-youtube-play"></i></a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-6" style=" margin-bottom: 2%; ">
+                            <h6 class="widget-title">
+                                <a href="privacy-policy.html">Privacy/Policy&nbsp;&nbsp;&nbsp;</a><a
+                                    href="terms-condition.html">Terms & Condition&nbsp;&nbsp;&nbsp;</a><a
+                                    href="refund.html">Refund & Cancellation&nbsp;&nbsp;&nbsp;</a>
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="modal fade flat-popupform" id="popup_login">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body text-center clearfix">
+                        <form class="form-login form-listing" action="#" method="post">
+                            <h3 class="title-formlogin">Log in</h3>
+                            <span class="input-login icon-form"><input type="text" placeholder="Your Name*" name="email"
+                                    required="required"><i class="fa fa-user"></i></span>
+                            <span class="input-login icon-form"><input type="text" placeholder="Password*"
+                                    name="password" required="required"><i class="fa fa-lock"></i></span>
+                            <div class="flat-fogot clearfix">
+                                <label class="float-left">
+                                    <span class="input-check">
+                                        <input type="checkbox" name="check" value="0" checked="">
+                                        <span class="remember">Remember me</span>
+                                    </span>
+                                </label>
+                                <label class="float-right link-register">
+                                    <a href="#">Lost your password?</a>
+                                </label>
+                            </div>
+                            <span class="wrap-button">
+                                <button type="button" id="login-button" class=" login-btn effect-button"
+                                    title="log in">LOG IN</button>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade flat-popupform" id="popup_register">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body text-center clearfix">
+                        <form class="form-login form-listing" action="#" method="post">
+                            <h3 class="title-formlogin">Sign Up</h3>
+                            <span class="input-login icon-form"><input type="text" placeholder="Your Name*" name="name"
+                                    required="required"><i class="fa fa-user"></i></span>
+                            <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
+                                    required="required"><i class="fa fa-envelope-o"></i></span>
+                            <span class="input-login icon-form"><input type="text" placeholder="Password*"
+                                    name="password" required="required"><i class="fa fa-lock"></i></span>
+                            <span class="input-login icon-form"><input type="text" placeholder="Repeat Password*"
+                                    name="password" required="required"><i class="fa fa-lock"></i></span>
+                            <div class="wrap-button signup">
+                                <button type="button" id="logup-button" class=" login-btn effect-button"
+                                    title="log in">LOG UP</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Go Top -->
+        <a class="go-top effect-button">
+            <i class="fa fa-angle-up"></i>
+        </a>
+
+    </div>
+
+    <!-- Javascript -->
+    <script src="javascript/jquery.min.js"></script>
+    <script src="javascript/tether.min.js"></script>
+    <script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/jquery.easing.js"></script>
+    <script src="javascript/jquery-waypoints.js"></script>
+    <script src="javascript/dropzone.js"></script>
+    <script src="javascript/jquery.cookie.js"></script>
+    <script src="javascript/parallax.js"></script>
+    <script src="javascript/smoothscroll.js"></script>
+
+    <script src="javascript/main.js"></script>
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

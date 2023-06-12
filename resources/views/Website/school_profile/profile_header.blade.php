@@ -5,6 +5,6 @@
         <h4>Welcome, <span>{{ Auth::user()->name ?? '' }}</span></h4>
 
     </div>
-    <a href="index.html" class="log-out-btn   tolt" data-microtip-position="bottom"
+    <a href="{{route('logout')}}" class="log-out-btn   tolt" data-microtip-position="bottom"
         data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
 </div>

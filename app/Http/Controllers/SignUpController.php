@@ -30,9 +30,8 @@ class SignUpController extends Controller
 {
     public function school_institute_register_form()
     {
-        $state = state::get();
-        $Entity = Entity::get();
-        return view('Website.login-auth.school_institute_register_form', ['states' => $state, 'entitys' => $Entity]);
+        $entities = Entity::orderby('entity','asc')->get();
+        return view('Website.login-auth.school_institute_register_form', ['entities' => $entities]);
     }
 
 
@@ -158,6 +157,7 @@ class SignUpController extends Controller
                 }
 
                 $test = user_school_institute::where('user_id', auth::user()->id)->first();
+              
 
                 $inst = new school_institute_detail();
                 if ($request->image) {
@@ -185,10 +185,11 @@ class SignUpController extends Controller
                 //$video= time().'.'.$request->file("video")->GetClientOriginalName();
                 //$request->video->move(base_path('database_files/school_institute/video'),$video);
                 $logo = '';
+                $user=User::find(Auth::user()->id);
+
                 if ($request->hasfile('logo')) {
                     $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
                     $request->logo->move(public_path('database_files/school_institute/logo'), $logo);
-                    $user=User::find(Auth::user()->id);
                     $user->logo='database_files/school_institute/logo/' . $logo;
                     $user->save();
                 }else{
@@ -219,6 +220,8 @@ class SignUpController extends Controller
                 } elseif ($test->r_entity == 'Institute') {
                     $inst->entity_select = $request->get('institute');
                 }
+                $test->r_name=$request->get('school_institute');
+                $test->save();
 
                 $inst->course = $course;
                 $inst->opening_time = $request->get('opening_time');
@@ -394,11 +397,18 @@ class SignUpController extends Controller
             }
 
             if ($validator->passes()) {
+                
+                $user=User::find(Auth::user()->id);
+            if ($request->hasFile('address_proof')) {
+                $image = 'database_files/student/photo/'.time() . '.' . $request->file('image')->getClientOriginalExtension();
+                $request->image->move(public_path('database_files/student/photo'), $image);
+                $user->logo=$image;
+            }else{
+                $image='icon/user.png';
+                $user->logo='icon/user.png';
 
-
-                $image = time() . '.' . $request->file('image')->getClientOriginalExtension();
-                $request->image->move(public_path('database_files\student\photo'), $image);
-
+            }
+            $user->save();
                 $inst = Student_detail::where("id", $request->data)->update([
                     'name' => $request->get('name'),
                     'class' => $request->get('class'),
@@ -410,9 +420,6 @@ class SignUpController extends Controller
                     'pin_code' => $request->get('pin_code'),
                     'image' => $image,
                     'user_student_id' => $request->user_student_id
-
-
-
                 ]);
                 return redirect()->route('login');
             }

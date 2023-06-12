@@ -776,9 +776,9 @@
                                                      @if (auth()->user()->role == 1)
                                                          <a href="{{ route('school_profile.home') }}">Profile</a>
                                                      @elseif(auth()->user()->role == 2)
-                                                         <a href="#">Profile</a>
+                                                         <a href="{{ route('tutor_profile.home') }}">Profile</a>
                                                      @else
-                                                         <a href="#">Profile</a>
+                                                     <a href="{{ route('user_profile.home') }}">Profile</a>
                                                      @endif
                                                  </li>
                                                  <li><a href="{{ route('logout') }}">Log out</a>
@@ -1344,6 +1344,24 @@
                      }
                  });
                 }
+
+                $(".like_college").on("click", function() {
+                $(this).toggleClass("active_heart");
+                $.ajax({
+                    url: '{{ route("like_unlike") }}',
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "college_id": $(this).attr('college_id')
+                    },
+                    success: function(response) {
+                        console.log('Like request successful');
+                    },
+                    error: function(xhr, status, error) {
+                        console.log('Error sending like request:', error);
+                    }
+                });
+            })
      </script>
 
 

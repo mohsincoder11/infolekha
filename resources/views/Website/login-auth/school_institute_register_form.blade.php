@@ -40,12 +40,10 @@
                         <span class="input-login icon-form">
                             <select class="form-select select country-select" name="entity" id="sel" requiered>
                                 <option disabled selected>--Select Entity </option>
-                                <option value='School'>School</option>
-                                <option value='College'>College</option>
-                                <option value='Institute'>Institution </option>
+                                @foreach ($entities as $entity)
+                                <option value="{{$entity->entity}}">{{$entity->entity}}</option>
 
-
-
+                                @endforeach
                             </select></span>
 
 
@@ -72,7 +70,11 @@
                             <i class="fa fa-envelope-o"></i>
                         </span>
 
+<<<<<<< HEAD
+                     
+=======
                        
+>>>>>>> 4687ef0c2deca25b9e8e1e5e8fda764c3243943d
 
 
 

@@ -20,12 +20,14 @@ use App\Models\Master\College;
 use App\Models\Master\Institute;
 use App\Models\Master\Cources;
 use App\Models\Master\Faculties;
+use App\Models\SchoolType;
 
 use App\Models\CollegelistingEnquiry;
 use DB;
 use Hash;
 use Session;
 use App\Models\User;
+use App\Models\UserLikeModel;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
@@ -38,9 +40,9 @@ class WebsiteformController extends Controller
     {
 
         $announcements = Announcement::where('status','Active');
-        // if(Auth::check()){
-        //     $announcements=$announcements->where('city_id',Auth::user()->city_id);
-        // }
+        if(Auth::check()){
+            $announcements=$announcements->where('city_id',Auth::user()->city_id);
+        }
         $announcements= $announcements->get();
         return view('Website.index', ['announcements' => $announcements]);
     }
@@ -100,34 +102,38 @@ class WebsiteformController extends Controller
             ->where('users.active', '1')
             ->where('user_school_institute_detail.subscription_status', '1')
             ->select('user_school_institute_detail.*', 'user_school_institute.*','users.logo');
-        if ($request->type == 1) {
-            $college_list = $main_query
-                ->where('user_school_institute.r_entity', 'School')
-                ->paginate(10);
-        } elseif ($request->type == 2) {
-            $college_list = $main_query
-                ->where('user_school_institute.r_entity', 'College')
-                ->paginate(10);
-        } elseif ($request->type == 3) {
-            $college_list = $main_query
-                ->where('user_school_institute.r_entity', 'Institute')
-                ->paginate(10);
-        } else {
-            $college_list =  $main_query
-                ->paginate(10);
+            if (isset($request->type) && $request->type != null) {
+                $college_list = $main_query
+                    ->where('user_school_institute.r_entity', $request->type);
+                   
+            }
+            if (isset($request->board_type) && $request->board_type != null) {
+                $college_list = $main_query
+                    ->where('user_school_institute_detail.entity_select', $request->board_type);
+                   
+            }
+         else {
+            $college_list =  $main_query;
+             
         }
-        return view('Website.college-listing.listing', ['college_list' => $college_list]);
+        $college_list=$main_query ->paginate(10);
+       // exit();
+        $entities = Entity::orderby('entity','asc')->get();
+        $school_type = SchoolType::get();
+
+
+        return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type]);
     }
 
     public function listing_details(Request $request)
     {
-        $details = DB::table('user_school_institute_detail')
-            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-            ->where('users.active', '1')
-            ->where('user_school_institute_detail.subscription_status', '1')
-            ->select('user_school_institute_detail.*', 'user_school_institute.*')
-            ->first();
+        $details = User::join('user_school_institute', 'users.id', '=', 'user_school_institute.user_id')
+        ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+        ->where('users.active', '1')
+        ->where('users.id', $request->id)
+        ->where('user_school_institute_detail.subscription_status', '1')
+        ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        ->first();
         return view('Website.college-listing.listing-details', compact('details'));
     }
 
@@ -289,5 +295,10 @@ class WebsiteformController extends Controller
                 User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
             }
         return response()->json(true);
+    }
+
+    public function remove_wishlist(Request $request){
+        $delete=UserLikeModel::where('id',$request->id)->delete();
+        return back()->with(['status'=>'Removed from the wishlist.']);
     }
 }

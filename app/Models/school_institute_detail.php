@@ -9,6 +9,7 @@ class school_institute_detail extends Model
 {
     use HasFactory;
     protected $table = "user_school_institute_detail";
+    protected $primaryKey ='school_institute_detail_id';
     protected $fillable = [
         'subscription_status',
         'entity_name',

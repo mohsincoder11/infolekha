@@ -2,7 +2,7 @@
 @section('profile_content')
 
 <div class="dashboard-content">
-                    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
+                    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
                     <div class="container dasboard-container">
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
@@ -34,10 +34,10 @@
                                             <div class="bg" data-bg="{{asset('public')."/".($user_data->logo ?? '')}}"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
-                                            <div class="photoUpload color-bg">
+                                            {{-- <div class="photoUpload color-bg">
                                                 <span> <i class="far fa-camera"></i> Change Cover </span>
                                                 <input type="file" class="upload">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <!-- <div class="dasboard-widget-title fl-wrap">
@@ -48,7 +48,8 @@
                                            
 
                                             <img src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($user_data->entity_name) ?? ''}}</label>
-                                            <label style="text-align:center; color:#144273; font-size:16px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label>
+                                            {{-- <label style="text-align:center; color:#144273; font-size:16px;">
+                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label> --}}
 
 
                                           <h1 style="color:#144273; margin-right: 90%; font-size: 20px; margin-top: 20%;">Courses</h1>
@@ -57,6 +58,7 @@
 
                                           
                                            
+                                          @if(json_decode($user_data->course))
                                           @foreach(json_decode($user_data->course) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
@@ -68,6 +70,7 @@
                                                     <i class="fa fa-graduation-cap" style="float:left"></i> {{$c}}</span>
                                             </div>
                                             @endforeach
+                                            @endif
                                             
                                 
                                            </div>
@@ -76,7 +79,8 @@
 
 
                                            <div class="col-md-12" id="demo" style="margin-top:2%;   " >
-                                           @foreach(json_decode($user_data->facilities) as $c)
+                                            @if(json_decode($user_data->facilities))
+                                            @foreach(json_decode($user_data->facilities) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
                                           @endif
@@ -86,6 +90,7 @@
                                                
                                             </div>
                                             @endforeach
+                                            @endif
                         
                                             </div>
                                             
@@ -245,4 +250,3 @@
                     </div>
 
                     @stop
-

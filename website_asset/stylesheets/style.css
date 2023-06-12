@@ -1324,6 +1324,9 @@ section.main-content.blog-single {
 .flat-select .width50 {
     width: 50%;
 }
+.flat-select .width100 {
+    width: 100%;
+}
 
 .flat-select .one-three {
 	float: left;
@@ -1690,7 +1693,7 @@ section.main-content.page-listing {
     margin-right: 19px;
     line-height: 20px;
     color: #fff;
-    background-color: #ED1C24;
+    background-color: #073d5f;
     -webkit-border-radius: 3px;
             border-radius: 3px;
 }
@@ -1829,7 +1832,7 @@ section.main-content.page-listing {
 }
 
 .sidebar .widget.widget-contact ul li span, .sidebar .widget.widget-contact ul li:before {
-	color: #E8280B;
+	color: #073d5f;
 }
 
 .sidebar .widget.widget-contact ul li span {
@@ -1862,11 +1865,11 @@ section.main-content.page-listing {
 }
 
 .sidebar .social-links a {
-	background-color: #EA240A;
+    background-color: #073d5f;
 }
 
 .sidebar .social-links a:hover {
-	background-color: #3e396b;
+    background-color: #3e396b;
 }
 
 /* Page Listing Full

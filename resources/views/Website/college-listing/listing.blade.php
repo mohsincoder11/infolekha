@@ -2,36 +2,36 @@
 @section('css')
     <style>
         /*   .sidebar {
-          height: 100%;
-          overflow: hidden;
-        }*/
+                      height: 100%;
+                      overflow: hidden;
+                    }*/
 
         /*.marquee ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          animation: scroll 15s linear infinite;
-          animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                      animation: scroll 15s linear infinite;
+                      animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
         }
 
         /*.marquee ul li {
-          margin-bottom: 10px;
-        }
+                      margin-bottom: 10px;
+                    }
 
-        .marquee ul li img {
-          display: block;
-          max-width: 100%;
-          height: auto;
-        }
+                    .marquee ul li img {
+                      display: block;
+                      max-width: 100%;
+                      height: auto;
+                    }
 
-        @keyframes scroll {
-          0% {
-            transform: translateY(0%);
-          }
-          100% {
-            transform: translateY(-100%);
-          }
-        }*/
+                    @keyframes scroll {
+                      0% {
+                        transform: translateY(0%);
+                      }
+                      100% {
+                        transform: translateY(-100%);
+                      }
+                    }*/
     </style>
 
 
@@ -45,7 +45,7 @@
             /* background-color: #000; */
             position: relative;
             /* behavior: scroll;
-             direction: up; */
+                         direction: up; */
         }
 
         /* nested div inside the container */
@@ -75,6 +75,75 @@
                 top: -100%;
             }
         }
+
+        .popup2 {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .popup2 .popup-content {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .popup2 .close2 {
+            color: #aaa;
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .popup2 .close2:hover,
+        .close:focus {
+            color: #555;
+        }
+
+        .popup2 h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .popup2 p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .popup2.center {
+            text-align: center;
+        }
+
+        .popup2 a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #073D5F;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .popup2 a:hover {
+            background-color: #052d45;
+        }
     </style>
 
 @stop
@@ -88,68 +157,180 @@
             <div class="row">
 
                 <div class="col-lg-12">
-
                     <section class="main-content page-listing-grid">
                         <div class="container">
                             <div class="row">
                                 <div class="col-lg-9">
                                     <div class="flat-select clearfix">
-                                        <div class="float-left width50 clearfix" style="margin-top:3% !important">
+                                        <div class="float-left width100 clearfix" style="margin-top:3% !important">
+                                            <div class="row">
+                                                @if (request()->segment(2) && request()->segment(2) == 'School')
+                                                    <div class="col-md-2 col-sm-6">
+                                                        <div class="sortby" style="padding-top:4px; ">
+                                                            <ul class="unstyled">
+                                                                <li class="current">
+                                                                    <label  class="title">
+                                                                    {{-- {{get_board_name(request()->board_type) ?? 'Type of Board'}} --}}
+                                                                    Type of Board
+                                                                    <i class="fa fa-angle-right"></i></label>
+                                                                    <ul class="unstyled">
+                                                                        @foreach ($school_type as $board_type)
+                                                                            <li class="en">
+                                                                                <a @if(request()->board_type==$board_type->id) style="font-weight:bold;" @endif 
+                                                                                    href="{{ route('college_listing', ['type' => request()->segment(2) ? request()->segment(2) : '']) }}?board_type = {{$board_type->id}}"
+                                                                                    title="">
+                                                                                    <i class="fa fa-caret-right"></i>
+                                                                                    {{ $board_type->type }}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
 
-                                            <div class="one-three more-filter">
-                                                <ul class="unstyled">
-                                                    <li class="current"><a href="#" class="title">More Fillter <i
-                                                                class="fa fa-angle-right"></i></a>
+
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
                                                         <ul class="unstyled">
-                                                            <li class="en">
-                                                                <input type="checkbox" id="wifi" name="category">
-                                                                <label for="wifi">College</label>
+                                                            <li class="current"> <label  class="title">Stream<i class="fa fa-angle-right"></i></label>
+                                                                <ul class="unstyled">
+                                                                    @foreach(get_college_stream() as $stream)
+                                                                    <li class="en">
+                                                                        <a @if(request()->stream==$stream) style="font-weight:bold;" @endif href="{{ route('college_listing', ['type' => request()->segment(3) ? request()->segment(3) : '']) }}?stream = {{$stream}}" title=""><i
+                                                                                class="fa fa-caret-right"></i>{{$stream}}</a>
+                                                                    </li>
+                                                                    @endforeach
+                                                                   
+                                                                </ul>
                                                             </li>
-                                                            <li class="en">
-                                                                <input type="checkbox" id="smoking" name="category">
-                                                                <label for="smoking">Institution</label>
-                                                            </li>
-                                                            <li class="en">
-                                                                <input type="checkbox" id="onl" name="category">
-                                                                <label for="onl">School</label>
-                                                            </li>
-
                                                         </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="one-three sortby">
-                                                <ul class="unstyled">
-                                                    <li class="current"><a href="#" class="title">Sort by: Random <i
-                                                                class="fa fa-angle-right"></i></a>
+                                                    </div>
+
+                                                </div>
+
+                                                {{-- <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
                                                         <ul class="unstyled">
-                                                            <li class="en"><a href="#" title=""><i
-                                                                        class="fa fa-caret-right"></i>Open Now</a>
-                                                            </li>
-                                                            <li class="en"><a href="#" title=""><i
-                                                                        class="fa fa-caret-right"></i>Most
-                                                                    reviewed</a></li>
-                                                            <li class="en"><a href="#" title=""><i
-                                                                        class="fa fa-caret-right"></i>Top rated</a>
-                                                            </li>
-
-
-                                                            <li class="en"><a href="#" title=""><i
-                                                                        class="fa fa-caret-right"></i>favourite</a>
+                                                            <li class="current"><a href="#" class="title">Type of
+                                                                    Board<i class="fa fa-angle-right"></i></a>
+                                                                <ul class="unstyled">
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Open Now</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Most
+                                                                            reviewed</a></li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Top rated</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Random</a>
+                                                                    </li>
+                                                                </ul>
                                                             </li>
                                                         </ul>
-                                                    </li>
-                                                </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
+                                                        <ul class="unstyled">
+                                                            <li class="current"><a href="#" class="title">Type of
+                                                                    Board<i class="fa fa-angle-right"></i></a>
+                                                                <ul class="unstyled">
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Open Now</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Most
+                                                                            reviewed</a></li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Top rated</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#" title=""><i
+                                                                                class="fa fa-caret-right"></i>Random</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
+                                                        <ul class="unstyled">
+                                                            <li class="current"><a href="#" class="title">Type of
+                                                                    Board<i class="fa fa-angle-right"></i></a>
+                                                                <ul class="unstyled">
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Open Now</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Most
+                                                                            reviewed</a></li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Top rated</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Random</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
+                                                        <ul class="unstyled">
+                                                            <li class="current"><a href="#" class="title">Type of
+                                                                    Board<i class="fa fa-angle-right"></i></a>
+                                                                <ul class="unstyled">
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Open Now</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Most
+                                                                            reviewed</a></li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Top rated</a>
+                                                                    </li>
+                                                                    <li class="en"><a href="#"
+                                                                            title=""><i
+                                                                                class="fa fa-caret-right"></i>Random</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div> --}}
                                             </div>
+
+
+
+
                                         </div>
                                         <!-- <div class="float-right">
-                                                    <div class="flat-sort">
-                                                       <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
-                                                        <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
-                                                    </div>
-                                                </div> -->
+                                                                <div class="flat-sort">
+                                                                   <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
+                                                                    <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
+                                                                </div>
+                                                            </div> -->
                                     </div>
-                                    @foreach ($college_list as $anno)
+                                    @forelse ($college_list as $anno)
+
                                         <div class="listing-list">
 
                                             <div class="flat-product clearfix">
@@ -157,10 +338,10 @@
 
                                                     <div style="width:290px; height: 220px ; margin:0px ">
 
-                                                       <a href="{{route('listing-details',$anno->user_id)}}"> 
-                                                        <img style="width:100%; height:100% ; "
-                                                            src="{{ asset('public') . '/' . $anno->logo }}"
-                                                            alt="" />
+                                                        <a href="{{ route('listing-details', $anno->user_id) }}">
+                                                            <img style="width:100%; height:100% ; "
+                                                                src="{{ asset('public') . '/' . $anno->logo }}"
+                                                                alt="" />
                                                         </a>
 
                                                     </div>
@@ -173,38 +354,44 @@
                                                     <div class="link-review clearfix">
 
                                                         <div class="info-product">
-                                                            <a href="{{route('listing-details',$anno->user_id)}}"> 
+                                                            <a href="{{ route('listing-details', $anno->user_id) }}">
                                                                 <h4 class="title"> {{ $anno->entity_name }}</h4>
                                                             </a>
-                                                            <p>{{ Str::limit($anno->about,40) }}</p>
-                                                            @if(auth()->check())
-                                                            <a  class="heart like_college {{check_if_like($anno->user_id)}}"
-                                                                college_id="{{ $anno->user_id }}"
-                                                                style="margin-top:3% ! important;">
-                                                                <i class="ion-android-favorite-outline heart-icon"></i>
-                                                                
-                                                            </a>
+                                                            <p>{{ Str::limit($anno->about, 40) }}</p>
+                                                            @if (auth()->check())
+                                                                <a class="heart like_college {{ check_if_like($anno->user_id) }}"
+                                                                    college_id="{{ $anno->user_id }}"
+                                                                    style="margin-top:3% ! important;">
+                                                                    <i class="ion-android-favorite-outline heart-icon"></i>
+
+                                                                </a>
                                                             @else
-                                                            <a href="{{route('like-login-redirect')}}"  class="heart"
-                                                                style="margin-top:3% ! important;">
-                                                                <i class="ion-android-favorite-outline heart-icon"></i>
-                                                                
-                                                            </a>
+                                                                <a href="{{ route('like-login-redirect') }}"
+                                                                    class="heart" style="margin-top:3% ! important;">
+                                                                    <i class="ion-android-favorite-outline heart-icon"></i>
+
+                                                                </a>
                                                             @endif
                                                         </div>
                                                         @php
-                                                            $rating_count=get_college_rating($anno->user_id);
+                                                            $rating_count = get_college_rating($anno->user_id);
+                                                            $filledStars = floor($rating_count);
+                                                            $hasHalfStar = $rating_count - $filledStars >= 0.5;
                                                         @endphp
                                                         <div class="start-review">
-                                                            <span class="rating_star">
-                                                                <i class="fa fa-star star {{$rating_count >= 1 ? 'filled' : ''}}"></i>
-                                                                <i class="fa fa-star star {{$rating_count >= 2 ? 'filled' : ''}}"></i>
-                                                                <i class="fa fa-star star {{$rating_count >= 3 ? 'filled' : ''}}"></i>
-                                                                <i class="fa fa-star star {{$rating_count >= 4 ? 'filled' : ''}}"></i>
-                                                                <i class="fa fa-star star {{$rating_count >=  5? 'filled' : ''}}"></i>
+                                                            <span class="flat-start">
+                                                                @for ($i = 1; $i <= 5; $i++)
+                                                                    @if ($i <= $filledStars)
+                                                                        <i class="fas fa-star"></i>
+                                                                    @elseif ($i == $filledStars + 1 && $hasHalfStar)
+                                                                        <i class="fas fa-star-half-alt"></i>
+                                                                    @else
+                                                                        <i class="far fa-star"></i>
+                                                                    @endif
+                                                                @endfor
                                                             </span>
-                                                            <a href="#" class="review" style="font-size:15px;">({{$rating_count}}
-                                                                )</a>
+                                                            <label href="#" class="review"
+                                                                style="background-color:rgb(151, 201, 2); padding:2px 4px; border-radius:5px; color:#fff;margin-left:5px;"><b>{{ $rating_count }}</b></label>
                                                         </div>
                                                         <p style="font-size:16px;">{{ $anno->address }}</p>
 
@@ -218,11 +405,12 @@
                                                         &nbsp;</a>
 
 
-                                                        
-                                                            <button type="button" class="login-btn effect-button send_enquiry_modal"
-                                                                college_id="{{$anno->user_id}}"> <i
-                                                                    class="fa fa-paper-plane"></i> Send
-                                                                Enquiry</button>
+
+                                                        <button type="button"
+                                                            class="login-btn effect-button send_enquiry_modal"
+                                                            college_id="{{ $anno->user_id }}"> <i
+                                                                class="fa fa-paper-plane"></i> Send
+                                                            Enquiry</button>
 
                                                     </div>
 
@@ -231,7 +419,9 @@
                                             </div>
 
                                         </div>
-                                    @endforeach
+                                        @empty
+                                        <div class="listing-list">No Records Found</div>
+                                    @endforelse
 
                                     <div class="modal fade flat-popupform" id="popup_login">
                                         <div class="modal-dialog">
@@ -251,6 +441,33 @@
                                         </div>
                                     </div>
 
+
+
+
+                                    {{-- <div class="popup" id="">
+                                        <div class="cnt223" align="center">
+                                            <a href="" class="close mj" style="color:#ff0000;"> X </a><br>
+                                            <a href="#" target="_blank">
+                                    
+                                                <h4><b>10 VACCANCIES ARE AVAILABLE <br>IN YOUR AREA </b></h4><br>
+                                    
+                                                <a href="#" class="btn" target="_blank"> Click Here For More Details</a>
+                                    
+                                            </a>
+                                            <br/>
+                                        </div>
+                                    </div> --}}
+
+                                    <div id="popup2" class="popup2">
+                                        <div class="popup-content">
+                                            <span class="close2">&times;</span>
+                                            <h2>10 Vacancies are available in your area</h2>
+                                            <p>Apply now!</p>
+                                            <div class="center">
+                                                <a href="redirect-url">Click here for details</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
                                     <div class="modal fade flat-popupform" id="popup_register">
@@ -303,11 +520,8 @@
                                 <div class="col-lg-3" style="margin-top:7%;">
                                     <div class="sidebar">
                                         <div class=" widget widget-form style2 ">
-                                            <marquee behavior="scroll" direction="up" scrollamount="7">
-                                                <span><img
-                                                        src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
+                                            <span><img src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
 
-                                            </marquee>
 
 
                                         </div>
@@ -331,30 +545,17 @@
 @section('js')
     <script>
         $(document).ready(function() {
+            //$("#popup2").css('display','flex');
+            $(".close2").click(function() {
+                $("#popup2").hide();
+            });
 
-          
             $(".send_enquiry_modal").on("click", function() {
                 $("#popup_register").modal("show");
                 $("#college_id").val($(this).attr('college_id'));
             })
-            
-            $(".like_college").on("click", function() {
-                $(this).toggleClass("active_heart");
-                $.ajax({
-                    url: '{{ route("like_unlike") }}',
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "college_id": $(this).attr('college_id')
-                    },
-                    success: function(response) {
-                        console.log('Like request successful');
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('Error sending like request:', error);
-                    }
-                });
-            })
+
+
 
             $(".mobile1").on('click', function() {
                 $("#popup_login").modal('show');
