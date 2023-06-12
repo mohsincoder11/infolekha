@@ -2,7 +2,7 @@
 @section('profile_content')
 
 <div class="dashboard-content">
-                    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dasboard Menu</div>
+                    <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
                     <div class="container dasboard-container">
                         <!-- dashboard-title -->	
                         <div class="dashboard-title fl-wrap">
@@ -34,10 +34,10 @@
                                             <div class="bg" data-bg="{{asset('public')."/".($user_data->logo ?? '')}}"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
-                                            <div class="photoUpload color-bg">
+                                            {{-- <div class="photoUpload color-bg">
                                                 <span> <i class="far fa-camera"></i> Change Cover </span>
                                                 <input type="file" class="upload">
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <!-- <div class="dasboard-widget-title fl-wrap">
@@ -48,7 +48,8 @@
                                            
 
                                             <img src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($user_data->entity_name) ?? ''}}</label>
-                                            <label style="text-align:center; color:#144273; font-size:16px;">Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label>
+                                            {{-- <label style="text-align:center; color:#144273; font-size:16px;">
+                                                Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label> --}}
 
 
                                           <h1 style="color:#144273; margin-right: 90%; font-size: 20px; margin-top: 20%;">Courses</h1>
@@ -57,6 +58,7 @@
 
                                           
                                            
+                                          @if(json_decode($user_data->course))
                                           @foreach(json_decode($user_data->course) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
@@ -68,6 +70,7 @@
                                                     <i class="fa fa-graduation-cap" style="float:left"></i> {{$c}}</span>
                                             </div>
                                             @endforeach
+                                            @endif
                                             
                                 
                                            </div>
@@ -76,7 +79,8 @@
 
 
                                            <div class="col-md-12" id="demo" style="margin-top:2%;   " >
-                                           @foreach(json_decode($user_data->facilities) as $c)
+                                            @if(json_decode($user_data->facilities))
+                                            @foreach(json_decode($user_data->facilities) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
                                           <br><br><br><br>
                                           @endif
@@ -86,6 +90,7 @@
                                                
                                             </div>
                                             @endforeach
+                                            @endif
                         
                                             </div>
                                             
@@ -133,72 +138,81 @@
 
 
 
-                            {{-- <div class="listing-carousel-wrapper lc_hero carousel-wrap fl-wrap">
-                                <div class="listing-carousel carousel ">
-                                    <!-- slick-slide-item -->
-                                    @if($user_data->video !=null)
-                                    @foreach(json_decode($user_data->video) as $i)
-                                    <div class="slick-slide-item">
-                                        <!--  agent card item -->
-                                        <div class="listing-item">
-                                            <article class="geodir-category-listing fl-wrap">
-                                                <div class="geodir-category-img fl-wrap  agent_card">
-                                                    <a target="_blank" href="{{asset('public').'/'.$i}}" class="geodir-category-img_item">
-                                                        <video controls>
-                                                            <source src=""{{asset('public').'/'.$i}}" type="video/mp4">
-                                                            </video>
-
-                                                        
-                                                    </a>
-                                                
-                                                </div>
-                                          
-                                            </article>
-                                        </div>
-                                        <!--  agent card item end -->
-                                    </div>
-                                    @endforeach
-                                  @endif
-                                </div>
-                                <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
-                                <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
-                            </div> --}}
-
+                       
 
                         </div>
                     </section>
                     
                     <!-- section end-->	
-                                            <div class="col-md-12">
-                                                <div class="row">
-                                             <label style="color:#144273; text-align:center; margin-top: 10%;">Contact Us</label>
-                                             <div class="custom-form" style="margin-top:5%;">
-                                               
-                                                <div class="col-md-6">
-                                                <label style="font-size:16px; color:#144273;">Name of S/C/I <span class="dec-icon"><i class="far fa-user"></i></span></label>
-                                                <input type="text" placeholder="Name of S/C/I" value=""/>
+                                                     <div class="container">
+                                                <!-- section-title -->
+                                                <div class="section-title st-center fl-wrap">
+                                                    <label style="color:#144273; text-align:center; font-size: 20px;">
+                                                        Video</label>
+
                                                 </div>
-                                                <div class="col-md-6">
-                                                <label  style="font-size:16px; color:#144273;">Adress <span class="dec-icon"><i class="fas fa-map-marker"></i> </span></label>
-                                                <input type="text" placeholder="USA 27TH Brooklyn NY" value=""/>
-                                                </div>
-                                                <div class="col-md-6">
-                                                <label  style="font-size:16px; color:#144273;">Phone<span class="dec-icon"><i class="far fa-phone"></i> </span></label>
-                                                <input type="text" placeholder="+7(123)987654" value=""/>	
-                                                </div>
-                                                <div class="col-md-6">
-                                               	 <label  style="font-size:16px; color:#144273;">Email Address <span class="dec-icon"><i class="far fa-envelope"></i></span></label>
-                                                <input type="text" placeholder="AlicaNoory@domain.com" value=""/>	
-                                                </div>
-                                                <div class="col-md-6">
-                                                <label  style="font-size:16px; color:#144273;">Website<span class="dec-icon"><i class="far fa-globe"></i></span></label>
-                                                <input type="text" placeholder="P.R.Pote Patil.com" value=""/>	
+                                                <!-- section-title end -->
+                                                <div class="clearfix"></div>
+                                                <div class="listing-carousel-wrapper lc_hero carousel-wrap fl-wrap">
+                                                    <div class="listing-carousel carousel">
+                                                        <!-- slick-slide-item -->
+                                                        @if ($user_data->video != null)
+                                                            @foreach (json_decode($user_data->video) as $i)
+                                                                <div class="slick-slide-item">
+                                                                    <!-- agent card item -->
+                                                                    <div class="listing-item">
+                                                                        <article class="geodir-category-listing fl-wrap">
+                                                                            <div class="geodir-category-img fl-wrap agent_card">
+                                                                                <a target="_blank" href="{{ asset('public').'/'.$i }}" class="geodir-category-img_item">
+                                                                                    <iframe width="560" height="115" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                                                </a>
+                                                                            </div>
+                                                                        </article>
+                                                                    </div>
+                                                                    <!-- agent card item end -->
+                                                                </div>
+                                                            @endforeach
+                                                        @endif
+                                                        <!-- slick-slide-item end -->
+                                                    </div>
+                                                    <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
+                                                    <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
                                                 </div>
                                                 
-                                                
-                                                
+                                                </div>
+
+
                                             </div>
-                                            </div>
+
+                                            
+                                            <h1 style="color:#144273; margin-right: %; font-size: 20px; margin-top: 10%;">
+                                                Social Media Handles</h1>
+    
+    
+                                            <div class="col-md-12" id="demo" style="margin-top:2%;  ">
+   
+                                                <div class="footer-social fl-wrap" style="text-align: center;">
+                                                    <div class="col-md-4"></div>
+                                                    <ul>
+                                                        @if ($user_data->fb)
+                                                            <li><a href="{{ $user_data->fb }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                                        @endif
+                                                        @if ($user_data->website)
+                                                            <li><a href="{{ $user_data->website }}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                                                        @endif
+                                                        @if ($user_data->insta)
+                                                            <li><a href="{{ $user_data->insta }}" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                                        @endif
+                                                        @if ($user_data->yt)
+                                                            <li><a href="{{ $user_data->yt }}" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                                        @endif
+                                                        @if ($user_data->google)
+                                                            <li><a href="{{ $user_data->google }}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+                                                
+                                                
                                             </div>
 
                                         </div>
@@ -236,4 +250,3 @@
                     </div>
 
                     @stop
-

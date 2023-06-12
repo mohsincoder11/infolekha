@@ -36,7 +36,7 @@
                 <div class="col-md-1"></div>
 
                 <div class="col-lg-2 col-sm-6">
-                    <a href="{{ route('college_listing', 1) }}">
+                    <a href="{{ route('college_listing', 'School') }}">
                         <div class="iconbox text-center">
                             <div class="box-header" style="margin-top:5px;">
                                 <i class="fa fa-users" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="col-lg-2 col-sm-6">
-                    <a href="{{ route('college_listing', 2) }}">
+                    <a href="{{ route('college_listing', 'College') }}">
                         <div class="iconbox text-center">
                             <div class="box-header" style="margin-top:5px;">
                                 <i class="fa fa-graduation-cap" aria-hidden="true"></i>
@@ -63,7 +63,7 @@
                     </a>
                 </div>
                 <div class="col-lg-2 col-sm-6">
-                    <a href="{{ route('college_listing', 3) }}">
+                    <a href="{{ route('college_listing', 'Institute') }}">
                         <div class="iconbox text-center">
                             <div class="box-header" style="margin-top:5px;">
                                 <i class="fa fa-university" aria-hidden="true"></i>
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="col-lg-2 col-sm-6">
-                    <a href="{{ route('college_listing', 4) }}">
+                    <a href="{{ route('college_listing', 'tutorjob') }}">
                         <div class="iconbox text-center">
                             <div class="box-header" style="margin-top:5px;">
                                 <i class="fa fa-check-square" aria-hidden="true"></i>
@@ -305,8 +305,8 @@
     </section>
 
 
-    <div class="modal fade flat-popupform" id="announcement_modal" style="padding-top: 5%;">
-        <div class="modal-dialog">
+    <div class="modal fade " id="announcement_modal" style="padding-top: 5%;">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"

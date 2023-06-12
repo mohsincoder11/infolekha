@@ -220,49 +220,37 @@
                                                             </div>
 															@endif
 													
-														@if('College'== $data->r_entity)
-
+														@if($data->r_entity=='College')
+@php 
+$streams=get_college_stream();
+@endphp
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Select College*</label>
+                                                                    <label class="form-label">Select College Stream*</label>
                                                                     <select class="form-select select country-select"
                                                                         name="college" >
                                                                         <option>Select </option>
-																		
-                                                                       <option>Arts</option>
-                                                                        <option>Commerce</option>
-                                                                        <option>Science</option>
-                                                                        <option>Other (Please Specify)</option>
-                                                                        <option></option>
+																		@foreach($streams as $stream)
+                                                                       <option>{{$stream}}</option>
+
+                                                                        @endforeach
+                                                                        
                                                                     </select>
                                                                 </div>
                                                             </div>
                                                              @endif
 
 
-                                                          @if('Institute'== $data->r_entity)
+                                                          @if($data->r_entity=='Institute')
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Select Institute*</label>
                                                                     <select class="form-select select country-select"
                                                                         name="institute"  required="required">
                                                                         <option>Select </option>
-																		@if('School'== $data->r_entity)
-                                                                        <option>State Board</option>
-                                                                        <option>CBSC</option>
-                                                                        <option>ICSE</option>
-																		@endif
-																		@if('College'== $data->r_entity)
-                                                                        <option>Arts</option>
-                                                                        <option>Commerce</option>
-                                                                        <option>Science</option>
-																		@endif
-																		@if('Institute'== $data->r_entity)
                                                                         <option>Professional (please specify your
                                                                             professional field)</option>
                                                                         <option>Competitive courses</option>
-																		@endif
-                                                                        <option>Other (Please Specify)</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -276,14 +264,14 @@
                                                                    <!-- <select class="form-select select country-select"
                                                                         name="course"  required="required">-->
 																	<select id="course" name="course[]"  class="form-select select country-select"  multiple >
-                                                                        <option>Select Cources </option>
+                                                                        <option>Select Courses </option>
 																		@if('School'== $data->r_entity)
-                                                                       <option> 1Nursery </option>
+                                                                       <option> 1 Nursery </option>
                                                                         <option> Pre-Primary </option>
                                                                         <option> Primary </option>
                                                                         <option>Junior KG
                                                                         <option> Senior KG </option>
-                                                                        <option>1st Standard </option>
+                                                                        <option>1 st Standard </option>
                                                                         <option> 2nd Standard </option>
                                                                         <option> 3rd Standard</option>
                                                                         <option> 4th Standard </option>
@@ -720,12 +708,34 @@ $('#facilities').select2({closeOnSelect:false});
         return fileSizeInMB <= params;
       }, jQuery.validator.format("File size must be less than {0}MB."));
 
+      jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
+        // Regular expression pattern
+        var urlPattern = /^(https?:\/\/)([\w.-]+)\.([a-zA-Z]{2,6})(\/\S*)?$/;
+        return this.optional(element) || urlPattern.test(value);
+      }, "Please enter a valid URL starting with http:// or https://");
+     
+
+      
+
+
 
 
   $("#form2").validate({
     rules: {
-      school_institute: {
+        school_institute: {
         required: true,
+      },
+      website: {
+        httpOrHttpsUrl: true,
+      },
+      fb: {
+        httpOrHttpsUrl: true,
+      },
+      insta: {
+        httpOrHttpsUrl: true,
+      },
+      google: {
+        httpOrHttpsUrl: true,
       },
       address: {
         required: true,
@@ -777,6 +787,18 @@ $('#facilities').select2({closeOnSelect:false});
     messages: {
       school_institute: {
         required: "This field is required",
+      },
+      website: {
+        httpOrHttpsUrl: "Please enter valid https/http url.",
+      },
+      fb: {
+        httpOrHttpsUrl: "Please enter valid https/http url.",
+      },
+      insta: {
+        httpOrHttpsUrl: "Please enter valid https/http url.",
+      },
+      google: {
+        httpOrHttpsUrl: "Please enter valid https/http url.",
       },
       about: {
         minlength: "Please enter minimum 20 character description.",

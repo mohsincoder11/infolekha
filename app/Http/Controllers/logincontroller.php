@@ -21,18 +21,17 @@ class LoginController extends Controller
 
     public function login()
     {
-         User::find(251)->update(['password'=>Hash::make(12345678)]);
+         //User::find(254)->update(['password'=>Hash::make(12345678)]);
         return view('Website.login-auth.login');
     }
 
     public function login_submit(Request $request)
     {
-        $user = User::get();
        
         if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))) {
             if (Auth::user()->role == 3) {
 
-                return redirect()->route('college_listing');
+                return redirect()->route('index');
             } elseif (Auth::user()->role == 2) {
                 if (transaction::where('user_id', Auth::user()->id)->where('transaction_status','success')->exists()) {
 
@@ -43,7 +42,7 @@ class LoginController extends Controller
                 if ($int == null) {
                     $data = DB::table('users')->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
                         ->select('users.*', 'user_tutor.*')->where('user_tutor.user_id', auth::user()->id)->first();
-                    return view('Website.tutor_details_form', ['data' => $data]);
+                    return view('Website.login-auth.tutor_details_form', ['data' => $data]);
                 }
 
                 return view('Website.tutor_detail_edit', ['data' => $int]);
@@ -53,34 +52,36 @@ class LoginController extends Controller
 
                 }
             } elseif (Auth::user()->role == 1) {
+                $int = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
+                ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+                ->select('users.*', 'user_school_institute.*', 'user_school_institute_detail.*')
+                ->where('users.id', Auth::user()->id)->first();
 
-                if (transaction::where('user_id', Auth::user()->id)->where('transaction_status','success')->exists()) {
+                if ($int == null) {
+                    $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
+                    ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
+                return view('Website.login-auth.school_institute_details_form', ['data' => $data]);
+                }
+                    else{
+                        if (transaction::where('user_id', Auth::user()->id)->where('transaction_status','success')->exists()) {
+                            return view('school_profile.index', ['data' => $int]);
+                        }
+                        else {
+                            return redirect('payment_form');
+                        }
 
-                    $int = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-                        ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-                        ->select('users.*', 'user_school_institute.*', 'user_school_institute_detail.*')
-                        ->where('users.id', Auth::user()->id)->first();
-                    if ($int == null) {
-                        $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-                            ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
-                        return view('Website.school_institute_details_form', ['data' => $data]);
                     }
 
-                    return view('school_profile.index', ['data' => $int]);
-                } else {
-                    return redirect('payment_form');
-                }
-            } else{
+            } elseif(Auth::user()->role == 0){
                 Auth::logout();
                 return redirect()->back()->with('error', 'Invalid Login Credentials.');
-
-
             }
         }else{
             return redirect()->back()->with('error', 'Invalid Login Credentials.');
 
         }
     }
+
     public function log_out()
     {
         Auth::logout();

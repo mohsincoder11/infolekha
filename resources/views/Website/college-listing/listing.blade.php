@@ -2,36 +2,36 @@
 @section('css')
     <style>
         /*   .sidebar {
-              height: 100%;
-              overflow: hidden;
-            }*/
+                      height: 100%;
+                      overflow: hidden;
+                    }*/
 
         /*.marquee ul {
-              list-style: none;
-              padding: 0;
-              margin: 0;
-              animation: scroll 15s linear infinite;
-              animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
+                      list-style: none;
+                      padding: 0;
+                      margin: 0;
+                      animation: scroll 15s linear infinite;
+                      animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
         }
 
         /*.marquee ul li {
-              margin-bottom: 10px;
-            }
+                      margin-bottom: 10px;
+                    }
 
-            .marquee ul li img {
-              display: block;
-              max-width: 100%;
-              height: auto;
-            }
+                    .marquee ul li img {
+                      display: block;
+                      max-width: 100%;
+                      height: auto;
+                    }
 
-            @keyframes scroll {
-              0% {
-                transform: translateY(0%);
-              }
-              100% {
-                transform: translateY(-100%);
-              }
-            }*/
+                    @keyframes scroll {
+                      0% {
+                        transform: translateY(0%);
+                      }
+                      100% {
+                        transform: translateY(-100%);
+                      }
+                    }*/
     </style>
 
 
@@ -45,7 +45,7 @@
             /* background-color: #000; */
             position: relative;
             /* behavior: scroll;
-                 direction: up; */
+                         direction: up; */
         }
 
         /* nested div inside the container */
@@ -157,7 +157,6 @@
             <div class="row">
 
                 <div class="col-lg-12">
-
                     <section class="main-content page-listing-grid">
                         <div class="container">
                             <div class="row">
@@ -165,7 +164,55 @@
                                     <div class="flat-select clearfix">
                                         <div class="float-left width100 clearfix" style="margin-top:3% !important">
                                             <div class="row">
-                                                <div class="col-md-2 col-sm-6">
+                                                @if (request()->segment(2) && request()->segment(2) == 'School')
+                                                    <div class="col-md-2 col-sm-6">
+                                                        <div class="sortby" style="padding-top:4px; ">
+                                                            <ul class="unstyled">
+                                                                <li class="current">
+                                                                    <label  class="title">
+                                                                    {{-- {{get_board_name(request()->board_type) ?? 'Type of Board'}} --}}
+                                                                    Type of Board
+                                                                    <i class="fa fa-angle-right"></i></label>
+                                                                    <ul class="unstyled">
+                                                                        @foreach ($school_type as $board_type)
+                                                                            <li class="en">
+                                                                                <a @if(request()->board_type==$board_type->id) style="font-weight:bold;" @endif 
+                                                                                    href="{{ route('college_listing', ['type' => request()->segment(2) ? request()->segment(2) : '']) }}?board_type = {{$board_type->id}}"
+                                                                                    title="">
+                                                                                    <i class="fa fa-caret-right"></i>
+                                                                                    {{ $board_type->type }}
+                                                                                </a>
+                                                                            </li>
+                                                                        @endforeach
+
+
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
+                                                <div class="col-md-2">
+                                                    <div class="sortby" style="padding-top:4px; ">
+                                                        <ul class="unstyled">
+                                                            <li class="current"> <label  class="title">Stream<i class="fa fa-angle-right"></i></label>
+                                                                <ul class="unstyled">
+                                                                    @foreach(get_college_stream() as $stream)
+                                                                    <li class="en">
+                                                                        <a @if(request()->stream==$stream) style="font-weight:bold;" @endif href="{{ route('college_listing', ['type' => request()->segment(3) ? request()->segment(3) : '']) }}?stream = {{$stream}}" title=""><i
+                                                                                class="fa fa-caret-right"></i>{{$stream}}</a>
+                                                                    </li>
+                                                                    @endforeach
+                                                                   
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                </div>
+
+                                                {{-- <div class="col-md-2">
                                                     <div class="sortby" style="padding-top:4px; ">
                                                         <ul class="unstyled">
                                                             <li class="current"><a href="#" class="title">Type of
@@ -219,57 +266,6 @@
                                                             <li class="current"><a href="#" class="title">Type of
                                                                     Board<i class="fa fa-angle-right"></i></a>
                                                                 <ul class="unstyled">
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
                                                                     <li class="en"><a href="#"
                                                                             title=""><i
                                                                                 class="fa fa-caret-right"></i>Open Now</a>
@@ -319,7 +315,7 @@
                                                         </ul>
                                                     </div>
 
-                                                </div>
+                                                </div> --}}
                                             </div>
 
 
@@ -327,13 +323,14 @@
 
                                         </div>
                                         <!-- <div class="float-right">
-                                                        <div class="flat-sort">
-                                                           <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
-                                                            <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
-                                                        </div>
-                                                    </div> -->
+                                                                <div class="flat-sort">
+                                                                   <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
+                                                                    <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
+                                                                </div>
+                                                            </div> -->
                                     </div>
-                                    @foreach ($college_list as $anno)
+                                    @forelse ($college_list as $anno)
+
                                         <div class="listing-list">
 
                                             <div class="flat-product clearfix">
@@ -422,7 +419,9 @@
                                             </div>
 
                                         </div>
-                                    @endforeach
+                                        @empty
+                                        <div class="listing-list">No Records Found</div>
+                                    @endforelse
 
                                     <div class="modal fade flat-popupform" id="popup_login">
                                         <div class="modal-dialog">
@@ -521,11 +520,8 @@
                                 <div class="col-lg-3" style="margin-top:7%;">
                                     <div class="sidebar">
                                         <div class=" widget widget-form style2 ">
-                                            <marquee behavior="scroll" direction="up" scrollamount="7">
-                                                <span><img
-                                                        src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
+                                            <span><img src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
 
-                                            </marquee>
 
 
                                         </div>

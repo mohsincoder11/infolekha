@@ -1,56 +1,6 @@
 @extends('website_layout')
 @section('css')
-    <style>
-        .rating-wrapper {
-            position: relative;
-            display: inline-block;
-            border: none;
-            font-size: 14px;
-            margin-bottom: 20px;
-
-        }
-
-        .rating-wrapper input {
-            border: 0;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-            position: absolute !important;
-            clip: rect(1px 1px 1px 1px);
-            clip: rect(1px, 1px, 1px, 1px);
-            opacity: 0;
-        }
-
-        .rating-wrapper label {
-            position: relative;
-            float: right;
-            color: #C8C8C8;
-        }
-
-        .rating-wrapper label:before {
-            margin: 5px;
-            content: "\f005";
-            font-family: FontAwesome;
-            display: inline-block;
-            font-size: 1.5em;
-            color: #ccc;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        .rating-wrapper input:checked~label:before {
-            color: #FFC107;
-        }
-
-        .rating-wrapper label:hover~label:before {
-            color: #ffdb70;
-        }
-
-        .rating-wrapper label:hover:before {
-            color: #FFC107;
-        }
-    </style>
+   
     <style>
         .btn {
             border: none;
@@ -275,8 +225,33 @@
             padding: 20px 20px 20px 20px;
         }
     </style>
+
+<style>
+.rating-box {
+padding: 0 0 15px 0;
+text-align: center;
+}
+
+.rating-box .stars {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.stars i {
+font-size: 25px;
+color: #b5b8b1;
+transition: all 0.2s;
+cursor: pointer;
+}
+.stars i.active {
+color: #ffb851;
+transform: scale(1.1);
+}
+
+ </style>
 @stop
 @section('website_content')
+
     <section class="main-content page-listing">
 
         <div class="container">
@@ -294,7 +269,7 @@
                                         </h4>
                                         @if (auth()->check())
                                             <a class="heart2 like_college {{ check_if_like($details->user_id) }}"
-                                                college_id="{{ $details->user_id }}" style="margin-top:3% ! important;">
+                                                college_id="{{ $details->user_id }}" >
                                                 <i class="ion-android-favorite-outline heart-icon"></i>
 
                                             </a>
@@ -436,7 +411,9 @@
                                             @foreach(json_decode($details->video) as $i)
                                             <div class="client">
                                                 <div class="featured-client">
-                                                    <img src="{{asset('public').'/'.$i}}" alt="image">
+                                                    <a target="_blank" href="{{ asset('public').'/'.$i }}" class="geodir-category-img_item">
+                                                        <iframe width="560" height="115" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                    </a>
                                                 </div>
 
                                             </div>
@@ -453,19 +430,23 @@
                             <h5 class="title-listing" style="margin-bottom: 3%;">Facilities</h5>
                             <div class="wrap-list clearfix">
                                 <ul class="list float-left">
+                                    @if(json_decode($details->facilities))
                                     @foreach(json_decode($details->facilities) as $i)
                                     @if($loop->index%2==0)
                                     <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
                                     @endif
-
                                     @endforeach
+                                    @endif
+
                                 </ul>
                                 <ul class="list float-left">
+                                    @if(json_decode($details->facilities))
                                     @foreach(json_decode($details->facilities) as $i)
                                     @if($loop->index%2==1)
                                     <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
                                     @endif
                                     @endforeach
+                                    @endif
                                 </ul>
                               
                             </div>
@@ -473,19 +454,23 @@
                             <h3 class="title-listing">Courses</h3>
                             <div class="wrap-list clearfix">
                                 <ul class="list float-left">
+                                    @if(json_decode($details->course))
                                     @foreach(json_decode($details->course) as $i)
                                     @if($loop->index%2==0)
                                     <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
                                     @endif
-
                                     @endforeach
+                                    @endif
                                 </ul>
                                 <ul class="list float-left">
+                                    @if(json_decode($details->course))
                                     @foreach(json_decode($details->course) as $i)
                                     @if($loop->index%2==1)
                                     <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
                                     @endif
                                     @endforeach
+                                    @endif
+
                                 </ul>
                               
                             </div>
@@ -539,7 +524,7 @@
 
                                     <div class="comment-respond" id="respond">
                                         <h3 class="title-listing">Add a Review</h3>
-                                        <form novalidate="" class="comment-form clearfix" id="commentform"
+                                        <form novalidate="" class="comment-form clearfix" id="reviewform"
                                             method="post" action="{{ route('insert_feedback') }}">
                                             @csrf
                                             <input type="hidden" name="college_id" value="{{ $details->user_id }}">
@@ -549,30 +534,37 @@
                                                         value="{{ auth()->check() ? auth()->user()->email : '' }}"
                                                         placeholder="Your Email" size="30" value=""
                                                         name="email">
+                                                        <span id="feedback_email"></span>
+
                                                 </p>
+
                                                 <p class="comment-form-email">
                                                     <input type="text"
                                                         value="{{ auth()->check() ? auth()->user()->name : '' }}"
                                                         placeholder="Your Name" aria-required="true" name="name">
+                                                        <span id="feedback_name"></span>
+
+
 
                                                 </p>
                                             </div>
                                             <p class="comment-form-comment">
                                                 <textarea class="" tabindex="4" placeholder="write review" name="comment" required></textarea>
+                                                <span style="line-height:40px" id="feedback_comment"></span>
+
+
                                             </p>
-                                            <input type="text" name="rating" id="rating" value="3">
-                                            <div class="rating-wrapper">
-                                                <input type="checkbox" name="rating1" id="st1" value="1" />
-                                                <label for="st1"></label>
-                                                <input type="checkbox" name="rating1" id="st2" value="2" />
-                                                <label for="st2"></label>
-                                                <input type="checkbox" name="rating1" id="st3" value="3" />
-                                                <label for="st3"></label>
-                                                <input type="checkbox" name="rating1" id="st4" value="4" />
-                                                <label for="st4"></label>
-                                                <input type="checkbox" name="rating1" id="st5" value="5" />
-                                                <label for="st5"></label>
-                                            </div>
+                                            <input type="hidden" name="rating" id="rating" value="0">
+                                            <div class="rating-box">
+                                                <div class="stars">
+                                                  <i class="fas fa-star"></i>
+                                                  <i class="fas fa-star"></i>
+                                                  <i class="fas fa-star"></i>
+                                                  <i class="fas fa-star"></i>
+                                                  <i class="fas fa-star"></i>
+                                                </div>
+                                              </div>
+
                                             <p class="form-submit">
                                                 <button type="submit" class="comment-submit effect-button">Send
                                                     Review</button>
@@ -594,9 +586,17 @@
                         <div class="widget widget-contact">
                             <h5 class="widget-title">Contact Us</h5>
                             <ul>
-                                <li class="adress">PO Box 16122 Collins Street West Victoria 8007 Australia</li>
-                                <li class="phone">+61 3 8376 6284</li>
-                                <li class="email">Yourplace@gmail.com</li><br>
+                                <li class="adress">{{$details->address ?? ''}}</li>
+                                <li class="phone">
+                                    <a href="tel:{{$details->r_mob}}"">
+                                    {{$details->r_mob ?? ''}}
+                                </a>
+                                </li>
+                                <li class="email">
+                                    <a href="mailto:{{$details->email}}">
+                                    {{$details->email ?? ''}}
+                                </a>
+                                </li><br>
 
                                 <!-- <span> <button type="button" id="logup-button" class=" login-btn effect-button">
                                         <i class="fa fa-phone" aria-hidden="true"></i> Show
@@ -611,13 +611,25 @@
                             </ul>
 
 
-
                             <div class="social-links">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-youtube-play"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-instagram"></i></a>
+                                
+                                @if(isset($details->fb) && $details->fb!=null) 
+                                <a target="_blank" href="{{$details->fb}}"><i class="fab fa-facebook"></i></a>
+                               @endif
+                               @if(isset($details->insta) && $details->insta!=null) 
+                               <a target="_blank" href="{{$details->insta}}"><i class="fab fa-instagram"></i></a>
+                              @endif
+                               @if(isset($details->yt) && $details->yt!=null) 
+                               <a target="_blank" href="{{$details->yt}}"><i class="fab fa-youtube"></i></a>
+                              @endif
+                              @if(isset($details->google) && $details->google!=null) 
+                              <a target="_blank" href="{{$details->google}}"><i class="fab fa-google"></i></a>
+                             @endif
+                             @if(isset($details->website) && $details->website!=null) 
+                             <a target="_blank" href="{{URL::to($details->website)}}"><i class="fas fa-globe"></i></a>
+                            @endif
+                           
+                          
                             </div>
                         </div><br>
 
@@ -693,17 +705,24 @@
     <script>
         $(document).ready(function() {
 
-            //             const checkboxes = document.querySelectorAll('input[type="checkbox"][name="rating1"]');
-            //   let lastCheckedValue = '';
 
-            //   checkboxes.forEach((checkbox) => {
-            //     checkbox.addEventListener('change', () => {
-            //       if (checkbox.checked) {
-            //         lastCheckedValue = checkbox.value;
-            //         $("#rating").val(lastCheckedValue);
-            //       }
-            //     });
-            //   });
+const stars = $('.stars i');
+
+// ---- ---- Stars ---- ---- //
+stars.click(function() {
+  const selectedStarIndex = stars.index(this);
+  $("#rating").val(parseInt(selectedStarIndex)+1);
+  stars.each(function(index) {
+    // ---- ---- Active Star ---- ---- //
+    if (index <= selectedStarIndex) {
+      $(this).addClass('active');
+    } else {
+      $(this).removeClass('active');
+    }
+  });
+
+ 
+});
 
 
             $(".send_enquiry_modal").on("click", function() {
@@ -734,6 +753,54 @@
                 $("#mobile_number").text($(this).attr('mobile_number'));
 
             })
+
+            
+            $("#reviewform").validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+              
+                email: {
+                    required: true,
+                    customEmail:true,
+                },
+                comment: {
+                    required: true,
+                },
+            },
+            messages: {
+                name: {
+                    required: "This field is required.",
+                },
+                email: {
+                    required: "This field is required.",
+                    customEmail: "Please enter valid email address.",
+                },
+                comment: {
+                    required: "This field is required.",
+					
+                },
+            },
+            submitHandler: function(form) {
+                return true;
+            },
+            errorPlacement: function(error, element) {
+                
+
+
+                if (element.attr("name") === "name") {
+                    error.appendTo($('#feedback_name'));
+                } 
+                if (element.attr("name") === "email") {
+                    error.appendTo($('#feedback_email'));
+                } 
+                if (element.attr("name") === "comment") {
+                    error.appendTo($('#feedback_comment'));
+                } 
+                
+            },
+        });
         });
     </script>
 @stop

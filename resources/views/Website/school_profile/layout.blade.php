@@ -18,6 +18,47 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
+    <style>
+        .error {
+            color: #ff0202 !important;
+            font-size: 14px !important;
+        }
+
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        #customers td,
+        #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #144273;
+            ;
+            color: white;
+        }
+
+        .disable-li {
+            color: #a1a0a0 !important;
+
+        }
+    </style>
+    @yield('css')
 </head>
 
 <body>
@@ -42,7 +83,10 @@
         <!-- header -->
         <header class="main-header">
             <!--  logo  -->
-            <div class="logo-holder"><a href="index.html"><img src="images/logonew.png" alt=""></a></div>
+            <div class="logo-holder">
+                <a href="{{ route('index') }}"><img src="{{ asset('website_asset/images/Your-Logo.png') }}"
+                        alt="image"></a>
+            </div>
             <!-- logo end  -->
 
             <!--  dashboard-submenu  end -->
@@ -244,47 +288,90 @@
                 <div class="dashbard-menu-container">
                     <!-- user-profile-menu-->
                     <div class="user-profile-menu">
-                        <h3>Main</h3>
+                        <h3>Main
+                            @php
+                                $routeName = request()
+                                    ->route()
+                                    ->getName();
+                            @endphp
+
+                        </h3>
                         <ul class="no-list-style">
                             <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a></li> -->
-                            <li><a href="{{ route('school_profile.home') }}" class="user-profile-act"><i
-                                        class="fal fa-user-edit"></i> Home Page</a></li>
+                            <li><a href="{{ route('school_profile.home') }}"
+                                    @if ($routeName == 'school_profile.home') class="user-profile-act" @endif>
+                                    <i class="fal fa-user-edit"></i> Home Page</a></li>
                             <li><a href="{{ route('school_profile.update_profile') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fal fa-envelope"></i>Update
+                                    @if ($routeName == 'school_profile.update_profile') class="user-profile-act" @endif><i
+                                        class="fal fa-envelope"></i>Update
                                     Profile</a></li>
-                            <li><a href="{{ route('school_profile.post_result') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fal fa-users"></i> Post Your
-                                    Results</a></li>
-                            <li>
-                                <a href="{{ route('school_profile.create_job_vacancy') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fa fa-file"></i>Create Job Vacancy</a>
+                            @if (Auth::user()->active == '1')
+                                <li><a href="{{ route('school_profile.post_result') }}"
+                                        @if ($routeName == 'school_profile.post_result') class="user-profile-act" @endif><i
+                                            class="fal fa-users"></i> Post
+                                        Your
+                                        Results</a></li>
+                                <li>
+                                    <a href="{{ route('school_profile.create_job_vacancy') }}"
+                                        @if ($routeName == 'school_profile.create_job_vacancy') class="user-profile-act" @endif><i
+                                            class="fa fa-file"></i>Create Job Vacancy</a>
 
-                            </li>
+                                </li>
 
-                            <li>
-                                <a href="{{ route('school_profile.pramote_bussiness') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fa fa-check-square"></i>Pramote Your
-                                    Bussines</a>
+                                <li>
+                                    <a
+                                        class="submenu-link  
+                                @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement') sl_tog @endif"><i
+                                            class="fal fa-calendar-check user-profile-act"></i>Promote Your
+                                        {{ Auth::user()->entity_type }}
+                                    </a>
+                                    <ul class="no-list-style" style="display:block">
+                                        <li><a href="{{ route('school_profile.post_announcement') }}"
+                                                @if ($routeName == 'school_profile.post_announcement') class="user-profile-act" @endif><i
+                                                    class="fal fa-plus"></i> Post a Announcement </a></li>
+                                        <li><a href="{{ route('school_profile.post_advertisement') }}"
+                                                @if ($routeName == 'school_profile.post_advertisement') class="user-profile-act" @endif> <i
+                                                    class="fal fa-plus"></i> Post a Advertisement</a></li>
 
-                            </li>
+                                    </ul>
+                                </li>
+                            @else
+                                <li><a href="#" class="disable-li"><i class="fal fa-users"></i> Post
+                                        Your
+                                        Results</a></li>
+                                <li>
+                                    <a href="#" class="disable-li"><i class="fa fa-file"></i>Create Job
+                                        Vacancy</a>
+
+                                </li>
+
+                                <li>
+                                    <a href="#" class="disable-li"><i
+                                            class="fal fa-calendar-check user-profile-act"></i>Promote Your
+                                        {{ Auth::user()->entity_type }}
+                                    </a>
+
+                                </li>
+                            @endif
 
 
-                            <li>
+                            {{-- <li>
                                 <a href="{{ route('school_profile.update_photo_video') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fa fa-cloud-upload"></i>Upload
+                                    ><i class="fa fa-cloud-upload"></i>Upload
                                     Photo/Video</a>
 
-                            </li>
+                            </li> --}}
 
                             <li>
                                 <a href="{{ route('school_profile.change_password') }}"
-                                    style="color:#a1a0a0 !important;"><i class="fal fa-plus"></i>Change Password</a>
+                                    @if ($routeName == 'school_profile.home') class="user-profile-act" @endif><i
+                                        class="fal fa-plus"></i>Change Password</a>
 
                             </li>
 
                             <li>
-                                <a href="#" style="color:#a1a0a0 !important;"><i
-                                        class="fa fa-cloud-download"></i>Download Profile</a>
+                                <a href="#" class="disable-li"><i class="fa fa-cloud-download"></i>Download
+                                    Profile</a>
 
                             </li>
                         </ul>
@@ -334,6 +421,19 @@
     <script src="{{ asset('website_asset/school_dashboard/js/plugins.js') }}"></script>
     <script src="{{ asset('website_asset/school_dashboard/js/scripts.js') }}"></script>
     <script src="{{ asset('website_asset/school_dashboard/js/dashboard.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script>
+        $.validator.addMethod(
+            "strongPassword",
+            function(value, element) {
+                return (
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
+                );
+            },
+            "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+        );
+    </script>
+    @yield('js')
 </body>
 
 </html>

@@ -35,3 +35,14 @@ function get_college_rating($college_id)
     ->avg('rating');
     return number_format($averageRating,1);
 }
+
+function get_board_name($id)
+{ 
+    $board_name=DB::table('school_types')->where('id',$id)->first()->type;
+    return $board_name ?? '';
+}
+
+function get_college_stream(){
+    $stream=['Arts','Commerce','Science'];
+    return $stream;
+}

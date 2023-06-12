@@ -776,9 +776,9 @@
                                                      @if (auth()->user()->role == 1)
                                                          <a href="{{ route('school_profile.home') }}">Profile</a>
                                                      @elseif(auth()->user()->role == 2)
-                                                         <a href="#">Profile</a>
+                                                         <a href="{{ route('tutor_profile.home') }}">Profile</a>
                                                      @else
-                                                         <a href="#">Profile</a>
+                                                     <a href="{{ route('user_profile.home') }}">Profile</a>
                                                      @endif
                                                  </li>
                                                  <li><a href="{{ route('logout') }}">Log out</a>

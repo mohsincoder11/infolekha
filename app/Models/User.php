@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserFeedbackModel;
+use App\Models\user_school_institute;
 
 class User extends Authenticatable
 {
@@ -52,6 +53,11 @@ class User extends Authenticatable
         ->select('user_feedback.*','users.logo')
         ->get();
         return $reviews;
+    }
+
+    public function getEntityTypeAttribute(){
+        $entity_name=user_school_institute::where('user_id',$this->id)->first('r_entity');
+        return $entity_name->r_entity ?? '';
 
     }
 }
