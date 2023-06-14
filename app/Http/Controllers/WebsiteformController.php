@@ -134,7 +134,12 @@ class WebsiteformController extends Controller
         ->where('user_school_institute_detail.subscription_status', '1')
         ->select('user_school_institute_detail.*', 'user_school_institute.*')
         ->first();
-        return view('Website.college-listing.listing-details', compact('details'));
+        if( $details){
+            return view('Website.college-listing.listing-details', compact('details'));
+        }
+        else{
+            return abort(404);
+        }
     }
 
     public function log_out()
@@ -299,6 +304,6 @@ class WebsiteformController extends Controller
 
     public function remove_wishlist(Request $request){
         $delete=UserLikeModel::where('id',$request->id)->delete();
-        return back()->with(['status'=>'Removed from the wishlist.']);
+        return back()->with(['success'=>'Removed from the wishlist.']);
     }
 }

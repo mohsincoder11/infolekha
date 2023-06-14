@@ -1,4 +1,15 @@
 @extends('website_layout')
+@section('css')
+<style>
+    .condition-label {
+  color: red;
+}
+
+.condition-label.valid {
+  color: green;
+}
+</style>
+@stop
 @section('website_content')
 
     @if ($errors->any())
@@ -41,8 +52,7 @@
                             <select class="form-select select country-select" name="entity" id="sel" requiered>
                                 <option disabled selected>--Select Entity </option>
                                 @foreach ($entities as $entity)
-                                <option value="{{$entity->entity}}">{{$entity->entity}}</option>
-
+                                    <option value="{{ $entity->entity }}">{{ $entity->entity }}</option>
                                 @endforeach
                             </select></span>
 
@@ -70,28 +80,37 @@
                             <i class="fa fa-envelope-o"></i>
                         </span>
 
-<<<<<<< HEAD
-                     
-=======
-                       
->>>>>>> 4687ef0c2deca25b9e8e1e5e8fda764c3243943d
+
 
 
 
                         <span class="input-login icon-form">
-                            <input type="password" placeholder="Password*" id="password" name="password" required="required"><i toggle="#password" class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
+                            <input type="password" placeholder="Password*" id="password" name="password"
+                                required="required"><i toggle="#password"
+                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
                         <span class="input-login icon-form">
-                            <input type="password" placeholder="Confirm Password*" name="password_confirmation" id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
+
+                            <div id="length-label" class="condition-label">Use 8 or more characters.</div>
+                            <div id="uppercase-label" class="condition-label">Use uppercase letter.</div>
+                            <div id="lowercase-label" class="condition-label">Use lowercase letter.</div>
+                            <div id="number-label" class="condition-label">Use a number.</div>
+                            <div id="specialchar-label" class="condition-label">Use special character.</div>
+                            </span>
+
+                        <span class="input-login icon-form">
+                            <input type="password" placeholder="Confirm Password*" name="password_confirmation"
+                                id="password_confirmation" required="required"><i toggle="#password_confirmation"
+                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
-                     
+
                         <hr class="mt-4">
 
                         <span class="">
                             <button id="login-button1" type="submit" class="btn" title="Sign Up" disabled
-                                style="margin-bottom: 15px; margin-left:43%"> 
+                                style="margin-bottom: 15px; margin-left:43%">
                                 Submit</button>
 
 
@@ -114,24 +133,25 @@
                 <div class="modal-body text-center clearfix">
                     <div class="form-login form-listing">
                         <h3 class="title-formlogin">OTP Verify</h3>
-                      <form action="" id="modal_form">  <span class="input-login icon-form">
-                        <input type="hidden" name="exist_otp" id="exist_otp">
-                        <span class="input-login icon-form">
-                            <input type="hidden" name="exist_otp" id="exist_otp">
-    
-                            <span class="input-login icon-form">
-                                <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp" name="otp" required="required"><i class="fa fa-user field-icon toggle-password"></i>
-                            </span>
-    
+                        <form action="" id="modal_form"> <span class="input-login icon-form">
+                                <input type="hidden" name="exist_otp" id="exist_otp">
+                                <span class="input-login icon-form">
+
+                                    <span class="input-login icon-form">
+                                        <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp"
+                                            name="otp" required="required"><i
+                                            class="fa fa-user field-icon toggle-password"></i>
+                                    </span>
+
                                     <div class="otp_error" style="text-align: left;margin-top:-10px;">
                                     </div>
                                 </span>
 
-                        <span class="">
-                            <button type="submit" id="login-button" 
-                                class="btn" title="log in"> Verify</button>
-                        </span>
-                    </form>  
+                                <span class="">
+                                    <button type="submit" id="login-button" class="btn" title="log in">
+                                        Verify</button>
+                                </span>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -195,13 +215,13 @@
                 email: {
                     required: true,
                     customEmail: true,
-                    remote: "{{url('check_email_exist')}}",
+                    remote: "{{ url('check_email_exist') }}",
 
                 },
                 password: {
                     required: true,
-					minlength: 8,
-                    strongPassword:true,
+                    minlength: 8,
+                    strongPassword: true,
                 },
                 password_confirmation: {
                     required: true,
@@ -233,8 +253,8 @@
                 },
                 password: {
                     required: "This field is required.",
-					minlength: "Minimum password length should be 8 character.",
-                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+                    minlength: " ",
+                   strongPassword: " "
                 },
                 password_confirmation: {
                     required: "This field is required.",
@@ -258,22 +278,45 @@
             },
         });
 
+         $('#password').on('input', function() {
+      var password = $(this).val();
+            $('.condition-label').each(function() {
+                var label = $(this);
+                var condition = label.text().trim();
+                var isValid = false;
+
+                if (condition === 'Use 8 or more characters.') {
+                    isValid = password.length >= 8;
+                } else if (condition === 'Use uppercase letter.') {
+                    isValid = /[A-Z]/.test(password);
+                  } else if (condition === 'Use a number.') {
+                    isValid = /[0-9]/.test(password);
+                } else if (condition === 'Use lowercase letter.') {
+                    isValid = /[a-z]/.test(password);
+                } else if (condition === 'Use special character.') {
+                    isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+                }
+
+                label.toggleClass('valid', isValid);
+            });
+        });
+
         $("#modal_form").validate({
             rules: {
-              
+
                 exist_otp: {
                     required: true,
-					
-                },
-                otp: {
-					 minlength: 4,
-					 maxlength: 4,
-                    required: true,
-                    equalTo: "#exist_otp",
-                    digits:true
 
                 },
-               
+                otp: {
+                    minlength: 4,
+                    maxlength: 4,
+                    required: true,
+                    equalTo: "#exist_otp",
+                    digits: true
+
+                },
+
             },
             messages: {
                 exist_otp: {
@@ -282,32 +325,39 @@
                 otp: {
                     required: "Please enter otp.",
                     equalTo: "Please enter valid otp.",
-                    minlength:"Please enter 4 digit otp.",
-                    maxlength:"Please enter 4 digit otp.",
+                    minlength: "Please enter 4 digit otp.",
+                    maxlength: "Please enter 4 digit otp.",
                     digits: "Please enter numeric otp.",
 
                 },
-               
+
             },
             submitHandler: function(form) {
-                if ($("#exist_otp").val()==$("#otp").val()) {
-                $("#login-button1").prop("disabled", false);
+                if ($("#exist_otp").val() == $("#otp").val()) {
+                    $("#login-button1").prop("disabled", false);
 
-                $('#popup_login').modal('hide');
+                    $('#popup_login').modal('hide');
 
-                swal("Success", " Successfully Verified", "success", {
-                    button: "close",
-                });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Successfully Verified',
+                        confirmButtonText: 'Close'
+                    });
 
-            } else {
+                } else {
 
-                swal("Fail", "Enter Correct OTP", "warning", {
-                    button: "close",
-                });
-            }
+
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'Enter Correct OTP',
+                        confirmButtonText: 'Close'
+                    });
+                }
             },
             errorPlacement: function(error, element) {
-                
+
                 $(".otp_error").html(error);
 
 
@@ -329,7 +379,7 @@
             else
                 $("#login-button2").prop('disabled', true);
         })
-   
+
 
         function otp() {
             $("#login-button1").prop("disabled", true);

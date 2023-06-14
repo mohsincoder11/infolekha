@@ -47,7 +47,6 @@
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902240890164332"
          crossorigin="anonymous"></script>
 
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-4C6L2QE9LF"></script>
      <script>
@@ -688,6 +687,9 @@
      .star.filled {
          color: gold;
      }
+     .swal2-toast .swal2-title {
+    font-size: 14px!important;
+  }
  </style>
 
  @yield('css')
@@ -703,6 +705,8 @@
 
      <!-- Boxed -->
      <div class="boxed">
+       
+       
 
          <!-- Header -->
          <header id="header" class="header clearfix" style="margin-top:-2%;">
@@ -848,25 +852,7 @@
                                      </li>
 
 
-                                     <li><a href="#" style="color: #fff;"> <i class="fa fa-arrow-circle-right"
-                                                 aria-hidden="true"></i> Sign Up</a>
-                                         <ul class="submenu">
-                                             <li><a href="{{ route('school_institute_register_form') }}"
-                                                     style="color: #fff;">School/College/Institution</a>
-                                             </li>
-                                             <li><a href="{{ route('student_register_form') }}"
-                                                     style="color: #fff;">Student/Parent</a>
-                                             </li>
-                                             <li><a href="{{ route('tutor_register_form') }}"
-                                                     style="color: #fff;">Tutor/Faculty</a>
-                                             </li>
-                                         </ul><!-- /.submenu -->
-                                     </li>
-
-                                     <li class="home">
-                                         <a href="{{ route('login') }} " style="color: #fff;"><i
-                                                 class="fa fa-user-plus"></i> Login</a>
-                                     </li>
+                                     
 
                                      @if (auth()->check())
                                          <li>
@@ -874,12 +860,39 @@
                                                      aria-hidden="true"></i>
                                                  {{ auth()->check() ? auth()->user()->name : '' }}</a>
                                              <ul class="submenu">
-                                                 <li><a href="#" style="color: #fff;">Profile</a>
-                                                 </li>
-                                                 <li><a href="#" style="color: #fff;">Log out</a>
-                                                 </li>
+                                                <li>
+                                                    @if (auth()->user()->role == 1)
+                                                        <a style="color: #fff;" href="{{ route('school_profile.home') }}">Profile</a>
+                                                    @elseif(auth()->user()->role == 2)
+                                                        <a style="color: #fff;" href="{{ route('tutor_profile.home') }}">Profile</a>
+                                                    @else
+                                                    <a style="color: #fff;" href="{{ route('user_profile.home') }}">Profile</a>
+                                                    @endif
+                                                </li>
+                                                <li><a style="color: #fff;" href="{{ route('logout') }}">Log out</a>
+                                                </li>
                                              </ul><!-- /.submenu -->
                                          </li>
+                                         @else
+                                         <li><a href="#" style="color: #fff;"> <i class="fa fa-arrow-circle-right"
+                                            aria-hidden="true"></i> Sign Up</a>
+                                    <ul class="submenu">
+                                        <li><a href="{{ route('school_institute_register_form') }}"
+                                                style="color: #fff;">School/College/Institution</a>
+                                        </li>
+                                        <li><a href="{{ route('student_register_form') }}"
+                                                style="color: #fff;">Student/Parent</a>
+                                        </li>
+                                        <li><a href="{{ route('tutor_register_form') }}"
+                                                style="color: #fff;">Tutor/Faculty</a>
+                                        </li>
+                                    </ul><!-- /.submenu -->
+                                </li>
+
+                                <li class="home">
+                                    <a href="{{ route('login') }} " style="color: #fff;"><i
+                                            class="fa fa-user-plus"></i> Login</a>
+                                </li>
                                      @endif
 
 
@@ -1166,6 +1179,55 @@
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.parallax.min.js') }}"></script>
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     
+     @if(session()->has('success'))
+     <script>
+            const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 4000,
+  background:'#000',
+  color:'#fff',
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: "{{session()->get('success')}}"
+})
+     </script>
+     @endif
+
+@if(session()->has('error'))
+<script>
+       const Toast = Swal.mixin({
+toast: true,
+position: 'bottom',
+showConfirmButton: false,
+timer: 4000,
+background:'#000',
+color:'#fff',
+timerProgressBar: true,
+didOpen: (toast) => {
+toast.addEventListener('mouseenter', Swal.stopTimer)
+toast.addEventListener('mouseleave', Swal.resumeTimer)
+}
+})
+
+Toast.fire({
+icon: 'error',
+title: "{{session()->get('error')}}"
+})
+</script>
+
+     @endif
+
      <script>
          /* When the user clicks on the button, 
              toggle between hiding and showing the dropdown content */
@@ -1259,7 +1321,7 @@
                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
                  );
              },
-             "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+             ""
          );
      </script>
      @yield('js')

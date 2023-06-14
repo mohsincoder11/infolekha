@@ -19,7 +19,7 @@ class AuthCheck
         if (auth()->user()) {
             return $next($request);
         } else {
-            return redirect()->route('index')->with(['error'=>'Something went wrong']);
+            return redirect()->route('index')->with(['error'=>'Please login to access the page.']);
         }
     }
 }

@@ -15,9 +15,9 @@
                     <div class="breadcrumbs">
                         <ul>
                             <!-- <li><a href="index.html">Home</a></li>
-                                <li> - </li>
-                                <li><a href="index.html">Page</a></li>
-                                <li> - </li>                          -->
+                                    <li> - </li>
+                                    <li><a href="index.html">Page</a></li>
+                                    <li> - </li>                          -->
                             <!-- <li>Login</li> -->
                         </ul>
                     </div><!-- /.breadcrumbs -->
@@ -32,7 +32,8 @@
                 <div class="col-md-6"
                     style="padding-top:20px; 
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <form class="form-login form-listing" action="{{ route('login_submit') }}" method="post">
+                    <form class="form-login form-listing" action="{{ route('login_submit') }}" method="post"
+                        id="login_form">
                         @csrf
                         <h3 class="title-formlogin">Log in</h3>
                         <span class="input-login icon-form"><input type="text" placeholder="Username*" name="email"
@@ -40,12 +41,7 @@
                         <span class="input-login icon-form"><input type="password" placeholder="Password*" name="password"
                                 required="required"><i class="fa fa-lock"></i></span>
                         <div class="flat-fogot clearfix">
-                            <!-- <label class="float-left">
-                                    <span class="input-check">
-                                        <input type="checkbox" id="rem" name="check" value="0" checked="">
-                                        <label for="rem" class="remember">Remember me</label>
-                                    </span>
-                                </label> -->
+
                             <label class="float-right link-register">
                                 <a href="#">Forget Password?</a>
                             </label>
@@ -61,5 +57,47 @@
         </div>
         </div>
     </section>
+
+@stop
+
+@section('js')
+    <script>
+        $("#login_form").validate({
+            rules: {
+
+                email: {
+                    required: true,
+
+                },
+                password: {
+                    required: true,
+
+                },
+
+            },
+            messages: {
+                email: {
+                    required: " Please enter email.",
+                },
+                password: {
+                    required: "Please enter password.",
+
+
+                },
+
+            },
+            submitHandler: function(form) {
+
+                return true;
+            },
+            errorPlacement: function(error, element) {
+
+                element.closest('.input-login').after(error);
+
+
+
+            },
+        });
+    </script>
 
 @stop

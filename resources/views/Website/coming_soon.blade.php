@@ -34,7 +34,6 @@ Purchase : http://goo.gl/D6tuDk
 
 	<!-- LIB -->
 	<link rel="stylesheet" href="{{asset('website_asset/coming_soon/lib/animation/animate.css')}}">
-	<link rel="stylesheet" href="{{asset('website_asset/coming_soon/lib/sweetalert/sweetalert.css')}}">
 	<link rel="stylesheet" href="{{asset('website_asset/coming_soon/lib/owl-carousel/owl.carousel.css')}}">
 	<link rel="stylesheet" href="{{asset('website_asset/coming_soon/lib/vegas/vegas.min.css')}}">
 	<link rel="stylesheet" href="{{asset('website_asset/coming_soon/lib/jquery.mb.YTPlayer/css/jquery.mb.YTPlayer.min.css')}}">
@@ -85,7 +84,7 @@ Purchase : http://goo.gl/D6tuDk
 				<!-- HEADER -->
 				<div class="nc-header absolute top left w100" data-nc-sm="pos-rel align-c">
 					<div class="container-fluid pd-lr-0">
-						<a href="#" class="inline-block px-w100  animated s008" data-animIn="fadeIn|0.1"
+						<a href="{{route('index')}}" class="inline-block px-w100  animated s008" data-animIn="fadeIn|0.1"
 							data-nc-md="" data-nc-sm="mr-0 mr-b-40">
 							<img src="{{asset('website_asset/coming_soon/images/logonew.png')}}" alt="ncodeart" >
 						</a>

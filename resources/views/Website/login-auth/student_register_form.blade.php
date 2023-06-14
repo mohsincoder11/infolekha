@@ -12,9 +12,9 @@
                     </div><!-- /.page-title-captions -->
                     <div class="breadcrumbs">
                         <!-- <ul>
-                                <li><a href="index.html"></a></li>
-                              
-                            </ul>                    -->
+                                    <li><a href="index.html"></a></li>
+                                  
+                                </ul>                    -->
                     </div><!-- /.breadcrumbs -->
                 </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
@@ -194,7 +194,7 @@
                 password: {
                     required: true,
                     minlength: 8,
-                    strongPassword:true,
+                    strongPassword: true,
 
                 },
                 password_confirmation: {
@@ -228,7 +228,7 @@
                 password: {
                     required: "This field is required.",
                     minlength: "Minimum password length should be 8 character.",
-                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+                    strongPassword: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
 
                 },
                 password_confirmation: {
@@ -292,14 +292,21 @@
 
                     $('#popup_login').modal('hide');
 
-                    swal("Success", " Successfully Verified", "success", {
-                        button: "close",
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Successfully Verified',
+                        confirmButtonText: 'Close'
                     });
 
                 } else {
 
-                    swal("Fail", "Enter Correct OTP", "warning", {
-                        button: "close",
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'Enter Correct OTP',
+                        confirmButtonText: 'Close'
                     });
                 }
             },

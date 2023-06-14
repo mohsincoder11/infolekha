@@ -65,6 +65,9 @@
             border-radius: 50%;
     text-align: center;
         }
+        .swal2-toast .swal2-title {
+    font-size: 14px!important;
+  }
         
     </style>
 </head>
@@ -400,6 +403,54 @@
            );
         </script>
      @yield('js')
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     
+     @if(session()->has('success'))
+     <script>
+            const Toast = Swal.mixin({
+  toast: true,
+  position: 'bottom',
+  showConfirmButton: false,
+  timer: 4000,
+  background:'#000',
+  color:'#fff',
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
+Toast.fire({
+  icon: 'success',
+  title: "{{session()->get('success')}}"
+})
+     </script>
+     @endif
+
+@if(session()->has('error'))
+<script>
+       const Toast = Swal.mixin({
+toast: true,
+position: 'bottom',
+showConfirmButton: false,
+timer: 4000,
+background:'#000',
+color:'#fff',
+timerProgressBar: true,
+didOpen: (toast) => {
+toast.addEventListener('mouseenter', Swal.stopTimer)
+toast.addEventListener('mouseleave', Swal.resumeTimer)
+}
+})
+
+Toast.fire({
+icon: 'error',
+title: "{{session()->get('error')}}"
+})
+</script>
+
+     @endif
 
 </body>
 
