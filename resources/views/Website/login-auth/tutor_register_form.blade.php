@@ -1,91 +1,95 @@
 @extends('website_layout')
 @section('website_content')
-@if ($errors->any())
-    <div class="alert alert-danger">
-        There were some errors with your request.
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            There were some errors with your request.
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
-<div class="page-title parallax parallax1">
+    <div class="page-title parallax parallax1">
         <div class="section-overlay">
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-12">                    
+                <div class="col-md-12">
                     <div class="page-title-heading">
                         <h1 class="title">Tutor/Faculty Sign Up</h1>
                     </div><!-- /.page-title-captions -->
                     <div class="breadcrumbs">
                         <!-- <ul>
-                            <li><a href="index.html"></a></li>
-                          
-                        </ul>                    -->
-                    </div><!-- /.breadcrumbs -->   
-                </div><!-- /.col-md-12 -->  
-            </div><!-- /.row -->  
-        </div><!-- /.container -->                      
+                                <li><a href="index.html"></a></li>
+                              
+                            </ul>                    -->
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
     </div><!-- /.page-title -->
 
     <section class="flat-row page-profile bg-theme">
         <div class="container">
             <div class="row">
-            <div class="col-md-3"></div>
-         <div class="col-md-6"  style="padding-top:20px; 
+                <div class="col-md-3"></div>
+                <div class="col-md-6"
+                    style="padding-top:20px; 
          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-            <form class="form-login form-listing" action="{{route('tutor_register_user_create')}}" method="post" id="form1">
-                @csrf
-                <h3 class="title-formlogin">Sign Up</h3>
-             
+                    <form class="form-login form-listing" action="{{ route('tutor_register_user_create') }}" method="post"
+                        id="form1">
+                        @csrf
+                        <h3 class="title-formlogin">Sign Up</h3>
 
-                   
-                <span class="input-login icon-form"><input type="text" placeholder="Name of Tutor/Faculty *" name="name"
-                    ><i class="fa fa-user"></i></span>
 
-                
 
-                    <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
-                        name="mob" maxlength=10 required="required">
-                    <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
-                        style="margin-bottom: 15px;"> 
-                        Verify Mobile</button>
-                </span>
+                        <span class="input-login icon-form"><input type="text" placeholder="Name of Tutor/Faculty *"
+                                name="name"><i class="fa fa-user"></i></span>
 
-            <span class="input-login icon-form"><input type="email" placeholder="E-mail*" name="email"
-                    ><i class="fa fa-envelope-o"></i></span>
 
-                   <span class="input-login icon-form"><input type="text" placeholder="Address*" name="address"
-                    ><i class="fa fa-envelope-o"></i></span>
-                    
-                    <span class="input-login icon-form">
-                        <input type="password" placeholder="Password*" id="password" name="password"
-                            required="required"><i toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></i>
-                    </span>
 
-                    <span class="input-login icon-form">
-                        <input type="password" placeholder="Confirm Password*" name="password_confirmation"
-                            id="password_confirmation" required="required"><i toggle="#password_confirmation" class="fa fa-fw fa-eye field-icon toggle-password"></i>
-                    </span>
-                                
-                       
-                        
-                          <hr class="mt-4">
-                <div class="">
-                <button type="submit" id="login-button1"   class="login-btn btn" disabled
-                            title="Sign Up" style="margin-bottom: 15px; margin-left:43%;"> Submit</button>
+                        <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
+                                name="mob" maxlength=10 required="required">
+                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
+                                style="margin-bottom: 15px;">
+                                Verify Mobile</button>
+                        </span>
+
+                        <span class="input-login icon-form"><input type="email" placeholder="E-mail*" name="email"><i
+                                class="fa fa-envelope-o"></i></span>
+
+                        <span class="input-login icon-form"><input type="text" placeholder="Address*" name="address"><i
+                                class="fa fa-envelope-o"></i></span>
+
+                        <span class="input-login icon-form">
+                            <input type="password" placeholder="Password*" id="password" name="password"
+                                required="required"><i toggle="#password"
+                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                        </span>
+
+                        <span class="input-login icon-form">
+                            <input type="password" placeholder="Confirm Password*" name="password_confirmation"
+                                id="password_confirmation" required="required"><i toggle="#password_confirmation"
+                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                        </span>
+
+
+
+                        <hr class="mt-4">
+                        <div class="">
+                            <button type="submit" id="login-button1" class="login-btn btn" disabled title="Sign Up"
+                                style="margin-bottom: 15px; margin-left:43%;"> Submit</button>
+                        </div>
                 </div>
-                </div>
 
-                
-            </form>
 
-         </div>
+                </form>
+
             </div>
-        
+        </div>
+
         </div>
     </section>
 
@@ -100,36 +104,37 @@
                 <div class="modal-body text-center clearfix">
                     <div class="form-login form-listing">
                         <h3 class="title-formlogin">OTP Verify</h3>
-                      <form action="" id="modal_form">  <span class="input-login icon-form">
-                        <input type="hidden" name="exist_otp" id="exist_otp">
-                        <span class="input-login icon-form">
-                            <input type="hidden" name="exist_otp" id="exist_otp">
-    
-                            <span class="input-login icon-form">
-                                <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp" name="otp" required="required"><i class="fa fa-user field-icon toggle-password"></i>
-                            </span>
-    
+                        <form action="" id="modal_form"> <span class="input-login icon-form">
+                                <input type="hidden" name="exist_otp" id="exist_otp">
+                                <span class="input-login icon-form">
+                                    <input type="hidden" name="exist_otp" id="exist_otp">
+
+                                    <span class="input-login icon-form">
+                                        <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp"
+                                            name="otp" required="required"><i
+                                            class="fa fa-user field-icon toggle-password"></i>
+                                    </span>
+
                                     <div class="otp_error" style="text-align: left;margin-top:-10px;">
                                     </div>
                                 </span>
 
-                        <span class="">
-                            <button type="submit" id="login-button" 
-                                class="btn" title="log in"> Verify</button>
-                        </span>
-                    </form>  
+                                <span class="">
+                                    <button type="submit" id="login-button" class="btn" title="log in">
+                                        Verify</button>
+                                </span>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
- 
 
-    @stop
-@section("js")
-<script>
 
-$("#form1").validate({
+@stop
+@section('js')
+    <script>
+        $("#form1").validate({
             rules: {
                 name: {
                     required: true,
@@ -144,15 +149,15 @@ $("#form1").validate({
                     maxlength: 10,
                     remote: "{{ url('val_form') }}",
                     remote: {
-          url: 'val_form',
-          type: 'get',
-          data: {
-            r_mob: function() {
-              return $('#mob').val();
-            }
-          },
-          // Custom success function
-          dataFilter: function(response) {
+                        url: 'val_form',
+                        type: 'get',
+                        data: {
+                            r_mob: function() {
+                                return $('#mob').val();
+                            }
+                        },
+                        // Custom success function
+                        dataFilter: function(response) {
                             if (response === false || response === 'false') {
                                 $("#login-button2").prop('disabled', true);
 
@@ -165,26 +170,26 @@ $("#form1").validate({
                                 return 'true';
                             }
                         }
-                        }
+                    }
 
                 },
                 email: {
                     required: true,
-                    customEmail:true,
-                    remote: "{{url('check_email_exist')}}",
+                    customEmail: true,
+                    remote: "{{ url('check_email_exist') }}",
 
                 },
                 password: {
                     required: true,
                     minlength: 8,
-                    strongPassword:true,
+                    strongPassword: true,
                 },
                 password_confirmation: {
                     required: true,
                     equalTo: "#password"
 
                 },
-               
+
             },
             messages: {
                 name: {
@@ -208,20 +213,20 @@ $("#form1").validate({
                 password: {
                     required: "This field is required.",
                     minlength: "Minimum password length should be 8 character.",
-                    strongPassword:"Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+                    strongPassword: "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
                     equalTo: "Confirm password and password must be same."
 
                 },
-              
+
             },
             submitHandler: function(form) {
                 return true;
             },
             errorPlacement: function(error, element) {
-                if (element.attr("name") ==="r_mob") { 
+                if (element.attr("name") === "r_mob") {
                     error.insertAfter(element.closest('.input-login'));
                 } else {
                     element.closest('.input-login').after(error);
@@ -231,20 +236,20 @@ $("#form1").validate({
         });
         $("#modal_form").validate({
             rules: {
-              
+
                 exist_otp: {
                     required: true,
-					
-                },
-                otp: {
-					 minlength: 4,
-					 maxlength: 4,
-                    required: true,
-                    equalTo: "#exist_otp",
-                    digits:true
 
                 },
-               
+                otp: {
+                    minlength: 4,
+                    maxlength: 4,
+                    required: true,
+                    equalTo: "#exist_otp",
+                    digits: true
+
+                },
+
             },
             messages: {
                 exist_otp: {
@@ -253,32 +258,38 @@ $("#form1").validate({
                 otp: {
                     required: "Please enter otp.",
                     equalTo: "Please enter valid otp.",
-                    minlength:"Please enter 4 digit otp.",
-                    maxlength:"Please enter 4 digit otp.",
+                    minlength: "Please enter 4 digit otp.",
+                    maxlength: "Please enter 4 digit otp.",
                     digits: "Please enter numeric otp.",
 
                 },
-               
+
             },
             submitHandler: function(form) {
-                if ($("#exist_otp").val()==$("#otp").val()) {
-                $("#login-button1").prop("disabled", false);
+                if ($("#exist_otp").val() == $("#otp").val()) {
+                    $("#login-button1").prop("disabled", false);
 
-                $('#popup_login').modal('hide');
+                    $('#popup_login').modal('hide');
 
-                swal("Success", " Successfully Verified", "success", {
-                    button: "close",
-                });
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: 'Successfully Verified',
+                        confirmButtonText: 'Close'
+                    });
 
-            } else {
+                } else {
 
-                swal("Fail", "Enter Correct OTP", "warning", {
-                    button: "close",
-                });
-            }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Failed',
+                        text: 'Enter Correct OTP',
+                        confirmButtonText: 'Close'
+                    });
+                }
             },
             errorPlacement: function(error, element) {
-                
+
                 $(".otp_error").html(error);
 
 
@@ -300,7 +311,7 @@ $("#form1").validate({
             else
                 $("#login-button2").prop('disabled', true);
         })
-   
+
 
         function otp() {
             $("#login-button1").prop("disabled", true);
@@ -333,16 +344,13 @@ $("#form1").validate({
 
 
 
-var Boo = function(){
-alert("test");
-}
+        var Boo = function() {
+            alert("test");
+        }
+    </script>
 
 
-
-</script>
-
-
-	{{-- <script type="text/javascript"
+    {{-- <script type="text/javascript"
         src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places" ></script>
     
     <script>
@@ -362,5 +370,5 @@ alert("test");
                 
             });
         } 
-    </script>--}}
+    </script> --}}
 @stop

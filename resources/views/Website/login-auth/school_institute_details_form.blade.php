@@ -709,10 +709,15 @@ $('#facilities').select2({closeOnSelect:false});
       }, jQuery.validator.format("File size must be less than {0}MB."));
 
       jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
-        // Regular expression pattern
-        var urlPattern = /^(https?:\/\/)([\w.-]+)\.([a-zA-Z]{2,6})(\/\S*)?$/;
-        return this.optional(element) || urlPattern.test(value);
-      }, "Please enter a valid URL starting with http:// or https://");
+    return this.optional(element) || /^(https?:\/\/)?(www\.)?[\w-]+(\.[\w-]+)+$/.test(value);
+  }, "Please enter a valid url.");
+
+      
+    //   jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
+    //     // Regular expression pattern
+    //     var urlPattern = /^(https?:\/\/)([\w.-]+)\.([a-zA-Z]{2,6})(\/\S*)?$/;
+    //     return this.optional(element) || urlPattern.test(value);
+    //   }, "Please enter a valid URL starting with http:// or https://");
      
 
       
@@ -789,16 +794,16 @@ $('#facilities').select2({closeOnSelect:false});
         required: "This field is required",
       },
       website: {
-        httpOrHttpsUrl: "Please enter valid https/http url.",
+        httpOrHttpsUrl: "Please enter valid url.",
       },
       fb: {
-        httpOrHttpsUrl: "Please enter valid https/http url.",
+        httpOrHttpsUrl: "Please enter valid url.",
       },
       insta: {
-        httpOrHttpsUrl: "Please enter valid https/http url.",
+        httpOrHttpsUrl: "Please enter valid url.",
       },
       google: {
-        httpOrHttpsUrl: "Please enter valid https/http url.",
+        httpOrHttpsUrl: "Please enter valid url.",
       },
       about: {
         minlength: "Please enter minimum 20 character description.",

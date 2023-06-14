@@ -147,7 +147,7 @@ class SchoolProfile extends Controller
       return view('Website.school_profile.post_result', ['school_post_result' => $school_post_result]);
    }
 
-   public function create_post_result(Request $request)
+   public function insert_post_result(Request $request)
    {
       $validator = Validator::make(
          $request->all(),

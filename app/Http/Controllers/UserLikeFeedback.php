@@ -32,7 +32,6 @@ class UserLikeFeedback extends Controller
 
     public function insert_feedback(Request $request)
     {
-        echo json_encode($request->all());
         UserFeedbackModel::create(
             [
                 'user_id' => Auth::user()->id,
@@ -43,7 +42,7 @@ class UserLikeFeedback extends Controller
                 'comment' => $request->comment,
             ]
         );
-        return redirect()->back()->with(['status' => true, 'message' => 'success']);
+        return redirect()->back()->with(['success' => 'Feedback saved successfully.']);
     }
 
     public function post_enquiry(Request $request)
@@ -55,11 +54,11 @@ class UserLikeFeedback extends Controller
         $contact->email = $request->get('email');
         $contact->message = $request->get('message');
         $contact->save();
-        return redirect()->back()->with(['status' => true, 'message' => 'Enquiry send successfully.']);;
+        return redirect()->back()->with(['success' => 'Enquiry send successfully.']);;
     }
 
     public function like_login_redirect(){
-        return redirect('login')->with(['error' => true, 'message' => 'You must be logged in.']);;
+        return redirect('login')->with(['error' =>'Please login to wishlist.']);;
 
 
     }

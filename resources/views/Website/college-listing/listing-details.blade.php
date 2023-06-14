@@ -307,10 +307,10 @@ transform: scale(1.1);
                                 </div>
                                 <div class="info-product" style="margin-top:-6;">
 
-                                    <button type="button" class="login-btn effect-button mobile1"
+                                    {{-- <button type="button" class="login-btn effect-button mobile1"
                                         mobile_number="{{ $details->r_mob }}">
                                         <i class="fa fa-phone" aria-hidden="true"></i> Show
-                                        Number</button> &nbsp; &nbsp;
+                                        Number</button> &nbsp; &nbsp; --}}
                                     <button type="button" class="login-btn effect-button send_enquiry_modal"
                                         college_id="{{ $details->user_id }}"> <i class="fa fa-paper-plane"></i> Send
                                         Enquiry</button>

@@ -37,7 +37,7 @@ class ContactController extends Controller
             );
         });
 
-        return redirect()->back();
+        return redirect()->back()->with(['success'=>'Mail sent successfully.']);
     }
 }
 //     public function index()
