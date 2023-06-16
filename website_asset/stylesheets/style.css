@@ -201,7 +201,7 @@ a {
 
 a:hover,
 a:focus {
-	color: #ffffff;
+	color: #000000;
 	text-decoration: none;
 	outline: 0;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -236,8 +236,8 @@ input[type="submit"] {
     font-weight: 700;
     color: #ffffff;
         padding: 5px 5px;
-    -webkit-border-radius: 20px;
-	        border-radius: 20px;
+    -webkit-border-radius: 0px;
+	        border-radius: 0px;
     background-color: #e8280b;
     -webkit-transition: all 0.3s ease 0s;
        -moz-transition: all 0.3s ease 0s;
@@ -268,7 +268,7 @@ input[type="color"] {
     padding-left: 15px;
     font-size: 13px;
     outline: none;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 	border-radius: 0;
 	width: 100%;
 	-webkit-transition: all 0.3s ease-in-out;

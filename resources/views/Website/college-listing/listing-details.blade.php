@@ -264,7 +264,7 @@ transform: scale(1.1);
                                 <div class="link-review clearfix">
 
                                     <div class="info-product">
-                                        <h4 class="title"><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                        <h4 class="title">
                                             {{ $details->entity_name }}
                                         </h4>
                                         @if (auth()->check())
