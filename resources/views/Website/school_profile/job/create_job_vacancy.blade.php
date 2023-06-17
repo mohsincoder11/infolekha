@@ -139,7 +139,7 @@
                                 <th>Job Type</th>
                                 <th>Post</th>
                                 <th>Scope of Work</th>
-                                <th>Delete</th>
+                                <th>Action</th>
                             </tr>
 
                             @foreach ($vacancies as $vacancy)
@@ -155,8 +155,13 @@
                                     <td>{{ $vacancy->scope_of_work }}</td>
                                     <td>
                                         <a class="" href="{{route('delete_job_vacancy',$vacancy->id)}}">
-                                        <i class="fal fa-trash"></i>
-                                        </a>
+                                            <i class="fal fa-trash"></i>
+                                            </a> 
+                                            <a class="" href="{{route('school_profile.view-applied-job',$vacancy->id)}}">
+                                                <i class="fal fa-eye"></i>
+                                                </a>
+
+                                        
                                     </td>
 
                                 </tr>

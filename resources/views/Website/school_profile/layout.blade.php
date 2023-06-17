@@ -18,6 +18,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
+
     <style>
         .error {
             color: #ff0202 !important;
@@ -62,6 +63,8 @@
   }
     </style>
     @yield('css')
+    @stack('css2')
+
 </head>
 
 <body>
@@ -303,21 +306,21 @@
                             <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a></li> -->
                             <li><a href="{{ route('school_profile.home') }}"
                                     @if ($routeName == 'school_profile.home') class="user-profile-act" @endif>
-                                    <i class="fal fa-user-edit"></i> Home Page</a></li>
+                                    <i class="fal fa-user"></i> Home Page</a></li>
                             <li><a href="{{ route('school_profile.update_profile') }}"
                                     @if ($routeName == 'school_profile.update_profile') class="user-profile-act" @endif><i
-                                        class="fal fa-envelope"></i>Update
+                                        class="fal fa-user-edit"></i>Update
                                     Profile</a></li>
                             @if (Auth::user()->active == '1')
                                 <li><a href="{{ route('school_profile.post_result') }}"
                                         @if ($routeName == 'school_profile.post_result') class="user-profile-act" @endif><i
-                                            class="fal fa-users"></i> Post
+                                            class="fal fa-file"></i> Post
                                         Your
                                         Results</a></li>
                                 <li>
                                     <a href="{{ route('school_profile.create_job_vacancy') }}"
                                         @if ($routeName == 'school_profile.create_job_vacancy') class="user-profile-act" @endif><i
-                                            class="fa fa-file"></i>Create Job Vacancy</a>
+                                            class="fa fa-briefcase"></i>Create Job Vacancy</a>
 
                                 </li>
 
@@ -325,32 +328,32 @@
                                     <a
                                         class="submenu-link  
                                 @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement') sl_tog @endif"><i
-                                            class="fal fa-calendar-check user-profile-act"></i>Promote Your
+                                            class="fa fa-angle-right user-profile-act"></i>Promote Your
                                         {{ Auth::user()->entity_type }}
                                     </a>
-                                    <ul class="no-list-style" style="display:block">
+                                    <ul class="no-list-style"  @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement') style="display:block" @endif>
                                         <li><a href="{{ route('school_profile.post_announcement') }}"
                                                 @if ($routeName == 'school_profile.post_announcement') class="user-profile-act" @endif><i
-                                                    class="fal fa-plus"></i> Post a Announcement </a></li>
+                                                    class="fal fa-bullhorn"></i> Post a Announcement </a></li>
                                         <li><a href="{{ route('school_profile.post_advertisement') }}"
                                                 @if ($routeName == 'school_profile.post_advertisement') class="user-profile-act" @endif> <i
-                                                    class="fal fa-plus"></i> Post a Advertisement</a></li>
+                                                    class="fal fa-ad"></i> Post a Advertisement</a></li>
 
                                     </ul>
                                 </li>
                             @else
-                                <li><a href="#" class="disable-li"><i class="fal fa-users"></i> Post
+                                <li><a href="#" class="disable-li"><i class="fal fa-file"></i> Post
                                         Your
                                         Results</a></li>
                                 <li>
-                                    <a href="#" class="disable-li"><i class="fa fa-file"></i>Create Job
+                                    <a href="#" class="disable-li"><i class="fa fa-briefcase"></i>Create Job
                                         Vacancy</a>
 
                                 </li>
 
                                 <li>
                                     <a href="#" class="disable-li"><i
-                                            class="fal fa-calendar-check user-profile-act"></i>Promote Your
+                                            class="fa-angle-right user-profile-act"></i>Promote Your
                                         {{ Auth::user()->entity_type }}
                                     </a>
 
@@ -367,8 +370,8 @@
 
                             <li>
                                 <a href="{{ route('school_profile.change_password') }}"
-                                    @if ($routeName == 'school_profile.home') class="user-profile-act" @endif><i
-                                        class="fal fa-plus"></i>Change Password</a>
+                                    @if ($routeName == 'school_profile.change_password') class="user-profile-act" @endif><i
+                                        class="fal fa-key"></i>Change Password</a>
 
                             </li>
 

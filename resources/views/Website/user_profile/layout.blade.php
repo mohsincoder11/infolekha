@@ -19,11 +19,11 @@
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
     <style>
-          .error {
-         color: #ff0202!important;
-         font-size: 14px!important;
-     }
-    
+        .error {
+            color: #ff0202 !important;
+            font-size: 14px !important;
+        }
+
         #customers {
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -52,23 +52,24 @@
             ;
             color: white;
         }
-        .heart2{
+
+        .heart2 {
             position: absolute;
-    right: -4px;
-    top: -6px; 
-    font-size: 16px;
+            right: -4px;
+            top: -6px;
+            font-size: 16px;
             width: 43px;
-    height: 43px;
-    line-height: 45px;
-    color: #FFF;
-    -webkit-border-radius: 50%;
+            height: 43px;
+            line-height: 45px;
+            color: #FFF;
+            -webkit-border-radius: 50%;
             border-radius: 50%;
-    text-align: center;
+            text-align: center;
         }
+
         .swal2-toast .swal2-title {
-    font-size: 14px!important;
-  }
-        
+            font-size: 14px !important;
+        }
     </style>
 </head>
 
@@ -301,6 +302,11 @@
         </header>
         <!-- header end  -->
         <!-- wrapper  -->
+        @php
+        $routeName = request()
+            ->route()
+            ->getName();
+    @endphp
         <div id="wrapper">
             <!-- dashbard-menu-wrap -->
             <div class="dashbard-menu-overlay"></div>
@@ -313,23 +319,23 @@
                         <ul class="no-list-style">
                             <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a>
                             </li> -->
-                            <li><a href="{{ route('user_profile.home') }}" class="user-profile-act"><i
-                                        class="fal fa-user-edit"></i> Home Page</a>
+                            <li><a href="{{ route('user_profile.home') }}" @if ($routeName == 'user_profile.home') class="user-profile-act" @endif ><i
+                                        class="fal fa-user"></i> Home Page</a>
                             </li>
-                            <li><a href="{{ route('user_profile.update_profile') }}"
-                                    ><i class="fal fa-envelope"></i>Update
+                            <li><a href="{{ route('user_profile.update_profile') }}"  @if ($routeName == 'user_profile.update_profile') class="user-profile-act" @endif><i
+                                        class="fal fa-user-edit"></i>Update
                                     Profile</a>
                             </li>
 
 
                             <li>
-                                <a href="{{ route('user_profile.user_wishlist') }}"
-                                    ><i class="fal fa-plus"></i>Wishlist</a>
+                                <a href="{{ route('user_profile.user_wishlist') }}" @if ($routeName == 'user_profile.user_wishlist') class="user-profile-act" @endif><i
+                                        class="fal fa-heart"></i>Wishlist</a>
 
                             </li>
                             <li>
-                                <a href="{{ route('user_profile.user_change_password') }}"
-                                    ><i class="fal fa-plus"></i>Change Password</a>
+                                <a href="{{ route('user_profile.user_change_password') }}" @if ($routeName == 'user_profile.user_change_password') class="user-profile-act" @endif><i
+                                        class="fal fa-key"></i>Change Password</a>
 
                             </li>
 
@@ -391,66 +397,65 @@
     <script src="{{ asset('website_asset/school_dashboard/js/scripts.js') }}"></script>
     <script src="{{ asset('website_asset/school_dashboard/js/dashboard.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-<script>
-    $.validator.addMethod(
-               "strongPassword",
-               function(value, element) {
-                   return (
-                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
-                   );
-               },
-               "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
-           );
-        </script>
-     @yield('js')
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
-     @if(session()->has('success'))
-     <script>
+    <script>
+        $.validator.addMethod(
+            "strongPassword",
+            function(value, element) {
+                return (
+                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
+                );
+            },
+            "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
+        );
+    </script>
+    @yield('js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    @if (session()->has('success'))
+        <script>
             const Toast = Swal.mixin({
-  toast: true,
-  position: 'bottom',
-  showConfirmButton: false,
-  timer: 4000,
-  background:'#000',
-  color:'#fff',
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
+                toast: true,
+                position: 'bottom',
+                showConfirmButton: false,
+                timer: 4000,
+                background: '#000',
+                color: '#fff',
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-Toast.fire({
-  icon: 'success',
-  title: "{{session()->get('success')}}"
-})
-     </script>
-     @endif
+            Toast.fire({
+                icon: 'success',
+                title: "{{ session()->get('success') }}"
+            })
+        </script>
+    @endif
 
-@if(session()->has('error'))
-<script>
-       const Toast = Swal.mixin({
-toast: true,
-position: 'bottom',
-showConfirmButton: false,
-timer: 4000,
-background:'#000',
-color:'#fff',
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
+    @if (session()->has('error'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'bottom',
+                showConfirmButton: false,
+                timer: 4000,
+                background: '#000',
+                color: '#fff',
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
 
-Toast.fire({
-icon: 'error',
-title: "{{session()->get('error')}}"
-})
-</script>
-
-     @endif
+            Toast.fire({
+                icon: 'error',
+                title: "{{ session()->get('error') }}"
+            })
+        </script>
+    @endif
 
 </body>
 

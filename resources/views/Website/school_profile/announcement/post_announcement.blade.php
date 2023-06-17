@@ -18,7 +18,7 @@
                 <div class="list-searh-input-wrap-title fl-wrap"></div>
                 <div class="block-box fl-wrap search-sb" id="filters-column">
                     <div class="row">
-                        <form action="{{ route('insert-announcement') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('insert-announcement') }}" method="post" enctype="multipart/form-data" id="post_announcement_form">
                             @csrf
                             <div class="custom-form">
                                 <div class="col-md-4">
@@ -127,6 +127,55 @@
       $container.find('.short-text').show();
       $container.find('.show-less').hide();
     });
+
+    jQuery.validator.addMethod("imageFileonly", function(value, element) {
+        // Get the file extension
+        var extension = value.split('.').pop().toLowerCase();
+        // Check if the extension is one of the image formats
+        return ['jpg', 'jpeg', 'png', 'gif'].indexOf(extension) !== -1;
+      }, "Please select a valid image file (jpg, jpeg, png).");
+      
+
+
+
+$("#post_announcement_form").validate({
+    rules: {
+        heading: {
+        required: true,
+      },
+      content: {
+        required: true,
+      },
+      image: {
+        required:true,
+            imageFileonly: true,
+
+          },
+          
+    },
+    messages: {
+        heading: {
+        required: "This field is required",
+      },
+      content: {
+        httpOrHttpsUrl: "Please enter valid url.",
+      },
+     
+      image: {
+            required: "Please select a file.",
+            imageFileonly: "Please select valid image files only (jpg, jpeg, png).",
+
+          },
+          
+    },
+    submitHandler: function(form) {
+      return true;
+    },
+    errorPlacement: function(error, element) {
+        element.closest('.col-md-4').append(error);
+
+    },
+  });
         });
     </script>
 @stop

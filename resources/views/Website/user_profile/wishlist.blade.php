@@ -20,7 +20,7 @@
                                 <tr>
                                     <th>Sr.no</th>
                                     <th>College Name</th>
-                                    <th>Add to Wishlist</th>
+                                    <th>Remove</th>
                                 </tr>
                                 @foreach($wishlists as $wishlist)
                                 <tr>
@@ -31,7 +31,7 @@
                                     </a>
                                     </td>
                                     <td>
-                                        <a href="{{route('remove-wishlist',$wishlist->id)}}" class="btn1 btn-outline-success"><i class="fa fa-heart"
+                                        <a href="{{route('remove-wishlist',$wishlist->id)}}" class="btn1 btn-outline-success"><i class="fa fa-trash"
                                                 aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach

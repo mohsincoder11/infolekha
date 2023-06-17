@@ -249,9 +249,10 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         
 
         Route::get('school_profile/create_job_vacancy', [SchoolProfile::class, 'create_job_vacancy'])->name('school_profile.create_job_vacancy');
+        Route::get('school_profile/view-applied-job/{job_id}', [SchoolProfile::class, 'view_applied_job'])->name('school_profile.view-applied-job');
 
         Route::post('school_profile/insert_create_job_vacancy',[SchoolProfile::class,'insert_create_job_vacancy'])->name('school_profile.insert_create_job_vacancy');
-
+       
         Route::get('delete_job_vacancy/{id}', [SchoolProfile::class, 'delete_job_vacancy'])->name('delete_job_vacancy');
 
 
@@ -262,11 +263,15 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::post('insert-announcement', [SchoolProfile::class, 'insert_announcement'])->name('insert-announcement');
         
         Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
+        Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
         Route::post('insert-advertisement', [SchoolProfile::class, 'insert_advertisement'])->name('insert-advertisement');
-
-
         
     });
+
+    Route::get('school-profile/get_advertisement_size', [SchoolProfile::class, 'get_advertisement_size'])->name('school_profile.get_advertisement_size');
+    Route::get('school-profile/get_advertisement_cards', [SchoolProfile::class, 'get_advertisement_cards'])->name('school_profile.get_advertisement_cards');
+
+
 
     //school only route
     Route::group(['middleware' => ['role:3']], function () {

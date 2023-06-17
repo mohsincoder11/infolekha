@@ -1,27 +1,6 @@
 @extends('website_layout')
-@section('css')
-<style>
-    .condition-label {
-  color: red;
-}
-
-.condition-label.valid {
-  color: green;
-}
-</style>
-@stop
 @section('website_content')
 
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <!-- Page title -->
     <div class="page-title parallax parallax1">
         <div class="section-overlay">
         </div>
@@ -29,13 +8,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-title-heading">
-                        <h1 class="title">School / College / Institution Sign Up</h1>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
+                        <h1 class="title">Student/Parent Sign Up</h1>
+                    </div><!-- /.page-title-captions -->
+                    <div class="breadcrumbs">
+                        <!-- <ul>
+                                <li><a href="index.html"></a></li>
+                              
+                            </ul>                    -->
+                    </div><!-- /.breadcrumbs -->
+                </div><!-- /.col-md-12 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </div><!-- /.page-title -->
 
     <section class="flat-row page-profile bg-theme">
         <div class="container">
@@ -44,41 +28,47 @@
                 <div class="col-md-6"
                     style="padding-top:20px; 
          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                    <form class="form-login form-listing" action="{{ route('school_institute_register_user_create') }}"
+                    <form class="form-login form-listing" action="{{ route('student_register_user_create') }}"
                         method="post" id="form1">
                         @csrf
+
+
                         <h3 class="title-formlogin">Sign Up</h3>
-                        <span class="input-login icon-form">
-                            <select class="form-select select country-select" name="entity" id="sel" requiered>
-                                <option disabled selected>--Select Entity </option>
-                                @foreach ($entities as $entity)
-                                    <option value="{{ $entity->entity }}">{{ $entity->entity }}</option>
-                                @endforeach
-                            </select></span>
+
+                        <span class="input-login icon-form"><input type="text" placeholder="Name of Student/Parent *"
+                                name="name" required="required"><i class="fa fa-user"></i></span>
+                        @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        <span class="input-login icon-form"><input type="text"
+                                placeholder="Name of Current School/College" name="current_school_institute"
+                                required="required"><i class="fa fa-user"></i></span>
+                        @error('current_school_institute')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
 
 
-
-                        <span class="input-login icon-form"><input type="text" id="entity"
-                                placeholder=" Name of Entity" name="name" required="required"><i
-                                class="fa fa-user"></i></span>
-
-                        <span class="input-login icon-form"><input type="text" placeholder="Contact Person*"
-                                name="contact_person" required="required"><i class="fa fa-user"></i></span>
-
-                        <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
-                                name="r_mob" maxlength=10 required="required">
+                        <span class="input-login icon-form"><input type="text" id="mob" placeholder="Mobile No*"
+                                maxlength=10 name="mob" required="required">
                             <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
-                                style="margin-bottom: 15px;">Verify Mobile</button>
+                                style="margin-bottom: 15px;">
+                                Verify Mobile</button>
                         </span>
+                        @error('mob')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
                                 required="required"><i class="fa fa-envelope-o"></i></span>
+                        @error('email')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
 
-                        <span class="input-login icon-form">
-                            <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
-                                required="required">
-                            <i class="fa fa-envelope-o"></i>
-                        </span>
+
+                        <span class="input-login icon-form"><input type="text" placeholder="Address*"
+                                id="current_location_at_form" name="address" required="required"><i
+                                class="fa fa-envelope-o"></i></span>
 
 
 
@@ -87,34 +77,24 @@
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Password*" id="password" name="password"
                                 required="required"><i toggle="#password"
-                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
+                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
                         </span>
-
-                        {{-- <span class="input-login icon-form">
-
-                            <div id="length-label" class="condition-label">Use 8 or more characters.</div>
-                            <div id="uppercase-label" class="condition-label">Use uppercase letter.</div>
-                            <div id="lowercase-label" class="condition-label">Use lowercase letter.</div>
-                            <div id="number-label" class="condition-label">Use a number.</div>
-                            <div id="specialchar-label" class="condition-label">Use special character.</div>
-                            </span> --}}
 
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Confirm Password*" name="password_confirmation"
                                 id="password_confirmation" required="required"><i toggle="#password_confirmation"
-                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
+                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
                         </span>
+
+
 
 
                         <hr class="mt-4">
+                        <div class="">
+                            <button type="submit" id="login-button1" class=" login-btn btn" title="Sign Up"
+                                style="margin-bottom: 15px; margin-left:45%;" disabled> Submit</button>
+                        </div>
 
-                        <span class="">
-                            <button id="login-button1" type="submit" class="btn" title="Sign Up" disabled
-                                style="margin-bottom: 15px; margin-left:43%">
-                                Submit</button>
-
-
-                        </span>
 
                     </form>
 
@@ -136,6 +116,7 @@
                         <form action="" id="modal_form"> <span class="input-login icon-form">
                                 <input type="hidden" name="exist_otp" id="exist_otp">
                                 <span class="input-login icon-form">
+                                    <input type="hidden" name="exist_otp" id="exist_otp">
 
                                     <span class="input-login icon-form">
                                         <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp"
@@ -161,17 +142,8 @@
 @stop
 
 
+
 @section('js')
-
-    <script>
-        $('#sel').on('change', function() {
-            //console.log($('#sel').children("option:selected").val());
-            $('#entity').attr({
-                "placeholder": ' Name of ' + $('#sel').children("option:selected").val()
-            });
-
-        });
-    </script>
 
     <script>
         $("#form1").validate({
@@ -179,14 +151,15 @@
                 name: {
                     required: true,
                 },
-                contact_person: {
+                current_school_institute: {
                     required: true,
                 },
-                r_mob: {
+                mob: {
                     required: true,
                     digits: true,
                     minlength: 10,
                     maxlength: 10,
+                    remote: "{{ url('val_form') }}",
                     remote: {
                         url: 'val_form',
                         type: 'get',
@@ -214,21 +187,21 @@
                 },
                 email: {
                     required: true,
-                    customEmail: true,
+                    email: true,
                     remote: "{{ url('check_email_exist') }}",
 
                 },
                 password: {
                     required: true,
-                    minlength: 8,
-                    strongPassword: true,
+                    minlength: 6,
+
                 },
                 password_confirmation: {
                     required: true,
                     equalTo: "#password"
 
                 },
-                entity: {
+                address: {
                     required: true,
                 },
             },
@@ -236,10 +209,10 @@
                 name: {
                     required: "This field is required.",
                 },
-                contact_person: {
+                current_school_institute: {
                     required: "This field is required",
                 },
-                r_mob: {
+                mob: {
                     required: "Please enter mobile number.",
                     minlength: "Please enter 10 digit mobile number.",
                     maxlength: "Please enter 10 digit mobile number.",
@@ -248,20 +221,20 @@
                 },
                 email: {
                     required: "This field is required.",
-                    customEmail: "Please enter valid email address.",
+                    email: "Please enter valid email address.",
                     remote: "This email address is already registered with us."
                 },
                 password: {
                     required: "This field is required.",
-                    minlength: " ",
-                   strongPassword: " "
+                    minlength: "Minimum password length should be 6 character.",
+
                 },
                 password_confirmation: {
                     required: "This field is required.",
                     equalTo: "Confirm password and password must be same."
 
                 },
-                entity: {
+                address: {
                     required: "Please select option.",
                 },
             },
@@ -277,30 +250,9 @@
 
             },
         });
+    </script>
 
-         $('#password').on('input', function() {
-      var password = $(this).val();
-            $('.condition-label').each(function() {
-                var label = $(this);
-                var condition = label.text().trim();
-                var isValid = false;
-
-                if (condition === 'Use 8 or more characters.') {
-                    isValid = password.length >= 8;
-                } else if (condition === 'Use uppercase letter.') {
-                    isValid = /[A-Z]/.test(password);
-                  } else if (condition === 'Use a number.') {
-                    isValid = /[0-9]/.test(password);
-                } else if (condition === 'Use lowercase letter.') {
-                    isValid = /[a-z]/.test(password);
-                } else if (condition === 'Use special character.') {
-                    isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-                }
-
-                label.toggleClass('valid', isValid);
-            });
-        });
-
+    <script>
         $("#modal_form").validate({
             rules: {
 
@@ -338,21 +290,14 @@
 
                     $('#popup_login').modal('hide');
 
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Success',
-                        text: 'Successfully Verified',
-                        confirmButtonText: 'Close'
+                    swal("Success", " Successfully Verified", "success", {
+                        button: "close",
                     });
 
                 } else {
 
-
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Failed',
-                        text: 'Enter Correct OTP',
-                        confirmButtonText: 'Close'
+                    swal("Fail", "Enter Correct OTP", "warning", {
+                        button: "close",
                     });
                 }
             },
@@ -372,12 +317,12 @@
 
         $("#mob").on('keyup', function(e) {
             $("#login-button1").prop('disabled', true);
-            var value = $(this).val();
 
-            if (/^\d+$/.test(value) && value.length === 10)
+            if ($(this).val().length == 10)
                 $("#login-button2").prop('disabled', false);
             else
                 $("#login-button2").prop('disabled', true);
+
         })
 
 
@@ -411,16 +356,10 @@
         });
 
 
-
-        //   if (selectedFiles.length > maximage) {
-        //     alert(`You can select maximum ${maximage} files`);
-        //     imageSelector.value = ''; // Clear the selected files
-        //   }
         var Boo = function() {
             alert("test");
         }
     </script>
-
 
     <script type="text/javascript"
         src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
@@ -431,10 +370,15 @@
 
         function initialize() {
             /* var input = document.getElementById('current_location');*/
-            var autocomplete = new google.maps.places.Autocomplete(
+            var input = new google.maps.places.Autocomplete(
                 (document.getElementById('current_location_at_form')), {
-                    types: ['locality']
+                    types: ['geocode']
                 });
+
+            //   var input =new google.maps.places.Autocomplete(
+            //   (document.getElementById('current_location_at_form')),
+            //   { types: ['locality'] ,componentRestrictions: { country: "in"}});
+
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
             autocomplete.addListener('place_changed', function() {
@@ -443,5 +387,4 @@
             });
         }
     </script>
-
 @stop

@@ -201,7 +201,7 @@ a {
 
 a:hover,
 a:focus {
-	color: #ffffff;
+	color: #000000;
 	text-decoration: none;
 	outline: 0;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -236,8 +236,8 @@ input[type="submit"] {
     font-weight: 700;
     color: #ffffff;
         padding: 5px 5px;
-    -webkit-border-radius: 20px;
-	        border-radius: 20px;
+    -webkit-border-radius: 0px;
+	        border-radius: 0px;
     background-color: #e8280b;
     -webkit-transition: all 0.3s ease 0s;
        -moz-transition: all 0.3s ease 0s;
@@ -268,7 +268,7 @@ input[type="color"] {
     padding-left: 15px;
     font-size: 13px;
     outline: none;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 	border-radius: 0;
 	width: 100%;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -2920,6 +2920,92 @@ footer a:hover {
     -webkit-animation: fa-spin 2s infinite linear;
            animation: fa-spin 2s infinite linear;     
 }
+
+/*profile dropdown css*/
+
+
+  .c {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height:100%;
+	width:100%;
+  }
+  .dd {
+	z-index:1;
+	position:relative;
+	display: inline-block;
+  }
+  .dd-a {
+	padding:10px;
+	background:white;
+	position:relative;
+	transition-duration: 0.2s;
+	-webkit-transition-duration: 0.2s;
+  }
+  
+  .dd input {
+	top:0;
+	opacity:0;
+	display:block;
+	padding:0;
+	margin:0;
+	border:0;
+	position:absolute;
+	height:100%;
+	width:100%;
+  }
+  .dd input:hover {
+	cursor:pointer;
+  }
+  .dd input:hover ~ .dd-a {
+	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  }
+  .dd input:checked:after {
+	transform: scaleX(1);
+	-webkit-transform: scaleX(1);
+  }
+  .dd input:checked ~ .dd-c {
+	transform: scaleY(1);
+	-webkit-transform: scaleY(1);
+  }
+
+  .dd-c{
+	width:100%;
+	display:block;
+	position: absolute;
+	background:rgb(255, 255, 255);
+	height:auto;
+	transform: scaleY(0);
+	transform-origin: top left;
+	transition-duration: 0.2s;
+	-webkit-transform: scaleY(0);
+	-webkit-transform-origin: top left;
+	-webkit-transition-duration: 0.2s;
+	
+  }
+  .dd-c ul {
+	margin:0;
+	padding:0;
+	list-style-type: none;
+  }
+
+  
+  a span {
+	display:block;
+	position:relative;
+	-webkit-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+  }
+  a:hover:before {
+	transform:scaleX(1);
+	-webkit-transform:scaleX(1);
+  }
+ 
+
+  /*profile dropdown css*/
 
 
 	

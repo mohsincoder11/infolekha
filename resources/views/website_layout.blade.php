@@ -658,10 +658,12 @@
          transform: rotate(90deg);
 
      }
-.heart:hover{
-    background-color: #e8280b !important;
+
+     .heart:hover {
+         background-color: #e8280b !important;
          color: #fff !important;
-}
+     }
+
      .active_heart {
          background-color: #e8280b !important;
          color: #fff !important;
@@ -687,9 +689,10 @@
      .star.filled {
          color: gold;
      }
+
      .swal2-toast .swal2-title {
-    font-size: 14px!important;
-  }
+         font-size: 14px !important;
+     }
  </style>
 
  @yield('css')
@@ -705,8 +708,8 @@
 
      <!-- Boxed -->
      <div class="boxed">
-       
-       
+
+
 
          <!-- Header -->
          <header id="header" class="header clearfix" style="margin-top:-2%;">
@@ -774,7 +777,7 @@
                                          <li style="color: black !important;"> <img
                                                  src="{{ asset('website_asset/images/user.png') }}">
 
-                                             {{ auth()->check() ? auth()->user()->name : '' }}
+                                             {{auth()->check() ?  ucfirst(auth()->user()->name) : '' }}
                                              <ul class="submenu" style="width:6.5em">
                                                  <li>
                                                      @if (auth()->user()->role == 1)
@@ -782,7 +785,7 @@
                                                      @elseif(auth()->user()->role == 2)
                                                          <a href="{{ route('tutor_profile.home') }}">Profile</a>
                                                      @else
-                                                     <a href="{{ route('user_profile.home') }}">Profile</a>
+                                                         <a href="{{ route('user_profile.home') }}">Profile</a>
                                                      @endif
                                                  </li>
                                                  <li><a href="{{ route('logout') }}">Log out</a>
@@ -852,7 +855,7 @@
                                      </li>
 
 
-                                     
+
 
                                      @if (auth()->check())
                                          <li>
@@ -860,39 +863,43 @@
                                                      aria-hidden="true"></i>
                                                  {{ auth()->check() ? auth()->user()->name : '' }}</a>
                                              <ul class="submenu">
-                                                <li>
-                                                    @if (auth()->user()->role == 1)
-                                                        <a style="color: #fff;" href="{{ route('school_profile.home') }}">Profile</a>
-                                                    @elseif(auth()->user()->role == 2)
-                                                        <a style="color: #fff;" href="{{ route('tutor_profile.home') }}">Profile</a>
-                                                    @else
-                                                    <a style="color: #fff;" href="{{ route('user_profile.home') }}">Profile</a>
-                                                    @endif
-                                                </li>
-                                                <li><a style="color: #fff;" href="{{ route('logout') }}">Log out</a>
-                                                </li>
+                                                 <li>
+                                                     @if (auth()->user()->role == 1)
+                                                         <a style="color: #fff;"
+                                                             href="{{ route('school_profile.home') }}">Profile</a>
+                                                     @elseif(auth()->user()->role == 2)
+                                                         <a style="color: #fff;"
+                                                             href="{{ route('tutor_profile.home') }}">Profile</a>
+                                                     @else
+                                                         <a style="color: #fff;"
+                                                             href="{{ route('user_profile.home') }}">Profile</a>
+                                                     @endif
+                                                 </li>
+                                                 <li><a style="color: #fff;" href="{{ route('logout') }}">Log out</a>
+                                                 </li>
                                              </ul><!-- /.submenu -->
                                          </li>
-                                         @else
-                                         <li><a href="#" style="color: #fff;"> <i class="fa fa-arrow-circle-right"
-                                            aria-hidden="true"></i> Sign Up</a>
-                                    <ul class="submenu">
-                                        <li><a href="{{ route('school_institute_register_form') }}"
-                                                style="color: #fff;">School/College/Institution</a>
-                                        </li>
-                                        <li><a href="{{ route('student_register_form') }}"
-                                                style="color: #fff;">Student/Parent</a>
-                                        </li>
-                                        <li><a href="{{ route('tutor_register_form') }}"
-                                                style="color: #fff;">Tutor/Faculty</a>
-                                        </li>
-                                    </ul><!-- /.submenu -->
-                                </li>
+                                     @else
+                                         <li><a href="#" style="color: #fff;"> <i
+                                                     class="fa fa-arrow-circle-right" aria-hidden="true"></i> Sign
+                                                 Up</a>
+                                             <ul class="submenu">
+                                                 <li><a href="{{ route('school_institute_register_form') }}"
+                                                         style="color: #fff;">School/College/Institution</a>
+                                                 </li>
+                                                 <li><a href="{{ route('student_register_form') }}"
+                                                         style="color: #fff;">Student/Parent</a>
+                                                 </li>
+                                                 <li><a href="{{ route('tutor_register_form') }}"
+                                                         style="color: #fff;">Tutor/Faculty</a>
+                                                 </li>
+                                             </ul><!-- /.submenu -->
+                                         </li>
 
-                                <li class="home">
-                                    <a href="{{ route('login') }} " style="color: #fff;"><i
-                                            class="fa fa-user-plus"></i> Login</a>
-                                </li>
+                                         <li class="home">
+                                             <a href="{{ route('login') }} " style="color: #fff;"><i
+                                                     class="fa fa-user-plus"></i> Login</a>
+                                         </li>
                                      @endif
 
 
@@ -933,16 +940,15 @@
                          <!-- <div class="col-md-2"><img src="{{ asset('images/startupindia.png') }}"></div>-->
                          <div class="col-lg-3">
                              <div class="social-links float-right">
-                                 <a
-                                     href="https://www.facebook.com/people/INFOlekhaorg/100090065737337/?mibextid=ZbWKwL"><i
+                                 <a target="_blank" href="https://www.facebook.com/people/INFOlekhaorg/100090065737337/?mibextid=ZbWKwL"><i
                                          class="fab fa-facebook"></i></a>
 
-                                 <a href="https://twitter.com/info_lekha"><i class="fab fa-twitter"></i></a>
-                                 <a href="https://www.linkedin.com/in/info-lekha-a876a026a/"><i
+                                 <a target="_blank" href="https://twitter.com/info_lekha"><i class="fab fa-twitter"></i></a>
+                                 <a target="_blank" href="https://www.linkedin.com/in/info-lekha-a876a026a/"><i
                                          class="fab fa-linkedin"></i></a>
-                                 <a href="https://www.instagram.com/infolekha/?igshid=ZDdkNTZiNTM%3D"><i
+                                 <a target="_blank" href="https://www.instagram.com/infolekha/?igshid=ZDdkNTZiNTM%3D"><i
                                          class="fab fa-instagram"></i></a>
-                                 <a href="https://www.youtube.com/@infolekha"><i class="fab fa-youtube"></i></a>
+                                 <a target="_blank" href="https://www.youtube.com/@infolekha"><i class="fab fa-youtube"></i></a>
                              </div>
                          </div>
                      </div>
@@ -989,7 +995,8 @@
                                              <div class="iconbox icon-text text-left">
                                                  <div class="box-content">
                                                      <h5 for="vehicle1" style="color: #073D5F; margin-left: 15%;">
-                                                         <b>Monthly</b></h5>
+                                                         <b>Monthly</b>
+                                                     </h5>
                                                      <h6 style="color:#073D5F; margin-top: 2%; margin-left:2%; ">₹ 500
                                                          / Per Month</h6>
                                                      <div style="margin-left: 22%; margin-top:12%;">
@@ -1007,7 +1014,8 @@
                                                  <div class="box-content">
 
                                                      <h5 for="vehicle2" style="color: #073D5F; margin-left: 22%; ">
-                                                         <b>Yearly</b></h5>
+                                                         <b>Yearly</b>
+                                                     </h5>
                                                      <h6 style="color: #073D5F; margin-top: 2%; margin-left: 1%;">₹
                                                          5000 / Per Year</h6>
                                                      <div style="margin-left: 22%; margin-top:12%;">
@@ -1035,7 +1043,8 @@
                                                      <div>
                                                          <p
                                                              class="form-control-label"style="color: #073D5F; font-size:10px">
-                                                             <b>Apply Coupon Code</b></p>
+                                                             <b>Apply Coupon Code</b>
+                                                         </p>
                                                      </div>
                                                  </div>
                                              </div>
@@ -1180,57 +1189,42 @@
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
-     @if(session()->has('success'))
      <script>
-            const Toast = Swal.mixin({
-  toast: true,
-  position: 'bottom',
-  showConfirmButton: false,
-  timer: 4000,
-  background:'#000',
-  color:'#fff',
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    toast.addEventListener('mouseenter', Swal.stopTimer)
-    toast.addEventListener('mouseleave', Swal.resumeTimer)
-  }
-})
-
-Toast.fire({
-  icon: 'success',
-  title: "{{session()->get('success')}}"
-})
+         const Toast = Swal.mixin({
+             toast: true,
+             position: 'bottom',
+             showConfirmButton: false,
+             timer: 40000,
+             background: '#000',
+             color: '#fff',
+             timerProgressBar: true,
+             didOpen: (toast) => {
+                 toast.addEventListener('mouseenter', Swal.stopTimer)
+                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+             }
+         })
      </script>
+     @if (session()->has('success'))
+         <script>
+             Toast.fire({
+                 icon: 'success',
+                 title: "{{ session()->get('success') }}"
+             })
+         </script>
      @endif
 
-@if(session()->has('error'))
-<script>
-       const Toast = Swal.mixin({
-toast: true,
-position: 'bottom',
-showConfirmButton: false,
-timer: 4000,
-background:'#000',
-color:'#fff',
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
-
-Toast.fire({
-icon: 'error',
-title: "{{session()->get('error')}}"
-})
-</script>
-
+     @if (session()->has('error'))
+         <script>
+             Toast.fire({
+                 icon: 'error',
+                 title: "{{ session()->get('error') }}"
+             })
+         </script>
      @endif
 
      <script>
          /* When the user clicks on the button, 
-             toggle between hiding and showing the dropdown content */
+                  toggle between hiding and showing the dropdown content */
          function myFunction() {
              document.getElementById("myDropdown").classList.toggle("show");
          }
@@ -1252,60 +1246,61 @@ title: "{{session()->get('error')}}"
 
 
      <script>
-        $(document).ready(function() {
-  $(document).on("contextmenu", function(e) {
-    //e.preventDefault();  //this will disable right click
-  });
-
-         const x = document.getElementById("current_location");
-         if (navigator.geolocation) {
-             navigator.geolocation.getCurrentPosition(showPosition);
-         } else {
-             alert("check your internet connection");
-         }
-
-         function showPosition(position) {
-
-             let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' +
-                 position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
-           
-
-             fetch(google_url).then(function(response) {
-                 return response.json();
-             }).then(function(data) {
-              
-                 let city = null;
-                 let state = null;
-                 for (const result of data.results) {
-                     for (const component of result.address_components) {
-                         if (component.types.includes('locality')) {
-                             city = component.long_name;
-                             break;
-                         }
-                         if (component.types.includes('administrative_area_level_4')) {
-                             state = component.long_name;
-                             break;
-                         }
-                     }
-                     if (city && state) {
-                         break;
-                     }
-                 }
-
-                 $("#current_location,#current_location2").val(city);
-                 var stored_city = localStorage.getItem('city_name');
-                 if(stored_city){
-                    $("#current_location,#current_location2").val(stored_city);
-                 }
-                 
-                
-
-             }).catch(function(err) {
-                 console.log('Fetch Error :-S', err);
+         $(document).ready(function() {
+             $(document).on("contextmenu", function(e) {
+                 //e.preventDefault();  //this will disable right click
              });
 
-         }
-        });
+             const x = document.getElementById("current_location");
+             if (navigator.geolocation) {
+                 navigator.geolocation.getCurrentPosition(showPosition);
+             } else {
+                 alert("check your internet connection");
+             }
+
+             function showPosition(position) {
+
+                 let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
+                     .latitude + ',' +
+                     position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+
+
+                 fetch(google_url).then(function(response) {
+                     return response.json();
+                 }).then(function(data) {
+
+                     let city = null;
+                     let state = null;
+                     for (const result of data.results) {
+                         for (const component of result.address_components) {
+                             if (component.types.includes('locality')) {
+                                 city = component.long_name;
+                                 break;
+                             }
+                             if (component.types.includes('administrative_area_level_4')) {
+                                 state = component.long_name;
+                                 break;
+                             }
+                         }
+                         if (city && state) {
+                             break;
+                         }
+                     }
+
+                     $("#current_location,#current_location2").val(city);
+                     var stored_city = localStorage.getItem('city_name');
+                     if (stored_city) {
+                         $("#current_location,#current_location2").val(stored_city);
+                     }
+
+
+
+                 }).catch(function(err) {
+                     console.log('Fetch Error :-S', err);
+                 });
+
+             }
+         });
      </script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
      <script>
@@ -1325,7 +1320,7 @@ title: "{{session()->get('error')}}"
          );
      </script>
      @yield('js')
-   
+
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902240890164332"
          crossorigin="anonymous"></script>
 
@@ -1337,33 +1332,33 @@ title: "{{session()->get('error')}}"
          google.maps.event.addDomListener(window, 'load', initialize);
 
          function initialize() {
-              var current_location = document.getElementById('current_location');
+             var current_location = document.getElementById('current_location');
              var autocomplete = new google.maps.places.Autocomplete(current_location);
              autocomplete.setOptions({
-  types: ['(cities)']
-});
+                 types: ['(cities)']
+             });
 
              /*var autocomplete = new google.maps.places.Autocomplete(input);*/
              autocomplete.setComponentRestrictions({
                  'country': 'in'
              });
              autocomplete.addListener('place_changed', function() {
-                console.clear();
-              
+                 console.clear();
+
                  var place = autocomplete.getPlace();
-                 var address=place.formatted_address;
+                 var address = place.formatted_address;
                  var city_name = address.substr(0, address.indexOf(',')).trim();
                  $("#current_location").val(city_name);
                  $("#current_location2").val(city_name);
                  localStorage.setItem('city_name', city_name);
                  stored_city_function(city_name);
-                 
+
              });
 
              /* var input = document.getElementById('current_location');*/
              var autocomplete2 = new google.maps.places.Autocomplete(
                  (document.getElementById('current_location2')), {
-                    types: ['(cities)']
+                     types: ['(cities)']
                  });
 
              /*var autocomplete = new google.maps.places.Autocomplete(input);*/
@@ -1372,7 +1367,7 @@ title: "{{session()->get('error')}}"
              });
              autocomplete2.addListener('place_changed', function() {
                  var place = autocomplete2.getPlace();
-                 var address=place.formatted_address;
+                 var address = place.formatted_address;
                  var city_name = address.substr(0, address.indexOf(',')).trim();
                  $("#current_location").val(city_name);
                  $("#current_location2").val(city_name);
@@ -1382,8 +1377,8 @@ title: "{{session()->get('error')}}"
              });
          }
          $("#current_location").on('focus', function() {
-            $(this).attr('placeholder', '');
-            $(this).val('');
+             $(this).attr('placeholder', '');
+             $(this).val('');
          })
 
 
@@ -1392,38 +1387,44 @@ title: "{{session()->get('error')}}"
              $(this).val();
          })
 
-         function stored_city_function(city){
-            $.ajax({
-                     type: 'GET',
-                     url: '{{route("save-city")}}',
-                     data:{city:city},
-                     success: function(data) {
-                         console.log(data);
-                     },
-                     error: function(data) {
+         function stored_city_function(city) {
+             $.ajax({
+                 type: 'GET',
+                 url: '{{ route('save-city') }}',
+                 data: {
+                     city: city
+                 },
+                 success: function(data) {
+                     console.log(data);
+                 },
+                 error: function(data) {
 
-                         console.log(data);
-                     }
-                 });
-                }
+                     console.log(data);
+                 }
+             });
+         }
 
-                $(".like_college").on("click", function() {
-                $(this).toggleClass("active_heart");
-                $.ajax({
-                    url: '{{ route("like_unlike") }}',
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "college_id": $(this).attr('college_id')
-                    },
-                    success: function(response) {
-                        console.log('Like request successful');
-                    },
-                    error: function(xhr, status, error) {
-                        console.log('Error sending like request:', error);
-                    }
-                });
-            })
+         $(".like_college").on("click", function() {
+             $(this).toggleClass("active_heart");
+             $.ajax({
+                 url: '{{ route('like_unlike') }}',
+                 type: 'POST',
+                 data: {
+                     "_token": "{{ csrf_token() }}",
+                     "college_id": $(this).attr('college_id')
+                 },
+                 success: function(response) {
+                     Toast.fire({
+                         icon: 'success',
+                         title: response.message
+                     })
+
+                 },
+                 error: function(xhr, status, error) {
+                     console.log('Error sending like request:', error);
+                 }
+             });
+         })
      </script>
 
 

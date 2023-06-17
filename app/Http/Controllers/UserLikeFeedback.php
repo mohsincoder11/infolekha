@@ -19,6 +19,8 @@ class UserLikeFeedback extends Controller
         )->first();
         if ($check_exist_like) {
             $check_exist_like->delete();
+            return response()->json(['status' => true, 'message' => 'Remove from the wishlist.']);
+
         } else {
             UserLikeModel::create(
                 [
@@ -26,8 +28,9 @@ class UserLikeFeedback extends Controller
                     'college_id' => $request->college_id
                 ]
             );
+            return response()->json(['status' => true, 'message' => 'Added to wishlist.']);
+
         }
-        return response()->json(['status' => true, 'message' => 'success']);
     }
 
     public function insert_feedback(Request $request)

@@ -145,7 +145,7 @@ class WebsiteformController extends Controller
     public function log_out()
     {
         Auth::logout();
-        return redirect()->route('index');
+        return redirect()->route('index')->with(['success'=>'Log out successfully.']);
     }
 
 

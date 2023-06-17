@@ -22,16 +22,16 @@
                             width=100%></a>
                 </div>
                 <!--<div class="slide banner">
-                                <a href="#"><img src="{{ asset('website_asset/images/slides/4.png') }}" width=100% ></a>
-                            </div>-->
+                                    <a href="#"><img src="{{ asset('website_asset/images/slides/4.png') }}" width=100% ></a>
+                                </div>-->
             </div>
         </div>
     </div><!-- End // .slider -->
 
 
-    <section class="flat-row page-services" style="margin-top:-7%;">
+    <section class="flat-row page-services" >
         <div class="container">
-            <h3 style="margin-bottom: 3%;margin-top: 3%;" align="center" class="p1">Find a Near You</h3>
+            <h3 style="margin-bottom: 3%;" align="center" class="p1">Find a Near You</h3>
             <div class="row">
                 <div class="col-md-1"></div>
 
@@ -113,93 +113,93 @@
 
 
     <!-- <section class="flat-row section-client">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="title-section text-center">
-                                    <h1 class="title">Categories</h1>
-                                    <div class="sub-title">
-                                        What do you need to find?
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="flat-client" data-item="4" data-nav="true" data-dots="false" data-auto="false">
-                                    <div class="client">
-                                        <div class="featured-client">
-                                            <img src="images/clients/1.jpg" alt="image">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title-section text-center">
+                                        <h1 class="title">Categories</h1>
+                                        <div class="sub-title">
+                                            What do you need to find?
                                         </div>
-                                        <div class="content-client clearfix">
-                                           
-                                            <div class="text">
-                                                <h6><a href="#" title="">Hotel & Travel</a></h6>
-                                                <p>45 Listing</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="client">
-                                        <div class="featured-client">
-                                            <img src="images/clients/2.jpg" alt="image">
-                                        </div>
-                                        <div class="content-client clearfix">
-                                            <div class="icon">
-                                                <img src="images/clients/icon2.png" alt="image">
-                                            </div>
-                                            <div class="text">
-                                                <h6><a href="#" title="">Healthy & fitness</a></h6>
-                                                <p>45 Listing</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="client">
-                                        <div class="featured-client">
-                                            <img src="images/clients/3.jpg" alt="image">
-                                        </div>
-                                        <div class="content-client clearfix">
-                                            <div class="icon">
-                                                <img src="images/clients/icon3.png" alt="image">
-                                            </div>
-                                            <div class="text">
-                                                <h6><a href="#" title="">Real Estate</a></h6>
-                                                <p>45 Listing</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="client">
-                                        <div class="featured-client">
-                                            <img src="images/clients/1.jpg" alt="image">
-                                        </div>
-                                        <div class="content-client clearfix">
-                                            <div class="icon">
-                                                <img src="images/clients/icon4.png" alt="image">
-                                            </div>
-                                            <div class="text">
-                                                <h6><a href="#" title="">Restaurant</a></h6>
-                                                <p>45 Listing</p>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="flat-client" data-item="4" data-nav="true" data-dots="false" data-auto="false">
+                                        <div class="client">
+                                            <div class="featured-client">
+                                                <img src="images/clients/1.jpg" alt="image">
+                                            </div>
+                                            <div class="content-client clearfix">
+                                               
+                                                <div class="text">
+                                                    <h6><a href="#" title="">Hotel & Travel</a></h6>
+                                                    <p>45 Listing</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="client">
+                                            <div class="featured-client">
+                                                <img src="images/clients/2.jpg" alt="image">
+                                            </div>
+                                            <div class="content-client clearfix">
+                                                <div class="icon">
+                                                    <img src="images/clients/icon2.png" alt="image">
+                                                </div>
+                                                <div class="text">
+                                                    <h6><a href="#" title="">Healthy & fitness</a></h6>
+                                                    <p>45 Listing</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="client">
+                                            <div class="featured-client">
+                                                <img src="images/clients/3.jpg" alt="image">
+                                            </div>
+                                            <div class="content-client clearfix">
+                                                <div class="icon">
+                                                    <img src="images/clients/icon3.png" alt="image">
+                                                </div>
+                                                <div class="text">
+                                                    <h6><a href="#" title="">Real Estate</a></h6>
+                                                    <p>45 Listing</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="client">
+                                            <div class="featured-client">
+                                                <img src="images/clients/1.jpg" alt="image">
+                                            </div>
+                                            <div class="content-client clearfix">
+                                                <div class="icon">
+                                                    <img src="images/clients/icon4.png" alt="image">
+                                                </div>
+                                                <div class="text">
+                                                    <h6><a href="#" title="">Restaurant</a></h6>
+                                                    <p>45 Listing</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </section> -->
+                    </section> -->
 
     <section class="flat-row section-about1 parallax parallax3">
         <div class="container">
             <!-- <div class="row">
-                            <div class="col-md-12">
-                                <div class="title-section text-center">
-                                    <h1 class="title">About Us</h1>
-                                    <div class="sub-title">
-                                        Some great addresses you should not miss
+                                <div class="col-md-12">
+                                    <div class="title-section text-center">
+                                        <h1 class="title">About Us</h1>
+                                        <div class="sub-title">
+                                            Some great addresses you should not miss
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div> -->
+                            </div> -->
             <div class="row">
                 <div class="col-md-12"style="padding-left:5%; padding-right:5%;">
 
@@ -259,46 +259,46 @@
         <div class="container">
             <div class="row">
                 <!-- <div class="col-md-12">
-                                    <div class="title-section text-center">
-                                        
-                                        <div class="sub-title">
-                                   
-                                        </div>
+                                        <div class="title-section text-center">
+                                            
+                                            <div class="sub-title">
+                                       
+                                            </div>
 
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-4 col-sm-6">
-                                    <article class="post clearfix">
-                                        <div class="featured-post">
-                                            <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
-                                                    alt="image"></a>
+                                <div class="row">
+                                    <div class="col-lg-4 col-sm-6">
+                                        <article class="post clearfix">
+                                            <div class="featured-post">
+                                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                                        alt="image"></a>
 
-                                        </div>
+                                            </div>
 
-                                    </article>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <article class="post clearfix">
-                                        <div class="featured-post">
-                                            <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
-                                                    alt="image"></a>
+                                        </article>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <article class="post clearfix">
+                                            <div class="featured-post">
+                                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                                        alt="image"></a>
 
-                                        </div>
+                                            </div>
 
-                                    </article>
-                                </div>
-                                <div class="col-lg-4 col-sm-6">
-                                    <article class="post clearfix">
-                                        <div class="featured-post">
-                                            <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
-                                                    alt="image"></a>
+                                        </article>
+                                    </div>
+                                    <div class="col-lg-4 col-sm-6">
+                                        <article class="post clearfix">
+                                            <div class="featured-post">
+                                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                                        alt="image"></a>
 
-                                        </div>
+                                            </div>
 
-                                    </article>
-                                </div>-->
+                                        </article>
+                                    </div>-->
 
             </div>
         </div>
@@ -306,18 +306,17 @@
 
 
     <div class="modal fade " id="announcement_modal" style="padding-top: 5%;">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
-                        >&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <h3 align="center" id="announcement_heading"></h3>
                 <div class="modal-body clearfix">
 
                     <div class="row">
 
-                        <div class="col-md-8" >
+                        <div class="col-md-8">
                             <p id="announcement_content" align="justify"></p>
 
                         </div>

@@ -28,10 +28,6 @@
 .flat-product .featured-product .time, .flat-product .rate-product .heart  {
     background: #e8280b;
 }
-.flat-product .featured-product .time, .flat-product .rate-product .heart2  {
-    background: #d7d7d7;
-    color: #FFF;
-}
 
 .flat-tabs ul.menu-tab li, .listing-list .flat-product,.iconbox .box-header,.flat-product .featured-product img,
 .iconbox, .iconbox .box-header i, .iconbox .box-content .box-title, .fancybox:before,.client .featured-client:before,
@@ -397,7 +393,7 @@ section.flat-row.section-product {
     margin-right: -1px;
 }
 
-.flat-product .content-product .tm, .flat-product .rate-product .heart,.heart2 {
+.flat-product .content-product .tm, .flat-product .rate-product .heart {
     width: 43px;
     height: 43px;
     line-height: 45px;
@@ -407,13 +403,12 @@ section.flat-row.section-product {
     text-align: center;
 }
 
-.flat-product .rate-product .heart,.heart2 {
+.flat-product .rate-product .heart {
     position: absolute;
     right: -4px;
     top: -6px; 
     font-size: 16px;
 }
-
 
 .flat-product .rate-product .heart:hover {
     background-color: #d7d7d7;
@@ -576,9 +571,9 @@ section.flat-row.section-product {
     top: -29px;
 }
 
-/* .listing-list .flat-product .rate-product .heart:hover {
+.listing-list .flat-product .rate-product .heart:hover {
     background-color: #e8280b;
-} */
+}
 
 /* Client 
 -------------------------------------------------------------- */
@@ -608,11 +603,11 @@ section.flat-row.section-product {
     z-index: 1;
     -webkit-border-radius: 3px;
             border-radius: 3px;
-    background-color: rgba(0,0,0,0.7);
+   /* background-color: rgba(0,0,0,0.7);*/
 }
 
 .client:hover .featured-client:before {
-    background-color: rgba(232,40,11,0.8);
+  /* background-color: rgba(232,40,11,0.8);*/
 }
 
 .client .content-client {
@@ -1296,3 +1291,23 @@ section.flat-row.section-product {
 
 
 
+.flat-product .content-product .tm, .flat-product .rate-product .heart,.heart2 {
+    width: 43px;
+    height: 43px;
+    line-height: 45px;
+    color: #FFF;
+    -webkit-border-radius: 50%;
+            border-radius: 50%;
+    text-align: center;
+}
+
+.flat-product .rate-product .heart,.heart2 {
+    position: absolute;
+    right: -4px;
+    top: -6px; 
+    font-size: 16px;
+}
+.flat-product .featured-product .time, .flat-product .rate-product .heart2  {
+    background: #d7d7d7;
+    color: #FFF;
+}

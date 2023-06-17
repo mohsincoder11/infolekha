@@ -318,7 +318,6 @@ class SignUpController extends Controller
 
     {
 
-        if ($request->isMethod('post')) {
 
             $validator = Validator::make(
                 $request->all(),
@@ -328,7 +327,7 @@ class SignUpController extends Controller
                     'subject' => 'required',
                     'mob' => 'required|max:10',
                     'email' => 'required|string|email|max:255', //|unique:tutor_detail
-                    // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                     'cv' => 'required|max:2048',
 
                 ]
             );
@@ -340,16 +339,16 @@ class SignUpController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
+            $cv_file='';
+            if ($request->hasfile('cv')) {
+                $cv = time() . '.' . $request->file("cv")->getClientOriginalExtension();
+                $request->cv->move(public_path('database_files/tutor/cv'), $cv);
+                $cv_file='database_files/tutor/cv/' . $cv;
+            }
 
-            if ($validator->passes()) {
-
-
-                if (tutor_detail::where('user_id', auth::user()->id)->exists()) {
-                    return  redirect()->back();
-                }
-
-
-                $inst = tutor_detail::create([
+                $inst = tutor_detail::updateOrCreate(
+                    ['user_id'=>auth::user()->id],
+                [
                     'name' => $request->get('name'),
                     'subject' => $request->get('subject'),
                     'experiance' => $request->get('experiance'),
@@ -361,15 +360,10 @@ class SignUpController extends Controller
                     'declaration' => $request->get('declaration'),
                     'user_id' => auth::user()->id,
                     'subscription_status' => 0,
-                    'activate' => 0
-
-
-
-
+                    'cv'=>$cv_file
                 ]);
+                user_tutor::where('user_id',auth::user()->id)->update(['r_name'=>$request->get('name')]);
                 return redirect('payment_form');
-            }
-        }
     }
 
     public function student_detail_update(request $request)
