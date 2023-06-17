@@ -21,5 +21,6 @@ class tutor_detail extends Model
         'declaration',
         'user_id',
         'subscription_status',
+        'cv'
     ];
 }

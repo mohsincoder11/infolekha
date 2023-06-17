@@ -15,6 +15,9 @@ use App\Models\User;
 use App\Models\school_institute_detail;
 use App\Models\PostResult;
 use App\Models\Advertisement;
+use App\Models\AdvertisementPackage;
+use App\Models\AnnouncementPackage;
+use App\Models\JobVacancyApplied;
 
 class SchoolProfile extends Controller
 {
@@ -99,8 +102,17 @@ class SchoolProfile extends Controller
    public function create_job_vacancy(Request $request)
    {
       $vacancies = JobVacancy::where('college_id', Auth::user()->id)->orderby('id', 'desc')->get();
-      return view('Website.school_profile.create_job_vacancy', compact('vacancies'));
+      return view('Website.school_profile.job.create_job_vacancy', compact('vacancies'));
+   } 
+   
+   public function view_applied_job(Request $request)
+   {
+      $vacancy = JobVacancy::where('college_id', Auth::user()->id)->where('id',$request->job_id)->orderby('id', 'desc')->first();
+      $applied_jobs=JobVacancyApplied::where('job_vacancy_id',$request->job_id)->where('college_id', Auth::user()->id)->get();
+      return view('Website.school_profile.job.view_applied_job', compact('vacancy','applied_jobs'));
    }
+
+   
    public function insert_create_job_vacancy(Request $request)
    {
       $validator = Validator::make(
@@ -132,13 +144,13 @@ class SchoolProfile extends Controller
          'scope_of_work' => $request->scope_of_work,
          'college_id' => Auth::user()->id,
       ]);
-      return redirect()->back()->with(['success' => 'Record inserted successfully.']);
+      return redirect()->back()->with(['success' => 'Job created successfully.']);
    }
 
    public function delete_job_vacancy(Request $request)
    {
       JobVacancy::where('id', $request->id)->delete();
-      return redirect()->back()->with(['success' => 'Record deleted successfully.']);
+      return redirect()->back()->with(['success' => 'Job deleted successfully.']);
    }
 
    public function post_result(Request $request)
@@ -178,12 +190,12 @@ class SchoolProfile extends Controller
       $post_result->start_year = $years[0];
       $post_result->end_year = $years[1];
       $post_result->save();
-      return redirect()->back()->with(['success' => 'Record inserted successfully.']);
+      return redirect()->back()->with(['success' => 'Result inserted successfully.']);
    }
    public function destroy_post_result($id)
    { {
          PostResult::where('id', $id)->delete();
-         return redirect()->back()->with(['success' => 'Record deleted successfully.']);
+         return redirect()->back()->with(['success' => 'Result deleted successfully.']);
       }
    }
 
@@ -222,8 +234,55 @@ class SchoolProfile extends Controller
 
    public function post_advertisement(Request $request)
    {
+      
+      // AnnouncementPackage::create([
+      //    'PackageName' =>'For 1-9 Days',
+      //    'OriginalPrice' =>'10',
+      //    'Discount'=>'50',
+      //    'MinDays'=>'1',
+      //    'MaxDays' =>'9',
+         
+      // ]);
+
+      // AnnouncementPackage::create([
+      //    'PackageName' =>'For 10-29 Days',
+      //    'OriginalPrice' =>'9',
+      //    'Discount'=>'50',
+      //    'MinDays'=>'10',
+      //    'MaxDays' =>'29',
+         
+      // ]);
+
+      // AnnouncementPackage::create([
+      //    'PackageName' =>'For More than 30 Days',
+      //    'OriginalPrice' =>'7',
+      //    'Discount'=>'50',
+      //    'MinDays'=>'30',
+      //    'MaxDays' =>'365',
+         
+      // ]);
+      // return 1;
       $announcements = Advertisement::where('college_id', Auth::user()->id)->orderby('id', 'desc')->get();
-      return view('Website.school_profile.advertisement', compact('announcements'));
+      return view('Website.school_profile.advertisement.advertisement', compact('announcements'));
+   }
+
+   public function get_advertisement_size(Request $request){
+      $options = ' <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
+      id="advertisement_size"><option value="">Select Size</option>';
+      $advertisements = AdvertisementPackage::where('location', $request->location)->distinct()->get(['BannerWidth', 'BannerHeight']);
+      foreach ($advertisements as $advertisement) {
+         $options .= '<option>' . $advertisement->BannerWidth . '-' . $advertisement->BannerHeight . '</option>';
+      }
+      $options .'</select>';
+      return response()->json($options);
+   }
+
+   public function get_advertisement_cards(Request $request){
+      $size=explode('-',$request->size);
+      $advertisements = AdvertisementPackage::where('BannerWidth', $size[0])->where('BannerHeight', $size[1])->get();
+      $view=view('Website.school_profile.advertisement.packages')->with(['advertisements'=>$advertisements])->render();
+      return response()->json($view);
+
    }
 
    public function insert_advertisement(Request $request)

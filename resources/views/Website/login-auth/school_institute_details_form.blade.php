@@ -496,7 +496,7 @@ $streams=get_college_stream();
                                                     <div class="form-group">
                                                         <div class="row policy_checkbox_class" style="margin-left: 1%;">
                                                            <input class="form-control-lable" type="checkbox" name="policy_checkbox" id="checkbox" style="margin-right: 1%;" >
-  <label for="checkbox">I have read and accepted the <spam style="color:#073D5F"  onclick="openPopup1()">Terms & Condition</spam></label>	
+                                                           <label for="checkbox">I have read and accepted the <spam style="color:#073D5F;cursor: pointer;"  onclick="openPopup1()">Terms & Condition</spam></label>	
 
 
                                                          </div>

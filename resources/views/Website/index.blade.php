@@ -31,7 +31,7 @@
 
     <section class="flat-row page-services" >
         <div class="container">
-            <h3 style="margin-bottom: 3%;margin-top: 4%;" align="center" class="p1">Find a Near You</h3>
+            <h3 style="margin-bottom: 3%;" align="center" class="p1">Find a Near You</h3>
             <div class="row">
                 <div class="col-md-1"></div>
 

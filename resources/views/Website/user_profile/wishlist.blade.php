@@ -20,7 +20,7 @@
                                 <tr>
                                     <th>Sr.no</th>
                                     <th>College Name</th>
-                                    <th>Add to Wishlist</th>
+                                    <th>Remove</th>
                                 </tr>
                                 @foreach($wishlists as $wishlist)
                                 <tr>

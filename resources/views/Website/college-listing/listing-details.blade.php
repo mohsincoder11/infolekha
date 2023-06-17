@@ -149,6 +149,11 @@
 
             }
         }
+		
+	
+
+
+    }
     </style>
     <!--border corner-->
     <style>
@@ -249,6 +254,76 @@ transform: scale(1.1);
 }
 
  </style>
+
+<!--modal-->  
+<style>
+ 
+ button a {
+    letter-spacing: 2px;
+ }
+ 
+ h1,
+ h2,
+ h3{
+    /* font-family: 'Oswald'; */
+    color: #fff;
+
+ }
+ 
+ span {
+    color: #4fe;
+ }
+ 
+ h2 {
+    /* letter-spacing: -2px; */
+    font-weight: 600;
+ }
+ 
+ h3 {
+    font-weight: 200;
+    color: #333333;
+    font-size: 19px;
+ }
+ 
+ .button-- {
+    float: right;
+    position: relative;
+    padding: 0;
+ }
+ 
+ .modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+ }
+ 
+ .btn {
+    border-radius: 0px !important;
+ }
+ 
+ #myModal--effect-zoomIn.modal.fade .modal-dialog {
+    -webkit-transform: scale(0.1);
+    -moz-transform: scale(0.1);
+    -ms-transform: scale(0.1);
+    transform: scale(0.1);
+    top: 120px;
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+ }
+ 
+
+  
+ </style>
+<!--modal end-->
 @stop
 @section('website_content')
 
@@ -597,15 +672,11 @@ transform: scale(1.1);
                                     {{$details->email ?? ''}}
                                 </a>
                                 </li><br>
+								 <div class="wrapper" >
+                                         <button type="button"  class=" login-btn effect-button " data-toggle="modal" data-target="#myModal"> <i class="fa fa-eye" aria-hidden="true"></i> View Jobs</button>
+                                    </div>  
 
-                                <!-- <span> <button type="button" id="logup-button" class=" login-btn effect-button">
-                                        <i class="fa fa-phone" aria-hidden="true"></i> Show
-                                        Number</button></span>&nbsp;&nbsp;
-
-                                <button type="button" id="logup-button" class=" login-btn effect-button"
-                                    onclick="location.href='#'"> <i class="fa fa-paper-plane"
-                                        aria-hidden="true"></i> Send
-                                    Enquiry</button><br> -->
+                               
 
 
                             </ul>
@@ -699,6 +770,107 @@ transform: scale(1.1);
             </div>
         </div>
     </div>
+
+   <!-- Modal -->
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document" >
+           <div class="modal-content">
+              <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title" id="myModalLabel" align="center">View Jobs</h4>
+              </div>
+              <div class="modal-body">
+
+                <form  method="post" action="#" class="form-profile ">
+                    <div class="row">
+        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-label">All</label>
+                              <select class="form-select select country-select" name="sellist1">
+                                <option>Select </option>
+                                <option>Teaching Staff</option>
+                                <option>Admin Staff</option>
+                              </select>
+                            </div>
+                          </div>
+        
+                      <div class="col-lg-6" >
+                          <div class="form-group">
+                            <label class="form-control-label">Name of Subject </label>
+                            <input type="text" class="form-control" placeholder="Name of Subject">
+                          </div>
+                        </div>
+                       
+                        <div class="col-lg-6" >
+                          <div class="form-group">
+                            <label class="form-control-label">Experience Required</label>
+                            <input type="text" class="form-control" placeholder="Experience Required">
+                          </div>
+                        </div>
+        
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Estimated Package </label>
+                            <input type="text" class="form-control" placeholder="Estimated Package">
+                          </div>
+                        </div>
+        
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                              <label class="form-label">Work Type</label>
+                              <select class="form-select select country-select" name="sellist1">
+                                <option>Select </option>
+                                <option>Part Time</option>
+                                <option>Full Time</option>
+                                <option>Remote</option>
+                                <option></option>
+                              </select>
+                            </div>
+                          </div>
+          
+        
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Post</label>
+                            <input type="text" class="form-control" placeholder="Post">
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Scope of work</label>
+                            <input type="text" class="form-control" placeholder="Scope of work">
+                          </div>
+                        </div>
+        
+                  
+                 
+                       
+                        <div class="col-lg-6">
+                          <div class="form-group">
+                            <label class="form-control-label">Skills Required </label>
+                            <input type="text" class="form-control" placeholder="Skills Required ">
+                          </div>
+                        </div>
+        
+                       
+                    
+                   
+                      <div class="update-profile" style="margin-left:42%;">
+                        <button type="button" class="btn btn-primary">Apply</button>
+                      </div>
+                    </div>
+                  </form>
+                      </div>
+              <!-- <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                 <button type="button" class="btn btn-primary">Save changes</button>
+              </div> -->
+           </div>
+        </div>
+     </div>
+  
+<!--modal end-->
 @stop
 
 @section('js')

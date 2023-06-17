@@ -107,7 +107,7 @@
                                             <td>
                                                 <a href="{{route('school_profile.destroy_post_result',$post_result->id)}}">
                                                     <button class="btn color-bg  float-btn" style="padding: 5px 25px;"><i
-                                                            class="fa fa-trash" aria-hidden="true"></i> Delete</button></a>
+                                                            class="fa fa-trash" aria-hidden="true"></i> </button></a>
                                             </td>
                                         </tr>
                                         @endforeach
