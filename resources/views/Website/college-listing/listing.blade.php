@@ -2,36 +2,36 @@
 @section('css')
     <style>
         /*   .sidebar {
-                      height: 100%;
-                      overflow: hidden;
-                    }*/
+                          height: 100%;
+                          overflow: hidden;
+                        }*/
 
         /*.marquee ul {
-                      list-style: none;
-                      padding: 0;
-                      margin: 0;
-                      animation: scroll 15s linear infinite;
-                      animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
+                          list-style: none;
+                          padding: 0;
+                          margin: 0;
+                          animation: scroll 15s linear infinite;
+                          animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
         }
 
         /*.marquee ul li {
-                      margin-bottom: 10px;
-                    }
+                          margin-bottom: 10px;
+                        }
 
-                    .marquee ul li img {
-                      display: block;
-                      max-width: 100%;
-                      height: auto;
-                    }
+                        .marquee ul li img {
+                          display: block;
+                          max-width: 100%;
+                          height: auto;
+                        }
 
-                    @keyframes scroll {
-                      0% {
-                        transform: translateY(0%);
-                      }
-                      100% {
-                        transform: translateY(-100%);
-                      }
-                    }*/
+                        @keyframes scroll {
+                          0% {
+                            transform: translateY(0%);
+                          }
+                          100% {
+                            transform: translateY(-100%);
+                          }
+                        }*/
     </style>
 
 
@@ -45,7 +45,7 @@
             /* background-color: #000; */
             position: relative;
             /* behavior: scroll;
-                         direction: up; */
+                             direction: up; */
         }
 
         /* nested div inside the container */
@@ -163,21 +163,27 @@
                                 <div class="col-lg-9">
                                     <div class="flat-select clearfix">
                                         <div class="float-left width100 clearfix" style="margin-top:3% !important">
-                                            <div class="row">
+                                        
+                                            {{-- <div class="row">
+                                                <div class="col-md-3 col-sm-6">
+                                                    <div class="sortby" style="padding-top:4px; ">
+                                                        <input type="text"  placeholder="enter city name" name="city_search" id="city_search">
+                                                    </div>
+                                                </div>
                                                 @if (request()->segment(2) && request()->segment(2) == 'School')
-                                                    <div class="col-md-2 col-sm-6">
+                                                    <div class="col-md-3 col-sm-6">
                                                         <div class="sortby" style="padding-top:4px; ">
                                                             <ul class="unstyled">
                                                                 <li class="current">
-                                                                    <label  class="title">
-                                                                    {{-- {{get_board_name(request()->board_type) ?? 'Type of Board'}} --}}
-                                                                    Type of Board
-                                                                    <i class="fa fa-angle-right"></i></label>
+                                                                    <label class="title">
+                                                                      
+                                                                        Type of Board
+                                                                        <i class="fa fa-angle-right"></i></label>
                                                                     <ul class="unstyled">
                                                                         @foreach ($school_type as $board_type)
                                                                             <li class="en">
-                                                                                <a @if(request()->board_type==$board_type->id) style="font-weight:bold;" @endif 
-                                                                                    href="{{ route('college_listing', ['type' => request()->segment(2) ? request()->segment(2) : '']) }}?board_type = {{$board_type->id}}"
+                                                                                <a @if (request()->board_type == $board_type->id) style="font-weight:bold;" @endif
+                                                                                    href="{{ route('college_listing', ['type' => request()->segment(2) ? request()->segment(2) : '']) }}?board_type = {{ $board_type->id }}"
                                                                                     title="">
                                                                                     <i class="fa fa-caret-right"></i>
                                                                                     {{ $board_type->type }}
@@ -193,141 +199,43 @@
                                                     </div>
                                                 @endif
 
+                                                @if (request()->segment(2) && request()->segment(2) == 'College')
                                                 <div class="col-md-2">
                                                     <div class="sortby" style="padding-top:4px; ">
                                                         <ul class="unstyled">
-                                                            <li class="current"> <label  class="title">Stream<i class="fa fa-angle-right"></i></label>
+                                                            <li class="current"> <label class="title">Stream<i
+                                                                        class="fa fa-angle-right"></i></label>
                                                                 <ul class="unstyled">
-                                                                    @foreach(get_college_stream() as $stream)
-                                                                    <li class="en">
-                                                                        <a @if(request()->stream==$stream) style="font-weight:bold;" @endif href="{{ route('college_listing', ['type' => request()->segment(3) ? request()->segment(3) : '']) }}?stream = {{$stream}}" title=""><i
-                                                                                class="fa fa-caret-right"></i>{{$stream}}</a>
-                                                                    </li>
+                                                                    @foreach (get_college_stream() as $stream)
+                                                                        <li class="en">
+                                                                            <a @if (request()->stream == $stream) style="font-weight:bold;" @endif
+                                                                                href="{{ route('college_listing', ['type' => request()->segment(3) ? request()->segment(3) : '']) }}?stream = {{ $stream }}"
+                                                                                title=""><i
+                                                                                    class="fa fa-caret-right"></i>{{ $stream }}</a>
+                                                                        </li>
                                                                     @endforeach
-                                                                   
+
                                                                 </ul>
                                                             </li>
                                                         </ul>
                                                     </div>
 
                                                 </div>
+                                                @endif
 
-                                                {{-- <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#" title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="sortby" style="padding-top:4px; ">
-                                                        <ul class="unstyled">
-                                                            <li class="current"><a href="#" class="title">Type of
-                                                                    Board<i class="fa fa-angle-right"></i></a>
-                                                                <ul class="unstyled">
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Open Now</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Most
-                                                                            reviewed</a></li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Top rated</a>
-                                                                    </li>
-                                                                    <li class="en"><a href="#"
-                                                                            title=""><i
-                                                                                class="fa fa-caret-right"></i>Random</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-
-                                                </div> --}}
-                                            </div>
+                                              
+                                            </div> --}}
 
 
 
 
                                         </div>
                                         <!-- <div class="float-right">
-                                                                <div class="flat-sort">
-                                                                   <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
-                                                                    <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
-                                                                </div>
-                                                            </div> -->
+                                                                    <div class="flat-sort">
+                                                                       <a href="listing-list.html" class="course-list-view active"><i class="fa fa-list"></i></a>
+                                                                        <a href="listing-grid.html" class="course-grid-view "><i class="fa fa-th"></i></a>
+                                                                    </div>
+                                                                </div> -->
                                     </div>
                                     @forelse ($college_list as $anno)
 
@@ -366,8 +274,8 @@
 
                                                                 </a>
                                                             @else
-                                                                <a href="{{ route('like-login-redirect') }}"
-                                                                    class="heart" style="margin-top:3% ! important;">
+                                                                <a href="{{ route('like-login-redirect') }}" class="heart"
+                                                                    style="margin-top:3% ! important;">
                                                                     <i class="ion-android-favorite-outline heart-icon"></i>
 
                                                                 </a>
@@ -419,7 +327,7 @@
                                             </div>
 
                                         </div>
-                                        @empty
+                                    @empty
                                         <div class="listing-list">No Records Found</div>
                                     @endforelse
 
@@ -432,8 +340,7 @@
                                                 </div>
 
                                                 <div class="modal-body text-center clearfix">
-                                                    <label class="form-label"
-                                                        style="color:#073D5F; font-size:20px; ">Mobile
+                                                    <label class="form-label" style="color:#073D5F; font-size:20px; ">Mobile
                                                         Number</label><br>
                                                     <label style="color: black;" id="mobile_number"></label>
                                                 </div>
@@ -458,16 +365,18 @@
                                         </div>
                                     </div> --}}
 
+                                @if(auth()->check() && auth()->user()->role=='2' && auth()->user()->tutordetail->subscription_status=='0')
                                     <div id="popup2" class="popup2">
                                         <div class="popup-content">
                                             <span class="close2">&times;</span>
-                                            <h2>10 Vacancies are available in your area</h2>
+                                            <h2>{{vacancy_count()}} Vacancies are available in your area</h2>
                                             <p>Apply now!</p>
                                             <div class="center">
-                                                <a href="redirect-url">Click here for details</a>
+                                                <a href="{{route('tutor_subscription')}}">Click here for details</a>
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
 
 
                                     <div class="modal fade flat-popupform" id="popup_register">
@@ -520,11 +429,23 @@
                                 <div class="col-lg-3" style="margin-top:7%;">
                                     <div class="sidebar">
                                         <div class=" widget widget-form style2 ">
+                                            @foreach ($advertisements as $advertisement)
+                                                <span><img class="listing_image"
+                                                        src="{{ asset('public/' . $advertisement->image) }}"
+                                                        alt="image">
+                                                </span>
+                                                <br>
+                                                <br>
+                                            @endforeach
+
+                                        </div>
+
+                                        {{-- <div class=" widget widget-form style2 ">
                                             <span><img src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
 
 
 
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div><!-- /.col-md-3 -->
@@ -545,7 +466,28 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            //$("#popup2").css('display','flex');
+
+            var autocomplete2 = new google.maps.places.Autocomplete(
+                 (document.getElementById('city_search')), {
+                     types: ['(cities)']
+                 });
+
+             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+             autocomplete2.setComponentRestrictions({
+                 'country': 'in'
+             });
+             autocomplete2.addListener('place_changed', function() {
+                 var place = autocomplete2.getPlace();
+                 var address = place.formatted_address;
+                 var city_name = address.substr(0, address.indexOf(',')).trim();
+                 $("#city_search").val(city_name);
+                 localStorage.setItem('city_search', city_name);
+                 //stored_city_function(city_name);
+
+             });
+
+
+            $("#popup2").css('display','flex');
             $(".close2").click(function() {
                 $("#popup2").hide();
             });

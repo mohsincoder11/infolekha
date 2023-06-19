@@ -58,9 +58,10 @@
             color: #a1a0a0 !important;
 
         }
+
         .swal2-toast .swal2-title {
-    font-size: 14px!important;
-  }
+            font-size: 14px !important;
+        }
     </style>
     @yield('css')
     @stack('css2')
@@ -327,13 +328,14 @@
                                 <li>
                                     <a
                                         class="submenu-link  
-                                @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement') sl_tog @endif"><i
+                                @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement' ||  $routeName == 'school_profile.announcement-package') sl_tog @endif"><i
                                             class="fa fa-angle-right user-profile-act"></i>Promote Your
                                         {{ Auth::user()->entity_type }}
                                     </a>
-                                    <ul class="no-list-style"  @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement') style="display:block" @endif>
+                                    <ul class="no-list-style"
+                                        @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement' ||  $routeName == 'school_profile.announcement-package') style="display:block" @endif>
                                         <li><a href="{{ route('school_profile.post_announcement') }}"
-                                                @if ($routeName == 'school_profile.post_announcement') class="user-profile-act" @endif><i
+                                                @if ($routeName == 'school_profile.post_announcement' ||  $routeName == 'school_profile.announcement-package') class="user-profile-act" @endif><i
                                                     class="fal fa-bullhorn"></i> Post a Announcement </a></li>
                                         <li><a href="{{ route('school_profile.post_advertisement') }}"
                                                 @if ($routeName == 'school_profile.post_advertisement') class="user-profile-act" @endif> <i
@@ -358,6 +360,12 @@
                                     </a>
 
                                 </li>
+                                <li>
+                                    <a href="{{ route('activate_profile') }}"
+                                        @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
+                                            class="fal fa-unlock"></i>Activate Profile</a>
+    
+                                </li>
                             @endif
 
 
@@ -374,6 +382,8 @@
                                         class="fal fa-key"></i>Change Password</a>
 
                             </li>
+
+                           
 
                             <li>
                                 <a href="#" class="disable-li"><i class="fa fa-cloud-download"></i>Download
@@ -439,55 +449,50 @@
             "Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character."
         );
     </script>
-    @yield('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
-    @if(session()->has('success'))
     <script>
-           const Toast = Swal.mixin({
- toast: true,
- position: 'bottom',
- showConfirmButton: false,
- timer: 4000,
- background:'#000',
- color:'#fff',
- timerProgressBar: true,
- didOpen: (toast) => {
-   toast.addEventListener('mouseenter', Swal.stopTimer)
-   toast.addEventListener('mouseleave', Swal.resumeTimer)
- }
-})
-
-Toast.fire({
- icon: 'success',
- title: "{{session()->get('success')}}"
-})
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'bottom',
+            showConfirmButton: false,
+            timer: 4000,
+            background: '#000',
+            color: '#fff',
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
     </script>
-    @endif
+    @if (session()->has('success'))
+    <script>
+        Toast.fire({
+            icon: 'success',
+            title: "{{ session()->get('success') }}"
+        })
+    </script>
+@endif
 
-@if(session()->has('error'))
+@if (session()->has('info'))
 <script>
-      const Toast = Swal.mixin({
-toast: true,
-position: 'bottom',
-showConfirmButton: false,
-timer: 4000,
-background:'#000',
-color:'#fff',
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
-
-Toast.fire({
-icon: 'error',
-title: "{{session()->get('error')}}"
-})
+    Toast.fire({
+        icon: 'info',
+        title: "{{ session()->get('info') }}"
+    })
 </script>
+@endif
 
+    @if (session()->has('error'))
+        <script>
+            Toast.fire({
+                icon: 'error',
+                title: "{{ session()->get('error') }}"
+            })
+        </script>
     @endif
+    @yield('js')
+
 </body>
 
 </html>

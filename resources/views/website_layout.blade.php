@@ -693,6 +693,11 @@
      .swal2-toast .swal2-title {
          font-size: 14px !important;
      }
+     .listing_image{
+            border: 1px solid #eaeaea;
+            border-radius: 2px;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
  </style>
 
  @yield('css')
@@ -1194,7 +1199,7 @@
              toast: true,
              position: 'bottom',
              showConfirmButton: false,
-             timer: 40000,
+             timer: 4000,
              background: '#000',
              color: '#fff',
              timerProgressBar: true,
@@ -1205,13 +1210,24 @@
          })
      </script>
      @if (session()->has('success'))
-         <script>
-             Toast.fire({
-                 icon: 'success',
-                 title: "{{ session()->get('success') }}"
-             })
-         </script>
-     @endif
+     <script>
+        Toast.fire({
+            icon: 'success',
+            title: "{{ session()->get('success') }}"
+        })
+    </script>
+@endif
+
+@if (session()->has('info'))
+<script>
+   Toast.fire({
+       icon: 'info',
+       title: "{{ session()->get('info') }}"
+   })
+</script>
+@endif
+
+
 
      @if (session()->has('error'))
          <script>

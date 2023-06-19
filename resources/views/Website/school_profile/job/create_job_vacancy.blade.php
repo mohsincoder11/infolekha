@@ -197,12 +197,6 @@
                 }
             })
 
-
-
-
-
-
-
             jQuery.validator.addMethod("decimal", function(value, element) {
                 // Regular expression to match decimal values
                 var decimalRegex = /^\d+(\.\d+)?$/;

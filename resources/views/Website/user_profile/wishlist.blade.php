@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>
-                                        <a href="{{route('listing-details',$wishlist->college_id)}}">
+                                        <a target="_blank" href="{{route('listing-details',$wishlist->college_id)}}">
                                         {{$wishlist->college_name}}
                                     </a>
                                     </td>

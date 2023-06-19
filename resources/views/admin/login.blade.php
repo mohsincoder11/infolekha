@@ -49,6 +49,10 @@
       padding: 10px;
       cursor: pointer;
     }
+    .error {
+            color: #ff0202 !important;
+            font-size: 14px !important;
+        }
   </style>
 </head>
 <body>
