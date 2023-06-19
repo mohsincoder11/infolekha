@@ -9,6 +9,7 @@ class user_tutor extends Model
 {
     use HasFactory;
     protected $table = "user_tutor";
+    protected $primaryKey ='user_tutor_id';
     protected $fillable = [
         'r_name',
         'mob',

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\Admin\AdvertisementController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Master\ClassController;
 use App\Http\Controllers\Master\CollegeController;
@@ -14,7 +15,7 @@ use App\Http\Controllers\EntityController;
 use App\Http\Controllers\WebsiteformController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Master\state_city;
-use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Master\BrochureController;
 use App\Http\Controllers\Master\SliderlinkController;
@@ -63,7 +64,10 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::post('activation', [AdminDashboardController::class, 'activation'])->name('activation');
 
     Route::get('logout', [AdminLoginController::class, 'logout'])->name('logout');
-
+    Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
+    Route::post('upload-advertisement', [AdvertisementController::class, 'uploadAdvertisement'])->name('upload-advertisement');
+    Route::post('change-advertisement-status', [AdvertisementController::class, 'ChangeAdvertisementStatus'])->name('change-advertisement-status');
+    
     //................Master...............//
 
     //class
@@ -133,6 +137,8 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
 
     //announcement
     Route::get('announcement', [AnnouncementController::class, 'index'])->name('announcement');
+    Route::post('change-announcement-status', [AnnouncementController::class, 'ChangeAnnouncementStatus'])->name('change-announcement-status');
+
     Route::post('create_announcement', [AnnouncementController::class, 'create'])->name('create_announcement');
     Route::get('edit-announcement/{id}', [AnnouncementController::class, 'edit'])->name('edit_announcement');
     Route::post('update_announcement', [AnnouncementController::class, 'update'])->name('update_announcement');
@@ -215,6 +221,8 @@ Route::post('tutor_detail_create/{data}', [SignUpController::class, 'tutor_detai
 
 
 Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('tutor_subscription', [LoginController::class, 'tutor_subscription'])->name('tutor_subscription');
+
 Route::post('login_submit', [LoginController::class, 'login_submit'])->name('login_submit');
 
 
@@ -246,6 +254,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::post('school_profile/insert_post_result',[SchoolProfile::class,'insert_post_result'])->name('school_profile.insert_post_result');
         Route::get('school_profile/destroy_post_result/{id}',[SchoolProfile::class,'destroy_post_result'])->name('school_profile.destroy_post_result');
         
+
         
 
         Route::get('school_profile/create_job_vacancy', [SchoolProfile::class, 'create_job_vacancy'])->name('school_profile.create_job_vacancy');
@@ -261,12 +270,19 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::get('school_profile/change_password', [SchoolProfile::class, 'change_password'])->name('school_profile.change_password');
         Route::get('school-profile/post-announcement', [SchoolProfile::class, 'post_announcement'])->name('school_profile.post_announcement');
         Route::post('insert-announcement', [SchoolProfile::class, 'insert_announcement'])->name('insert-announcement');
-        
+        Route::get('school-profile/announcement-package/{id}', [SchoolProfile::class, 'announcement_package'])->name('school_profile.announcement-package');
+        Route::post('pay-for-announcement', [SchoolProfile::class, 'pay_for_announcement'])->name('school_profile.pay-for-announcement');
+
+        Route::post('school-profile/payment-success', [SchoolProfile::class, 'payment_success'])->name('school_profile.payment-success');
+        Route::post('school-profile/payment-fail', [SchoolProfile::class, 'payment_fail'])->name('school_profile.payment-fail');
+
         Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
-        Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
-        Route::post('insert-advertisement', [SchoolProfile::class, 'insert_advertisement'])->name('insert-advertisement');
-        
+        Route::post('school_profile/insert-advertisement', [SchoolProfile::class, 'insert_advertisement'])->name('school_profile.insert-advertisement');
+       
     });
+
+    Route::get('activate_profile',[SchoolProfile::class,'activate_profile'])->name('activate_profile');
+
 
     Route::get('school-profile/get_advertisement_size', [SchoolProfile::class, 'get_advertisement_size'])->name('school_profile.get_advertisement_size');
     Route::get('school-profile/get_advertisement_cards', [SchoolProfile::class, 'get_advertisement_cards'])->name('school_profile.get_advertisement_cards');
@@ -276,20 +292,39 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     //school only route
     Route::group(['middleware' => ['role:3']], function () {
         Route::get('user-profile', [UserProfileController::class, 'home'])->name('user_profile.home');
-        Route::get('update-profile', [UserProfileController::class, 'update_profile'])->name('user_profile.update_profile');
-        Route::post('post-update-profile', [UserProfileController::class, 'post_update_profile'])->name('user_profile.post_update_profile');
+        Route::get('user-update-profile', [UserProfileController::class, 'update_profile'])->name('user_profile.update_profile');
+        Route::post('user-post-update-profile', [UserProfileController::class, 'post_update_profile'])->name('user_profile.post_update_profile');
         Route::get('user-wishlist', [UserProfileController::class, 'user_wishlist'])->name('user_profile.user_wishlist');
         Route::get('user-change-password', [UserProfileController::class, 'change_password'])->name('user_profile.user_change_password');
     });
-    Route::get('post-user-change-password', [UserProfileController::class, 'post_change_password'])->name('user_profile.post_user_change_password');
 
-    //school only route
+    //tutor only route
     Route::group(['middleware' => ['role:2']], function () {
         Route::get('tutor-profile', [TutorProfileController::class, 'home'])->name('tutor_profile.home');
+        Route::get('tutor-update-profile', [TutorProfileController::class, 'update_profile'])->name('tutor_profile.update_profile');
+        Route::post('tutor-post-update-profile', [TutorProfileController::class, 'post_update_profile'])->name('tutor_profile.post_update_profile');
+        Route::get('tutor-wishlist', [TutorProfileController::class, 'user_wishlist'])->name('tutor_profile.user_wishlist');
+        Route::get('tutor-change-password', [TutorProfileController::class, 'change_password'])->name('tutor_profile.user_change_password');
+        Route::get('job-applied', [TutorProfileController::class, 'job_applied'])->name('tutor_profile.job_applied');
+        Route::get('remove-job/{id}', [TutorProfileController::class, 'job_remove'])->name('tutor_profile.job_remove');
+
+        
     });
+
+
+    Route::get('post-user-change-password', [UserProfileController::class, 'post_change_password'])->name('user_profile.post_user_change_password');
+    Route::post('payfail', [WebsiteformController::class, 'payfail'])->name('payfail');
+Route::view('payfail-complete', 'Website.payfail')->name('payfail-complete');
+Route::post('success', [WebsiteformController::class, 'success'])->name('success');
+Route::view('success-complete', 'Website.success')->name('success-complete');
+
+
+
+   
 });
 Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
 
+Route::post('apply-for-job', [WebsiteformController::class, 'apply_for_job'])->name('apply-for-job');
 
 
 Route::get('like-login-redirect', [UserLikeFeedback::class, 'like_login_redirect'])->name('like-login-redirect');
@@ -315,10 +350,10 @@ Route::get('term', [WebsiteformController::class, 'term'])->name('term');
 
 Route::post('initiatePaymentAPI', [Easebuzzpay::class, 'initiatePaymentAPI'])->name('initiatePaymentAPI');
 
-Route::post('payfail', [WebsiteformController::class, 'payfail'])->name('payfail');
-Route::view('payfail-complete', 'Website.payfail')->name('payfail-complete');
-Route::post('success', [WebsiteformController::class, 'success'])->name('success');
-Route::view('success-complete', 'Website.success')->name('success-complete');
+// Route::post('payfail', [WebsiteformController::class, 'payfail'])->name('payfail');
+// Route::view('payfail-complete', 'Website.payfail')->name('payfail-complete');
+// Route::post('success', [WebsiteformController::class, 'success'])->name('success');
+// Route::view('success-complete', 'Website.success')->name('success-complete');
 
 
 Route::post('mail', [ContactController::class, 'mail'])->name('mail');

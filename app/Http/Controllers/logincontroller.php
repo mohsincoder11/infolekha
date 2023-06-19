@@ -44,9 +44,8 @@ class LoginController extends Controller
                         ->select('users.*', 'user_tutor.*')->where('user_tutor.user_id', auth::user()->id)->first();
                     return view('Website.login-auth.tutor_details_form', ['data' => $data]);
                 }
-
-                return view('Website.tutor_detail_edit', ['data' => $int]);
-            }
+            return redirect()->route('tutor_profile.home');
+}
                 else{
                     return redirect('payment_form');
 
@@ -64,7 +63,7 @@ class LoginController extends Controller
                 }
                     else{
                         if (transaction::where('user_id', Auth::user()->id)->where('transaction_status','success')->exists()) {
-                            return view('school_profile.index', ['data' => $int]);
+                            return redirect()->route('school_profile.home');
                         }
                         else {
                             return redirect('payment_form');
@@ -78,6 +77,14 @@ class LoginController extends Controller
             }
         }else{
             return redirect()->back()->with('error', 'Invalid Login Credentials.');
+
+        }
+    }
+
+    public function tutor_subscription(){
+        $check_subscribed=tutor_detail::where('user_id',Auth::user()->id)->first();
+        if($check_subscribed && $check_subscribed->subscription_status=='0'){
+            return redirect('payment_form')->with(['info'=>'Subscribe to get the jobs.']);
 
         }
     }

@@ -81,7 +81,7 @@
                     <a href="{{ route('college_listing', 'tutorjob') }}">
                         <div class="iconbox text-center">
                             <div class="box-header" style="margin-top:5px;">
-                                <i class="fa fa-check-square" aria-hidden="true"></i>
+                                <i class="fa fa fa-id-badge" aria-hidden="true"></i>
                             </div>
                             <div class="box-content">
                                 <div class="box-title"> Tutor Job

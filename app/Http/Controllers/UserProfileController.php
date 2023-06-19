@@ -90,7 +90,7 @@ class UserProfileController extends Controller
             $user->save();
             return redirect()->back()->with(['success'=>'Password has been changed.']);
         }else{
-            return redirect()->back()->with(['error'=>'Current password and existing password do not match.']);
+            return redirect()->back()->with(['error'=>'Existing password do not match.']);
 
         }
 

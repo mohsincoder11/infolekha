@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Master;
 
 use App\Http\Controllers\Controller;
-use App\Models\Master\Institute;
 use Illuminate\Http\Request;
 
 class InstitueController extends Controller
 {
     public function index()
     {
-        $cl = Institute::all();
+        $cl = [];
         return view('Master.institute', ['cl'=>$cl]);
     }
 

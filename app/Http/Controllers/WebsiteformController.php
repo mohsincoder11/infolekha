@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdvertisementEnquiry;
 use Illuminate\Http\Request;
 use App\Models\user_student;
 use App\Models\user_school_institute;
@@ -23,6 +24,9 @@ use App\Models\Master\Faculties;
 use App\Models\SchoolType;
 
 use App\Models\CollegelistingEnquiry;
+use App\Models\JobVacancy;
+use App\Models\JobVacancyApplied;
+use App\Models\PostResult;
 use DB;
 use Hash;
 use Session;
@@ -96,7 +100,25 @@ class WebsiteformController extends Controller
 
     public function college_listing(Request $request)
     {
-        $main_query = DB::table('user_school_institute_detail')
+        if($request->type=='tutorjob')
+        {
+            $main_query = DB::table('user_school_institute_detail')
+            ->join('job_vacancy', 'job_vacancy.college_id', '=', 'user_school_institute_detail.user_id')
+            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
+            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
+            ->where('users.active', '1')
+
+            ->where('user_school_institute_detail.subscription_status', '1')
+            ->select('user_school_institute_detail.*', 'user_school_institute.r_mob','users.logo')
+            ->groupby('users.id');
+
+            $college_list=$main_query ->paginate(10);
+
+           
+
+        }
+            else {
+                $main_query = DB::table('user_school_institute_detail')
             ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
             ->where('users.active', '1')
@@ -110,19 +132,22 @@ class WebsiteformController extends Controller
             if (isset($request->board_type) && $request->board_type != null) {
                 $college_list = $main_query
                     ->where('user_school_institute_detail.entity_select', $request->board_type);
-                   
             }
          else {
             $college_list =  $main_query;
              
         }
         $college_list=$main_query ->paginate(10);
+                    
+                }
+            
        // exit();
         $entities = Entity::orderby('entity','asc')->get();
         $school_type = SchoolType::get();
 
+        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('status','Active')->take(8)->get();
 
-        return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type]);
+        return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type,'advertisements'=>$advertisements]);
     }
 
     public function listing_details(Request $request)
@@ -134,14 +159,49 @@ class WebsiteformController extends Controller
         ->where('user_school_institute_detail.subscription_status', '1')
         ->select('user_school_institute_detail.*', 'user_school_institute.*')
         ->first();
+        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('status','Active')->take(8)->get();
+        $jobs=JobVacancy::where('college_id',$request->id)->orderby('id','desc')->get();
+        $past_results=PostResult::where('college_id',$request->id)->orderby('start_year','desc')->get();
         if( $details){
-            return view('Website.college-listing.listing-details', compact('details'));
+            return view('Website.college-listing.listing-details', compact('details','advertisements','jobs','past_results'));
         }
         else{
             return abort(404);
         }
     }
 
+    public function apply_for_job(Request $request){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'job_vacancy_id' => 'required',
+                'college_id' => 'required',
+            ]
+        );
+
+        if ($validator->fails()) {
+            //  return redirect()->back()->with('error',$validator->errors());
+            return  redirect()
+                ->back()
+                ->with(['error'=>'Something went wrong.']);
+        }
+        JobVacancyApplied::firstOrCreate(
+            [
+                'tutor_id'=>Auth::user()->id,
+                'job_vacancy_id'=>$request->job_vacancy_id,
+            ],
+            [
+                'tutor_id'=>Auth::user()->id,
+                'job_vacancy_id'=>$request->job_vacancy_id,
+                'college_id'=>$request->college_id,
+            ]
+            );
+            return  redirect()
+            ->back()
+            ->with(['success'=>'Job applied successfully.']);
+
+
+    }
     public function log_out()
     {
         Auth::logout();

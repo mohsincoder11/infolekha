@@ -114,6 +114,10 @@
 	.swal2-toast .swal2-title {
     font-size: 14px!important;
   }
+  .error {
+            color: #ff0202 !important;
+            font-size: 14px !important;
+        }
 </style>
 
 <body>
@@ -194,7 +198,7 @@
 					</li>
 				
 					<li>
-						<a href="add-advertiesment.html">
+						<a href="{{route('admin.advertisement')}}">
 							<div class="parent-icon"><i class="lni lni-circle-plus" style="font-size: 17px;"></i></i>
 							</div>
 							<div class="menu-title">Advertisement</div>
@@ -716,12 +720,12 @@
 <script src="{{asset('js/form-select2.js')}}"></script>
 <!--app JS-->
 <script src="{{asset('js/app.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+
 @yield('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
-@if(session()->has('success'))
-<script>
-	   const Toast = Swal.mixin({
+     <script>
+		 const Toast = Swal.mixin({
 toast: true,
 position: 'bottom',
 showConfirmButton: false,
@@ -734,6 +738,10 @@ toast.addEventListener('mouseenter', Swal.stopTimer)
 toast.addEventListener('mouseleave', Swal.resumeTimer)
 }
 })
+	 </script>
+@if(session()->has('success'))
+<script>
+	  
 
 Toast.fire({
 icon: 'success',
@@ -744,19 +752,6 @@ title: "{{session()->get('success')}}"
 
 @if(session()->has('error'))
 <script>
-  const Toast = Swal.mixin({
-toast: true,
-position: 'bottom',
-showConfirmButton: false,
-timer: 4000,
-background:'#000',
-color:'#fff',
-timerProgressBar: true,
-didOpen: (toast) => {
-toast.addEventListener('mouseenter', Swal.stopTimer)
-toast.addEventListener('mouseleave', Swal.resumeTimer)
-}
-})
 
 Toast.fire({
 icon: 'error',

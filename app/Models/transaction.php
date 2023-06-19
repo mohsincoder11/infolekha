@@ -18,6 +18,8 @@ class transaction extends Model
 'user_role',
 'transaction_id',
 'transaction_status',
+'type',
+'AnnouncementID'
     ];
 }
 

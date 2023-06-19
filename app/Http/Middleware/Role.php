@@ -19,8 +19,7 @@ class Role
   public function handle($request, Closure $next, String $role)
   {
     if (!Auth::check()) {
-      dd('here');
-      return redirect()->route('customerLogin');
+      return redirect()->route('index')->with(['error'=>'Please login to access the page.']);
     }
     $user = Auth::user();
     $roles = explode('|', $role);
@@ -29,6 +28,6 @@ class Role
       return $next($request);
     else
 
-      return redirect()->route('index');
+    return redirect()->route('index')->with(['error'=>'Please login to access the page.']);
   }
 }

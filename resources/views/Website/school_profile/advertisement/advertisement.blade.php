@@ -82,7 +82,7 @@
             padding: -16.7rem 1rem;
             outline: none;
             border-radius: 1rem;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #fff;
             border: none;
@@ -118,14 +118,15 @@
 
             <div class="col-md-12">
                 <div class="list-searh-input-wrap-title fl-wrap"></div>
+
                 <div class="block-box fl-wrap search-sb" id="filters-column">
-                    <div class="row" >
+                    <div class="row">
                         <div class="custom-form">
                             <div class="col-md-2"></div>
                             <div class="col-md-4">
                                 <label style="font-size:16px;">Select Location</label>
                                 <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
-                                    name="location" id="location">
+                                    id="location">
                                     <option>Select Option</option>
                                     <option value="home">On Home Page</option>
                                     <option value="listing">On Listing Page</option>
@@ -133,18 +134,18 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label style="font-size:16px;">Select Size(Pxl)</label>
-                               <span id="advertisement_area">
-                                <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
-      id="advertisement_size">
-                                </select>
-                               </span>
+                                <label style="font-size:16px;">Select Size(pxl)</label>
+                                <span id="advertisement_area">
+                                    <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
+                                        id="advertisement_size">
+                                    </select>
+                                </span>
                             </div>
 
 
                         </div>
 
-<span id="advertisement_div"></span>
+                        <span id="advertisement_div"></span>
 
                         {{-- @include('Website.school_profile.advertisement.packages') --}}
 
@@ -153,6 +154,66 @@
                 </div>
 
 
+            </div>
+
+            <div class="col-md-12" style="margin-top: 20px;">
+                <hr>
+            </div>
+
+            <div class="col-md-12">
+
+                <div class="row" style="margin-top:20px;">
+
+                    <table id="customers">
+                        <tr>
+                            <th>Sr.no</th>
+                            <th>Location</th>
+                            <th>Package Name</th>
+                            <th>Size</th>
+                            <th>Selected Days</th>
+                            <th>Amount</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+
+                        @foreach ($advertisements as $advertisement)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $advertisement->location=='home' ? 'Home Page' : 'Listing Page' }}</td>
+                                <td>{{ $advertisement->PackageName }}</td>
+                                <td>{{ $advertisement->BannerWidth }}*{{ $advertisement->BannerHeight }} pxl</td>
+                                <td>{{ $advertisement->SelectedDays>0 ? $advertisement->SelectedDays.' days' : $advertisement->SelectedDays.' day' }}</td>
+                                <td>{{ $advertisement->TotalAmount }}</td>
+                                <td>
+                                    @if(isset($advertisement->image))
+                                 <a href="{{asset('public/'.$advertisement->image)}}" target="_blank">
+                                     <img height="50" width="auto" src="{{asset('public/'.$advertisement->image)}}" alt="">
+                                 </a>
+                                     @else
+                                     Not Uploaded
+                                     @endif
+                                 </td>
+                                <td>{{ $advertisement->status }}</td>
+
+                                <td>
+                                    <a class="" href="#">
+                                        <i class="fal fa-trash"></i>
+                                    </a>
+                                  
+                                </td>
+
+                            </tr>
+                        @endforeach
+
+
+
+
+                    </table>
+
+
+
+                </div>
 
             </div>
         </div>
@@ -164,10 +225,10 @@
     <script>
         $(document).ready(function() {
 
-          $(document).on("change","#location", function() {
+            $(document).on("change", "#location", function() {
                 $.ajax({
-                  type: "get",
-                    url: "{{ route('school_profile.get_advertisement_size')}}",
+                    type: "get",
+                    url: "{{ route('school_profile.get_advertisement_size') }}",
                     data: {
                         location: $(this).val(),
                     },
@@ -180,10 +241,10 @@
                 })
             })
 
-            $(document).on("change","#advertisement_size", function() {
+            $(document).on("change", "#advertisement_size", function() {
                 $.ajax({
-                  type: "get",
-                    url: "{{ route('school_profile.get_advertisement_cards')}}",
+                    type: "get",
+                    url: "{{ route('school_profile.get_advertisement_cards') }}",
                     data: {
                         size: $(this).val(),
                     },
@@ -195,18 +256,38 @@
                 })
             })
 
-            $(document).on("change",".select_days", function() {
-              let selected_day=$(this).val();
-              console.log($(this).closest().find('input'));
-              let original_price=$(this).siblings('.original_price').val();
-              console.log(original_price);
-              $(this).closest('li').next('.card-element').find('.total_amount').text(original_price*selected_day);
-
+            $(document).on("change", ".select_days", function() {
+                let selected_day = $(this).val();
+                let original_price = $(this).siblings('.original_price').val();
+                $(this).closest('li').next('.card-element').find('.total_amount').text(original_price *
+                    selected_day);
+                $(this).closest('li').next('.card-element').find('.total_amount').val(original_price *
+                    selected_day);
+                if (selected_day && selected_day > 0) {
+                    $(this).closest("form").find(".no_of_days_error").html('');
+                }
             })
 
-            
+            $(document).on("click", ".btn-submit", function(e) {
+                e.preventDefault(); // Prevent the default form submission
 
-            
+                var formId = $(this).closest("form").attr("id");
+                let SelectedDays = $(this).closest("form").find(".select_days").val();
+                console.log(SelectedDays);
+                if (SelectedDays && SelectedDays > 0) {
+                    $(this).closest("form").submit();
+                    $(this).closest("form").find(".no_of_days_error").html('');
+
+                } else {
+                    $(this).closest("form").find(".no_of_days_error").html(
+                        '<label class="error">Please select no of days.<label>');
+                }
+
+            });
+
+
+
+
             $('.read-more-link').click(function(e) {
                 e.preventDefault();
                 var $container = $(this).closest('.text-container');

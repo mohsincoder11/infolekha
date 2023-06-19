@@ -41,13 +41,13 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-   
+   dd($exception);
         if ($exception instanceof \Exception) {
             if($exception instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException){
                 return abort('404');
             }
             if ($exception->getCode() == '0' && $exception->getmessage() == 'CSRF token mismatch.') {
-               return redirect()->route('login');
+               return redirect()->route('login')->with(['error'=>'Session expired. Please login.']);
             }
         }
         // if ($exception->getCode() == '0' && str_contains($exception->getmessage(),'syntax error') ){

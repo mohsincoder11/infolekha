@@ -20,4 +20,11 @@ class JobVacancy extends Model
         'scope_of_work',
         'college_id',
     ];
+
+    public function getCollegeDetailsAttribute(){
+        $college_details=user_school_institute::where('user_id',$this->college_id)->first();
+        return $college_details;
+    }
+
+
 }

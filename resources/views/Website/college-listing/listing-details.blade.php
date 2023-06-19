@@ -1,6 +1,6 @@
 @extends('website_layout')
 @section('css')
-   
+
     <style>
         .btn {
             border: none;
@@ -149,11 +149,11 @@
 
             }
         }
-		
-	
 
 
-    }
+
+
+        }
     </style>
     <!--border corner-->
     <style>
@@ -231,99 +231,176 @@
         }
     </style>
 
-<style>
-.rating-box {
-padding: 0 0 15px 0;
-text-align: center;
-}
+    <style>
+        .rating-box {
+            padding: 0 0 15px 0;
+            text-align: center;
+        }
 
-.rating-box .stars {
-display: flex;
-align-items: center;
-gap: 10px;
-}
-.stars i {
-font-size: 25px;
-color: #b5b8b1;
-transition: all 0.2s;
-cursor: pointer;
-}
-.stars i.active {
-color: #ffb851;
-transform: scale(1.1);
-}
+        .rating-box .stars {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
- </style>
+        .stars i {
+            font-size: 25px;
+            color: #b5b8b1;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
 
-<!--modal-->  
-<style>
- 
- button a {
-    letter-spacing: 2px;
- }
- 
- h1,
- h2,
- h3{
-    /* font-family: 'Oswald'; */
-    color: #fff;
+        .stars i.active {
+            color: #ffb851;
+            transform: scale(1.1);
+        }
+    </style>
 
- }
- 
- span {
-    color: #4fe;
- }
- 
- h2 {
-    /* letter-spacing: -2px; */
-    font-weight: 600;
- }
- 
- h3 {
-    font-weight: 200;
-    color: #333333;
-    font-size: 19px;
- }
- 
- .button-- {
-    float: right;
-    position: relative;
-    padding: 0;
- }
- 
- .modal-content {
-    position: relative;
-    background-color: #fff;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    border: 1px solid #999;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 0;
-    outline: 0;
-    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
- }
- 
- .btn {
-    border-radius: 0px !important;
- }
- 
- #myModal--effect-zoomIn.modal.fade .modal-dialog {
-    -webkit-transform: scale(0.1);
-    -moz-transform: scale(0.1);
-    -ms-transform: scale(0.1);
-    transform: scale(0.1);
-    top: 120px;
-    opacity: 0;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    transition: all 0.3s;
- }
- 
+    <!--modal-->
+    <style>
+        button a {
+            letter-spacing: 2px;
+        }
 
-  
- </style>
-<!--modal end-->
+        h1,
+        h2,
+        h3 {
+            /* font-family: 'Oswald'; */
+            color: #fff;
+
+        }
+
+        span {
+            color: #4fe;
+        }
+
+        h2 {
+            /* letter-spacing: -2px; */
+            font-weight: 600;
+        }
+
+        h3 {
+            font-weight: 200;
+            color: #333333;
+            font-size: 19px;
+        }
+
+        .button-- {
+            float: right;
+            position: relative;
+            padding: 0;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: #fff;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            border: 1px solid #999;
+            border: 1px solid rgba(0, 0, 0, .2);
+            border-radius: 0;
+            outline: 0;
+            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+            box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+        }
+
+        .btn {
+            border-radius: 0px !important;
+        }
+
+        #myModal--effect-zoomIn.modal.fade .modal-dialog {
+            -webkit-transform: scale(0.1);
+            -moz-transform: scale(0.1);
+            -ms-transform: scale(0.1);
+            transform: scale(0.1);
+            top: 120px;
+            opacity: 0;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+
+        .job-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 0 30px;
+        }
+
+        .job-card {
+            border: 1px solid #f0f0f0;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            background-color: #fffefe;
+            transition: transform 0.2s;
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .job-card h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .job-card p {
+            margin: 0;
+            color: #666;
+        }
+
+        .job-card .company {
+            font-weight: bold;
+        }
+
+        .job-card .location {
+            color: #888;
+        }
+
+        .job-card .description {
+            margin-top: 10px;
+        }
+
+        .job-card button {
+            margin: 10px 0;
+            display: inline-block;
+            padding: 8px 16px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+        .job-card .apply-btn {
+            background-color: #007bff;
+        }
+
+        .job-card .apply-btn1 {
+            background-color: #5e5e5e;
+
+        }
+
+        .job-card .apply-btn2 {
+            background-color: #5e5e5e;
+
+        }
+
+        .job-card .apply-btn3 {
+            background-color: #5e5e5e;
+
+        }
+
+        .job-card .apply-btn:hover {
+            background-color: #0056b3;
+        }
+        .job-card button i {
+    margin-right: 8px;
+  }
+    </style>
+    <!--modal end-->
 @stop
 @section('website_content')
 
@@ -344,7 +421,7 @@ transform: scale(1.1);
                                         </h4>
                                         @if (auth()->check())
                                             <a class="heart2 like_college {{ check_if_like($details->user_id) }}"
-                                                college_id="{{ $details->user_id }}" >
+                                                college_id="{{ $details->user_id }}">
                                                 <i class="ion-android-favorite-outline heart-icon"></i>
 
                                             </a>
@@ -417,9 +494,9 @@ transform: scale(1.1);
                                                 9:30 am - 12:30 pm</p> 
                                                 <p >Sun
                                                     Closed - Closed</p> --}}
-                                                    <p>
-                                                        {{ $details->opening_time }} - {{ $details->closing_time }}  
-                                                    </p>
+                                                <p>
+                                                    {{ $details->opening_time }} - {{ $details->closing_time }}
+                                                </p>
                                             </div>
 
                                         </div>
@@ -437,7 +514,7 @@ transform: scale(1.1);
 
                             <h5 class="title-listing">About Us</h5>
 
-                            <p>{!!$details->about!!}.</p><br>
+                            <p>{!! $details->about !!}.</p><br>
                         </div>
 
                         <section class="flat-row section-client">
@@ -454,15 +531,15 @@ transform: scale(1.1);
                                     <div class="col-md-12">
                                         <div class="flat-client" data-item="4" data-nav="true" data-dots="false"
                                             data-auto="false">
-                                            @foreach(json_decode($details->image) as $i)
-                                            <div class="client">
-                                                <div class="featured-client">
-                                                    <img src="{{asset('public').'/'.$i}}" alt="image">
-                                                </div>
+                                            @foreach (json_decode($details->image) as $i)
+                                                <div class="client">
+                                                    <div class="featured-client">
+                                                        <img src="{{ asset('public') . '/' . $i }}" alt="image">
+                                                    </div>
 
-                                            </div>
+                                                </div>
                                             @endforeach
-                                            
+
                                         </div><!-- /.flat-client -->
                                     </div>
                                 </div>
@@ -483,17 +560,22 @@ transform: scale(1.1);
                                     <div class="col-md-12">
                                         <div class="flat-client" data-item="4" data-nav="true" data-dots="false"
                                             data-auto="false">
-                                            @foreach(json_decode($details->video) as $i)
-                                            <div class="client">
-                                                <div class="featured-client">
-                                                    <a target="_blank" href="{{ asset('public').'/'.$i }}" class="geodir-category-img_item">
-                                                        <iframe width="560" height="115" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                                    </a>
-                                                </div>
+                                            @foreach (json_decode($details->video) as $i)
+                                                <div class="client">
+                                                    <div class="featured-client">
+                                                        <a target="_blank" href="{{ asset('public') . '/' . $i }}"
+                                                            class="geodir-category-img_item">
+                                                            <iframe width="560" height="115"
+                                                                src="{{ asset('public') . '/' . $i }}" alt=""
+                                                                title="YouTube video player" frameborder="0"
+                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                                allowfullscreen></iframe>
+                                                        </a>
+                                                    </div>
 
-                                            </div>
+                                                </div>
                                             @endforeach
-                                          
+
                                         </div><!-- /.flat-client -->
                                     </div>
                                 </div>
@@ -505,95 +587,108 @@ transform: scale(1.1);
                             <h5 class="title-listing" style="margin-bottom: 3%;">Facilities</h5>
                             <div class="wrap-list clearfix">
                                 <ul class="list float-left">
-                                    @if(json_decode($details->facilities))
-                                    @foreach(json_decode($details->facilities) as $i)
-                                    @if($loop->index%2==0)
-                                    <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
-                                    @endif
-                                    @endforeach
+                                    @if (json_decode($details->facilities))
+                                        @foreach (json_decode($details->facilities) as $i)
+                                            @if ($loop->index % 2 == 0)
+                                                <li><span><i class="fa fa-check"></i></span>{{ $i }}</li>
+                                            @endif
+                                        @endforeach
                                     @endif
 
                                 </ul>
                                 <ul class="list float-left">
-                                    @if(json_decode($details->facilities))
-                                    @foreach(json_decode($details->facilities) as $i)
-                                    @if($loop->index%2==1)
-                                    <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
-                                    @endif
-                                    @endforeach
+                                    @if (json_decode($details->facilities))
+                                        @foreach (json_decode($details->facilities) as $i)
+                                            @if ($loop->index % 2 == 1)
+                                                <li><span><i class="fa fa-check"></i></span>{{ $i }}</li>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 </ul>
-                              
+
                             </div>
 
                             <h3 class="title-listing">Courses</h3>
                             <div class="wrap-list clearfix">
                                 <ul class="list float-left">
-                                    @if(json_decode($details->course))
-                                    @foreach(json_decode($details->course) as $i)
-                                    @if($loop->index%2==0)
-                                    <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
-                                    @endif
-                                    @endforeach
+                                    @if (json_decode($details->course))
+                                        @foreach (json_decode($details->course) as $i)
+                                            @if ($loop->index % 2 == 0)
+                                                <li><span><i class="fa fa-check"></i></span>{{ $i }}</li>
+                                            @endif
+                                        @endforeach
                                     @endif
                                 </ul>
                                 <ul class="list float-left">
-                                    @if(json_decode($details->course))
-                                    @foreach(json_decode($details->course) as $i)
-                                    @if($loop->index%2==1)
-                                    <li><span><i class="fa fa-check"></i></span>{{$i}}</li>
-                                    @endif
-                                    @endforeach
+                                    @if (json_decode($details->course))
+                                        @foreach (json_decode($details->course) as $i)
+                                            @if ($loop->index % 2 == 1)
+                                                <li><span><i class="fa fa-check"></i></span>{{ $i }}</li>
+                                            @endif
+                                        @endforeach
                                     @endif
 
                                 </ul>
-                              
+
+                            </div>
+
+                            <h3 class="title-listing">Past Results</h3>
+                            <div class="wrap-list clearfix">
+                                @foreach ($past_results as $past_result)
+                                    <ul>
+                                        <li>
+                                            {{$past_result->start_year}}-{{$past_result->end_year}} <a target="_blank" href="{{asset('public/'.$past_result->file)}}">View File</a>
+                                        </li>
+                                    </ul>
+                                @endforeach
                             </div>
 
 
 
 
                             <div class="list-comment">
-                                <h5 class="title-listing">{{count($details->college_review )}} Reviews</h5>
+                                <h5 class="title-listing">{{ count($details->college_review) }} Reviews</h5>
                                 <div class="comments-area">
                                     <ol class="comment-list">
-                                       
-                                        @foreach( $details->college_review as $review)
-                                        <li class="comment">
-                                            <article class="comment-body clearfix">
-                                                <div class="comment-author">
-                                                    <img style="object-fit: cover;" width="46px" height="46px" src="{{asset('public/'.$review->logo)}}" alt="image">
-                                                </div><!-- .comment-author -->
-                                                <div class="comment-text">
-                                                    @php
-                                                    $filledStars = floor($review->rating);
-                                                    $hasHalfStar = ($rating_count - $filledStars) >= 0.5;
-                                                @endphp
-                                                    <div class="comment-metadata">
-                                                        <h5><a href="#">{{$review->name}}</a></h5>
-                                                        <p class="day">{{date('d/m/Y',strtotime($review->created_at))}}</p>
-                                                        <div class="flat-start">
-                                                            @for ($i = 1; $i <= 5; $i++)
-                                                            @if ($i <= $filledStars)
-                                                                <i class="fas fa-star"></i> 
-                                                            @elseif ($i == ($filledStars + 1) && $hasHalfStar)
-                                                                <i class="fas fa-star-half-alt"></i> 
-                                                            @else
-                                                                <i class="far fa-star"></i>
-                                                            @endif
-                                                        @endfor
-                                                        </div>
-                                                    </div><!-- .comment-metadata -->
-                                                    <div class="comment-content">
-                                                        <p>
-                                                            {{$review->comment}} </p>
-                                                    </div><!-- .comment-content -->
-                                                </div><!-- /.comment-text -->
-                                            </article><!-- .comment-body -->
-                                        </li><!-- #comment-## -->
+
+                                        @foreach ($details->college_review as $review)
+                                            <li class="comment">
+                                                <article class="comment-body clearfix">
+                                                    <div class="comment-author">
+                                                        <img style="object-fit: cover;" width="46px" height="46px"
+                                                            src="{{ asset('public/' . $review->logo) }}" alt="image">
+                                                    </div><!-- .comment-author -->
+                                                    <div class="comment-text">
+                                                        @php
+                                                            $filledStars = floor($review->rating);
+                                                            $hasHalfStar = $rating_count - $filledStars >= 0.5;
+                                                        @endphp
+                                                        <div class="comment-metadata">
+                                                            <h5><a href="#">{{ $review->name }}</a></h5>
+                                                            <p class="day">
+                                                                {{ date('d/m/Y', strtotime($review->created_at)) }}</p>
+                                                            <div class="flat-start">
+                                                                @for ($i = 1; $i <= 5; $i++)
+                                                                    @if ($i <= $filledStars)
+                                                                        <i class="fas fa-star"></i>
+                                                                    @elseif ($i == $filledStars + 1 && $hasHalfStar)
+                                                                        <i class="fas fa-star-half-alt"></i>
+                                                                    @else
+                                                                        <i class="far fa-star"></i>
+                                                                    @endif
+                                                                @endfor
+                                                            </div>
+                                                        </div><!-- .comment-metadata -->
+                                                        <div class="comment-content">
+                                                            <p>
+                                                                {{ $review->comment }} </p>
+                                                        </div><!-- .comment-content -->
+                                                    </div><!-- /.comment-text -->
+                                                </article><!-- .comment-body -->
+                                            </li><!-- #comment-## -->
                                         @endforeach
 
-                                      
+
 
                                     </ol><!-- .comment-list -->
 
@@ -609,7 +704,7 @@ transform: scale(1.1);
                                                         value="{{ auth()->check() ? auth()->user()->email : '' }}"
                                                         placeholder="Your Email" size="30" value=""
                                                         name="email">
-                                                        <span id="feedback_email"></span>
+                                                    <span id="feedback_email"></span>
 
                                                 </p>
 
@@ -617,7 +712,7 @@ transform: scale(1.1);
                                                     <input type="text"
                                                         value="{{ auth()->check() ? auth()->user()->name : '' }}"
                                                         placeholder="Your Name" aria-required="true" name="name">
-                                                        <span id="feedback_name"></span>
+                                                    <span id="feedback_name"></span>
 
 
 
@@ -632,13 +727,13 @@ transform: scale(1.1);
                                             <input type="hidden" name="rating" id="rating" value="0">
                                             <div class="rating-box">
                                                 <div class="stars">
-                                                  <i class="fas fa-star"></i>
-                                                  <i class="fas fa-star"></i>
-                                                  <i class="fas fa-star"></i>
-                                                  <i class="fas fa-star"></i>
-                                                  <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
                                                 </div>
-                                              </div>
+                                            </div>
 
                                             <p class="form-submit">
                                                 <button type="submit" class="comment-submit effect-button">Send
@@ -661,53 +756,62 @@ transform: scale(1.1);
                         <div class="widget widget-contact">
                             <h5 class="widget-title">Contact Us</h5>
                             <ul>
-                                <li class="adress">{{$details->address ?? ''}}</li>
+                                <li class="adress">{{ $details->address ?? '' }}</li>
                                 <li class="phone">
-                                    <a href="tel:{{$details->r_mob}}"">
-                                    {{$details->r_mob ?? ''}}
-                                </a>
+                                    <a href="tel:{{ $details->r_mob }}"">
+                                        {{ $details->r_mob ?? '' }}
+                                    </a>
                                 </li>
                                 <li class="email">
-                                    <a href="mailto:{{$details->email}}">
-                                    {{$details->email ?? ''}}
-                                </a>
+                                    <a href="mailto:{{ $details->email }}">
+                                        {{ $details->email ?? '' }}
+                                    </a>
                                 </li><br>
-								 <div class="wrapper" >
-                                         <button type="button"  class=" login-btn effect-button " data-toggle="modal" data-target="#myModal"> <i class="fa fa-eye" aria-hidden="true"></i> View Jobs</button>
-                                    </div>  
 
-                               
+                                @if (auth()->user()->role == '2' && count($jobs) > 0 && auth()->user()->tutordetail->subscription_status=='1')
+                                    <div class="wrapper">
+                                        <button type="button" class=" login-btn effect-button " data-toggle="modal"
+                                            data-target="#jobModal"> <i class="fa fa-eye" aria-hidden="true"></i> View
+                                            Jobs</button>
+                                    </div>
+                                @endif
+
+
 
 
                             </ul>
 
 
                             <div class="social-links">
-                                
-                                @if(isset($details->fb) && $details->fb!=null) 
-                                <a target="_blank" href="{{$details->fb}}"><i class="fab fa-facebook"></i></a>
-                               @endif
-                               @if(isset($details->insta) && $details->insta!=null) 
-                               <a target="_blank" href="{{$details->insta}}"><i class="fab fa-instagram"></i></a>
-                              @endif
-                               @if(isset($details->yt) && $details->yt!=null) 
-                               <a target="_blank" href="{{$details->yt}}"><i class="fab fa-youtube"></i></a>
-                              @endif
-                              @if(isset($details->google) && $details->google!=null) 
-                              <a target="_blank" href="{{$details->google}}"><i class="fab fa-google"></i></a>
-                             @endif
-                             @if(isset($details->website) && $details->website!=null) 
-                             <a target="_blank" href="{{URL::to($details->website)}}"><i class="fas fa-globe"></i></a>
-                            @endif
-                           
-                          
+
+                                @if (isset($details->fb) && $details->fb != null)
+                                    <a target="_blank" href="{{ $details->fb }}"><i class="fab fa-facebook"></i></a>
+                                @endif
+                                @if (isset($details->insta) && $details->insta != null)
+                                    <a target="_blank" href="{{ $details->insta }}"><i class="fab fa-instagram"></i></a>
+                                @endif
+                                @if (isset($details->yt) && $details->yt != null)
+                                    <a target="_blank" href="{{ $details->yt }}"><i class="fab fa-youtube"></i></a>
+                                @endif
+                                @if (isset($details->google) && $details->google != null)
+                                    <a target="_blank" href="{{ $details->google }}"><i class="fab fa-google"></i></a>
+                                @endif
+                                @if (isset($details->website) && $details->website != null)
+                                    <a target="_blank" href="{{ URL::to($details->website) }}"><i
+                                            class="fas fa-globe"></i></a>
+                                @endif
+
+
                             </div>
                         </div><br>
+                        @foreach ($advertisements as $advertisement)
+                            <img class="listing_image" src="{{ asset('public/' . $advertisement->image) }}"
+                                alt="image">
+                            <br>
+                            <br>
+                        @endforeach
 
-                        <img src="https://via.placeholder.com/290x220" alt="image"><br><br>
-                        <img src="https://via.placeholder.com/290x220" alt="image"><br><br>
-                        <img src="https://via.placeholder.com/290x220" alt="image"><br><br>
-                        <img src="https://via.placeholder.com/290x220" alt="image">
+
                     </div><!-- /.sidebar -->
 
 
@@ -771,106 +875,57 @@ transform: scale(1.1);
         </div>
     </div>
 
-   <!-- Modal -->
-     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document" >
-           <div class="modal-content">
-              <div class="modal-header">
-                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                 <h4 class="modal-title" id="myModalLabel" align="center">View Jobs</h4>
-              </div>
-              <div class="modal-body">
+    <!-- Modal -->
+    <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" align="center">View Jobs</h4>
+                </div>
+                <div class="modal-body">
 
-                <form  method="post" action="#" class="form-profile ">
                     <div class="row">
-        
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="form-label">All</label>
-                              <select class="form-select select country-select" name="sellist1">
-                                <option>Select </option>
-                                <option>Teaching Staff</option>
-                                <option>Admin Staff</option>
-                              </select>
-                            </div>
-                          </div>
-        
-                      <div class="col-lg-6" >
-                          <div class="form-group">
-                            <label class="form-control-label">Name of Subject </label>
-                            <input type="text" class="form-control" placeholder="Name of Subject">
-                          </div>
+                        <div class="job-list">
+                            @foreach ($jobs as $job)
+                                <div class="job-card">
+                                    <form action="{{ route('apply-for-job') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="job_vacancy_id" value="{{ $job->id }}">
+                                        <input type="hidden" name="college_id" value="{{ $job->college_id }}">
+                                        <h2>{{ ucfirst($job->vacancy_type) }}</h2>
+                                        <p class="company">{{ $job->college_details->r_name }}</p>
+
+                                        <button type="button" class="apply-btn1"><i
+                                                class="fa fa-book"></i>{{ ucfirst($job->subject_name) }}</button>
+                                        <button type="button" class="apply-btn2"><i
+                                                class="fa fa-suitcase"></i>{{ ucfirst($job->job_type) }}</button>
+                                        <button type="button" class="apply-btn3"><i
+                                                class="fa fa-calendar"></i>{{ $job->experience_required }}</button>
+
+                                        <br>
+                                        <button type="submit" class="apply-btn">Apply Now</button>
+                                    </form>
+                                </div>
+                            @endforeach
+
+
                         </div>
-                       
-                        <div class="col-lg-6" >
-                          <div class="form-group">
-                            <label class="form-control-label">Experience Required</label>
-                            <input type="text" class="form-control" placeholder="Experience Required">
-                          </div>
-                        </div>
-        
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label class="form-control-label">Estimated Package </label>
-                            <input type="text" class="form-control" placeholder="Estimated Package">
-                          </div>
-                        </div>
-        
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                              <label class="form-label">Work Type</label>
-                              <select class="form-select select country-select" name="sellist1">
-                                <option>Select </option>
-                                <option>Part Time</option>
-                                <option>Full Time</option>
-                                <option>Remote</option>
-                                <option></option>
-                              </select>
-                            </div>
-                          </div>
-          
-        
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label class="form-control-label">Post</label>
-                            <input type="text" class="form-control" placeholder="Post">
-                          </div>
-                        </div>
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label class="form-control-label">Scope of work</label>
-                            <input type="text" class="form-control" placeholder="Scope of work">
-                          </div>
-                        </div>
-        
-                  
-                 
-                       
-                        <div class="col-lg-6">
-                          <div class="form-group">
-                            <label class="form-control-label">Skills Required </label>
-                            <input type="text" class="form-control" placeholder="Skills Required ">
-                          </div>
-                        </div>
-        
-                       
-                    
-                   
-                      <div class="update-profile" style="margin-left:42%;">
-                        <button type="button" class="btn btn-primary">Apply</button>
-                      </div>
+
+
+
                     </div>
-                  </form>
-                      </div>
-              <!-- <div class="modal-footer">
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                 <button type="button" class="btn btn-primary">Save changes</button>
-              </div> -->
-           </div>
+                </div>
+                <!-- <div class="modal-footer">
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-primary">Save changes</button>
+                  </div> -->
+            </div>
         </div>
-     </div>
-  
-<!--modal end-->
+    </div>
+
+    <!--modal end-->
 @stop
 
 @section('js')
@@ -878,23 +933,23 @@ transform: scale(1.1);
         $(document).ready(function() {
 
 
-const stars = $('.stars i');
+            const stars = $('.stars i');
 
-// ---- ---- Stars ---- ---- //
-stars.click(function() {
-  const selectedStarIndex = stars.index(this);
-  $("#rating").val(parseInt(selectedStarIndex)+1);
-  stars.each(function(index) {
-    // ---- ---- Active Star ---- ---- //
-    if (index <= selectedStarIndex) {
-      $(this).addClass('active');
-    } else {
-      $(this).removeClass('active');
-    }
-  });
+            // ---- ---- Stars ---- ---- //
+            stars.click(function() {
+                const selectedStarIndex = stars.index(this);
+                $("#rating").val(parseInt(selectedStarIndex) + 1);
+                stars.each(function(index) {
+                    // ---- ---- Active Star ---- ---- //
+                    if (index <= selectedStarIndex) {
+                        $(this).addClass('active');
+                    } else {
+                        $(this).removeClass('active');
+                    }
+                });
 
- 
-});
+
+            });
 
 
             $(".send_enquiry_modal").on("click", function() {
@@ -926,53 +981,53 @@ stars.click(function() {
 
             })
 
-            
+
             $("#reviewform").validate({
-            rules: {
-                name: {
-                    required: true,
+                rules: {
+                    name: {
+                        required: true,
+                    },
+
+                    email: {
+                        required: true,
+                        customEmail: true,
+                    },
+                    comment: {
+                        required: true,
+                    },
                 },
-              
-                email: {
-                    required: true,
-                    customEmail:true,
+                messages: {
+                    name: {
+                        required: "This field is required.",
+                    },
+                    email: {
+                        required: "This field is required.",
+                        customEmail: "Please enter valid email address.",
+                    },
+                    comment: {
+                        required: "This field is required.",
+
+                    },
                 },
-                comment: {
-                    required: true,
+                submitHandler: function(form) {
+                    return true;
                 },
-            },
-            messages: {
-                name: {
-                    required: "This field is required.",
-                },
-                email: {
-                    required: "This field is required.",
-                    customEmail: "Please enter valid email address.",
-                },
-                comment: {
-                    required: "This field is required.",
-					
-                },
-            },
-            submitHandler: function(form) {
-                return true;
-            },
-            errorPlacement: function(error, element) {
-                
+                errorPlacement: function(error, element) {
 
 
-                if (element.attr("name") === "name") {
-                    error.appendTo($('#feedback_name'));
-                } 
-                if (element.attr("name") === "email") {
-                    error.appendTo($('#feedback_email'));
-                } 
-                if (element.attr("name") === "comment") {
-                    error.appendTo($('#feedback_comment'));
-                } 
-                
-            },
-        });
+
+                    if (element.attr("name") === "name") {
+                        error.appendTo($('#feedback_name'));
+                    }
+                    if (element.attr("name") === "email") {
+                        error.appendTo($('#feedback_email'));
+                    }
+                    if (element.attr("name") === "comment") {
+                        error.appendTo($('#feedback_comment'));
+                    }
+
+                },
+            });
         });
     </script>
 @stop

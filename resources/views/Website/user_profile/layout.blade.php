@@ -410,10 +410,8 @@
     </script>
     @yield('js')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    @if (session()->has('success'))
-        <script>
-            const Toast = Swal.mixin({
+<script>
+     const Toast = Swal.mixin({
                 toast: true,
                 position: 'bottom',
                 showConfirmButton: false,
@@ -426,6 +424,10 @@
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
             })
+</script>
+    @if (session()->has('success'))
+        <script>
+           
 
             Toast.fire({
                 icon: 'success',
@@ -436,19 +438,6 @@
 
     @if (session()->has('error'))
         <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'bottom',
-                showConfirmButton: false,
-                timer: 4000,
-                background: '#000',
-                color: '#fff',
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            })
 
             Toast.fire({
                 icon: 'error',

@@ -20,8 +20,6 @@ class Easebuzzpay extends Controller
         $validator = Validator::make($request->all(),
         [
         'amount'=>'required',
-        
-
         ]);
 
         if ($validator->fails())
