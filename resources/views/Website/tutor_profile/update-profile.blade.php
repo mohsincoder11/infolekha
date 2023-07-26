@@ -20,44 +20,36 @@
                                     <div class="custom-form">
 
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Name of Tutor <span class="dec-icon"><i
-                                                        class="fas fa-user"></i></span></label>
+                                            <label style="font-size:16px;">Name of Tutor </label>
                                             <input name="name" type="text" placeholder="Noory" value="{{$user_data->name}}" />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Subject <span class="dec-icon"> <i
-                                                        class="fa fa-book"></i></span></label>
+                                            <label style="font-size:16px;">Subject </label>
                                             <input name="subject" type="text" placeholder="English" value="{{$user_data->tutor_detail->subject}}"  />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Year of Experience <span class="dec-icon"> <i
-                                                        class="fa fa-table" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Year of Experience </label>
                                             <input name="experiance" type="text" placeholder="2-3" value="{{$user_data->tutor_detail->experiance}}"  />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Mobile <span class="dec-icon"><i
-                                                        class="fa fa-phone" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Mobile </label>
                                             <input name="mob" type="text" placeholder="987655988" value="{{$user_data->mob}}"  />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Email ID <span class="dec-icon"><i
-                                                        class="fa fa-envelope" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Email ID </label>
                                             <input name="email" type="text" placeholder="shiv12@gmail.com" value="{{$user_data->email}}"  />
                                         </div>
     
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Address <span class="dec-icon"> <i
-                                                        class="fa fa-map-marker" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Address </label>
                                             <input name="address" type="text" placeholder="Address" value="{{$user_data->address}}"  />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Pin Code <span class="dec-icon"> <i
-                                                        class="fa fa-location-arrow" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Pin Code </label>
                                             <input name="pin_code" type="text" placeholder="444604" value="{{$user_data->tutor_detail->pin_code}}"  />
                                         </div>
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Select Type <span class="dec-icon"> <i
-                                                        class="fa fa-briefcase" aria-hidden="true"></i></span></label>
+                                            <label style="font-size:16px;">Select Type </label>
                                             <select name="job_type" data-placeholder="Status"
                                                 class="chosen-select on-radius no-search-select">
                                                 <option @if($user_data->tutor_detail->job_type=='Full Time') selected @endif>Full Time</option>

@@ -28,31 +28,26 @@
 
 
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">Mobile <span class="dec-icon"><i
-                                                    class="fa fa-phone" aria-hidden="true"></i></span></label>
+                                        <label style="font-size:16px;">Mobile </label>
                                         <input type="text" placeholder="" name="mob" value="{{$user_data->mob}}" />
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">School <span class="dec-icon"><i
-                                                    class="fas fa-school"></i></span></label>
+                                        <label style="font-size:16px;">School </label>
                                         <input type="text" placeholder="" name="r_current_school_institute" value="{{$user_data->r_current_school_institute}}" />
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">Email ID <span class="dec-icon"><i
-                                                    class="fa fa-envelope" aria-hidden="true"></i></span></label>
+                                        <label style="font-size:16px;">Email ID </label>
                                         <input type="text" placeholder="" name="email" value="{{$user_data->email}}" />
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">Address <span class="dec-icon"> <i
-                                                    class="fa fa-map-marker" aria-hidden="true"></i></span></label>
+                                        <label style="font-size:16px;">Address </label>
                                         <input type="text" placeholder="" name="address" value="{{$user_data->address}}" />
                                     </div>
                                     {{-- <div class="col-md-6">
-                                        <label style="font-size:16px;">Pin Code <span class="dec-icon"> <i
-                                                    class="fa fa-location-arrow" aria-hidden="true"></i></span></label>
+                                        <label style="font-size:16px;">Pin Code </label>
                                         <input type="text" placeholder="" value="" />
                                     </div> --}}
                                     <div class="col-md-6">

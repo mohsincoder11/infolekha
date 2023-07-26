@@ -31,10 +31,10 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" style="">
 				<div class="col-md-1"></div>
                 <div class="col-md-10" style="padding-top:20px; padding-left:5%; padding-right:5%; padding-top:5%; padding-bottom:5%;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">	
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom:4%;">	
               <h6>Introduction</h6>
 <p align="justify">INFOlekha.org respects the privacy of its users and is committed to protecting their personal information. This Privacy Policy explains how INFOlekha.org collects, uses, and discloses personal information collected from users of the website.</p>
 <br>

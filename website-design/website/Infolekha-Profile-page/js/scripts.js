@@ -153,6 +153,8 @@ function initHomeradar() {
         slidesToShow: 3,
         dots: true,
         arrows: false,
+        prevArrow: '<i class="fas fa-arrow-left"></i>',
+        nextArrow: '<i class="fas fa-arrow-right"></i>',
         responsive: [{
                 breakpoint: 1024,
                 settings: {

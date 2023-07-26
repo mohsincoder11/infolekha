@@ -100,46 +100,42 @@ class WebsiteformController extends Controller
 
     public function college_listing(Request $request)
     {
-        if($request->type=='tutorjob')
-        {
-            $main_query = DB::table('user_school_institute_detail')
-            ->join('job_vacancy', 'job_vacancy.college_id', '=', 'user_school_institute_detail.user_id')
-            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-            ->where('users.active', '1')
-
-            ->where('user_school_institute_detail.subscription_status', '1')
-            ->select('user_school_institute_detail.*', 'user_school_institute.r_mob','users.logo')
-            ->groupby('users.id');
-
-            $college_list=$main_query ->paginate(10);
-
-           
-
-        }
-            else {
-                $main_query = DB::table('user_school_institute_detail')
-            ->join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
-            ->where('users.active', '1')
-            ->where('user_school_institute_detail.subscription_status', '1')
-            ->select('user_school_institute_detail.*', 'user_school_institute.*','users.logo');
-            if (isset($request->type) && $request->type != null) {
-                $college_list = $main_query
-                    ->where('user_school_institute.r_entity', $request->type);
-                   
-            }
-            if (isset($request->board_type) && $request->board_type != null) {
-                $college_list = $main_query
-                    ->where('user_school_institute_detail.entity_select', $request->board_type);
-            }
-         else {
-            $college_list =  $main_query;
-             
-        }
-        $college_list=$main_query ->paginate(10);
+      
+        $main_query = school_institute_detail::join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
+        ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
+        ->where('users.active', '1')
+        ->where('user_school_institute_detail.subscription_status', '1')
+        ->select('user_school_institute_detail.*', 'users.logo', 'users.city_id')
+        ->groupBy('users.id');
+    
+    if (isset($request->type) && $request->type != 'tutorjob' && $request->type != null) {
+        $main_query->where('user_school_institute.r_entity', $request->type);
+    }
+    
+    if (isset($request->tutor_vacancy) && $request->tutor_vacancy != 'All') {
+        $main_query->join('job_vacancy', 'users.id', '=', 'job_vacancy.college_id');
+    }
+    
+    if (isset($request->board_type) && $request->board_type != null) {
+        $main_query->where('user_school_institute_detail.entity_select', $request->board_type);
+    }
+    
+    if (isset($request->stream) && $request->stream != null) {
+        $main_query->where('user_school_institute_detail.entity_select', $request->stream);
+    }
+    
+    if (isset($request->city) && $request->city != null) {
+        City::firstOrCreate(['city' => $request->city], ['city' => $request->city]);
+        $city_id = DB::table('cities')->where('city', $request->city)->value('id');
+        $main_query->where('users.city_id', $city_id);
+    }
+    
+    $college_list = $main_query->paginate(10);
+    
+    // The $college_list variable now contains the paginated results based on the conditions
+    
                     
-                }
+                
             
        // exit();
         $entities = Entity::orderby('entity','asc')->get();
@@ -212,11 +208,70 @@ class WebsiteformController extends Controller
 
     public function send_mobile_verify_otp(Request $request)
     {
-        //   $otp = rand(1000, 9999);
+        $otp=$this->send_otp($request->mob);
+        return response()->json($otp);
+    }
+
+    public function send_forget_otp(Request $request)
+    {
+        $check_user_exist1=DB::table('user_student')->where('mob',$request->mob)->first();
+        if($check_user_exist1){
+            $otp=$this->send_otp($request->mob);
+            return response()->json(['user_id'=>$check_user_exist1->user_id,'status'=>true,'otp'=>$otp]);
+        }
+        else{
+            $check_user_exist2=DB::table('user_tutor')->where('mob',$request->mob)->first();
+            if($check_user_exist2){
+                $otp=$this->send_otp($request->mob);
+                return response()->json(['user_id'=>$check_user_exist2->user_id,'status'=>true,'otp'=>$otp]);
+            }else{
+                $check_user_exist3=DB::table('user_school_institute')->where('r_mob',$request->mob)->first();
+                if($check_user_exist3){
+                    $otp=$this->send_otp($request->mob);
+                    return response()->json(['user_id'=>$check_user_exist3->user_id,'status'=>true,'otp'=>$otp]);
+            }else{
+                return response()->json(['status'=>false,'otp'=>'User does not exist.']);
+            }
+        }
+
+    }
+    }
+
+    public function update_password_using_mobile(Request $request){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'password' => 'required',
+                'otp' => 'required',
+                'r_mob' => 'required',
+
+            ]
+        );
+
+        if ($validator->fails()) {
+            //  return redirect()->back()->with('error',$validator->errors());
+            return redirect()->back()->with(['error'=>'Please fill all the data.']);
+
+        }
+
+        $user=User::find($request->user_id);
+        if ($user) {
+            $user->password=Hash::make($request->new_password);
+            $user->save();
+            return redirect()->back()->with(['success'=>'Password has been updated.']);
+        }else{
+            return redirect()->back()->with(['error'=>'Existing password do not match.']);
+
+        }
+    }
+
+    function send_otp($mob){
+         //   $otp = rand(1000, 9999);
+            $otp = 1234;
         //   $name = 'customer';
         //   $msg = 'Dear ' . $name . ', Please enter this OTP ' . $otp . '. to verify your account. Thank you for choosing INFOlekha.org.';
         //   $msg = urlencode($msg);
-        //   $to = $request->mob;
+        //   $to = $mob;
         //   //$user->mobile;
         //   // $request->mobile;
         //   $data1 = "uname=habitm1&pwd=habitm1&senderid=ILEKHA&to=" .
@@ -228,9 +283,10 @@ class WebsiteformController extends Controller
         //   curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         //   $result = curl_exec($ch);
         //   curl_close($ch);
-        //   return response()->json($otp);
-        return response()->json(1234);
+        return $otp;
     }
+
+    
 
     public function val_form(Request $request)
     {
@@ -317,31 +373,39 @@ class WebsiteformController extends Controller
 
     public function role(Request $request)
     {
-        return view('Website.role-blog-5');
+       // return view('Website.role-blog-5');
+        return view('Website.blogs.blog-new5');
+
     }
 
     public function opportunites(Request $request)
     {
 
-        return view('Website.opportunites-after-10th-blog-1');
+        return view('Website.blogs.blog-new1');
     }
 
     public function choosing(Request $request)
     {
 
-        return view('Website.choosing-carrier-blog2');
+        //return view('Website.choosing-carrier-blog2');
+        return view('Website.blogs.blog-new2');
+
     }
 
     public function stratigic(Request $request)
     {
 
-        return view('Website.stratigic-blog3');
+       // return view('Website.stratigic-blog3');
+        return view('Website.blogs.blog-new3');
+
     }
 
     public function benifite(Request $request)
     {
 
-        return view('Website.benifite');
+       // return view('Website.benifite4');
+        return view('Website.blogs.blog-new4');
+
     }
 
     public function save_city(Request $request){

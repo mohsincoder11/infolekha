@@ -6,5 +6,5 @@
 
     </div>
     <a href="{{route('logout')}}" class="log-out-btn   tolt" data-microtip-position="bottom"
-        data-tooltip="Log Out"><i class="far fa-power-off"></i></a>
+        data-tooltip="Log Out"><i class="fa fa-power-off"></i></a>
 </div>

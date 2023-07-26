@@ -10,16 +10,28 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link href="{{ asset('website_asset/images/favicon.png') }}" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/bootstrap.css') }}">
 
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/plugins.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/dashboard-style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
+
+    
+{{-- 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
+--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" /> 
+
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
 
     <style>
+
         .error {
             color: #ff0202 !important;
             font-size: 14px !important;
@@ -62,6 +74,106 @@
         .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
+
+        .select2-container {
+  max-height: 100px;
+}
+
+.select2-results__option {
+  padding-right: 20px;
+  vertical-align: middle;
+}
+.select2-results__option:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #e9e9e9;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+.select2-results__option[aria-selected=true]:before {
+  font-family:fontAwesome;
+  content: "\f00c";
+  color: #fff;
+  background-color: #073D5F;
+  border: 0;
+  display: inline-block;
+  padding-left: 3px;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+	background-color: #fff;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: #eaeaeb;
+	color: #272727;
+}
+.select2-container--default .select2-selection--multiple {
+	margin-bottom: 10px;
+}
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+	border-radius: 4px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+	border-color: #073D5F;
+	border-width: 2px;
+}
+.select2-container--default .select2-selection--multiple {
+	border-width: 2px;
+    float: left;
+    border: 1px solid #e5e7f2;
+    background: #F5F7FB;
+    width: 100%;
+    padding: 2px 5px 4px 5px;
+    border-radius: 4px;
+    color: #7d93b2;
+    font-size: 12px;
+}
+.select2-container--open .select2-dropdown--below {
+	
+	border-radius: 6px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+}
+.select2-selection .select2-selection--multiple:after {
+	content: 'hhghgh';
+}
+/* select with icons badges single*/
+.select-icon .select2-selection__placeholder .badge {
+	display: none;
+}
+.select-icon .placeholder {
+/* 	display: none; */
+}
+.select-icon .select2-results__option:before,
+.select-icon .select2-results__option[aria-selected=true]:before {
+	display: none !important;
+	/* content: "" !important; */
+}
+.select-icon  .select2-search--dropdown {
+	display: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+   
+    height: 39px !important;
+    overflow: auto;
+}
+
+.slick-slide-item {
+    /* Set fixed dimensions for the slide item container */
+    width: 300px; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+}
+
+.slider-image {
+    width: 100% !important;
+    object-fit: contain !important;
+    height: 150px !important;
+}
+}
     </style>
     @yield('css')
     @stack('css2')
@@ -295,14 +407,12 @@
                 <div class="dashbard-menu-container">
                     <!-- user-profile-menu-->
                     <div class="user-profile-menu">
-                        <h3>Main
-                            @php
-                                $routeName = request()
-                                    ->route()
-                                    ->getName();
-                            @endphp
-
-                        </h3>
+                        {{-- <h3>Main</h3> --}}
+                        @php
+                        $routeName = request()
+                            ->route()
+                            ->getName();
+                    @endphp
                         <ul class="no-list-style">
                             <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a></li> -->
                             <li><a href="{{ route('school_profile.home') }}"
@@ -321,7 +431,7 @@
                                 <li>
                                     <a href="{{ route('school_profile.create_job_vacancy') }}"
                                         @if ($routeName == 'school_profile.create_job_vacancy') class="user-profile-act" @endif><i
-                                            class="fa fa-briefcase"></i>Create Job Vacancy</a>
+                                            class="fal fa-briefcase"></i>Create Job Vacancy</a>
 
                                 </li>
 
@@ -329,7 +439,7 @@
                                     <a
                                         class="submenu-link  
                                 @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement' ||  $routeName == 'school_profile.announcement-package') sl_tog @endif"><i
-                                            class="fa fa-angle-right user-profile-act"></i>Promote Your
+                                            class="fal fa-angle-right user-profile-act"></i>Promote Your
                                         {{ Auth::user()->entity_type }}
                                     </a>
                                     <ul class="no-list-style"
@@ -348,7 +458,7 @@
                                         Your
                                         Results</a></li>
                                 <li>
-                                    <a href="#" class="disable-li"><i class="fa fa-briefcase"></i>Create Job
+                                    <a href="#" class="disable-li"><i class="fal fa-briefcase"></i>Create Job
                                         Vacancy</a>
 
                                 </li>
@@ -386,7 +496,7 @@
                            
 
                             <li>
-                                <a href="#" class="disable-li"><i class="fa fa-cloud-download"></i>Download
+                                <a href="#" class="disable-li"><i class="fal fa-cloud-download"></i>Download
                                     Profile</a>
 
                             </li>
@@ -437,7 +547,9 @@
     <script src="{{ asset('website_asset/school_dashboard/js/plugins.js') }}"></script>
     <script src="{{ asset('website_asset/school_dashboard/js/scripts.js') }}"></script>
     <script src="{{ asset('website_asset/school_dashboard/js/dashboard.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+
     <script>
         $.validator.addMethod(
             "strongPassword",

@@ -94,7 +94,7 @@
                         <p class="input-info"><input type="text" name="email" id="email" value="" placeholder="E-mail" required="required"></p>
                         <p class="input-info"><input type="text" name="mob" id="phone" value="" placeholder="Mobile No" required="required"></p>
                         <p class="textarea-info clearfix"><textarea id="message-contact" name="msg" placeholder="Message" required="required"></textarea></p>
-                        <p class="submit-info" align="center" style="margin-bottom:1%;">
+                        <p class="submit-info" align="center" style="margin-bottom:4%;">
                             <button type="submit" class="effect-button">Send now</button></p>
                     </form>
                  </div>

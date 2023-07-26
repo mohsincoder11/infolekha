@@ -315,7 +315,7 @@
                 <div class="dashbard-menu-container">
                     <!-- user-profile-menu-->
                     <div class="user-profile-menu">
-                        <h3>Main</h3>
+                        {{-- <h3>Main</h3> --}}
                         <ul class="no-list-style">
                             <!-- <li><a href="dashboard.html"><i class="fal fa-chart-line"></i>Dashboard</a>
                             </li> -->

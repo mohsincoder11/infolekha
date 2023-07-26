@@ -253,8 +253,8 @@
                 },
                 password: {
                     required: "This field is required.",
-                    minlength: " ",
-                   strongPassword: " "
+                    minlength: "Minimum password length should be 8 digit.",
+                   strongPassword: "Password must contain at least one uppecase,one lowercase,one digit,one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
@@ -278,29 +278,37 @@
             },
         });
 
-         $('#password').on('input', function() {
-      var password = $(this).val();
-            $('.condition-label').each(function() {
-                var label = $(this);
-                var condition = label.text().trim();
-                var isValid = false;
+    //      $('#password').on('input', function() {
+    //   var password = $(this).val();
+    //         $('.condition-label').each(function() {
+    //             var label = $(this);
+    //             var condition = label.text().trim();
+    //             var isValid = false;
 
-                if (condition === 'Use 8 or more characters.') {
-                    isValid = password.length >= 8;
-                } else if (condition === 'Use uppercase letter.') {
-                    isValid = /[A-Z]/.test(password);
-                  } else if (condition === 'Use a number.') {
-                    isValid = /[0-9]/.test(password);
-                } else if (condition === 'Use lowercase letter.') {
-                    isValid = /[a-z]/.test(password);
-                } else if (condition === 'Use special character.') {
-                    isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-                }
+    //             if (condition === 'Use 8 or more characters.') {
+    //                 isValid = password.length >= 8;
+    //             } else if (condition === 'Use uppercase letter.') {
+    //                 isValid = /[A-Z]/.test(password);
+    //               } else if (condition === 'Use a number.') {
+    //                 isValid = /[0-9]/.test(password);
+    //             } else if (condition === 'Use lowercase letter.') {
+    //                 isValid = /[a-z]/.test(password);
+    //             } else if (condition === 'Use special character.') {
+    //                 isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    //             }
 
-                label.toggleClass('valid', isValid);
-            });
-        });
-
+    //             label.toggleClass('valid', isValid);
+    //         });
+    //     });
+    $('#mob').on('keypress', function(event) {
+    var keyCode = event.which ? event.which : event.keyCode;
+    if ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 46 || keyCode == 9 || (keyCode >= 37 && keyCode <= 40)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  });
         $("#modal_form").validate({
             rules: {
 

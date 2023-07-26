@@ -393,13 +393,23 @@
 
         function initialize() {
             /* var input = document.getElementById('current_location');*/
-            var autocomplete = new google.maps.places.Autocomplete(
-                (document.getElementById('current_location_at_form')), {
-                    types: ['locality']
-                });
+          
+
+                var current_location_at_form = document.getElementById('current_location_at_form');
+             var autocomplete2 = new google.maps.places.Autocomplete(current_location_at_form);
+
+                autocomplete2.setOptions({
+                 types: ['(cities)']
+             });
+
+             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+             //show only indian city
+             autocomplete2.setComponentRestrictions({
+                 'country': 'in'
+             });
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
-            autocomplete.addListener('place_changed', function() {
+            autocomplete2.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
 
             });

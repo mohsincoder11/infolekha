@@ -4,7 +4,104 @@
         label {
             z-index: 1 !important;
         }
+    .multi-image{
+    /* Set fixed dimensions for the slide item container */
+    width: 100%; /* Set the desired width */
+    height: 150px; /* Set the desired height */
+}
+
+.multi-image img {
+    width: 100% !important;
+    object-fit: contain !important;
+    height: 100px !important;
+    border:1px solid #bfbfbf;
+    border-radius: 5px;
+}
+
+.img {
+    width: 100% !important;
+    object-fit: contain !important;
+    height: 100px !important;
+    border:1px solid #bfbfbf;
+    border-radius: 5px;
+}
+
+
+    .delete-icon {
+      position: absolute;
+      top: 5px;
+      right: 20px;
+      color: red;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 9999;
+    }
+   /* Custom modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px; /* Limit the maximum width of the modal */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.modal-content span{
+  text-align: end;
+
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.btn-no,
+.btn-yes {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-no {
+  background-color: #bbb;
+}
+
+.btn-yes {
+  background-color: #073D5F;
+  margin-left: 10px;
+}
     </style>
+    
 @stop
 @section('profile_content')
     <div class="dashboard-content">
@@ -31,11 +128,11 @@
 
             <div class="dasboard-widget-box fl-wrap">
                 <div class="col-md-12">
-                    <div class="row">
                         <div class="custom-form">
                             <form action="{{ route('school_profile.post_update_profile') }}" 
                             method="post" enctype="multipart/form-data">
                                 @csrf
+                                <div class="row">
 
                                 <div class="col-md-6">
                                     <label style="font-size:16px;">Upload Logo </label>
@@ -44,250 +141,87 @@
                                         alt="">
                                 </div>
                                 <div class="col-md-6 ">
-                                    <label style="font-size:16px;">Enter Your Name <span class="dec-icon"><i
-                                                class="fas fa-user"></i></span></label>
-                                    <input type="text" placeholder="Noory" name="name" value="{{ $data->name }}" />
+                                    <label style="font-size:16px;"> Your Name </label>
+                                    <input type="text" placeholder="Name" name="name" value="{{ $data->name }}" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">School Name <span class="dec-icon"><i
-                                                class="fas fa-school"></i></span></label>
+                                    <label style="font-size:16px;">School Name </label>
                                     <input type="text" placeholder="School of Scholar" name="entity_name"
                                         value="{{ $data->entity_name }}" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Facilities <span class="dec-icon"><i
-                                                class="fas fa-desktop"></i></span></label>
+                                    <label style="font-size:16px;">Facilities </label>
                                     <select id="facilities" name="facilities[]"
-                                        class="chosen-select on-radius no-search-select" multiple>
+                                    class="form-select select country-select" multiple>
 
-
-                                        <option>Select Facilities </option>
-
-                                        <option>Classrooms</option>
-                                        <option>Digital classroom</option>
-                                        <option>Playground & Sports facilities</option>
-                                        <option>A/c classroom</option>
-                                        <option>Canteen / Cafeterias</option>
-                                        <option>Security System (CCTV, Security Guards, Other)</option>
-                                        <option>Biometric Attendance Monitoring System</option>
-                                        <option>Library</option>
-                                        <option>Computer Lab</option>
-                                        <option>Laboratories </option>
-                                        <option>Garden</option>
-                                        <option>Conference rooms</option>
-                                        <option>Auditoriums</option>
-                                        <option>Transportation</option>
-                                        <option>Indoor sports arena</option>
-                                        <option>Amphitheatre</option>
-                                        <option>Multipurpose Hall.</option>
-                                        <option>Counselling Centre</option>
-                                        <option>Activity Rooms</option>
-                                        <option>Art rooms</option>
-                                        <option>Mathematics Laboratory</option>
-                                        <option>Health center</option>
-                                        <option>Art studios</option>
-                                        <option>Music rooms</option>
-                                        <option>Administrative offices</option>
-                                        <option>Restrooms</option>
-                                        <option>Parking lots</option>
-                                        <option>Outdoor learning spaces</option>
-                                        <option>Career and technical education facilities</option>
-                                        <option>Multi-purpose rooms</option>
-                                        <option> Daycare facilities</option>
-                                        <option>Storage areas</option>
-                                        <option>Staff lounges</option>
-                                        <option>Conference rooms</option>
-                                        <option>Prayer and meditation rooms</option>
-                                        <option> Reading corners</option>
-                                        <option> Emergency response resources</option>
-                                        <option>Innovation centers</option>
-                                        <option>Distance learning facilities</option>
-                                        <option>Athletic facilities</option>
-                                        <option>Parent resource centers</option>
-                                        <option>Lecture halls</option>
-                                        <option> Dormitories and housing facilities</option>
-                                        <option>Student-run enterprises</option>
-
-
-
-
+                                        @foreach (get_facilities() as $facility )
+                                        <option  @if(is_array(json_decode($data->facilities)) && in_array($facility,json_decode($data->facilities))) selected @endif>{{$facility}}</option>
+                                    @endforeach
 
                                     </select>
                                 </div>
 
-
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Courses <span class="dec-icon"><i
-                                                class="fas fa-truck-couch"></i></span></label>
-                                    <select id="course" name="course[]" class="chosen-select on-radius no-search-select"
+
+                                    <label style="font-size:16px;">Courses </label>
+                                    <select id="course" name="course[]" class="form-select select country-select"
                                         multiple>
 
-                                        <option>Select Courses </option>
-                                        @if ('School' == $data->r_entity)
-                                            <option> 1 Nursery </option>
-                                            <option> Pre-Primary </option>
-                                            <option> Primary </option>
-                                            <option>Junior KG
-                                            <option> Senior KG </option>
-                                            <option>1 st Standard </option>
-                                            <option> 2nd Standard </option>
-                                            <option> 3rd Standard</option>
-                                            <option> 4th Standard </option>
-                                            <option> 5th Standard </option>
-                                            <option> 6th Standard </option>
-                                            <option> 7th Standard </option>
-                                            <option> 8th Standard </option>
-                                            <option> 9th Standard </option>
-                                            <option> 10th Standard</option>
+                                        @if('School'== $data->r_entity)
+                                        @foreach(get_school_course() as $course)
+                                        <option @if(is_array(json_decode($data->course)) && in_array($course,json_decode($data->course))) selected @endif >{{$course}}</option>
+                                        @endforeach
+                                     
                                         @endif
-                                        @if ('College' == $data->r_entity)
-                                            <option> 11th </option>
-                                            <option> 12th
-                                            <option> B.com </option>
-                                            <option> M.com </option>
-                                            <option> LLB </option>
-                                            <option> LLM </option>
-                                            <option> BBA </option>
-                                            <option> MBA </option>
-                                            <option> CA Foundation </option>
-                                            <option> CA IPCC </option>
-                                            <option> CA Final </option>
-                                            <option> CS Foundation </option>
-                                            <option> CS Executive </option>
-                                            <option> CS Professional </option>
-                                            <option> ICWA Foundation </option>
-                                            <option> ICWA Inter </option>
-                                            <option> ICWA Final </option>
-                                            <option> Bachelor in Technology (B.Tech)
-                                            </option>
-                                            <option> Bachelor in Engineering (BE) </option>
-                                            <option> JEE-Main </option>
-                                            <option> GATE </option>
-                                            <option> UPCET </option>
-                                            <option> BITSAT </option>
-                                            <option> Bachelor of Science (B. Sc.) </option>
-                                            <option> Bachelor of Architecture ( B.Arch.)
-                                            </option>
-                                            <option> Architecture Designer </option>
-                                            <option> Interior Designer </option>
-                                            <option> Software Engineer </option>
-                                            <option> Research Analyst </option>
-                                            <option> MBBS (Bachelor of Medicine and Bachelor
-                                                of Surgery) </option>
-                                            <option> NEET Entrance exam </option>
-                                            <option> BDS (Bachelor of Dental Surgery)
-                                            </option>
-                                            <option> Botany/Zoology/Chemistry </option>
-                                            <option> Biochemistry </option>
-                                            <option> BHMS (Bachelor of Homeopathy Medicine
-                                                and Surgery) </option>
-                                            <option> B. Pharmacy </option>
-                                            <option> BPT (Bachelor of Physiotherapy)
-                                            </option>
-                                            <option> BAMS (Bachelor of Ayurvedic Medicine
-                                                Surgery)</option>
-                                            <option> BUMS (Bachelor of Unani Medicine and
-                                                Surgery) </option>
-                                            <option> Bioinformatics </option>
-                                            <option> Genetics </option>
-                                            <option> Forensic Sciences </option>
-                                            <option> Biotechnology </option>
-                                            <option> Environmental Science </option>
-                                            <option> Nursing </option>
-                                            <option> Bachelor in Business Studies </option>
-                                            <option> Bachelor of Legislative Law </option>
-                                            <option> CLAT </option>
-                                            <option> Bachelor of Management Studies
-                                            </option>
-                                            <option> Certified Financial Planner (CFP)
-                                            </option>
-                                            <option> Financial Analyst and Advisor </option>
-                                            <option> Investment Banking Analyst </option>
-                                            <option> Bachelor of Arts (BA) - 3 years
-                                            </option>
-                                            <option> Master of Arts (MA) </option>
-                                            <option> Bachelor of Computer Application (BCA)
-                                                - 3 years </option>
-                                            <option> Bachelor of Hotel Management (BHM)
-                                            </option>
-                                            <option> Bachelor of Journalism & Mass
-                                                Communication (BJMC) - 3 years</option>
-                                            <option> Bachelor of Elementary Education
-                                                (B.El.Ed) - 4 years </option>
-                                            <option> Bachelor of Fine Arts (BFA) - 3 years
-                                            </option>
-                                            <option> Fashion Designing - 3 to 4 years
-                                            </option>
-                                            <option> Diploma in IT </option>
+                                        @if('College'== $data->r_entity)
+                                        @foreach(get_college_course() as $course)
+                                        <option  @if(is_array(json_decode($data->course)) && in_array($course,json_decode($data->course))) selected @endif>{{$course}}</option>
+                                        @endforeach
                                         @endif
-                                        @if ('Institute' == $data->r_entity)
-                                            <option> Yoga </option>
-                                            <option> Photography </option>
-                                            <option> Acting and Anchoring </option>
-                                            <option> Junior Basic Training (JBT) </option>
-                                            <option> Travel and Tourism </option>
-                                            <option> Event Management </option>
-                                            <option> Paramedical Courses </option>
-                                            <option> Nursing courses </option>
-                                            <option> Web Designing </option>
-                                            <option> Digital Marketing</option>
-                                            <option> Graphic Design
-                                            <option> Tally </option>
-                                            <option> Interior Design </option>
-                                            <option> Beautician </option>
-                                            <option> Hardware and Networking </option>
-                                            <option> Photography </option>
-                                            <option> Air Hostess </option>
-                                            <option> MSCIT </option>
-                                            <option> MS-Excel </option>
-                                            <option> MS-Word </option>
-                                            <option> MS-Powerpoint </option>
-                                            <option> Computer Clases </option>
-                                            <option> DTP Classes </option>
+                                        @if('Institute'== $data->r_entity)
+                                        @foreach(get_institute_course() as $course)
+                                        <option  @if(is_array(json_decode($data->course)) && in_array($course,json_decode($data->course))) selected @endif>{{$course}}</option>
+                                        @endforeach
                                         @endif
+                                      
                                         <option> Other </option>
 
 
                                     </select>
-                                </div>
+                            </div>
                                 {{-- <div class="col-md-6" style="margin-top:2%;">
-                                            <label>Tagline<span class="dec-icon"><i class="fas fa-minus-octagon"></i></span></label>
+                                            <label>Tagline</label>
                                             <input type="text" placeholder="Tagline" value="{{$data->}}"/>
                                         </div> --}}
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Facebook Link<span class="dec-icon"><i
-                                                class="fas fa-minus-octagon"></i></span></label>
+                                    <label style="font-size:16px;">Facebook Link</label>
                                     <input type="text" placeholder="Facebook Link" name="fb"
                                         value="{{ $data->fb }}" />
                                 </div>
 
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Twitter Link<span class="dec-icon"><i
-                                                class="fas fa-minus-octagon"></i></span></label>
+                                    <label style="font-size:16px;">Twitter Link</label>
                                     <input type="text" placeholder="Twitter Link" name="website"
                                         value="{{ $data->website }}" />
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Instagram Link<span class="dec-icon"><i
-                                                class="fas fa-minus-octagon"></i></span></label>
+                                    <label style="font-size:16px;">Instagram Link</label>
                                     <input type="text" placeholder="Instagram Link" name="insta"
                                         value="{{ $data->insta }}" />
                                 </div>
 
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">YouTube Link<span class="dec-icon"><i
-                                                class="fas fa-minus-octagon"></i></span></label>
+                                    <label style="font-size:16px;">YouTube Link</label>
                                     <input type="text" placeholder="You-tube Link" name="yt"
                                         value="{{ $data->yt }}" />
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Linkedin Link<span class="dec-icon"><i
-                                                class="fas fa-minus-octagon"></i></span></label>
+                                    <label style="font-size:16px;">Linkedin Link</label>
                                     <input type="text" placeholder="Linkdin Link" name="google"
                                         value="{{ $data->google }}" />
                                 </div>
@@ -305,12 +239,15 @@
 
                                     <div class="row">
                                         @foreach (json_decode($data->image) as $i)
-                                            <div class="col-md-2">
-                                                <a  target="_blank" href="{{ asset('public') . '/' . $i }}">
-                                                <img height="100px" width="auto"
-                                                    src="{{ asset('public') . '/' . $i }}" alt="">
-                                                </a>
-                                            </div>
+                                            <div class="col-md-2 multi-image">
+                                                <div class="image-container">
+                                                    <a  target="_blank" href="{{ asset('public') . '/' . $i }}">
+                                                        <img height="100px" width="auto"
+                                                        src="{{ asset('public') . '/' . $i }}" alt="">
+                                                    </a> 
+                                                    <i class="fas fa-times-circle delete-icon delete-image" image_name="{{$i}}"></i>
+                                                </div>
+                                              </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -321,16 +258,18 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         @foreach (json_decode($data->video) as $i)
-                                            <div class="col-md-4">
+                                            <div class="col-md-4 multi-image" >
 
 
                                                 <a target="_blank" href="{{ asset('public') . '/' . $i }}"
-                                                    class="geodir-category-img_item">
+                                                    class="geodir-category-img_item img">
                                                     <iframe height="115" src="{{ asset('public') . '/' . $i }}"
                                                         alt="" title="YouTube video player" frameborder="0"
                                                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                                         allowfullscreen></iframe>
                                             </a>
+                                            <i class="fas fa-times-circle delete-icon delete-video" video_name="{{$i}}"></i>
+
                                             </div>
                                         @endforeach
 
@@ -349,4 +288,94 @@
         </div>
 
     </div>
+
+    <div id="customModal" class="modal">
+        <form action="{{route('school_profile.delete-image')}}" method="post">
+            @csrf
+        <div class="modal-content">
+          <span class="close close-model">&times;</span>
+          <p>Are you sure you want to delete this image?</p>
+          <div class="modal-buttons">
+            <input type="hidden" name="image_name" id="image_name2">
+
+            <button type="button" class="btn-no close-model">No</button>
+            <button type="submit" class="btn-yes">Yes</button>
+          </div>
+        </div>
+    </form>
+      </div>
+
+      <div id="customModal2" class="modal">
+        <form action="{{route('school_profile.delete-video')}}" method="post">
+            @csrf
+        <div class="modal-content">
+          <span class="close close-model2">&times;</span>
+          <p>Are you sure you want to delete this video?</p>
+          <div class="modal-buttons">
+            <input type="hidden" name="video_name" id="video_name2">
+
+            <button type="button" class="btn-no close-model2">No</button>
+            <button type="submit" class="btn-yes">Yes</button>
+          </div>
+        </div>
+    </form>
+      </div>
+
+
+@stop
+
+@section('js')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $(document).on('click', '.delete-image',function(){
+  document.getElementById('customModal').style.display = 'block';
+  console.log($(this).attr('image_name'));
+  $("#image_name2").val($(this).attr('image_name'));
+        })
+        
+        $(document).on('click', '.close-model',function(){
+  document.getElementById('customModal').style.display = 'none';
+})
+
+$(document).on('click', '.delete-video',function(){
+  document.getElementById('customModal2').style.display = 'block';
+  console.log($(this).attr('video_name'));
+  $("#video_name2").val($(this).attr('video_name'));
+        })
+        
+        $(document).on('click', '.close-model2',function(){
+  document.getElementById('customModal2').style.display = 'none';
+})
+
+
+
+
+        $('#course').select2({closeOnSelect:false}); 
+ $('#course').on('change', function() {  const selectedOptions = $(this).val(); 
+ const otherOption = selectedOptions.includes('other'); 
+ if (otherOption) {  $('#other-fruit').show();  } else {  $('#other-fruit').hide();  }  });
+
+
+$('#facilities').select2({closeOnSelect:false}); 
+ $('#facilities').on('change', function() {  const selectedOptions = $(this).val(); 
+ const otherOption = selectedOptions.includes('other'); 
+ if (otherOption) {  $('#other-fruit').show();  } else {  $('#other-fruit').hide();  }  });
+setTimeout(() => {
+    $('.select2-container').css('width', '100%');
+    console.log($('.select2-container ul li'))
+    $('.select2-container ul li').css('text-align', 'initial');
+
+}, 200);
+$(document).on('mouseenter', '.select2-results__options', function() {
+    // Change the text-align style to "initial" for list items inside Select2
+    $(this).find('li').css('text-align', 'initial');
+    $(this).find('li').css('padding-left', '10px');
+  });
+})
+
+	
+</script>
 @stop

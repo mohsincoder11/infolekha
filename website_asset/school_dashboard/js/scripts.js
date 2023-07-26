@@ -153,6 +153,7 @@ function initHomeradar() {
         slidesToShow: 3,
         dots: true,
         arrows: false,
+       
         responsive: [{
                 breakpoint: 1024,
                 settings: {
@@ -169,6 +170,15 @@ function initHomeradar() {
             }
         ]
     });
+
+    setTimeout(()=>{
+        var icon = $(".swiper-button-prev i.far.fa-angle-left");
+        icon.removeClass("far").addClass("fa"); 
+        var icon = $(".swiper-button-next i.far.fa-angle-right");
+        icon.removeClass("far").addClass("fa");
+    },500);
+
+
     $('.slider-for').slick({
         slidesToShow: 1,
         slidesToScroll: 1,

@@ -77,13 +77,13 @@
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Password*" id="password" name="password"
                                 required="required"><i toggle="#password"
-                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Confirm Password*" name="password_confirmation"
                                 id="password_confirmation" required="required"><i toggle="#password_confirmation"
-                                class="fa fa-fw fa-eye field-icon toggle-password"></i>
+                                class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
 
@@ -368,6 +368,18 @@
         var Boo = function() {
             alert("test");
         }
+
+        $('#mob').on('keypress', function(event) {
+    var keyCode = event.which ? event.which : event.keyCode;
+    if ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 46 || keyCode == 9 || (keyCode >= 37 && keyCode <= 40)) {
+      return true;
+    } else {
+      event.preventDefault();
+      return false;
+    }
+  });
+
+  
     </script>
 
     <script type="text/javascript"

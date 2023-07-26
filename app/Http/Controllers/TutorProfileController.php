@@ -21,8 +21,13 @@ class TutorProfileController extends Controller
 
         $data = DB::table('users')->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
         ->where('users.id', auth::user()->id)->first();
+        if($data){
 
         return view('Website.tutor_profile.index', ['user_data' => $data]);
+        }
+        else{
+            return redirect()->route('tutor_detail_form',Auth::user()->id);
+        }
     }
 
     public function update_profile(Request $request)

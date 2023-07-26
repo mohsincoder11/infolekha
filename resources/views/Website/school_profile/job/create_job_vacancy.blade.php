@@ -50,8 +50,7 @@
 
                                 <span id="Teaching_staff_div" class="d-none">
                                     <div class="col-md-6 form-group">
-                                        <label style="font-size:16px;">Name of Subject<span class="dec-icon"><i
-                                                    class="fas fa-user"></i></span></label>
+                                        <label style="font-size:16px;">Name of Subject</label>
                                         <input type="text" placeholder="Name of Subject" value=""
                                             name="subject_name" />
                                     </div>
@@ -59,36 +58,31 @@
 
                                 <span id="Admin_staff_div" class="d-none">
                                     <div class="col-md-6 form-group">
-                                        <label style="font-size:16px;">Post <span class="dec-icon"><i
-                                                    class="fas fa-school"></i></span></label>
+                                        <label style="font-size:16px;">Post </label>
                                         <input type="text" placeholder="Post" value="" name="post" />
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <label style="font-size:16px;">Scope of work <span class="dec-icon"><i
-                                                    class="fas fa-school"></i></span></label>
+                                        <label style="font-size:16px;">Scope of work </label>
                                         <input type="text" placeholder="Scope of work" value=""
                                             name="scope_of_work" />
                                     </div>
                                 </span>
 
                                 <div class="col-md-6 form-group">
-                                    <label style="font-size:16px;">Experience required<span class="dec-icon"><i
-                                                class="fas fa-school"></i></span></label>
+                                    <label style="font-size:16px;">Experience required</label>
                                     <input type="text" placeholder="Experience required" value=""
                                         name="experience_required" />
                                 </div>
 
 
                                 <div class="col-md-6 form-group">
-                                    <label style="font-size:16px;">Skills Required<span class="dec-icon"><i
-                                                class="fas fa-school"></i></span></label>
+                                    <label style="font-size:16px;">Skills Required</label>
                                     <input type="text" placeholder="Skills Required" value=""
                                         name="skills_required" />
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label style="font-size:16px;">Estimated Package <span class="dec-icon"><i
-                                                class="fas fa-school"></i></span></label>
+                                    <label style="font-size:16px;">Estimated Package </label>
                                     <input type="text" placeholder="Estimated Package " value=""
                                         name="estimated_package" />
                                 </div>

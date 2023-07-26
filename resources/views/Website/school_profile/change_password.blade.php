@@ -24,22 +24,19 @@
                             @csrf
                             <div class="custom-form">
                                 <div class="pass-input-wrap fl-wrap">
-                                    <label style="font-size:16px;">Current Password<span class="dec-icon"><i
-                                                class="far fa-lock-open-alt"></i></span></label>
+                                    <label style="font-size:16px;">Current Password</label>
                                     <input type="password" name="current_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
                                 </div>
                                 <div class="pass-input-wrap fl-wrap">
-                                    <label style="font-size:16px;">New Password<span class="dec-icon"><i
-                                                class="far fa-lock-alt"></i></span></label>
+                                    <label style="font-size:16px;">New Password</label>
                                     <input type="password" name="new_password" id="new_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
                                 </div>
                                 <div class="pass-input-wrap fl-wrap">
-                                    <label style="font-size:16px;">Confirm New Password<span class="dec-icon"><i
-                                                class="far fa-shield-check"></i> </span></label>
+                                    <label style="font-size:16px;">Confirm New Password</label>
                                     <input type="password" name="confirm_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
                                 </div>
 
                                 <button type="submit" class="btn    color-bg  float-btn">Save Changes</button>

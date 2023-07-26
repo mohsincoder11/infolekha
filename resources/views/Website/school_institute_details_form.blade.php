@@ -93,7 +93,7 @@
                                                                         School/College/institution (Max. 500 
                                                                         Alphabets)</label><br>
                                                                     <span id=charcount></span>
-																	<textarea minlength="20"  name="about" id="about"  > </textarea>
+																	<textarea minlength="20" maxlength="500"  name="about" id="about"  > </textarea>
                                                                        @error('about')
                                                                         <div class="alert alert-danger">{{ $message }}</div>
                                                                         @enderror

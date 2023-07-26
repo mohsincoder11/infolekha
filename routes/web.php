@@ -49,6 +49,7 @@ Route::get('/2', function () {
 
 
 
+Route::get('blog', [WebsiteformController::class, 'blog'])->name('blog');
 
 Route::get('role', [WebsiteformController::class, 'role'])->name('role');
 Route::get('stratigic', [WebsiteformController::class, 'stratigic'])->name('stratigic');
@@ -221,6 +222,8 @@ Route::post('tutor_detail_create/{data}', [SignUpController::class, 'tutor_detai
 
 
 Route::get('login', [LoginController::class, 'login'])->name('login');
+Route::get('forget-password', [LoginController::class, 'forget_password'])->name('forget-password');
+
 Route::get('tutor_subscription', [LoginController::class, 'tutor_subscription'])->name('tutor_subscription');
 
 Route::post('login_submit', [LoginController::class, 'login_submit'])->name('login_submit');
@@ -254,6 +257,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::post('school_profile/insert_post_result',[SchoolProfile::class,'insert_post_result'])->name('school_profile.insert_post_result');
         Route::get('school_profile/destroy_post_result/{id}',[SchoolProfile::class,'destroy_post_result'])->name('school_profile.destroy_post_result');
         
+        
+        Route::post('school_profile/delete-image',[SchoolProfile::class,'delete_image'])->name('school_profile.delete-image');
+        Route::post('school_profile/delete-video',[SchoolProfile::class,'delete_video'])->name('school_profile.delete-video');
 
         
 
@@ -338,8 +344,13 @@ Route::get('announcementweb/{id}', [WebsiteformController::class, 'announwebs'])
 
 Route::get('college_listing/{type?}', [WebsiteformController::class, 'college_listing'])->name('college_listing');
 Route::get('send_mobile_verify_otp/{mob}', [WebsiteformController::class, 'send_mobile_verify_otp'])->name('send_mobile_verify_otp');
+Route::get('send_forget_otp/{mob}', [WebsiteformController::class, 'send_forget_otp'])->name('send_forget_otp');
+
+Route::post('update_password_using_mobile', [WebsiteformController::class, 'update_password_using_mobile'])->name('update_password_using_mobile');
+
+
+
 Route::get('about_us', [WebsiteformController::class, 'about_us'])->name('about_us');
-Route::get('blog', [WebsiteformController::class, 'blog'])->name('blog');
 Route::get('privacy_policy', [WebsiteformController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('refund', [WebsiteformController::class, 'refund'])->name('refund');
 Route::get('term', [WebsiteformController::class, 'term'])->name('term');

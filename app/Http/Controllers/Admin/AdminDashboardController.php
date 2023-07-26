@@ -31,26 +31,24 @@ class AdminDashboardController extends Controller
         $student_data = DB::table('users')->select('users.*', 'user_student.*')
 
             ->join('user_student', 'user_student.user_id', '=', 'users.id')
+            ->orderby('users.id','desc')
             ->get();
 
-        $student_data_count = DB::table('users')->select('users.*', 'student_detail.*', 'user_student.*')
-            ->join('user_student', 'user_student.user_id', '=', 'users.id')
-            ->count();
+        $student_data_count = count($student_data);
 
 
         $tutor_data = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
             ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
             ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
+            ->orderby('users.id','desc')
             ->get();
 
-        $tutor_data_count = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
-            ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
-            ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
-            ->count();
+        $tutor_data_count = count($tutor_data);
 
         $school_institute_data = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
             ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
+            ->orderby('users.id','desc')
             ->get();
             
 

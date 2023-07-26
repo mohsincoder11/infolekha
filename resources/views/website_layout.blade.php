@@ -16,6 +16,7 @@
      <!-- Bootstrap  -->
 
      <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/bootstrap.css') }}">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
      <!-- Theme Style -->
      <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/style.css') }}">
@@ -23,7 +24,6 @@
 
      <!-- Responsive -->
      <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/responsive.css') }}">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 
 
      <!-- REVOLUTION LAYERS STYLES -->
@@ -40,10 +40,12 @@
          rel="apple-touch-icon-precomposed">
      <link href="{{ asset('website_asset/images/favicon.png') }}" rel="shortcut icon">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.16/css/bootstrap-multiselect.min.css"
-         rel="stylesheet" />
+       
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
 
-
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.css">
+     
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902240890164332"
          crossorigin="anonymous"></script>
 
@@ -476,12 +478,12 @@
 
      .popup1 {
          display: none;
-         position: absolute;
-         top: 10%;
-         left: 70%;
+         position:fixed;
+         top: 50%;
+         left: 50%;
 
-         transform: translate(-70%, -70%);
-         width: 800px;
+         transform: translate(-50%, -50%);
+         width: 700px;
          height: 400px;
          background-color: #fff;
          padding: 20px;
@@ -699,6 +701,159 @@
             box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         }
  </style>
+ <style>
+body { 
+/* 	font-family: 'Ubuntu', sans-serif; */
+	font-weight: bold;
+}
+.select2-container {
+  max-height: 100px;
+}
+
+.select2-results__option {
+  padding-right: 20px;
+  vertical-align: middle;
+}
+.select2-results__option:before {
+  content: "";
+  display: inline-block;
+  position: relative;
+  height: 20px;
+  width: 20px;
+  border: 2px solid #e9e9e9;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-right: 20px;
+  vertical-align: middle;
+}
+.select2-results__option[aria-selected=true]:before {
+  font-family:fontAwesome;
+  content: "\f00c";
+  color: #fff;
+  background-color: #073D5F;
+  border: 0;
+  display: inline-block;
+  padding-left: 3px;
+}
+.select2-container--default .select2-results__option[aria-selected=true] {
+	background-color: #fff;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+	background-color: #eaeaeb;
+	color: #272727;
+}
+.select2-container--default .select2-selection--multiple {
+	margin-bottom: 10px;
+}
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+	border-radius: 4px;
+}
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+	border-color: #073D5F;
+	border-width: 2px;
+}
+.select2-container--default .select2-selection--multiple {
+	border-width: 2px;
+}
+.select2-container--open .select2-dropdown--below {
+	
+	border-radius: 6px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+}
+.select2-selection .select2-selection--multiple:after {
+	content: 'hhghgh';
+}
+/* select with icons badges single*/
+.select-icon .select2-selection__placeholder .badge {
+	display: none;
+}
+.select-icon .placeholder {
+/* 	display: none; */
+}
+.select-icon .select2-results__option:before,
+.select-icon .select2-results__option[aria-selected=true]:before {
+	display: none !important;
+	/* content: "" !important; */
+}
+.select-icon  .select2-search--dropdown {
+	display: none;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+   
+    height: 39px !important;
+    overflow: auto;
+}
+
+/* Styles for the autocomplete dropdown list */
+.pac-container {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 5px;
+  border: 0.5px solid #170cf0;
+  border-radius: 7px;
+  width: 480px !important;
+  padding: 10px 20px;
+}
+.pac-container.pac-logo.hdpi::after{
+    display: none !important;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 991px) {
+  .pac-container {
+    width: 90% !important;
+    max-width: 90%;
+  }
+}
+
+.pac-item {
+  padding: 5px 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  border-top: 1px solid #fff;
+}
+
+.pac-item span.pac-icon-marker {
+  display: none; /* Hide the marker symbol */
+}
+
+.pac-item:hover {
+  background-color: #f2f2f2;
+}
+
+.pac-item .pac-item-query {
+  font-weight: bold;
+}
+.marker-icon{
+    display: inline-table;
+    background-image: url(https://akam.cdn.jdmagicbox.com/images/icontent/newwap/web2022/search_locat_icon.svg);
+    width: 20px;
+    height: 20px;
+    margin: 0 10px 0 0px;
+}
+.detect-location-text{
+    position: absolute;
+    margin-top:-4px;
+    color:#0076d7
+}
+
+.fade-out {
+  animation: fadeOutAnimation 0.5s forwards;
+}
+
+@keyframes fadeOutAnimation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+ </style>
 
  @yield('css')
 
@@ -830,6 +985,22 @@
                                              </div>
                                          </li>
 
+								<!--	 <li>                     <div class="c">
+                                <div class="dd ">
+                                  <div class="dd-a btn"><span style="color: #fff;"> <img src="images/user.png" > Profile</span></div>
+                                  <input type="checkbox">
+                                  <div class="dd-c">
+                                    <ul>
+                                      <li><a href="#"><span>Link link</span></a></li>
+
+                                      <li><a href="#"><span>Link link</span></a></li>
+                                    </ul>
+                                  </div>
+                                </div>
+                            
+                              </div></li>-->
+									 
+                                  
 
                                      @endif
 
@@ -1085,72 +1256,7 @@
          </div>
          <!--modal end-->
 
-         <!---modal-2-->
-         <div class="modal fade flat-popupform" id="popup_login">
-             <div class="modal-dialog">
-                 <div class="modal-content">
-                     <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal"
-                             aria-hidden="true">&times;</button>
-                     </div>
-                     <div class="modal-body text-center clearfix">
-                         <form class="form-login form-listing" action="#" method="post">
-                             <h3 class="title-formlogin" style="border-bottom: 1px solid rgb(69, 69, 69);">Pay Now
-                             </h3>
-                             <div class="row">
-                                 <div class="row">
-
-                                     <div class="col-md-12">
-
-                                         <div>
-                                             <form method="post" action="#" class="form-profile">
-                                                 <div class="row">
-
-                                                     <div class="col-lg-6">
-                                                         <p>Monthly Packages</p>
-                                                     </div>
-
-
-                                                     <div class="col-lg-6">
-                                                         <p>500</p>
-                                                     </div>
-
-                                                     <div class="col-lg-6">
-                                                         <p>Disscount</p>
-                                                     </div>
-
-
-                                                     <div class="col-lg-6">
-                                                         <p>(400)</p>
-                                                     </div>
-                                                     <hr style="color: #073D5F;">
-                                                     <div class="col-lg-6">
-                                                         <p>Net Pay</p>
-                                                     </div>
-
-                                                     <div class="col-lg-6">
-                                                         <p> 100</p>
-                                                     </div>
-
-
-
-
-                                                     <div class="update-profile" style="margin-left:40%;">
-                                                         <a> <button type="button" class="btn btn-primary">Pay
-                                                                 Now</button></a>
-                                                     </div>
-                                                 </div>
-                                             </form>
-                                         </div>
-                                     </div>
-                                 </div>
-                             </div>
-                         </form>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <!--modal-2 end-->
+       
 
          <!-- Go Top -->
          <a class="go-top effect-button">
@@ -1194,6 +1300,7 @@
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
      <script src="{{ asset('website_asset/revolution/js/extensions/revolution.extension.video.min.js') }}"></script>
      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
      <script>
          const Toast = Swal.mixin({
              toast: true,
@@ -1260,6 +1367,7 @@
          }
      </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
      <script>
          $(document).ready(function() {
@@ -1276,50 +1384,112 @@
 
              function showPosition(position) {
 
-                 let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
-                     .latitude + ',' +
-                     position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
+    .latitude + ',' +
+    position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+fetch(google_url).then(function(response) {
+    return response.json();
+}).then(function(data) {
 
+    let city = null;
+    let state = null;
+    for (const result of data.results) {
+        for (const component of result.address_components) {
+            if (component.types.includes('locality')) {
+                city = component.long_name;
+                break;
+            }
+            if (component.types.includes('administrative_area_level_4')) {
+                state = component.long_name;
+                break;
+            }
+        }
+        if (city && state) {
+            break;
+        }
+    }
 
-                 fetch(google_url).then(function(response) {
-                     return response.json();
-                 }).then(function(data) {
-
-                     let city = null;
-                     let state = null;
-                     for (const result of data.results) {
-                         for (const component of result.address_components) {
-                             if (component.types.includes('locality')) {
-                                 city = component.long_name;
-                                 break;
-                             }
-                             if (component.types.includes('administrative_area_level_4')) {
-                                 state = component.long_name;
-                                 break;
-                             }
-                         }
-                         if (city && state) {
-                             break;
-                         }
-                     }
-
-                     $("#current_location,#current_location2").val(city);
-                     var stored_city = localStorage.getItem('city_name');
-                     if (stored_city) {
-                         $("#current_location,#current_location2").val(stored_city);
-                     }
+    $("#current_location,#current_location2").val(city);
+    var stored_city = localStorage.getItem('city_name');
+    if (stored_city) {
+        $("#current_location,#current_location2").val(stored_city);
+    }
 
 
 
-                 }).catch(function(err) {
-                     console.log('Fetch Error :-S', err);
-                 });
+}).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+});
 
-             }
-         });
-     </script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
-     <script>
+}
+
+
+function showPosition2(position) {
+
+let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
+    .latitude + ',' +
+    position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+fetch(google_url).then(function(response) {
+    return response.json();
+}).then(function(data) {
+
+    let city = null;
+    let state = null;
+    for (const result of data.results) {
+        for (const component of result.address_components) {
+            if (component.types.includes('locality')) {
+                city = component.long_name;
+                break;
+            }
+            if (component.types.includes('administrative_area_level_4')) {
+                state = component.long_name;
+                break;
+            }
+        }
+        if (city && state) {
+            break;
+        }
+    }
+
+    $("#current_location,#current_location2").val(city);
+    stored_city_function(city);
+    localStorage.setItem('city_name', city);
+
+
+    // var stored_city = localStorage.getItem('city_name');
+    // if (stored_city) {
+    //     $("#current_location,#current_location2").val(stored_city);
+    // }
+
+
+
+}).catch(function(err) {
+    console.log('Fetch Error :-S', err);
+});
+
+}
+ 
+
+             function getCurrentLocation() {
+                
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition2);
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+      $('.detect-location').addClass('fade-out');
+
+      setTimeout(() => {
+        $('.detect-location').remove();
+      }, 500);
+    }
+
+   
+
+    $(document).on('click', '.detect-location', getCurrentLocation);
+
+       
+
          $.validator.addMethod("customEmail", function(value, element) {
              var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
              return this.optional(element) || emailRegex.test(value);
@@ -1334,7 +1504,11 @@
              },
              ""
          );
+        });
+
      </script>
+              <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.js"></script>
+
      @yield('js')
 
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902240890164332"
@@ -1355,11 +1529,16 @@
              });
 
              /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+             //show only indian city
              autocomplete.setComponentRestrictions({
                  'country': 'in'
              });
+
+             //when we seelct option amoing list
              autocomplete.addListener('place_changed', function() {
-                 console.clear();
+            $('.detect-location').addClass('fade-out');
+
+                $('.detect-location').remove();
 
                  var place = autocomplete.getPlace();
                  var address = place.formatted_address;
@@ -1370,6 +1549,8 @@
                  stored_city_function(city_name);
 
              });
+
+
 
              /* var input = document.getElementById('current_location');*/
              var autocomplete2 = new google.maps.places.Autocomplete(
@@ -1382,6 +1563,10 @@
                  'country': 'in'
              });
              autocomplete2.addListener('place_changed', function() {
+            $('.detect-location').addClass('fade-out');
+
+                $('.detect-location').remove();
+
                  var place = autocomplete2.getPlace();
                  var address = place.formatted_address;
                  var city_name = address.substr(0, address.indexOf(',')).trim();
@@ -1395,13 +1580,26 @@
          $("#current_location").on('focus', function() {
              $(this).attr('placeholder', '');
              $(this).val('');
+             $(this).after('<div class="pac-container pac-logo hdpi detect-location"><div class="pac-item"><div class="marker-icon"></div><span class="pac-item-query detect-location-text">Detect Location</span></div></div>');
          })
 
+         
+        
 
          $("#current_location2").on('focus', function() {
              $(this).attr('placeholder', '');
-             $(this).val();
+             $(this).val('');
+             $(this).after('<div class="pac-container pac-logo hdpi detect-location"><div class="pac-item"><div class="marker-icon"></div><span class="pac-item-query detect-location-text">Detect Location</span></div></div>');
+     
+             
          })
+
+         $("#current_location, #current_location2").on('focusout', function() {
+            $('.detect-location').addClass('fade-out');
+            setTimeout(() => {
+                $('.detect-location').remove();
+            }, 500);
+        });
 
          function stored_city_function(city) {
              $.ajax({

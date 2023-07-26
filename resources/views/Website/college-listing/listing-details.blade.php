@@ -286,7 +286,7 @@
         }
 
         .button-- {
-            float: right;
+            float:right;
             position: relative;
             padding: 0;
         }
@@ -325,11 +325,11 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            padding: 0 30px;
+            padding: 0 74px;
         }
 
         .job-card {
-            border: 1px solid #f0f0f0;
+            border: 1px solid #073d5f;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -379,17 +379,17 @@
         }
 
         .job-card .apply-btn1 {
-            background-color: #5e5e5e;
+            background-color:#073d5f;
 
         }
 
         .job-card .apply-btn2 {
-            background-color: #5e5e5e;
+            background-color: #073d5f;
 
         }
 
         .job-card .apply-btn3 {
-            background-color: #5e5e5e;
+            background-color: #073d5f;
 
         }
 
@@ -534,7 +534,7 @@
                                             @foreach (json_decode($details->image) as $i)
                                                 <div class="client">
                                                     <div class="featured-client">
-                                                        <img src="{{ asset('public') . '/' . $i }}" alt="image">
+                                                        <img src="{{ asset('public') . '/' . $i }}" alt="image" style="height:142px; width:270px;">
                                                     </div>
 
                                                 </div>
@@ -635,11 +635,39 @@
                             <h3 class="title-listing">Past Results</h3>
                             <div class="wrap-list clearfix">
                                 @foreach ($past_results as $past_result)
-                                    <ul>
+                              <!--  <ul>
                                         <li>
                                             {{$past_result->start_year}}-{{$past_result->end_year}} <a target="_blank" href="{{asset('public/'.$past_result->file)}}">View File</a>
                                         </li>
-                                    </ul>
+                                    </ul>-->
+								     <div class="row">
+                                    <div class="col-lg-7" >
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class=" icon-text text-left">
+                                                    <div class="box-content">
+                                                        <div style="color: #000000;"><b>Year of Reslut</b></div>
+                                                        <p>{{$past_result->start_year}}-{{$past_result->end_year}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class=" icon-text text-left">
+                                                    <div class="box-content">
+                                                        <div style="color: #000000;"><b>View Result</b></div>
+
+                                                        <div> <a target="_blank" href="{{asset('public/'.$past_result->file)}}">View File </a>   </div>
+                                                                  
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                                 @endforeach
                             </div>
 
@@ -661,7 +689,6 @@
                                                     <div class="comment-text">
                                                         @php
                                                             $filledStars = floor($review->rating);
-                                                            $hasHalfStar = $rating_count - $filledStars >= 0.5;
                                                         @endphp
                                                         <div class="comment-metadata">
                                                             <h5><a href="#">{{ $review->name }}</a></h5>
@@ -671,8 +698,7 @@
                                                                 @for ($i = 1; $i <= 5; $i++)
                                                                     @if ($i <= $filledStars)
                                                                         <i class="fas fa-star"></i>
-                                                                    @elseif ($i == $filledStars + 1 && $hasHalfStar)
-                                                                        <i class="fas fa-star-half-alt"></i>
+                                                                   
                                                                     @else
                                                                         <i class="far fa-star"></i>
                                                                     @endif
@@ -880,9 +906,10 @@
         <div class="modal-dialog " role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel" align="center">View Jobs</h4>
+
+            <h4 class="modal-title" id="myModalLabel" style="text-align:right;" >View Jobs</h4>
+					                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true" >&times;</span></button>
                 </div>
                 <div class="modal-body">
 
@@ -905,7 +932,7 @@
                                                 class="fa fa-calendar"></i>{{ $job->experience_required }}</button>
 
                                         <br>
-                                        <button type="submit" class="apply-btn">Apply Now</button>
+                                        <button type="submit" class="apply-btn" >Apply Now</button>
                                     </form>
                                 </div>
                             @endforeach

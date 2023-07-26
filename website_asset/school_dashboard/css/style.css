@@ -1259,7 +1259,7 @@ nav li ul a:before , nav li ul a:after {
     border: 1px solid #e5e7f2;
     background: #F5F7FB;
     width: 100%;
-    padding: 15px 20px 15px 70px;
+    padding: 15px 20px 15px 10px;
     border-radius: 4px;
 	color: #7d93b2;
 	font-size:12px;

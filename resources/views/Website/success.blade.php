@@ -1,30 +1,73 @@
 @extends('website_layout')
+@section('css')
+<style>
+    .h11 {
+        color:#073D5F; 
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+        line-height:2rem;
+    }
+
+    .i1 {
+        color: #fff;
+        font-size: 100px;
+        line-height: 170px;
+        margin-left: 47px;
+     
+    }
+
+    .card {
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
+</style>
+@stop
 @section('website_content')
 
-<!-- main header end -->
 
 
-<!-- billing start -->
-<div class="cv-billing spacer-top-less">
+<section class="flat-row section-about1 parallax parallax3">
     <div class="container">
-        <div class="cv-heading" style="padding-top:4%;">
-        <h1>Subscription Placed Successfully! </h1>
-        <h4>Thanks for Joining with Infolekha. </h4>
-            <div class="success-animation" style="padding-bottom:8%;">
-                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-                </svg>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-5" style="margin-top:3%; margin-bottom:3%;">
+                        <div class="card">
+                            <div
+                                style="border-radius:200px; height:160px; width:160px; background:#25c62e; margin:0 auto;">
+                                <i class="checkmark i1">✓</i>
+                            </div>
+                            <br>
+                            <h1 class="h11" align="center">Success</h1>
+                            <p align="center">Subscription Placed Successfully! <br /> </p>
+                            <p align="center" style="font-size:17px;">Thanks for Joining with
+                                Infolekha.</p>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
+
         </div>
-
     </div>
-</div>
-<!-- billing end -->
-<!-- order detail start -->
+</section>
 
-<!-- order detail end -->
-<div id="snackbar_payment">join successfully!</div>
+
 
 
 @stop

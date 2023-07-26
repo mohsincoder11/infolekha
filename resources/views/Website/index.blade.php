@@ -98,7 +98,7 @@
                                 <i class="fa fa-download" aria-hidden="true"></i>
                             </div>
                             <div class="box-content">
-                                <div class="box-title">Download Brochure
+                                <div class="box-title"> Brochure
                                 </div>
                             </div>
                         </div>
@@ -329,6 +329,45 @@
             </div>
         </div>
     </div>
+
+ <!-- <section class="flat-row blog-shortcode">
+            <div class="container">
+             
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <article class="post clearfix">
+                            <div class="featured-post">
+                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                        alt="image"></a>
+
+                            </div>
+
+                        </article>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <article class="post clearfix">
+                            <div class="featured-post">
+                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                        alt="image"></a>
+
+                            </div>
+
+                        </article>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <article class="post clearfix">
+                            <div class="featured-post">
+                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
+                                        alt="image"></a>
+
+                            </div>
+
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </section>-->
     <!-- Footer -->
 @stop
 

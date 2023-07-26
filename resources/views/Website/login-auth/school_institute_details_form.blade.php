@@ -89,7 +89,7 @@
                                                                         School/College/institution (Max. 500 
                                                                         Alphabets)  <span id="charcount">0 out of 500 characters</span></label><br>
                                                                     <span id=charcount></span>
-																	<textarea minlength="20" onkeyup="charcountupdate(this.value)" name="about" id="about"></textarea>
+																	<textarea minlength="20" maxlength="500"  name="about" id="about" onkeyup="charcountupdate(this.value)"></textarea>
 
                                                                      
 
@@ -206,8 +206,8 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label">Select School*</label>
                                                                     <select class="form-select select country-select"
-                                                                        name="school" required="required"> 
-                                                                        <option>Select </option>
+                                                                        name="school"> 
+                                                                        <option>Select</option>
                                                                         @foreach ($school_type as $school_type )
                                                                             <option value="{{$school_type->id}}">{{$school_type->type}}</option>
                                                                         @endforeach
@@ -255,7 +255,8 @@ $streams=get_college_stream();
                                                                 </div>
                                                             </div>
                                                           @endif
-
+                                                          
+                                                        
 
 
                                                             <div class="col-lg-6">
@@ -263,129 +264,23 @@ $streams=get_college_stream();
                                                                     <label class="form-label"> course*</label>
                                                                    <!-- <select class="form-select select country-select"
                                                                         name="course"  required="required">-->
+                                                                       
 																	<select id="course" name="course[]"  class="form-select select country-select"  multiple >
-                                                                        <option>Select Courses </option>
 																		@if('School'== $data->r_entity)
-                                                                       <option> 1 Nursery </option>
-                                                                        <option> Pre-Primary </option>
-                                                                        <option> Primary </option>
-                                                                        <option>Junior KG
-                                                                        <option> Senior KG </option>
-                                                                        <option>1 st Standard </option>
-                                                                        <option> 2nd Standard </option>
-                                                                        <option> 3rd Standard</option>
-                                                                        <option> 4th Standard </option>
-                                                                        <option> 5th Standard </option>
-                                                                        <option> 6th Standard </option>
-                                                                        <option> 7th Standard </option>
-                                                                        <option> 8th Standard </option>
-                                                                        <option> 9th Standard </option>
-                                                                        <option> 10th Standard</option>
+                                                                        @foreach(get_school_course() as $course)
+                                                                        <option>{{$course}}</option>
+                                                                        @endforeach
+                                                                     
 																		@endif
 																		@if('College'== $data->r_entity)
-                                                                        <option> 11th </option>
-                                                                        <option> 12th
-                                                                        <option> B.com </option>
-                                                                        <option> M.com </option>
-                                                                        <option> LLB </option>
-                                                                        <option> LLM </option>
-                                                                        <option> BBA </option>
-                                                                        <option> MBA </option>
-                                                                        <option> CA Foundation </option>
-                                                                        <option> CA IPCC </option>
-                                                                        <option> CA Final </option>
-                                                                        <option> CS Foundation </option>
-                                                                        <option> CS Executive </option>
-                                                                        <option> CS Professional </option>
-                                                                        <option> ICWA Foundation </option>
-                                                                        <option> ICWA Inter </option>
-                                                                        <option> ICWA Final </option>
-                                                                        <option> Bachelor in Technology (B.Tech)
-                                                                        </option>
-                                                                        <option> Bachelor in Engineering (BE) </option>
-                                                                        <option> JEE-Main </option>
-                                                                        <option> GATE </option>
-                                                                        <option> UPCET </option>
-                                                                        <option> BITSAT </option>
-                                                                        <option> Bachelor of Science (B. Sc.) </option>
-                                                                        <option> Bachelor of Architecture ( B.Arch.)
-                                                                        </option>
-                                                                        <option> Architecture Designer </option>
-                                                                        <option> Interior Designer </option>
-                                                                        <option> Software Engineer </option>
-                                                                        <option> Research Analyst </option>
-                                                                        <option> MBBS (Bachelor of Medicine and Bachelor
-                                                                            of Surgery) </option>
-                                                                        <option> NEET Entrance exam </option>
-                                                                        <option> BDS (Bachelor of Dental Surgery)
-                                                                        </option>
-                                                                        <option> Botany/Zoology/Chemistry </option>
-                                                                        <option> Biochemistry </option>
-                                                                        <option> BHMS (Bachelor of Homeopathy Medicine
-                                                                            and Surgery) </option>
-                                                                        <option> B. Pharmacy </option>
-                                                                        <option> BPT (Bachelor of Physiotherapy)
-                                                                        </option>
-                                                                        <option> BAMS (Bachelor of Ayurvedic Medicine
-                                                                            Surgery)</option>
-                                                                        <option> BUMS (Bachelor of Unani Medicine and
-                                                                            Surgery) </option>
-                                                                        <option> Bioinformatics </option>
-                                                                        <option> Genetics </option>
-                                                                        <option> Forensic Sciences </option>
-                                                                        <option> Biotechnology </option>
-                                                                        <option> Environmental Science </option>
-                                                                        <option> Nursing </option>
-                                                                        <option> Bachelor in Business Studies </option>
-                                                                        <option> Bachelor of Legislative Law </option>
-                                                                        <option> CLAT </option>
-                                                                        <option> Bachelor of Management Studies
-                                                                        </option>
-                                                                        <option> Certified Financial Planner (CFP)
-                                                                        </option>
-                                                                        <option> Financial Analyst and Advisor </option>
-                                                                        <option> Investment Banking Analyst </option>
-                                                                        <option> Bachelor of Arts (BA) - 3 years
-                                                                        </option>
-                                                                        <option> Master of Arts (MA) </option>
-                                                                        <option> Bachelor of Computer Application (BCA)
-                                                                            - 3 years </option>
-                                                                        <option> Bachelor of Hotel Management (BHM)
-                                                                        </option>
-                                                                        <option> Bachelor of Journalism & Mass
-                                                                            Communication (BJMC) - 3 years</option>
-                                                                        <option> Bachelor of Elementary Education
-                                                                            (B.El.Ed) - 4 years </option>
-                                                                        <option> Bachelor of Fine Arts (BFA) - 3 years
-                                                                        </option>
-                                                                        <option> Fashion Designing - 3 to 4 years
-                                                                        </option>
-                                                                        <option> Diploma in IT </option>
+                                                                        @foreach(get_college_course() as $course)
+                                                                        <option>{{$course}}</option>
+                                                                        @endforeach
 																		@endif
 																		@if('Institute'== $data->r_entity)
-                                                                        <option> Yoga </option>
-                                                                        <option> Photography </option>
-                                                                        <option> Acting and Anchoring </option>
-                                                                        <option> Junior Basic Training (JBT) </option>
-                                                                        <option> Travel and Tourism </option>
-                                                                        <option> Event Management </option>
-                                                                        <option> Paramedical Courses </option>
-                                                                        <option> Nursing courses </option>
-                                                                        <option> Web Designing </option>
-                                                                        <option> Digital Marketing</option>
-                                                                        <option> Graphic Design
-                                                                        <option> Tally </option>
-                                                                        <option> Interior Design </option>
-                                                                        <option> Beautician </option>
-                                                                        <option> Hardware and Networking </option>
-                                                                        <option> Photography </option>
-                                                                        <option> Air Hostess </option>
-                                                                        <option> MSCIT </option>
-                                                                        <option> MS-Excel </option>
-                                                                        <option> MS-Word </option>
-                                                                        <option> MS-Powerpoint </option>
-                                                                        <option> Computer Clases </option>
-                                                                        <option> DTP Classes </option> 
+                                                                        @foreach(get_institute_course() as $course)
+                                                                        <option>{{$course}}</option>
+                                                                        @endforeach
 																		@endif
 																		<option> Other </option> 
 
@@ -397,7 +292,7 @@ $streams=get_college_stream();
                                                                     <label class="form-control-label"> Office
                                                                         Timings (From)</label>
                                                                     
-                                                                    <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
+                                                                        <input type="text" id="timepicker" class="from-control">
                                                                 </div>
                                                             </div>
 
@@ -405,7 +300,7 @@ $streams=get_college_stream();
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Office
                                                                         Timings (To)</label>
-                                                                        <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
+                                                                        <input type="text" id="timepicker2" name="timepicker-12-hr" class="timepicker-12-hr">
                                                                       
                                                                 </div>
                                                             </div>
@@ -415,52 +310,10 @@ $streams=get_college_stream();
                                                                     <!--<select class="form-select select country-select"
                                                                     name="facilities"  required="required">-->
 																<select id="facilities" name="facilities[]"  class="form-select select country-select"  multiple >
-                                                                        <option>Select Facilities </option>
 																		
-                                                                      <option>Classrooms</option> 
-                                                                       <option>Digital classroom</option> 
-                                                                        <option>Playground & Sports facilities</option> 
-                                                                        <option>A/c classroom</option> 
-                                                                        <option>Canteen / Cafeterias</option> 
-                                                                        <option>Security System (CCTV, Security Guards, Other)</option> 
-                                                                        <option>Biometric Attendance Monitoring System</option> 
-                                                                        <option>Library</option> 
-                                                                        <option>Computer Lab</option> 
-                                                                        <option>Laboratories </option> 
-                                                                        <option>Garden</option> 
-                                                                        <option>Conference rooms</option> 
-                                                                        <option>Auditoriums</option> 
-                                                                        <option>Transportation</option> 
-                                                                        <option>Indoor sports arena</option> 
-                                                                        <option>Amphitheatre</option> 
-                                                                        <option>Multipurpose Hall.</option> 
-                                                                        <option>Counselling Centre</option> 
-                                                                        <option>Activity Rooms</option> 
-                                                                        <option>Art rooms</option> 
-                                                                        <option>Mathematics Laboratory</option> 
-                                                                        <option>Health center</option> 
-                                                                        <option>Art studios</option> 
-                                                                        <option>Music rooms</option> 
-                                                                        <option>Administrative offices</option> 
-                                                                        <option>Restrooms</option> 
-                                                                        <option>Parking lots</option> 
-                                                                        <option>Outdoor learning spaces</option> 
-                                                                        <option>Career and technical education facilities</option> 
-                                                                        <option>Multi-purpose rooms</option> 
-                                                                        <option> Daycare facilities</option> 
-                                                                        <option>Storage areas</option> 
-                                                                        <option>Staff lounges</option> 
-                                                                        <option>Conference rooms</option> 
-                                                                        <option>Prayer and meditation rooms</option> 
-                                                                       <option> Reading corners</option> 
-                                                                       <option> Emergency response resources</option> 
-                                                                       <option>Innovation centers</option> 
-                                                                       <option>Distance learning facilities</option> 
-                                                                       <option>Athletic facilities</option> 
-                                                                       <option>Parent resource centers</option> 
-                                                                       <option>Lecture halls</option> 
-                                                                       <option>	Dormitories and housing facilities</option> 
-                                                                       <option>Student-run enterprises</option> 
+                                                                     @foreach (get_facilities() as $facility )
+                                                                         <option>{{$facility}}</option>
+                                                                     @endforeach
                                                                         
                                                             
 
@@ -601,7 +454,6 @@ $streams=get_college_stream();
 <script>
 function charcountupdate(str) {
 	var lng = str.length;
-    console.log(lng);
 	document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
 	
 }
@@ -620,11 +472,13 @@ function charcountupdate(str) {
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 <script> 	
 $(document).ready(function(){
-	$('#course').select2({closeOnSelect:true}); 
+   
+	$('#course').select2({closeOnSelect:false}); 
  $('#course').on('change', function() {  const selectedOptions = $(this).val(); 
  const otherOption = selectedOptions.includes('other'); 
  if (otherOption) {  $('#other-fruit').show();  } else {  $('#other-fruit').hide();  }  });
@@ -669,10 +523,13 @@ $('#facilities').select2({closeOnSelect:false});
 <script src="{{asset('js/wickedpicker.min.js')}}"></script>
 
 <script>
-  var twelveHour = $('.timepicker-12-hr').wickedpicker();
-            $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
-            $('.timepicker-24-hr').wickedpicker({twentyFour: true});
-            $('.timepicker-12-hr-clearable').wickedpicker({clearable: true});
+//   var twelveHour = $('.timepicker-12-hr').wickedpicker();
+//             $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
+//             $('.timepicker-24-hr').wickedpicker({twentyFour: true});
+//             $('.timepicker-12-hr-clearable').wickedpicker({clearable: true});
+$( "#timepicker" ).timepicker();
+$( "#timepicker2" ).timepicker();
+
 </script>
 
 <script>
@@ -743,6 +600,9 @@ $('#facilities').select2({closeOnSelect:false});
         httpOrHttpsUrl: true,
       },
       address: {
+        required: true,
+      },
+      school: {
         required: true,
       },
       pin_code: {
@@ -822,6 +682,9 @@ $('#facilities').select2({closeOnSelect:false});
         required: "This field is required.",
       },
       mob: {
+        required: "This field is required.",
+      }, 
+      school: {
         required: "This field is required.",
       },
       email: {

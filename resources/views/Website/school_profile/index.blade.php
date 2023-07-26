@@ -1,4 +1,5 @@
 @extends('Website.school_profile.layout')
+
 @section('profile_content')
 
 <div class="dashboard-content">
@@ -52,16 +53,16 @@
                                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label> --}}
 
 
-                                          <h1 style="color:#144273; margin-right: 90%; font-size: 20px; margin-top: 20%;">Courses</h1>
+                                          <h1 style="color:#144273;  font-size: 20px; margin-top: 20%;">Courses</h1>
 
-                                          <div class="col-md-12" style="margin-top:2%; margin-bottom: 10%;  ">
+                                          <div class="col-md-12" style="margin-top:2%; margin-bottom: 5%;  ">
 
                                           
                                            
                                           @if(json_decode($user_data->course))
                                           @foreach(json_decode($user_data->course) as $c)
                                           @if($loop->index % 3 ==0 && $loop->index !=0)
-                                          <br><br><br><br>
+                                          <br><br>
                                           @endif
                                             <div class="col-md-4" style="margin-top: 5px;">
                                            
@@ -75,7 +76,7 @@
                                 
                                            </div>
                                         
-                                           <h1 style="color:#144273; margin-right: 90%; font-size: 20px; margin-top: 10%;">Facilities</h1 >
+                                           <h1 style="color:#144273;  font-size: 20px; margin-top: 5%;">Facilities</h1 >
 
 
                                            <div class="col-md-12" id="demo" style="margin-top:2%;   " >
@@ -94,15 +95,16 @@
                         
                                             </div>
                                             
-                                            <label style="color:#144273; text-align:center; margin-top: 10%;">About Us</label>
-                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:20px;  color:#144273;">{{$user_data->about}}</textarea>	
+                                            <label style="color:#144273; text-align:center; margin-top: 5%;">About Us</label>
+                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:20px;font-size:14px;  color:#144273;">{{$user_data->about}}</textarea>	
                                             
                                                <!-- section -->
                     <section >
                         <div class="container">
                             <!-- section-title -->
                             <div class="section-title st-center fl-wrap">
-                                <h3 style="color:#144273; text-align:center; font-size: 15px;">Images</h3>
+                                <label style="color:#144273; text-align:center; font-size: 20px;">
+                                    Images</label>
                              
                             </div>
                             <!-- section-title end -->
@@ -114,20 +116,17 @@
                                     @if($user_data->image !=null)
                                     @foreach(json_decode($user_data->image) as $i)
                                     <div class="slick-slide-item">
-                                        <!--  agent card item -->
+                                        <!-- agent card item -->
                                         <div class="listing-item">
                                             <article class="geodir-category-listing fl-wrap">
-                                                <div class="geodir-category-img fl-wrap  agent_card">
-                                                    <a target="_blank" href="{{asset('public').'/'.$i}}" class="geodir-category-img_item">
-                                                        <img src="{{asset('public').'/'.$i}}" alt="">
-                                                        
+                                                <div class="geodir-category-img fl-wrap agent_card" style="max-height: 150px; overflow: hidden;">
+                                                    <a target="_blank" href="{{ asset('public').'/'.$i }}" class="geodir-category-img_item">
+                                                        <img src="{{ asset('public').'/'.$i }}" alt="" class="slider-image">
                                                     </a>
-                                                
                                                 </div>
-                                          
                                             </article>
                                         </div>
-                                        <!--  agent card item end -->
+                                        <!-- agent card item end -->
                                     </div>
                                     @endforeach
                                   @endif
@@ -148,7 +147,7 @@
                                                 <!-- section-title -->
                                                 <div class="section-title st-center fl-wrap">
                                                     <label style="color:#144273; text-align:center; font-size: 20px;">
-                                                        Video</label>
+                                                        Videos</label>
 
                                                 </div>
                                                 <!-- section-title end -->
@@ -162,10 +161,9 @@
                                                                     <!-- agent card item -->
                                                                     <div class="listing-item">
                                                                         <article class="geodir-category-listing fl-wrap">
-                                                                            <div class="geodir-category-img fl-wrap agent_card">
-                                                                                <a target="_blank" href="{{ asset('public').'/'.$i }}" class="geodir-category-img_item">
-                                                                                    <iframe width="560" height="115" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                                                                </a>
+                                                                            <div class="geodir-category-img fl-wrap agent_card" style="padding:10px">
+                                                                               
+                                                                                    <iframe  height="150" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                                                             </div>
                                                                         </article>
                                                                     </div>

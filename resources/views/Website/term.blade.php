@@ -28,7 +28,7 @@
                 <div class="row" style="margin-top:4%;">
 					<div class="col-md-1"></div>
                 <div class="col-md-10" style="padding-top:20px; padding-left:5%; padding-right:5%; padding-top:5%; padding-bottom:5%;
-                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-bottom:4%;">
 
 
                         <p align="justify">

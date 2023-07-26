@@ -1594,7 +1594,7 @@ section.main-content.page-listing {
 
 .content-listing h3.title-listing {
 	font-size: 24px;
-	margin-bottom: 39px;
+	margin-bottom: 18px;
 }
 .content-listing .text {	
 	margin-bottom: 60px;
@@ -3006,6 +3006,25 @@ footer a:hover {
  
 
   /*profile dropdown css*/
+  /*filter css*/
+  .filter{
 
+	border-radius:6px;
+	height: 42px;
+	font-size:16px;
+	
+	 }
+	 .btn1:hover{
+	border: #073D5F 2px solid;
+	color: #073D5F;
+	 background-color: #d2e8f6;
+	
+	 }
+	 .f1{
+		height: 42px !important;
+		border-radius:6px !important;
+	 }
+	 
+  /*filter css end*/
 
 	
