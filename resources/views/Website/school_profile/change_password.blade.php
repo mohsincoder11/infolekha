@@ -1,4 +1,12 @@
 @extends('Website.school_profile.layout')
+@section('css')
+<style>
+    .error{
+        margin-top:-10px;
+
+    }
+</style>
+@stop
 @section('profile_content')
 
 <div class="dashboard-content">
@@ -26,18 +34,26 @@
                                 <div class="pass-input-wrap fl-wrap">
                                     <label style="font-size:16px;">Current Password</label>
                                     <input type="password" name="current_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash toggle-password" aria-hidden="true"></i> </span>
                                 </div>
+                                <p></p>
+
                                 <div class="pass-input-wrap fl-wrap">
                                     <label style="font-size:16px;">New Password</label>
                                     <input type="password" name="new_password" id="new_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash toggle-password" aria-hidden="true"></i> </span>
                                 </div>
+                                <p></p>
+
                                 <div class="pass-input-wrap fl-wrap">
                                     <label style="font-size:16px;">Confirm New Password</label>
                                     <input type="password" name="confirm_password" class="pass-input" placeholder="" value="" />
-                                    <span class="eye"><i class="far fa-eye-slash" aria-hidden="true"></i> </span>
+                                    <span class="eye"><i class="far fa-eye-slash toggle-password" aria-hidden="true"></i> </span>
                                 </div>
+                                <p></p>
+
+
+                                
 
                                 <button type="submit" class="btn    color-bg  float-btn">Save Changes</button>
                             </div>
@@ -96,10 +112,21 @@ submitHandler: function(form) {
 },
 errorPlacement: function(error, element) {
    
-        element.closest('.pass-input').after(error);
+    element.closest('.pass-input-wrap').next('p').append(error);
 
 },
 });
+
+$(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+
 
 </script>
 

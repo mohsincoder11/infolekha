@@ -5,7 +5,7 @@
         .card-basic,
         .card-premium,
         .card-standard {
-            margin: 0 1rem 1rem 0;
+           
             padding: 0 0 0.5rem 0;
             background: #fff;
             color: #444;
@@ -102,6 +102,7 @@
             display: none;
         }
     </style>
+    
 @stop
 @section('profile_content')
     <div class="dashboard-content">
@@ -145,7 +146,7 @@
 
                         </div>
 
-                        <span id="advertisement_div"></span>
+                        <span id="advertisement_div" style="width:100%;"></span>
 
                         {{-- @include('Website.school_profile.advertisement.packages') --}}
 

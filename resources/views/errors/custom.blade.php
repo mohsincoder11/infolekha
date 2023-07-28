@@ -73,7 +73,7 @@ a:hover {
   <div class="error-container">
     <div class="error-content">
       <h2>Unknown Error</h2>
-      <p>Oops! Something went wrong. Please comtact to system administrator.</p>
+      <p>Oops! Something went wrong. Please contact to system administrator.</p>
       <a href="{{route('index')}}">Go to Home</a>
     </div>
    

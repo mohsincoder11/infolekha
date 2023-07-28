@@ -173,14 +173,18 @@
 
 
                                                                     </div>
-                                                                    <div id="popup1" class="popup1"
-                                                                        style="overflow-y: scroll !important;">
-                                                                        <a class="close-btn1" onclick="closePopup1()"><i
-                                                                                class="fas fa-times"></i></a>
+                                                                  
+                                                                    <div id="popup1" class="popup1" style="overflow-y: scroll !important;">
+                                                           
+                                                                        <div style="width: 100%; text-align: right; position: sticky; top: 0;">
+                                                                            <a class="close-btn1" onclick="closePopup1()"><i class="fas fa-times"></i></a>
+                                                                          </div>
                                                                         <br>
                                                                         <!-- Popup1 content goes here -->
                                                                         <p>
-                                                                        <p><b>As a authorised representative of above
+                                                                            <h4> <b>TERMS & CONDITION</b></h4>
+
+                                                                        <p style="margin-top:10px;color:#000;"><b>As a authorised representative of above
                                                                                 mentioned educational institution I hereby
                                                                                 declare and accept following terms and
                                                                                 conditions</b></p>
@@ -520,15 +524,26 @@
 @stop
 @section('js')
     <script>
-        function openPopup1() {
-
-            document.getElementById('popup1').style.display = 'block';
-
+ function openPopup1() {
+                setTimeout(() => {
+                document.getElementById('popup1').style.display = 'block';
+                }, 200);
+           
         }
-
         function closePopup1() {
             document.getElementById('popup1').style.display = 'none';
         }
+        const $modal = $('#popup1');
+
+// Function to handle the click event outside the modal
+$(document).click(function(event) {
+    if ($modal.css('display') === 'block' && !$modal.is(event.target) && $modal.has(event.target).length === 0) {
+    // Clicked outside the modal, so hide it
+    closePopup1();
+  }
+
+});
+
         jQuery.validator.addMethod("cvvalidate", function(value, element) {
         // Get the file extension
         var extension = value.split('.').pop().toLowerCase();

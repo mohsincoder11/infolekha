@@ -243,6 +243,9 @@
                                                                         @if($dt->subscription_status==0)
                                                                         Not Paid
                                                                         @endif
+                                                                         @if($dt->subscription_status==1)
+                                                                        Paid
+                                                                        @endif
                                                                     </button>
                                                                 </td>
 

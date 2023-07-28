@@ -86,8 +86,7 @@
                                                             <div class="col-lg-12">
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">About
-                                                                        School/College/institution (Max. 500 
-                                                                        Alphabets)  <span id="charcount">0 out of 500 characters</span></label><br>
+                                                                        School/College/institution   <span id="charcount">0 out of 500 characters</span></label><br>
                                                                     <span id=charcount></span>
 																	<textarea minlength="20" maxlength="500"  name="about" id="about" onkeyup="charcountupdate(this.value)"></textarea>
 
@@ -351,15 +350,20 @@ $streams=get_college_stream();
                                                            <input class="form-control-lable" type="checkbox" name="policy_checkbox" id="checkbox" style="margin-right: 1%;" >
                                                            <label for="checkbox">I have read and accepted the <spam style="color:#073D5F;cursor: pointer;"  onclick="openPopup1()">Terms & Condition</spam></label>	
 
-
                                                          </div>
+
                                                         <div id="popup1" class="popup1" style="overflow-y: scroll !important;">
-                                                            <a class="close-btn1" onclick="closePopup1()"><i class="fas fa-times"></i></a>
+                                                           
+                                                            <div style="width: 100%; text-align: right; position: sticky; top: 0;">
+                                                                <a class="close-btn1" onclick="closePopup1()"><i class="fas fa-times"></i></a>
+                                                              </div>
+
                                                              <br>
                                                                 <!-- Popup1 content goes here -->
                                                              <p>
                                                                 <p>
-																	<h4> <b>TERMS & CONDITION</b></h4><p style="color:#000;">As a authorised representative of above mentioned educational institution I hereby declare and accept following terms and conditions</p></p>
+																	<h4> <b>TERMS & CONDITION</b></h4>
+                                                                    <p style="margin-top:10px;color:#000;">As a authorised representative of above mentioned educational institution I hereby declare and accept following terms and conditions</p></p>
                                                               <p><b>  1.</b>	By signing up for a listing on INFOlekha.org, we confirm that we are a legitimate educational institution, and that all information provided to INFOlekha.org is accurate and up-to-date. We understand that INFOlekha.org has the right to verify the information provided and may remove our listing if any information is found to be false or misleading.</p><br>
                                                                 
                                                                 <p><b>2.</b>	We acknowledge that by listing on INFOlekha.org, we agree to provide timely and accurate updates to any changes in our institution's information, including contact details, programs offered, admission requirements, and any other relevant information.</p><br>
@@ -460,13 +464,24 @@ function charcountupdate(str) {
 </script>
 <script>
         function openPopup1() {
-            
+                setTimeout(() => {
                 document.getElementById('popup1').style.display = 'block';
+                }, 200);
            
         }
         function closePopup1() {
             document.getElementById('popup1').style.display = 'none';
         }
+        const $modal = $('#popup1');
+
+// Function to handle the click event outside the modal
+$(document).click(function(event) {
+    if ($modal.css('display') === 'block' && !$modal.is(event.target) && $modal.has(event.target).length === 0) {
+    // Clicked outside the modal, so hide it
+    closePopup1();
+  }
+
+});
     </script>
 
 
@@ -567,7 +582,7 @@ $( "#timepicker2" ).timepicker();
 
       jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
     return this.optional(element) || /^(https?:\/\/)?(www\.)?[\w-]+(\.[\w-]+)+$/.test(value);
-  }, "Please enter a valid url.");
+  }, "Please enter a valid URL.");
 
       
     //   jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
@@ -654,16 +669,16 @@ $( "#timepicker2" ).timepicker();
         required: "This field is required",
       },
       website: {
-        httpOrHttpsUrl: "Please enter valid url.",
+        httpOrHttpsUrl: "Please enter valid URL.",
       },
       fb: {
-        httpOrHttpsUrl: "Please enter valid url.",
+        httpOrHttpsUrl: "Please enter valid URL.",
       },
       insta: {
-        httpOrHttpsUrl: "Please enter valid url.",
+        httpOrHttpsUrl: "Please enter valid URL.",
       },
       google: {
-        httpOrHttpsUrl: "Please enter valid url.",
+        httpOrHttpsUrl: "Please enter valid URL.",
       },
       about: {
         minlength: "Please enter minimum 20 character description.",

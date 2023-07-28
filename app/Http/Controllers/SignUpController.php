@@ -111,7 +111,8 @@ class SignUpController extends Controller
 
     public function school_institute_detail_create(Request $request)
     {
-
+      
+        $request->merge(['about' => preg_replace('/\r\n|\r|\n/', ' ', $request->about)]);
 
             $validator = Validator::make(
                 $request->all(),
@@ -149,7 +150,6 @@ class SignUpController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-
 
                 if (school_institute_detail::where('user_id', auth::user()->id)->exists()) {
                     //   dd(auth::user()->id);

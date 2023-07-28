@@ -76,10 +76,7 @@
             margin-left:2%;
         }
     }
-    body {
-  font-family: Helvetica, Arial, Sans-Serif;
-  font-size:15px;
-}
+   
 </style>
 
 <style>

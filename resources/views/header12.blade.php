@@ -554,7 +554,7 @@ opacity: 1;
                                 <ul class="submenu" style="width:6.5em">
                                     <li><a href="#">Profile</a>
                                     </li>
-                                    <li><a href="{{route('logout')}}" >Log out</a>
+                                    <li><a href="{{route('logout')}}" >Log Out</a>
                                     </li>
                                 </ul>
                             </li>

@@ -1,15 +1,14 @@
 
-<div class="col-md-12">
                
-    <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 2vh; margin-top: 2vh;"><b>Our Subscription Plans  </b></h4>
+    <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 1rem; margin-top: 2rem;"><b>Our Subscription Plans  </b></h4>
     <!-- listsearch-input-item -->
     
 
-
+<div class="col-lg-12">
    @foreach($advertisements as $advertisements) 
-   <form action="{{route('school_profile.insert-advertisement')}}" method="post" id="form{{$loop->iteration}}">
-    @csrf
    <div class="col-lg-4">
+    <form action="{{route('school_profile.insert-advertisement')}}" method="post" id="form{{$loop->iteration}}">
+    @csrf
       <div class="card-basic">
           <div class="card-header header-basic">
             <h1>{{$advertisements->PackageName}}</h1>
@@ -51,11 +50,11 @@
         </div>
  
 
-    </div>
    </form>
-    @endforeach
+  </div>
 
+    @endforeach
+  </div>
     
    
 
-</div>

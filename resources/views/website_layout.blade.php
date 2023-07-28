@@ -466,40 +466,41 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
      .popup1 {
          display: none;
          position:fixed;
          top: 50%;
          left: 50%;
-
          transform: translate(-50%, -50%);
          width: 700px;
          height: 400px;
          background-color: #fff;
-         padding: 20px;
+         padding: 1px 20px 20px 20px;
          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
          z-index: 1000;
+        
      }
 
+     /* .close-btn1_div {
+        width: 100%; text-align: right; position: sticky; top: 0;
+
+     } */
      .close-btn1 {
-         position: absolute;
-         top: 10px;
-         left: 10px;
-         cursor: pointer;
-         font-size: 1.5rem;
-         color: #666;
-         transition: color 0.3s ease-in-out;
-     }
+  float: right;
+  display: block;
+  width: 100%; /* Adjust the width to your preferred size */
+  height: 40px; /* Adjust the height to your preferred size */
+  line-height: 40px; /* Center the icon vertically */
+  background-color: white;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #666;
+  transition: color 0.3s ease-in-out;
+  padding: 10px 0 30px 0;
+    margin-bottom: 10px;
+
+
+}
 
      .close-btn1:hover {
          color: #000;
@@ -780,9 +781,9 @@ body {
 	display: none;
 }
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
-   
     height: 39px !important;
-    overflow: auto;
+    overflow-y: auto; /* Add vertical scrollbar when content overflows */
+  white-space: normal; 
 }
 
 /* Styles for the autocomplete dropdown list */
@@ -842,7 +843,7 @@ body {
 }
 
 .fade-out {
-  animation: fadeOutAnimation 0.5s forwards;
+  animation: fadeOutAnimation 2.5s forwards;
 }
 
 @keyframes fadeOutAnimation {
@@ -948,7 +949,7 @@ body {
                                                          <a href="{{ route('user_profile.home') }}">Profile</a>
                                                      @endif
                                                  </li>
-                                                 <li><a href="{{ route('logout') }}">Log out</a>
+                                                 <li><a href="{{ route('logout') }}">Log Out</a>
                                                  </li>
                                              </ul>
                                          </li>
@@ -1051,7 +1052,7 @@ body {
                                                              href="{{ route('user_profile.home') }}">Profile</a>
                                                      @endif
                                                  </li>
-                                                 <li><a style="color: #fff;" href="{{ route('logout') }}">Log out</a>
+                                                 <li><a style="color: #fff;" href="{{ route('logout') }}">Log Out</a>
                                                  </li>
                                              </ul><!-- /.submenu -->
                                          </li>
@@ -1481,7 +1482,7 @@ fetch(google_url).then(function(response) {
 
       setTimeout(() => {
         $('.detect-location').remove();
-      }, 500);
+      }, 2500);
     }
 
    
@@ -1598,7 +1599,7 @@ fetch(google_url).then(function(response) {
             $('.detect-location').addClass('fade-out');
             setTimeout(() => {
                 $('.detect-location').remove();
-            }, 500);
+            }, 2500);
         });
 
          function stored_city_function(city) {

@@ -420,7 +420,7 @@ class WebsiteformController extends Controller
                 return response()->json(false);
             }
             $createOrupdate=City::firstOrCreate(['city'=>$request->city]);
-            if(Auth::check()){
+            if(Auth::check() && (Auth::user()->role==1 || Auth::user()->role==2 )){
                 User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
             }
         return response()->json(true);

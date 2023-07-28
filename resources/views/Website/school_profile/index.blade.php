@@ -143,7 +143,7 @@
                     </section>
                     
                     <!-- section end-->	
-                                                     <div class="container">
+                                                     <div class="container" style="margin-bottom:5%">
                                                 <!-- section-title -->
                                                 <div class="section-title st-center fl-wrap">
                                                     <label style="color:#144273; text-align:center; font-size: 20px;">
@@ -183,7 +183,11 @@
                                             </div>
 
                                             
-                                            <h1 style="color:#144273; margin-right: %; font-size: 20px; margin-top: 10%;">
+                                            @if ($user_data->fb || $user_data->website ||
+                                            $user_data->insta ||
+                                            $user_data->yt ||
+                                            $user_data->google) 
+                                              <h1 style="color:#144273;  font-size: 20px; margin-top: 12%;">
                                                 Social Media Handles</h1>
     
     
@@ -212,6 +216,7 @@
                                                 
                                                 
                                             </div>
+                                            @endif
 
                                         </div>
 
