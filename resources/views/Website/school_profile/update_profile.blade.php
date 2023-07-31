@@ -135,7 +135,7 @@
                                 <div class="row">
 
                                 <div class="col-md-6">
-                                    <label style="font-size:16px;">Upload Logo </label>
+                                    <label style="font-size:16px;">Upload Logo</label>
                                     <input type="file" name="logo" class="upload" value="{{ $data->logo }}" />
                                     <img height="50px" width="50px" src="{{ asset('public') . '/' . $data->logo }}"
                                         alt="">
@@ -228,7 +228,7 @@
                                 <div class="col-md-12">
 
 
-                                    <label>About Us </label>
+                                    <label style="font-size:16px;">About Us </label>
                                     <textarea cols="40" rows="3" placeholder="About Me" style="margin-bottom:20px;" name="about">{{ $data->about }}</textarea>
                                 </div>
                                 <div class="col-md-6">
@@ -263,20 +263,18 @@
 
                                                 <a target="_blank" href="{{ asset('public') . '/' . $i }}"
                                                     class="geodir-category-img_item img">
-                                                    <iframe height="115" src="{{ asset('public') . '/' . $i }}"
+                                                    <iframe height="115" width="210" src="{{ asset('public') . '/' . $i }}"
                                                         alt="" title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        allowfullscreen></iframe>
+                                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                             </a>
                                             <i class="fas fa-times-circle delete-icon delete-video" video_name="{{$i}}"></i>
-
                                             </div>
                                         @endforeach
 
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <button type="submit" class="btn color-bg  float-btn">Save Changes</button>
+                                <div  >
+                                    <button type="submit" class="btn color-bg  float-btn" >Save Changes</button>
                                 </div>
 
                             </form>

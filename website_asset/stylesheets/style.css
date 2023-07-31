@@ -268,7 +268,7 @@ input[type="color"] {
     padding-left: 15px;
     font-size: 13px;
     outline: none;
-    margin-bottom: 10px;
+    margin-top: 10px;
 	border-radius: 0;
 	width: 100%;
 	-webkit-transition: all 0.3s ease-in-out;
@@ -901,7 +901,7 @@ ul.flat-infomation li i {
 /* Blog
 -------------------------------------------------------------- */
 section.main-content {
-	padding: 78px 0px 79px;
+	padding: 0px 0px 79px;
 }
 
 .entry p {
@@ -1281,7 +1281,7 @@ section.main-content.blog-single {
 .form-listing .icon-form input {
 	color: #000000;
 	font-size: 14px;
-	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 
@@ -1960,7 +1960,7 @@ section.main-content.page-listing {
 /* Page contact
 -------------------------------------------------------------- */
 .flat-row.page-contact1 {
-    padding: 97px 0px 45px;
+    padding: 7px 0px 45px;
 }
 
 .flat-row.page-contact2 {

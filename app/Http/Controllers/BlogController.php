@@ -61,7 +61,7 @@ class BlogController extends Controller
         $blogcreate->blogs=$request->get('blogs');
         // $blogcreate->blog_editor=$request->get('blog_editor');
         $blogcreate->save();
-        return redirect(route('admin.blog'))->with(['success'=>'Successfully Inserted !']);
+        return redirect(route('admin.blog'))->with(['success'=>'Successfully Inserted.']);
     }
 
     public function edit($id)

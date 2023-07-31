@@ -131,7 +131,7 @@
                                                         </table>
 
 
-                                                        <div class="update-profile" style="margin-left:38%; ">
+                                                        <div class="update-profile" style="margin-left:38%; margin-top:2%;">
                                                             <button type="submit" class="btn btn-primary"
                                                                 style="width: 40%;">Pay Now</button>
                                                         </div>

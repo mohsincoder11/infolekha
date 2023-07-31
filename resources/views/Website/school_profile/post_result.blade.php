@@ -54,10 +54,7 @@
                     </div> --}}
 
 
-                        <div class="col-md-4">
-
-
-
+                        <div class="col-md-4" style="margin-top: 14px;">
                             <button type="submit" class="btn  color-bg  float-btn">Save </button>
                         </div>
                         </form>
@@ -73,7 +70,7 @@
 
                                     <table id="customers">
                                         <tr>
-                                            <th>Sr.no</th>
+                                            <th >Sr.no</th>
                                             <th>File</th>
                                             <th>Academic Year</th>
                                             <th>Delete</th>
@@ -106,8 +103,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{route('school_profile.destroy_post_result',$post_result->id)}}">
-                                                    <button class="btn color-bg  float-btn" style="padding: 5px 25px;"><i
-                                                            class="fa fa-trash" aria-hidden="true"></i> </button></a>
+                                              <i class="fa fa-trash" aria-hidden="true"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach

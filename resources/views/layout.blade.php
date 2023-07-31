@@ -117,6 +117,9 @@
   .error {
             color: #ff0202 !important;
             font-size: 14px !important;
+
+
+ 
         }
 </style>
 
@@ -183,6 +186,8 @@
 							</li>
 	
 							<li> <a href="{{route('admin.master.job')}}"><i class="bx bx-right-arrow-alt"></i>Job Type</a>
+							</li>
+							<li> <a href="{{route('admin.master.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Coupons</a>
 							</li>
 	
 	
@@ -662,7 +667,7 @@
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="{{asset('images/avatars/user.png')}}" class="user-img" alt="user avatar">
 								<div class="user-info ps-3">
-									<p class="user-name mb-0">{{Auth::user()->name}}</p>
+									<p class="user-name mb-0">{{ucFirst(Auth::user()->name)}}</p>
 									<p class="designattion mb-0"></p>
 								</div>
 							</a>
@@ -724,7 +729,7 @@
 
 @yield('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script>
+     {{-- <script>
 		 const Toast = Swal.mixin({
 toast: true,
 position: 'bottom',
@@ -759,7 +764,7 @@ title: "{{session()->get('error')}}"
 })
 </script>
 
-@endif
+@endif --}}
 </body>
 
 

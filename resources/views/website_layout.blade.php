@@ -854,6 +854,7 @@ body {
     opacity: 0;
   }
 }
+
  </style>
 
  @yield('css')

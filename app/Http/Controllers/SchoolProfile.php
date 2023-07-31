@@ -17,6 +17,7 @@ use App\Models\Advertisement;
 use App\Models\AdvertisementEnquiry;
 use App\Models\AdvertisementPackage;
 use App\Models\AnnouncementPackage;
+use App\Models\Coupon;
 use App\Models\JobVacancyApplied;
 use App\Models\SchoolType;
 use Illuminate\Support\Facades\Hash;
@@ -485,6 +486,17 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       $view = view('Website.school_profile.advertisement.packages')->with(['advertisements' => $advertisements])->render();
       return response()->json($view);
    }
+   
+   public function get_coupon_val(Request $request){
+      $coupon=Coupon::where('code',$request->code)->where('status','=','active')->first();
+      if($coupon){
+         return response()->json(['status'=>true,'coupon'=>$coupon]);
+      }
+      else{
+         return response()->json(['status'=>false,'coupon'=>[]]);
+      }
+
+   }
 
    public function insert_advertisement(Request $request)
    {
@@ -498,7 +510,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          $new->BannerWidth = $package->BannerWidth;
          $new->BannerHeight = $package->BannerHeight;
          $new->OriginalPrice = $package->OriginalPrice;
-         $new->Discount = $package->Discount;
+         $new->Discount = $request->Discount;
          $new->MinDays = $package->MinDays;
          $new->MaxDays = $package->MaxDays;
          $new->SelectedDays = $request->SelectedDays;

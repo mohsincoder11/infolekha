@@ -36,7 +36,7 @@
 
                                 <div class="col-md-6 form-group">
                                     <div class="listsearch-input-item ">
-                                        <label>Vacancy For</label>
+                                        <label style="font-size:16px;">Vacancy For</label>
                                         <select class="chosen-select on-radius no-search-select" name="vacancy_type"
                                             id="vacancy_type">
                                             <option value="">Select Type</option>
@@ -89,7 +89,7 @@
 
                                 <div class="col-md-6 form-group">
                                     <div class="listsearch-input-item ">
-                                        <label>Select Type</label>
+                                        <label style="font-size:16px;">Select Type</label>
                                         <select class="chosen-select on-radius no-search-select" name="job_type">
                                             <option value="">Select Type</option>
                                             <option value="Part Time">Part Time</option>
@@ -100,14 +100,14 @@
                                     <span id="job_type_error"></span>
 
                                 </div>
-
+	                        <div class="col-md-6" style="margin-top:2.3%;">
+                            <button type="submit" class="btn color-bg  float-btn" >Save
+                                Changes</button></div>
 
                             </div>
 
 
 
-                            <button type="submit" class="btn color-bg  float-btn" style="float:center;">Save
-                                Changes</button>
 
                         </div>
                     </form>

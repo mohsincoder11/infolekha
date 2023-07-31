@@ -60,7 +60,7 @@
         #customers th {
             padding-top: 12px;
             padding-bottom: 12px;
-            text-align: left;
+            text-align:center;
             background-color: #144273;
             ;
             color: white;
@@ -446,10 +446,10 @@
                                         @if ($routeName == 'school_profile.post_announcement' || $routeName == 'school_profile.post_advertisement' ||  $routeName == 'school_profile.announcement-package') style="display:block" @endif>
                                         <li><a href="{{ route('school_profile.post_announcement') }}"
                                                 @if ($routeName == 'school_profile.post_announcement' ||  $routeName == 'school_profile.announcement-package') class="user-profile-act" @endif><i
-                                                    class="fal fa-bullhorn"></i> Post a Announcement </a></li>
+                                                    class="fal fa-bullhorn"></i> Post Announcement </a></li>
                                         <li><a href="{{ route('school_profile.post_advertisement') }}"
                                                 @if ($routeName == 'school_profile.post_advertisement') class="user-profile-act" @endif> <i
-                                                    class="fal fa-ad"></i> Post a Advertisement</a></li>
+                                                    class="fal fa-ad"></i> Post Advertisement</a></li>
 
                                     </ul>
                                 </li>

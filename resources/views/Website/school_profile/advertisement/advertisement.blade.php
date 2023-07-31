@@ -19,7 +19,7 @@
         .card-basic:hover,
         .card-premium:hover,
         .card-standard:hover {
-            transform: scale(1.02);
+            transform: scale(1.015);
             animation: zoom-in 0.3s ease-in;
         }
 
@@ -30,7 +30,7 @@
             }
 
             to {
-                transform: scale(1.02);
+                transform: scale(1.015);
             }
         }
 
@@ -258,25 +258,81 @@
             })
 
             $(document).on("change", ".select_days", function() {
+                let parent_div = $(this).closest('.card-element-container');
                 let selected_day = $(this).val();
-                let original_price = $(this).siblings('.original_price').val();
-                $(this).closest('li').next('.card-element').find('.total_amount').text(original_price *
-                    selected_day);
-                $(this).closest('li').next('.card-element').find('.total_amount').val(original_price *
-                    selected_day);
+
+                calculate_discount(parent_div);
+
                 if (selected_day && selected_day > 0) {
                     $(this).closest("form").find(".no_of_days_error").html('');
                 }
             })
 
+
+            $(document).on("blur", ".CouponCode", function() {
+                let parent_div = $(this).closest('.card-element-container');
+
+              calculate_discount(parent_div);
+             
+            })
+            function calculate_discount(parent_div) {
+                $.ajax({
+                    type: "get",
+                    url: "{{ route('school_profile.get_coupon_val') }}",
+                    data: {
+                        code: parent_div.find('.CouponCode').val(),
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        let original_price = parent_div.find('.original_price').val();
+                        var selected_days2=parent_div.find('.select_days').val();
+                        let total_amount=0;
+                        if(data.status && selected_days2){
+                            let coupon=data.coupon;
+                            total_amount=Math.round(original_price * selected_days2);
+                            
+                            if(coupon.type=='PERCENT'){
+                                let discount=(total_amount/100)*coupon.discount;
+                                total_amount=parseFloat(total_amount)-parseFloat(discount);
+                            parent_div.find('.discount_span').text(coupon.discount+'%');
+                            parent_div.find('.discount_input').val(discount);
+                            }
+
+                            if(coupon.type=='FLAT'){
+                                total_amount=parseFloat(total_amount)-parseFloat(coupon.discount);
+                                parent_div.find('.discount_span').text(coupon.discount+' RS');
+                            parent_div.find('.discount_input').val(coupon.discount);
+                            }
+                                
+                        }else{
+                            total_amount=Math.round(original_price * selected_days2);
+                            parent_div.find('.discount_span').text('0');
+                            parent_div.find('.discount_input').val('0');
+
+                        }
+                        parent_div.find('.total_amount').text(total_amount);
+                        parent_div.find('.total_amount').val(total_amount);
+                        if(total_amount && total_amount>0)
+                        parent_div.find('.final_price').text((total_amount/selected_days2).toFixed(2));
+                        
+
+                       
+                    }
+                })
+            }
+
+
+            
             $(document).on("click", ".btn-submit", function(e) {
                 e.preventDefault(); // Prevent the default form submission
 
                 var formId = $(this).closest("form").attr("id");
                 let SelectedDays = $(this).closest("form").find(".select_days").val();
-                console.log(SelectedDays);
                 if (SelectedDays && SelectedDays > 0) {
+                    setTimeout(() => {
                     $(this).closest("form").submit();
+                        
+                    }, 1000);
                     $(this).closest("form").find(".no_of_days_error").html('');
 
                 } else {

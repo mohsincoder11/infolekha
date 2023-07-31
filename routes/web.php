@@ -18,6 +18,8 @@ use App\Http\Controllers\Master\state_city;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Master\BrochureController;
+use App\Http\Controllers\Master\CouponController;
+
 use App\Http\Controllers\Master\SliderlinkController;
 use App\Http\Controllers\school_institute_profile_dashboard;
 use App\Http\Controllers\Easebuzzpay;
@@ -167,6 +169,14 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('master/edit-brochure/{id}', [BrochureController::class, 'edit'])->name('master.edit_brochure');
     Route::post('master/update_brochure', [BrochureController::class, 'update'])->name('master.update_brochure');
     Route::get('master/destroy_brochure/{id}', [BrochureController::class, 'destroy'])->name('master.destroy_brochure');
+
+     //Coupon
+     Route::get('master/coupon', [CouponController::class, 'index'])->name('master.coupon');
+     Route::post('master/create_coupon', [CouponController::class, 'create'])->name('master.create_coupon');
+     Route::get('master/edit-coupon/{id}', [CouponController::class, 'edit'])->name('master.edit_coupon');
+     Route::post('master/update_coupon', [CouponController::class, 'update'])->name('master.update_coupon');
+     Route::get('master/destroy_coupon/{id}', [CouponController::class, 'destroy'])->name('master.destroy_coupon');
+
 });
 
 
@@ -292,6 +302,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::get('school-profile/get_advertisement_size', [SchoolProfile::class, 'get_advertisement_size'])->name('school_profile.get_advertisement_size');
     Route::get('school-profile/get_advertisement_cards', [SchoolProfile::class, 'get_advertisement_cards'])->name('school_profile.get_advertisement_cards');
+    Route::get('school-profile/get_coupon_val', [SchoolProfile::class, 'get_coupon_val'])->name('school_profile.get_coupon_val');
 
 
 

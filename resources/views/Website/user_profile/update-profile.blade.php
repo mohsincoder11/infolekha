@@ -21,8 +21,7 @@
                                 <div class="custom-form">
 
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">Name of Student/Parent <span class="dec-icon"><i
-                                                    class="fas fa-user"></i></span></label>
+                                        <label style="font-size:16px;">Name of Student/Parent </label>
                                         <input type="text" placeholder="Name of Student/Parent" name="r_name" value="{{$user_data->r_name}}" />
                                     </div>
 

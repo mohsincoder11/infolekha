@@ -22,32 +22,34 @@
                             id="post_announcement_form">
                             @csrf
                             <div class="custom-form">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
 
                                     <div class="listsearch-input-item">
 
-                                        <label>Announcement Title</label>
+                                        <label style="font-size:16px;">Announcement Title</label>
                                         <input type="text" name="heading" placeholder="Announcement Title"
                                             value="" />
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="listsearch-input-item">
-
-                                        <label>Main Content </label>
-                                        <textarea cols="10" name="content" rows="3" placeholder="Main Content "></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
+								
+								 <div class="col-md-6">
 
                                     <div class="listsearch-input-item">
 
-                                        <label>Upload Image</label>
+                                        <label style="font-size:16px;">Upload Image</label>
                                         <input name="image" type="file" onClick="this.select()" value=""
                                             accept="image/*" />
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <div class="listsearch-input-item">
+
+                                        <label style="font-size:16px;">Main Content </label>
+                                        <textarea cols="10" name="content" rows="3" placeholder="Main Content "></textarea>
+                                    </div>
+                                </div>
+
+                               
 
 
                                 <div class="col-md-12">

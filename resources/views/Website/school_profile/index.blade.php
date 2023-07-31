@@ -53,7 +53,7 @@
                                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label> --}}
 
 
-                                          <h1 style="color:#144273;  font-size: 20px; margin-top: 20%;">Courses</h1>
+                                          <label style="color:#144273; text-align:center; font-size: 20px;">Courses</label>
 
                                           <div class="col-md-12" style="margin-top:2%; margin-bottom: 5%;  ">
 
@@ -161,9 +161,9 @@
                                                                     <!-- agent card item -->
                                                                     <div class="listing-item">
                                                                         <article class="geodir-category-listing fl-wrap">
-                                                                            <div class="geodir-category-img fl-wrap agent_card" style="padding:10px">
+                                                                            <div class="geodir-category-img fl-wrap agent_card" >
                                                                                
-                                                                                    <iframe  height="150" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+       <iframe  height="115" width="210" src="{{ asset('public').'/'.$i }}" alt="" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                                                             </div>
                                                                         </article>
                                                                     </div>

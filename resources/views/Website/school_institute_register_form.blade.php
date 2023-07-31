@@ -60,7 +60,7 @@
                         <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
                                 name="r_mob" maxlength=10 required="required">
                             <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
-                                style="margin-bottom: 15px;">Verify Mobile</button>
+                                style="margin-bottom:5px;">Verify Mobile</button>
                         </span>
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"

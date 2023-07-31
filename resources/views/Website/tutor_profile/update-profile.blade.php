@@ -67,7 +67,7 @@
                                             <input type="file" class="upload" name="cv" accept=".pdf,.doc,.docx" />
                                         </div>
     
-                                        <label>Declaration </label>
+                                        <label style="font-size:16px;">Declaration </label>
                                         <textarea name="declaration" cols="40" rows="3" placeholder=""
                                             style="margin-bottom:20px;  color:#144273;">{{$user_data->tutor_detail->declaration}}</textarea>
                                         <button class="btn    color-bg  float-btn">Save Changes</button>

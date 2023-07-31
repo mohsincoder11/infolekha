@@ -53,7 +53,7 @@
                         <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
                                 name="mob" maxlength=10 required="required">
                             <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
-                                style="margin-bottom: 15px;">
+                                style="margin-top:15px;">
                                 Verify Mobile</button>
                         </span>
 
@@ -115,7 +115,7 @@
                                             class="fa fa-user field-icon toggle-password"></i>
                                     </span>
 
-                                    <div class="otp_error" style="text-align: left;margin-top:-10px;">
+                                    <div class="otp_error" style="text-align: left;margin-top:10px;">
                                     </div>
                                 </span>
 

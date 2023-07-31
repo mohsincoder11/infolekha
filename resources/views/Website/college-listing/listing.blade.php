@@ -220,7 +220,7 @@
 
                                             
 
-                                            <div class="col-lg-2">
+                                            <div class="col-lg-2"  style="margin-bottom:20px;">
                                                 <div class="form-group " >
                                                     <input type="text" value="{{request()->city}}" name="city" id="city_search" class="form-control f1 " placeholder="City">
                                                   </div>

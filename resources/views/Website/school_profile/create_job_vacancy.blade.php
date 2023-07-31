@@ -36,7 +36,7 @@
 
                                 <div class="col-md-6 form-group">
                                     <div class="listsearch-input-item ">
-                                        <label>Vacancy For</label>
+                                        <label>Vacancy For </label>
                                         <select class="chosen-select on-radius no-search-select" name="vacancy_type"
                                             id="vacancy_type">
                                             <option value="">Select Type</option>
@@ -149,7 +149,7 @@
                                     <td>{{ $vacancy->scope_of_work }}</td>
                                     <td>
                                         <a class="" href="{{route('delete_job_vacancy',$vacancy->id)}}">
-                                        <i class="fal fa-trash"></i>
+                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                         </a>
                                     </td>
 
