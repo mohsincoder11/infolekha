@@ -131,7 +131,7 @@
                                                                     <label class="form-control-label">Address </label>
                                                                     <input type="text" class="form-control"
                                                                         value="{{ $data->address }}"
-                                                                        placeholder="	Address.... " name="address">
+                                                                        placeholder="	Address.... " name="address" readonly>
                                                                 </div>
                                                             </div>
 
@@ -487,8 +487,8 @@
 
 
 
-                                                                                            <div class="update-profile"
-                                                                                                style="margin-left:40%;">
+                                                                                            <div class="update-profile centered-container"
+                                                                                                >
                                                                                                 <button type="submit"
                                                                                                     class="btn btn-primary">Pay
                                                                                                     Now</button>

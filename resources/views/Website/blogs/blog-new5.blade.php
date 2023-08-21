@@ -16,7 +16,7 @@
                         <section class="main-content page-listing-grid">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                   <div class="col-lg-12" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); margin-top:3%; margin-bottom: 5%;  ">
                                 
                                         <div class="row">
                                             <div class="col-md-12">
@@ -145,13 +145,13 @@
                                         
                                         </div>
 
-                                        <div class="col-md-12" style="padding-left:2% ;  margin-bottom: 1%;" align="center">
+                                        <div class="col-md-12" style="padding-left:2% ;  margin-bottom: 1%; margin-top:5px;" align="center">
                                             <p align="justify">In conclusion, apprenticeships and internships play a vital role in preparing individuals for their careers and bridging the skills gap. They provide practical skills, industry exposure, networking opportunities, and mentorship, complementing formal education</p>
                                     
                                         </div>
 
-                                        <hr style="color: #073D5F; margin-bottom: 5%;">
-                                        <div class="col-md-12" style="color:#073D5F !important; margin-bottom: 1%;">
+                                        <hr style="color: #073D5F;">
+                                        <div class="col-md-12" style="color:#073D5F !important; margin-bottom: 3%;">
                                             <h5 style="color:#073D5F !important;">Now find a Best School, College, Coaching Institution near you at <a
                                                     href="https://infolekha.org/" style="color: #073D5F;">www.INFOlekha.org</a> </h5>
                                             </div>

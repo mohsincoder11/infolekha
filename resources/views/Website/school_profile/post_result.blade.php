@@ -36,7 +36,7 @@
                                 <select class="chosen-select on-radius no-search-select" id="ddlYears" name="year">
 
                                     @for ($i = intval(date('Y')); $i >= 1951; $i--)
-                                        <option>{{ $i }} - {{ $i - 1 }}</option>
+                                        <option>{{ $i - 1 }} - {{ $i }}</option>
                                     @endfor
                                 </select>
                             </div>

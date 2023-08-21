@@ -58,10 +58,13 @@
                         </span>
 
                         <span class="input-login icon-form"><input type="email" placeholder="E-mail*" name="email"><i
-                                class="fa fa-envelope-o"></i></span>
+                                class="fa fa-envelope"></i></span>
 
-                        <span class="input-login icon-form"><input type="text" placeholder="Address*" name="address"><i
-                                class="fa fa-envelope-o"></i></span>
+                                <span class="input-login icon-form">
+                                    <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
+                                        required="required">
+                                    <i class="fa fa-envelope-o"></i>
+                                </span>
 
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Password*" id="password" name="password"
@@ -78,9 +81,9 @@
 
 
                         <hr class="mt-4">
-                        <div class="">
+                        <div class="centered-container">
                             <button type="submit" id="login-button1" class="login-btn btn" disabled title="Sign Up"
-                                style="margin-bottom: 15px; margin-left:43%;"> Submit</button>
+                                style="margin-bottom: 15px;"> Submit</button>
                         </div>
                 </div>
 
@@ -105,7 +108,6 @@
                     <div class="form-login form-listing">
                         <h3 class="title-formlogin">OTP Verify</h3>
                         <form action="" id="modal_form"> <span class="input-login icon-form">
-                                <input type="hidden" name="exist_otp" id="exist_otp">
                                 <span class="input-login icon-form">
                                     <input type="hidden" name="exist_otp" id="exist_otp">
 
@@ -362,25 +364,26 @@
     </script>
 
 
-    {{-- <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places" ></script>
-    
-    <script>
-        google.maps.event.addDomListener(window, 'load', initialize);
-  
-        function initialize() {
-           /* var input = document.getElementById('current_location');*/
-			var input =new google.maps.places.Autocomplete(
-                                                      (document.getElementById('current_location_at_form')),
-                                                      { types: ['geocode'] });
-                                                      autocomplete.setComponent(
-                                                      {'country': ['IN']});
-            /*var autocomplete = new google.maps.places.Autocomplete(input);*/
-  
-            autocomplete.addListener('place_changed', function () {
-                var place = autocomplete.getPlace();
-                
-            });
-        } 
-    </script> --}}
+
+
+<script>
+google.maps.event.addDomListener(window, 'load', initialize);
+
+function initialize() {
+    /* var input = document.getElementById('current_location');*/
+    var autocomplete = new google.maps.places.Autocomplete(
+        (document.getElementById('current_location_at_form')), {
+            types: ['locality']
+        });
+        autocomplete.setComponentRestrictions({
+         'country': 'in'
+     });
+    /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+
+    autocomplete.addListener('place_changed', function() {
+        var place = autocomplete.getPlace();
+
+    });
+}
+</script>
 @stop

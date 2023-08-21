@@ -50,7 +50,7 @@
                                         <input type="text" placeholder="" value="" />
                                     </div> --}}
                                     <div class="col-md-6">
-                                        <label style="font-size:16px;">Upload Log</label>
+                                        <label style="font-size:16px;">Upload Logo</label>
                                         <input type="file" class="upload" name="logo" accept="image/*" />
                                     </div>
 

@@ -37,7 +37,7 @@
                         @csrf
                         <h3 class="title-formlogin">Log in</h3>
                         <span class="input-login icon-form"><input type="text" placeholder="Username*" name="email"
-                                required="required"><i class="fa fa-user"></i></span>
+                                required="required"><i class="fa fa-envelope"></i></span>
                         <span class="input-login icon-form"><input type="password" placeholder="Password*" name="password"
                                 required="required"><i class="fa fa-lock"></i></span>
                         <div class="flat-fogot clearfix">
@@ -46,11 +46,11 @@
                                 <a href="{{route('forget-password')}}">Forget Password?</a>
                             </label>
                         </div>
-                        <span class="">
+                        <div class="centered-container">
                             <button type="submite" id="login-button" class="btn" title="log in"
-                                style="margin-bottom: 15px; margin-left:43%">
+                                style="margin-bottom: 15px; ">
                                 Log In</button>
-                        </span>
+                        </div>
                     </form>
                 </div>
             </div>

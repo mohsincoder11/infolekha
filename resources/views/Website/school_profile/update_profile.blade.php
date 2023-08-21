@@ -228,8 +228,8 @@
                                 <div class="col-md-12">
 
 
-                                    <label style="font-size:16px;">About Us </label>
-                                    <textarea cols="40" rows="3" placeholder="About Me" style="margin-bottom:20px;" name="about">{{ $data->about }}</textarea>
+                                    <label style="font-size:16px;">About Us <span id="charcount">0 out of 500 characters</span> </label>
+                                    <textarea cols="40" rows="3" maxlength="500" placeholder="About Me" style="margin-bottom:20px;" name="about" onkeyup="charcountupdate(this.value)">{{ $data->about }}</textarea>
                                 </div>
                                 <div class="col-md-6">
                                     <label style="font-size:16px;">Upload School Image</label>
@@ -324,7 +324,12 @@
 
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-
+<script>
+    function charcountupdate(str) {
+        var lng = str.length;
+        document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
+    }
+    </script>
 <script>
     $(document).ready(function() {
 

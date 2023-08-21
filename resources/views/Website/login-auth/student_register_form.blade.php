@@ -60,7 +60,7 @@
                         @enderror
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
-                                required="required"><i class="fa fa-envelope-o"></i></span>
+                                required="required"><i class="fa fa-envelope"></i></span>
                         @error('email')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -68,7 +68,7 @@
 
                         <span class="input-login icon-form"><input type="text" placeholder="Address*"
                                 id="current_location_at_form" name="address" required="required"><i
-                                class="fa fa-envelope-o"></i></span>
+                                class="fa fa-envelope"></i></span>
 
 
 
@@ -90,9 +90,10 @@
 
 
                         <hr class="mt-4">
-                        <div class="">
+                        <div class="centered-container">
+
                             <button type="submit" id="login-button1" class=" login-btn btn" title="Sign Up"
-                                style="margin-bottom: 15px; margin-left:45%;" disabled> Submit</button>
+                                style="margin-bottom: 15px;" disabled> Submit</button>
                         </div>
 
 
@@ -382,9 +383,6 @@
   
     </script>
 
-    <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
-    </script>
 
     <script>
         google.maps.event.addDomListener(window, 'load', initialize);
@@ -395,6 +393,10 @@
                 (document.getElementById('current_location_at_form')), {
                     types: ['geocode']
                 });
+             
+                input.setComponentRestrictions({
+                 'country': 'in'
+             });
 
             //   var input =new google.maps.places.Autocomplete(
             //   (document.getElementById('current_location_at_form')),
@@ -402,10 +404,7 @@
 
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
-            autocomplete.addListener('place_changed', function() {
-                var place = autocomplete.getPlace();
-
-            });
+            
         }
     </script>
 @stop

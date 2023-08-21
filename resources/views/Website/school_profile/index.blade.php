@@ -75,8 +75,8 @@
                                             
                                 
                                            </div>
-                                        
-                                           <h1 style="color:#144273;  font-size: 20px; margin-top: 5%;">Facilities</h1 >
+                                        <label style="color:#144273; text-align:center; font-size: 20px; margin-top: 20px;">Facilities</label>
+                   
 
 
                                            <div class="col-md-12" id="demo" style="margin-top:2%;   " >

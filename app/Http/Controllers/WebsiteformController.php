@@ -27,14 +27,15 @@ use App\Models\CollegelistingEnquiry;
 use App\Models\JobVacancy;
 use App\Models\JobVacancyApplied;
 use App\Models\PostResult;
-use DB;
 use Hash;
 use Session;
 use App\Models\User;
 use App\Models\UserLikeModel;
 use Illuminate\Support\Facades\Auth;
 use Validator;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Response;
 class WebsiteformController extends Controller
 
 
@@ -51,6 +52,44 @@ class WebsiteformController extends Controller
         return view('Website.index', ['announcements' => $announcements]);
     }
 
+
+public function database_backup(){
+    try {
+        $tables = DB::select('SHOW TABLES');
+        $backupSQL = '';
+
+        foreach ($tables as $table) {
+            $tableName = reset($table);
+            $createTable = DB::selectOne("SHOW CREATE TABLE $tableName")->{'Create Table'};
+
+            $backupSQL .= "DROP TABLE IF EXISTS `$tableName`;\n";
+            $backupSQL .= "$createTable;\n";
+
+            $tableData = DB::table($tableName)->get();
+
+            foreach ($tableData as $row) {
+                $values = [];
+                foreach ($row as $value) {
+                    $values[] = '"' . addslashes($value) . '"';
+                }
+                $backupSQL .= "INSERT INTO `$tableName` VALUES (" . implode(', ', $values) . ");\n";
+            }
+
+            $backupSQL .= "\n";
+        }
+
+        $backupFileName = 'backup-' . now()->format('Y-m-d-His') . '.sql';
+        Storage::disk('local')->put($backupFileName, $backupSQL);
+
+        return response()->download(
+            storage_path('app/' . $backupFileName),
+            $backupFileName,
+            ['Content-Type: application/sql']
+        )->deleteFileAfterSend(true);
+    } catch (\Exception $e) {
+        return redirect()->route('home')->with('error', 'Database backup creation and download failed: ' . $e->getMessage());
+    }
+}
 
 
     public function index_contact()
@@ -420,7 +459,7 @@ class WebsiteformController extends Controller
                 return response()->json(false);
             }
             $createOrupdate=City::firstOrCreate(['city'=>$request->city]);
-            if(Auth::check() && (Auth::user()->role==1 || Auth::user()->role==2 )){
+            if(Auth::check() && (Auth::user()->role==2 )){
                 User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
             }
         return response()->json(true);

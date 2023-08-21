@@ -34,7 +34,7 @@
 
         .error {
             color: #ff0202 !important;
-            font-size: 14px !important;
+            font-size: 12px !important;
         }
 
         #customers {
@@ -453,6 +453,11 @@
 
                                     </ul>
                                 </li>
+                                <li><a href="{{ route('school_profile.blog') }}"
+                                    @if ($routeName == 'school_profile.blog' || $routeName == 'school_profile.write-blog') class="user-profile-act" @endif><i
+                                        class="fal fa-file"></i> Write a Blog</a>
+                                    </li>
+                            <li>
                             @else
                                 <li><a href="#" class="disable-li"><i class="fal fa-file"></i> Post
                                         Your

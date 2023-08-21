@@ -67,12 +67,12 @@
 
                         <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
                                 name="r_mob" maxlength=10 required="required">
-                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
+                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up" style="margin-top:15px;"
                           >Verify Mobile</button>
                         </span>
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
-                                required="required"><i class="fa fa-envelope-o"></i></span>
+                                required="required"><i class="fa fa-envelope"></i></span>
 
                         <span class="input-login icon-form">
                             <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
@@ -90,15 +90,6 @@
                                 class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
-                        {{-- <span class="input-login icon-form">
-
-                            <div id="length-label" class="condition-label">Use 8 or more characters.</div>
-                            <div id="uppercase-label" class="condition-label">Use uppercase letter.</div>
-                            <div id="lowercase-label" class="condition-label">Use lowercase letter.</div>
-                            <div id="number-label" class="condition-label">Use a number.</div>
-                            <div id="specialchar-label" class="condition-label">Use special character.</div>
-                            </span> --}}
-
                         <span class="input-login icon-form">
                             <input type="password" placeholder="Confirm Password*" name="password_confirmation"
                                 id="password_confirmation" required="required"><i toggle="#password_confirmation"
@@ -108,13 +99,13 @@
 
                         <hr class="mt-4">
 
-                        <span class="">
+                        <div class="centered-container">
                             <button id="login-button1" type="submit" class="btn" title="Sign Up" disabled
-                                style="margin-bottom: 15px; margin-left:43%">
+                                style="margin-bottom: 15px;">
                                 Submit</button>
 
 
-                        </span>
+                    </div>
 
                     </form>
 
@@ -148,7 +139,7 @@
                                 </span>
 
                                 <span class="">
-                                    <button type="submit" id="login-button" class="btn" title="log in" style="margin-top:4%;">
+                                    <button type="submit" id="login-button" class="btn" title="log in" style="margin-top:20px;">
                                         Verify</button>
                                 </span>
                         </form>
@@ -164,6 +155,10 @@
 @section('js')
 
     <script>
+        setTimeout(() => {
+            $('#password').val('');
+            $('#password_confirmation').val('');
+        }, 1000);
         $('#sel').on('change', function() {
             //console.log($('#sel').children("option:selected").val());
             $('#entity').attr({
@@ -430,10 +425,6 @@
     </script>
 
 
-    <script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
-    </script>
-
     <script>
         google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -443,6 +434,9 @@
                 (document.getElementById('current_location_at_form')), {
                     types: ['locality']
                 });
+                autocomplete.setComponentRestrictions({
+                 'country': 'in'
+             });
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
             autocomplete.addListener('place_changed', function() {

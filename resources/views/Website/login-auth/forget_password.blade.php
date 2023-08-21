@@ -39,7 +39,7 @@
                         <h3 class="title-formlogin">Forget Password</h3>
                         <span class="input-login icon-form">
                             <input type="text" placeholder="Mobile No*" id="mob"
-                            name="r_mob" maxlength=10 required="required">
+                            name="r_mob" maxlength=10 required="required" class="mb-15">
                         <button id="login-button3" disabled type="button" class="btn" 
                             style="margin-bottom: 15px;">Send OTP</button>
                     </span>
@@ -58,18 +58,17 @@
 
                     <span class="input-login icon-form">
                         <input type="password" placeholder="Confirm Password*" name="password_confirmation"
-                            id="password_confirmation" required="required"><i toggle="#password_confirmation"
+                            id="password_confirmation" required="required" class="mb-20"><i toggle="#password_confirmation"
                             class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                     </span>
 
 
                      
-                        <span class="">
-                            <button disabled type="submite" id="login-button" class="btn" title="log in"
-                                style="margin-bottom: 15px; margin-left:43%">
-                                Update Password
-                            </button>
-                        </span>
+                    <div class="centered-container">
+                        <button disabled type="submit" id="login-button" class="btn" title="log in" style="margin-bottom: 15px;">
+                            Update Password
+                        </button>
+                    </div>
                     </form>
                     <input type="hidden" id="exist_otp">
                 </div>

@@ -54,7 +54,7 @@
                             <br>
                             <h1 class="h11" align="center">Success</h1>
                             <p align="center">Subscription Placed Successfully! <br /> </p>
-                            <p align="center" style="font-size:17px;">Thanks for Joining with
+                            <p align="center" style="font-size:17px;">Thanks for joining with
                                 Infolekha.</p>
                         </div>
 
@@ -70,4 +70,12 @@
 
 
 
+@stop
+@section('js')
+<script>
+    setTimeout(() => {
+        window.location.href = "{{ route('school_profile.home') }}";
+
+    }, 4000);
+</script>
 @stop

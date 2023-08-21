@@ -8,6 +8,9 @@
         .d-none {
             display: none;
         }
+        .nice-select{
+            margin-bottom:20px;
+        }
     </style>
   
 @stop
@@ -35,7 +38,6 @@
                             <div class="row">
 
                                 <div class="col-md-6 form-group">
-                                    <div class="listsearch-input-item ">
                                         <label style="font-size:16px;">Vacancy For</label>
                                         <select class="chosen-select on-radius no-search-select" name="vacancy_type"
                                             id="vacancy_type">
@@ -44,20 +46,16 @@
                                             <option value="teaching">Teaching Staff</option>
                                             <option value="admin">Admin Staff</option>
                                         </select>
-                                    </div>
                                     <span id="vacancy_type_error_span"></span>
                                 </div>
 
-                                <span id="Teaching_staff_div" class="d-none">
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-6 form-group d-none" id="Teaching_staff_div">
                                         <label style="font-size:16px;">Name of Subject</label>
                                         <input type="text" placeholder="Name of Subject" value=""
                                             name="subject_name" />
                                     </div>
-                                </span>
 
-                                <span id="Admin_staff_div" class="d-none">
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-6 form-group d-none" id="Admin_staff_div">
                                         <label style="font-size:16px;">Post </label>
                                         <input type="text" placeholder="Post" value="" name="post" />
                                     </div>
@@ -67,11 +65,10 @@
                                         <input type="text" placeholder="Scope of work" value=""
                                             name="scope_of_work" />
                                     </div>
-                                </span>
 
                                 <div class="col-md-6 form-group">
-                                    <label style="font-size:16px;">Experience required</label>
-                                    <input type="text" placeholder="Experience required" value=""
+                                    <label style="font-size:16px;">Experience required(Years)</label>
+                                    <input type="number" step="0.1" placeholder="Experience required" value=""
                                         name="experience_required" />
                                 </div>
 
@@ -88,7 +85,6 @@
                                 </div>
 
                                 <div class="col-md-6 form-group">
-                                    <div class="listsearch-input-item ">
                                         <label style="font-size:16px;">Select Type</label>
                                         <select class="chosen-select on-radius no-search-select" name="job_type">
                                             <option value="">Select Type</option>
@@ -96,15 +92,18 @@
                                             <option value="Full Time">Full Time</option>
                                             <option value="Remote">Remote</option>
                                         </select>
-                                    </div>
                                     <span id="job_type_error"></span>
 
                                 </div>
-	                        <div class="col-md-6" style="margin-top:2.3%;">
+                            </div>
+                            <div class="row">
+                                   <div class="col-md-6" style="margin-top:2.3%;">
                             <button type="submit" class="btn color-bg  float-btn" >Save
                                 Changes</button></div>
 
                             </div>
+                            </div>
+	                     
 
 
 

@@ -182,7 +182,7 @@
                                                   </div>
                               
                                              
-                                                <div class="update-profile" style="margin-top:10%; margin-right:4%;	">
+                                                  <div class="update-profile centered-container" style="margin-top:10%;">
                                                   <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
                                               </div>

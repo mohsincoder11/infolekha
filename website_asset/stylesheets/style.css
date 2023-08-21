@@ -1252,7 +1252,7 @@ section.main-content.blog-single {
 .form-listing h3.title-formlogin {
 	/* font-size: 40px; */
 	color: #073D5F;
-	margin-bottom: 54px;
+	margin-bottom:5px;
 }
 
 .form-listing .icon-form {
@@ -3027,4 +3027,17 @@ footer a:hover {
 	 
   /*filter css end*/
 
+
+  .mb-20{
+	margin-bottom:20px;
+  } 
+  
+  .mb-15{
+	margin-bottom:15px;
+  }
 	
+  .centered-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}

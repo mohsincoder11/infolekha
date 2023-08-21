@@ -10,8 +10,8 @@ class BlogController extends Controller
 {
     public function index(){
 
-        $blog=Blog::all();
-        return view('add-blogs',['blog'=>$blog]);
+        $blogs=Blog::orderby('id','desc')->get();
+        return view('add-blogs',['blogs'=>$blogs]);
     }
 
     public function create(Request $request){
@@ -71,7 +71,16 @@ class BlogController extends Controller
      return view('editblog',['editblog'=>$editblog,'blogss'=>$blogss]);
  }
 
+public function change_blog_status(Request $request){
 
+    $updateblog=Blog::find($request->BlogID);
+    $updateblog->status=$request->status;
+    $updateblog->reject_reason=$request->note;
+    $updateblog->save();
+
+    return redirect(route('admin.blog'))->with(['success'=>'Status Successfully updated.']);
+
+}
  public function update(Request $request)
  {
     
@@ -127,7 +136,7 @@ class BlogController extends Controller
  public function destroy($id)
  {
      $blogdelete=Blog::where('id',$id)->delete();
-     return redirect(route('admin.blog'))->with(['delete'=>'Successfully Deleted !']);;
+     return redirect(route('admin.blog'))->with(['success'=>'Blog deleted successfully !']);;
  }
 
 }

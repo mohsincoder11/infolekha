@@ -1,6 +1,5 @@
 @extends('Website.school_profile.layout')
-@section('css')
-@stop
+
 @section('profile_content')
     <div class="dashboard-content">
         <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
@@ -44,8 +43,9 @@
                                 <div class="col-md-12">
                                     <div class="listsearch-input-item">
 
-                                        <label style="font-size:16px;">Main Content </label>
-                                        <textarea cols="10" name="content" rows="3" placeholder="Main Content "></textarea>
+                                        <label style="font-size:16px;">Main Content <span id="charcount">0 out of 1000 words</span></label>
+                                        <textarea cols="10" name="content" id="content" rows="3" placeholder="Main Content"   
+                                        onkeyup="charcountupdate(this.value)"></textarea>
                                     </div>
                                 </div>
 
@@ -123,7 +123,25 @@
 
 @section('js')
     <script>
+
+        function charcountupdate(str) {
+    var text = str;
+    var words = text.split(/\s+/).filter(function(word) {
+      return word !== "";
+    });
+    var wordCount = words.length;
+
+    if (wordCount > 1000) {
+      var trimmedText = words.slice(0, 1000).join(" ");
+      $("#content").val(trimmedText);
+    }
+
+    document.getElementById("charcount").innerHTML = wordCount + ' out of 1000 words';
+
+        }  
+  
         $(document).ready(function() {
+            
             $('.read-more-link').click(function(e) {
                 e.preventDefault();
                 var $container = $(this).closest('.text-container');
@@ -149,6 +167,10 @@
 
 
 
+            $.validator.addMethod('wordCount', function(value, element) {
+    var words = value.trim().split(/\s+/).length;
+    return this.optional(element) || words <= 1000;
+  }, 'Please enter up to 1000 words.');
 
             $("#post_announcement_form").validate({
                 rules: {
@@ -157,8 +179,7 @@
                     },
                     content: {
                         required: true,
-                        minlength: 20,
-                        maxlength: 500,
+                        wordCount: true,
                     },
                     image: {
                         required: true,
@@ -169,12 +190,11 @@
                 },
                 messages: {
                     heading: {
-                        required: "This field is required",
+                        required: "Please enter announcement title.",
                     },
                     content: {
-                        required: "This field is required.",
-                        minlength: "Please enter minimum 20 character content.",
-                        maxlength: "Please enter maximum 500 character content.",
+                        required: "Please enter content.",
+                        wordCount: "Please enter maximum 1000 words content.",
                     },
 
                     image: {
@@ -188,7 +208,11 @@
                     return true;
                 },
                 errorPlacement: function(error, element) {
-                    element.closest('.col-md-4').append(error);
+                    if (element.attr("name") === "content") {
+        element.closest('.col-md-12').append(error);
+      } else {
+        element.closest('.col-md-6').append(error);
+      }
 
                 },
             });

@@ -45,6 +45,9 @@ Route::get('/2', function () {
     return view('Website.login');
 });
 
+Route::get('database-backup', [WebsiteformController::class, 'database_backup'])->name('database-backup');
+
+
 
 
 
@@ -154,6 +157,7 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('edit-blog/{id}', [BlogController::class, 'edit'])->name('edit_blog');
     Route::post('update_blog', [BlogController::class, 'update'])->name('update_blog');
     Route::get('destroy_blog/{id}', [BlogController::class, 'destroy'])->name('destroy_blog');
+    Route::post('change-blog-status', [BlogController::class, 'change_blog_status'])->name('change-blog-status');
 
 
     //slider
@@ -194,7 +198,7 @@ Route::get('destroy_contact/{id}', [ContactController::class, 'destroy'])->name(
 
 // -------------------------------------------student parent form routes------------------------------------------------------//
 
-Route::get('student_register_form', [SignUpController::class, 'student_register_form'])->name('student_register_form');
+Route::get('student-register-form', [SignUpController::class, 'student_register_form'])->name('student_register_form');
 Route::post('student_register_user_create', [SignUpController::class, 'student_register_user_create'])->name('student_register_user_create');
 Route::post('student_detail_create/{data}', [SignUpController::class, 'student_detail_create'])->name('student_detail_create');
 Route::post('student_detail_update', [SignUpController::class, 'student_detail_update'])->name('student_detail_update');
@@ -210,7 +214,7 @@ Route::post('student_detail_update', [SignUpController::class, 'student_detail_u
 // 
 // -------------------------------------------school institutude college form routes------------------------------------------------------//
 
-Route::get('school_institute_register_form', [SignUpController::class, 'school_institute_register_form'])->name('school_institute_register_form');
+Route::get('school-institute-register-form', [SignUpController::class, 'school_institute_register_form'])->name('school_institute_register_form');
 Route::post('school_institute_register_user_create', [SignUpController::class, 'school_institute_register_user_create'])->name('school_institute_register_user_create');
 Route::post('school_institute_detail_create', [SignUpController::class, 'school_institute_detail_create'])->name('school_institute_detail_create');
 
@@ -294,6 +298,13 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
         Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
         Route::post('school_profile/insert-advertisement', [SchoolProfile::class, 'insert_advertisement'])->name('school_profile.insert-advertisement');
+
+        Route::get('school-profile/blog', [SchoolProfile::class, 'blog_index'])->name('school_profile.blog');
+        Route::get('school-profile/write-blog', [SchoolProfile::class, 'write_blog'])->name('school_profile.write-blog');
+        Route::post('school-profile/insert-blog', [SchoolProfile::class, 'insert_blog'])->name('school_profile.insert-blog');
+        Route::get('school-profile/edit-blog/{id}', [SchoolProfile::class, 'edit_blog'])->name('school_profile.edit-blog');
+        Route::post('school-profile/update-blog', [SchoolProfile::class, 'update_blog'])->name('school_profile.update-blog');
+        Route::get('school-profile/delete-blog/{id}', [SchoolProfile::class, 'delete_blog'])->name('school_profile.delete-blog');
        
     });
 

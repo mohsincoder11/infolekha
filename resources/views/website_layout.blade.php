@@ -39,7 +39,7 @@
      <link href="{{ asset('website_asset/icon/apple-touch-icon-32-precomposed.png') }}"
          rel="apple-touch-icon-precomposed">
      <link href="{{ asset('website_asset/images/favicon.png') }}" rel="shortcut icon">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
        
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-css/1.4.6/select2-bootstrap.min.css">
 
@@ -655,6 +655,7 @@
      .error {
          color: #ff0202;
          font-size: 14px;
+         display: block;
      }
 
      .fa-phone {
@@ -854,7 +855,6 @@ body {
     opacity: 0;
   }
 }
-
  </style>
 
  @yield('css')
@@ -1276,7 +1276,7 @@ body {
      <script src="{{ asset('website_asset/javascript/jquery-countTo.js') }}"></script>
      <script src="{{ asset('website_asset/javascript/owl.carousel.js') }}"></script>
      <script src="{{ asset('website_asset/javascript/jquery.cookie.js') }}"></script>
-     <script src="{{ asset('../../../cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js') }}"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
      <script src="{{ asset('website_asset/javascript/parallax.js') }}"></script>
      <script src="{{ asset('website_asset/javascript/bootstrap-slider.min.js') }}"></script>
      <script src="{{ asset('website_asset/javascript/smoothscroll.js') }}"></script>
@@ -1510,15 +1510,15 @@ fetch(google_url).then(function(response) {
 
      </script>
               <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.js"></script>
-
+              <script type="text/javascript"
+              src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
+          </script>
      @yield('js')
 
      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7902240890164332"
          crossorigin="anonymous"></script>
 
-     <script type="text/javascript"
-         src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
-     </script>
+   
 
      <script>
          google.maps.event.addDomListener(window, 'load', initialize);

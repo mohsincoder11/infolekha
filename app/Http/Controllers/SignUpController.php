@@ -60,7 +60,9 @@ class SignUpController extends Controller
             }
 
             if ($validator->passes()) {
-
+                $city=trim(explode(',', $request->address)[0]);
+                $createOrupdate=City::firstOrCreate(['city'=>$city]);
+                
 
                 $users1 = User::create([
                     'name' => $request->get('name'),
@@ -68,6 +70,7 @@ class SignUpController extends Controller
                     'email' => $request->get('email'),
                     'active' => '0',
                     'role' => '1',
+                    'city_id'=>$createOrupdate->id
 
                 ]);
 
@@ -150,7 +153,7 @@ class SignUpController extends Controller
                     ->withErrors($validator)
                     ->withInput();
             }
-
+          
                 if (school_institute_detail::where('user_id', auth::user()->id)->exists()) {
                     //   dd(auth::user()->id);
                     return  redirect()->back();
@@ -196,9 +199,9 @@ class SignUpController extends Controller
                     $user->logo='icon/user.png';
                     $user->save();
                 }
-                $course = json_encode($request->get('course'));
-                $facilities = json_encode($request->get('facilities'));
-
+                $course = json_encode(array_diff($request->get('course'),['Other']));
+                $facilities = json_encode(array_diff($request->get('facilities'),['Other']));
+    
                 $inst->entity_name = $request->get('school_institute');
                 $inst->address = $request->get('address');
                 $inst->about = $request->get('about');
@@ -274,12 +277,16 @@ class SignUpController extends Controller
             }
 
             if ($validator->passes()) {
+                $city=trim(explode(',', $request->address)[0]);
+                $createOrupdate=City::firstOrCreate(['city'=>$city]);
+                
                 $users2 = User::create([
                     'name' => $request->get('name'),
                     'password' => Hash::make($request->get('password')),
                     'email' => $request->get('email'),
                     'active' => '0',
                     'role' => '2',
+                    'city_id'=>$createOrupdate->id
 
                 ]);
 
@@ -552,14 +559,16 @@ class SignUpController extends Controller
 
             if ($validator->passes()) {
 
-
+$city=trim(explode(',', $request->address)[0]);
+                $createOrupdate=City::firstOrCreate(['city'=>$city]);
+                
                 $users3 = User::create([
                     'name' => $request->get('name'),
                     'password' => Hash::make($request->get('password')),
                     'email' => $request->get('email'),
                     'active' => '1',
                     'role' => '3',
-
+                    'city_id'=>$createOrupdate->id
                 ]);
 
 

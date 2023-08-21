@@ -509,12 +509,12 @@
 
 
 
-                        <div class="text p1" style="margin-top: 3%;">
+                        <div class="text p1" style="margin-top: 3%;word-wrap: break-word;">
 
 
                             <h5 class="title-listing">About Us</h5>
 
-                            <p>{!! $details->about !!}.</p><br>
+                            <p >{!! $details->about !!}.</p><br>
                         </div>
 
                         <section class="flat-row section-client">

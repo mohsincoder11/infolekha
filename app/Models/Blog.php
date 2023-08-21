@@ -9,5 +9,21 @@ class Blog extends Model
 {
     use HasFactory;
     protected $table="blogs";
-    protected $fillable=['blog_image','blogs','title','author_name','publish_date'];
+    protected $fillable=[
+        'subject',
+        'category',
+        'user_id',
+        'blog_image',
+        'content1',
+        'content2',
+        'content3',
+        'content4',
+        'status',
+        'reject_reason'
+];
+
+public function getAuthorNameAttribute(){
+    return User::find($this->user_id)->name;
+}
+
 }

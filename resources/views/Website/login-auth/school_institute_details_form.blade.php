@@ -78,7 +78,7 @@
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Address*</label>
                                                                     <input type="text" class="form-control"
-                                                                        placeholder="Address" name="address" required="required" value="{{$data->address}}" >
+                                                                        placeholder="Address" name="address" required="required" value="{{$data->address}}" readonly>
                                                                       
                                                                 </div>
                                                             </div>
@@ -286,6 +286,16 @@ $streams=get_college_stream();
                                                                     </select>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="col-lg-6" id="other_course_div">
+                                                                <div class="form-group">
+                                                                    <label class="form-label"> Other Course*</label>
+                                                                    <input type="text" class="form-control"
+                                                                    placeholder="Specify other course" name="course[]" >
+
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-lg-6" >
                                                                 <div class="form-group">
                                                                     <label class="form-control-label"> Office
@@ -314,9 +324,18 @@ $streams=get_college_stream();
                                                                          <option>{{$facility}}</option>
                                                                      @endforeach
                                                                         
+																		<option> Other </option> 
                                                             
 
                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6" id="other_facilities_div">
+                                                                <div class="form-group">
+                                                                    <label class="form-label"> Other Facilities*</label>
+                                                                    <input type="text" class="form-control"
+                                                                    placeholder="Specify other facilities" name="facilities[]" >
+
                                                                 </div>
                                                             </div>
 
@@ -400,7 +419,7 @@ $streams=get_college_stream();
                                                   </div>
 													
 
-                                                             <div class="update-profile" style="margin-left: 47%; margin-top: 5%;">
+                                                             <div class="update-profile centered-container" style=" margin-top: 5%;">
                                                                 
 
                                                             
@@ -459,7 +478,6 @@ $streams=get_college_stream();
 function charcountupdate(str) {
 	var lng = str.length;
 	document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
-	
 }
 </script>
 <script>
@@ -492,17 +510,63 @@ $(document).click(function(event) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 <script> 	
 $(document).ready(function(){
-   
-	$('#course').select2({closeOnSelect:false}); 
- $('#course').on('change', function() {  const selectedOptions = $(this).val(); 
- const otherOption = selectedOptions.includes('other'); 
- if (otherOption) {  $('#other-fruit').show();  } else {  $('#other-fruit').hide();  }  });
+    $('#other_course_div').hide(); 
+         $('#other_facilities_div').hide();
+
+         $('#course').select2({
+    closeOnSelect: false
+}).on('select2:select', function (e) {
+    var selectedValue = e.params.data.id; 
+    
+    if (selectedValue === 'Other') { 
+        $(this).select2('close');
+    }
+});
+
+ $('#course').on('change', function() {  
+    const selectedOptions = $(this).val(); 
+
+ const otherOption = selectedOptions.includes('Other'); 
+  
+     //var index = selectedOptions.indexOf('Other');
+        // if (index > -1) {
+        //         selectedOptions.splice(index, 1); // Remove the "Other" option
+        //     $(this).val(selectedOptions).trigger('change'); // Update the selected value           
+        // }
+        if (otherOption) {
+      $('#other_course_div').show();  
+    } else {  
+        $('#other_course_div').hide(); 
+        $('#other_course_div input').val(''); 
+     } 
+    });
 
 
-$('#facilities').select2({closeOnSelect:false}); 
+$('#facilities').select2({
+    closeOnSelect: false
+}).on('select2:select', function (e) {
+    var selectedValue = e.params.data.id; 
+    
+    if (selectedValue === 'Other') { 
+        $(this).select2('close');
+    }
+});
  $('#facilities').on('change', function() {  const selectedOptions = $(this).val(); 
- const otherOption = selectedOptions.includes('other'); 
- if (otherOption) {  $('#other-fruit').show();  } else {  $('#other-fruit').hide();  }  });
+ const otherOption = selectedOptions.includes('Other'); 
+  
+    //  var index = selectedOptions.indexOf('Other');
+    //     if (index > -1) {
+    //             selectedOptions.splice(index, 1); // Remove the "Other" option
+    //         $(this).val(selectedOptions).trigger('change'); // Update the selected value           
+    //     }
+      
+ if (otherOption) { 
+     $('#other_facilities_div').show(); 
+     } else { 
+         $('#other_facilities_div').hide();
+         $('#other_facilities_div input').val('');
+          }  
+        });
 
 	
 

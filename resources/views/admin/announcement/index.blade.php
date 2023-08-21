@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="card-title d-flex align-items-center">
 
-                    <h5 class="mb-0 text-primary">Add Announcement</h5>
+                    <h5 class="mb-0 text-primary">Announcement Enquiry</h5>
                 </div>
             </div>
 

@@ -119,7 +119,8 @@
                                 <div class="row">
                                     <!-- <div class="col-lg-1"></div> -->
 
-                                    <div class="col-lg-12" >
+                                
+                                    <div class="col-lg-12" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding-bottom:4%; margin-top:2%; ">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="title-section text-center"
@@ -190,7 +191,7 @@
                                                 goals.
                                                 Higher secondary education sets the foundation for higher studies and
                                                 opens
-                                                up opportunities for undergraduate programs in various fields.<br>
+                                                up opportunities for undergraduate programs in various fields.<br> <br>
                                             <h6>Examples of Higher Secondary Education:</h6>
                                             <ul>
                                                 <li>
@@ -220,7 +221,7 @@
                                                 etc.
                                                 These courses are often shorter in duration and can provide students
                                                 with
-                                                the necessary skills to enter the workforce.<br>
+                                                the necessary skills to enter the workforce.<br> <br>
                                             <h6>Examples of Diploma Courses:</h6>
                                             <ul>
 
@@ -251,7 +252,7 @@
                                                 technical skills and knowledge to pursue a career in the respective
                                                 field.
                                                 ITI courses can be a great option for students who are interested in
-                                                vocational education.<br>
+                                                vocational education.<br> <br>
                                             <h6>Examples of ITI Courses:</h6>
                                             <ul>
                                                 <li>
@@ -274,7 +275,7 @@
                                                 students gain specific skills and knowledge in their field of interest.
                                                 These courses are designed to provide practical training to students and
                                                 can
-                                                be a great way to gain industry-specific knowledge.<br>
+                                                be a great way to gain industry-specific knowledge.<br> <br>
                                             <h6>Examples of Vocational Courses:</h6>
                                             <ul>
                                                 <li>
@@ -301,7 +302,7 @@
                                                 short-term or long-term and can cover a wide range of topics such as
                                                 communication skills, computer skills, and technical skills. Skill
                                                 development programs can help students enhance their employability and
-                                                career prospects.<br>
+                                                career prospects.<br> <br>
                                             <h6>Examples of Skill Development Programs:</h6>
                                             <ul>
                                                 <li>
@@ -327,7 +328,7 @@
                                                 interested in starting their own business. With the rise of the startup
                                                 culture in India, there are various opportunities available for young
                                                 entrepreneurs. Students can explore various options such as freelancing,
-                                                starting a small business or working on a startup idea.<br>
+                                                starting a small business or working on a startup idea.<br> <br>
                                             <h6>Examples of Skill Development Programs:</h6>
                                             <ul>
                                                 <li>
@@ -344,10 +345,10 @@
 
                                         </div>
 
-                                        <div class="col-md-12" align="center">
+                                        <div class="col-md-12" align="center" >
                                             <img src="images/add1.jpg" >
                                         </div>
-                                        <table>
+                                        <table style="margin-top: 5px; margin-bottom:10px;">
                                             <tr>
                                               <th>Company</th>
                                               <th>Contact</th>
@@ -426,7 +427,7 @@
                                                 require a higher level of commitment. Professional courses can be a
                                                 great way to enter a
                                                 specific industry or advance one's career.<br><br>
-                                                <br>
+                                            
                                             <h6>Examples of Professional Courses:</h6>
                                             <ul>
                                                 <li>
@@ -489,7 +490,7 @@
                                     
                                     </div>
 
-                                        <div class="col-md-12" >
+                                        <div class="col-md-12" style="margin-top: 5px;">
                                             <h4 style="color:#073D5F;">
                                                 Government Jobs:
                                             </h4>
