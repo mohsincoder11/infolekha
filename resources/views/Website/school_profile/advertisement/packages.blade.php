@@ -32,7 +32,7 @@
                                     <div class="chosen-select on-radius no-search-select">
                                         <input type="hidden" class="original_price"
                                             value="{{ $advertisements->OriginalPrice}}">
-                                        <select class="select_days" name="SelectedDays">
+                                        <select class="select_days" name="SelectedDays" style="line-height:0px! important;">
                                             <option value="">Select no of days</option>
                                             @for ($i = $advertisements->MinDays; $i <= $advertisements->MaxDays; $i++)
                                                 <option value="{{ $i }}">{{ $i }} @if ($i > 1)
@@ -52,9 +52,11 @@
                                 </li>
                                 <li class="card-element" style="padding:0 10px;">
                                     <label style="text-align: center !important;"> Apply Coupon Code</label>
-                                    <input type="text" class="form-control CouponCode" name="CouponCode"
-                                        value="" />
+                                   
                                 </li>
+       <div class="listing-rating card-popup-rainingvis" > 
+		   <input type="text" class="form-control CouponCode" name="CouponCode" value=""  style="margin-left:10px;"/>
+		   <span class="re_stars-title"><button style="margin-left:60px; padding:5px;" type="submit" >Apply</button></span></div>
 
                             </ul>
                             {{-- <div style="padding:0 10px;">

@@ -2,6 +2,7 @@
 
 use App\Models\JobVacancy;
 use App\Models\transaction;
+use App\Models\User;
 use App\Models\UserLikeModel;
 use Illuminate\Support\Facades\Auth;
 
@@ -58,6 +59,17 @@ function check_announcement_payment($AnnouncementID=null){
         $status='N/A';
     }
     return $status;
+}
+
+function checkpayment_status(){
+    $check=transaction::where('user_id',auth::user()->id)->where('type','Subscription')->first();
+    $active_status=User::find(auth::user()->id);
+    if($check && $active_status->active==0){
+        return true;
+    }else{
+        return false;
+
+    }
 }
 
 function check_announcement_payment_status($AnnouncementID=null,$user_id=null){

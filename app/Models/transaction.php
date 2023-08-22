@@ -19,7 +19,8 @@ class transaction extends Model
 'transaction_id',
 'transaction_status',
 'type',
-'AnnouncementID'
+'AnnouncementID',
+'expiry'
     ];
 }
 

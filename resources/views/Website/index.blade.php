@@ -238,11 +238,16 @@
                         </div>
 
                         <div class="col-md-6">
+                            @foreach($advertisements as $advertisement)
+                            <div class="row">
+                                <a>
+                                    <img src="{{ asset('public/'.$advertisement->image) }}" alt="image"
+                                        style="margin-top: 2%; ">
+                                </a>
+                            </div>
+                            @endforeach
 
-                            <a>
-                                <img src="{{ asset('website_asset/images/annoucement.jpg') }}" alt="image"
-                                    style="margin-top: 2%; ">
-                            </a>
+                           
 
                         </div>
                     </div>

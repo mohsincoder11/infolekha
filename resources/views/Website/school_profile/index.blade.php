@@ -5,7 +5,9 @@
 <div class="dashboard-content">
                     <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
                     <div class="container dasboard-container">
-                        <!-- dashboard-title -->	
+                        <!-- dashboard-title -->
+						<div class="col-md-3"></div>
+						
                         <div class="dashboard-title fl-wrap">
                             <div class="dashboard-title-item"><span>Profile</span></div>
                             @include('Website.school_profile.profile_header')
@@ -96,7 +98,7 @@
                                             </div>
                                             
                                             <label style="color:#144273; text-align:center; margin-top: 5%;">About Us</label>
-                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:20px;font-size:14px;  color:#144273;">{{$user_data->about}}</textarea>	
+                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:0px;font-size:14px;  color:#144273;">{{$user_data->about}}</textarea>	
                                             
                                                <!-- section -->
                     <section >
@@ -146,7 +148,7 @@
                                                      <div class="container" style="margin-bottom:5%">
                                                 <!-- section-title -->
                                                 <div class="section-title st-center fl-wrap">
-                                                    <label style="color:#144273; text-align:center; font-size: 20px;">
+                                                    <label style="color:#144273; text-align:center; font-size: 20px; margin-top:40px;">
                                                         Videos</label>
 
                                                 </div>

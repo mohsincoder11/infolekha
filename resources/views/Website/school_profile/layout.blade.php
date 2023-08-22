@@ -173,6 +173,23 @@
     object-fit: contain !important;
     height: 150px !important;
 }
+.sitebanner{
+    background-color: transparent !important;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+}
+.sitebanner h4{
+font-size: 16px;
+    margin: 0;
+    position: relative;
+    background-color: #0f3a50;
+    color: #fff;
+    font-weight: normal;
+    padding: 10px 15px;
+    border-radius: 5px;
 }
     </style>
     @yield('css')
@@ -197,6 +214,14 @@
         </div>
     </div>
     <!--loader end-->
+   
+@if(checkpayment_status())
+    <div class="sitebanner">
+        <h4>Your profile is under review. It will be activated within 24 hours.</h4>
+    </div>
+    @endif
+
+
     <!-- main -->
     <div id="main">
         <!-- header -->
@@ -542,7 +567,9 @@
             <!-- dashboard-footer end -->
         </div>
         <!-- content end -->
-        <div class="dashbard-bg gray-bg"></div>
+        <div class="dashbard-bg gray-bg">
+
+		</div>
     </div>
     <!-- wrapper end -->
     </div>

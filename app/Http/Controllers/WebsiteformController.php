@@ -49,7 +49,9 @@ class WebsiteformController extends Controller
             $announcements=$announcements->where('city_id',Auth::user()->city_id);
         }
         $announcements= $announcements->get();
-        return view('Website.index', ['announcements' => $announcements]);
+                $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','home')->where('status','Active')->take(8)->get(); //we need to add city id condition
+
+        return view('Website.index', ['announcements' => $announcements,'advertisements'=>$advertisements]);
     }
 
 
@@ -180,7 +182,7 @@ public function database_backup(){
         $entities = Entity::orderby('entity','asc')->get();
         $school_type = SchoolType::get();
 
-        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('status','Active')->take(8)->get();
+        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','listing')->where('status','Active')->take(8)->get();
 
         return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type,'advertisements'=>$advertisements]);
     }

@@ -8,7 +8,7 @@
            
             padding: 0 0 0.5rem 0;
             background: #fff;
-            color: #444;
+            color: #000;
             text-align: center;
             border-radius: 1rem;
             box-shadow: 0.5rem 0.5rem 1rem rgba(51, 51, 51, 0.2);
@@ -69,7 +69,7 @@
         }
 
         .card-element-container {
-            color: #444;
+            color: #000;
             list-style: none;
         }
 

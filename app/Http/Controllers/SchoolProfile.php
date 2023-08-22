@@ -43,7 +43,15 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
    }
 
    public function activate_profile(){
-      $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->exists();
+      $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->first();
+     
+      if($check_transaction){
+          $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
+          if ($expiry_check->isPast()) {
+            return redirect('payment_form');
+          }
+      }
+     
       if($check_transaction){
          if(Auth::user()->role=='1'){
             return redirect()->route('school_profile.home')->with(['info'=>'Please wait for admin approval.']);

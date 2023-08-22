@@ -364,7 +364,7 @@ Route::get('anouncement/{city}', [WebsiteformController::class, 'anouncement'])-
 
 Route::get('announcementweb/{id}', [WebsiteformController::class, 'announwebs'])->name('announweb');
 
-Route::get('college_listing/{type?}', [WebsiteformController::class, 'college_listing'])->name('college_listing');
+Route::get('college-listing/{type?}', [WebsiteformController::class, 'college_listing'])->name('college_listing');
 Route::get('send_mobile_verify_otp/{mob}', [WebsiteformController::class, 'send_mobile_verify_otp'])->name('send_mobile_verify_otp');
 Route::get('send_forget_otp/{mob}', [WebsiteformController::class, 'send_forget_otp'])->name('send_forget_otp');
 

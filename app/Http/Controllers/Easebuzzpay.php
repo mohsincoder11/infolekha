@@ -50,8 +50,12 @@ class Easebuzzpay extends Controller
         $it->amount=$request->get('amount');
         $it->user_role=auth::user()->role;
         $it->transaction_id=$txnid;
-        $it->transaction_status='NA';
+        $it->type='Subscription';
+        $it->transaction_status=$request->get('amount')==0 ? 'success' : 'NA';
         $it->save();
+        if($request->get('amount')==0){
+          return redirect()->route('success-complete');
+        }
 
 
         $MERCHANT_KEY = env('MERCHANT_KEY', null);
