@@ -42,7 +42,8 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d-m-Y', strtotime($advertisement->created_at)) }}</td>
                                             <td>{{ $advertisement->college_details->r_name }}
-                                                ({{ $advertisement->college_details->r_entity }})</td>
+                                                ({{ $advertisement->college_details->r_entity }})
+                                            </td>
                                             <td>{{ $advertisement->location == 'home' ? 'Home Page' : 'Listing Page' }}</td>
                                             <td>{{ $advertisement->PackageName }}</td>
                                             <td>{{ $advertisement->BannerWidth }}*{{ $advertisement->BannerHeight }} pxl
@@ -53,7 +54,8 @@
                                             </td>
                                             <td>
                                                 @if (isset($advertisement->image))
-                                                    <a href="{{ asset('public/' . $advertisement->image) }}" target="_blank">
+                                                    <a href="{{ asset('public/' . $advertisement->image) }}"
+                                                        target="_blank">
                                                         <img height="50" width="auto"
                                                             src="{{ asset('public/' . $advertisement->image) }}"
                                                             alt="">
@@ -76,6 +78,8 @@
                                                         </option>
                                                         <option @if ($advertisement->status == 'Disabled') selected @endif>Disabled
                                                         </option>
+                                                        <option @if ($advertisement->status == 'Rejected') selected @endif>Rejected
+                                                        </option>
                                                     </select>
                                                 </form>
 
@@ -83,7 +87,9 @@
                                             <td>
 
                                                 <button type="button" class="btn1 btn-outline-primary open_modal"
-                                                    EnquiryID="{{ $advertisement->EnquiryID }}"><i
+                                                    EnquiryID="{{ $advertisement->EnquiryID }}"
+                                                    width="{{ $advertisement->BannerWidth }}"
+                                                    height="{{ $advertisement->BannerHeight }}"><i
                                                         class="fadeIn animated bx bx-note"></i></button>
                                                 <button type="button" class="btn1 btn-outline-danger"><i
                                                         class='bx bx-trash me-0'></i></button>
@@ -114,16 +120,22 @@
                         class="row g-2">
                         @csrf
                         <input type="hidden" id="EnquiryID" name="EnquiryID">
+                        <input type="hidden" id="Width">
+                        <input type="hidden" id="Height">
+
                         <div class="col-md-5">
                             <label>Images</label>
                             <input class="form-control mb-3" type="file" aria-label="default input example"
-                                name="image" accept="image/*">
+                                name="image" id="modal_image" accept="image/*">
                         </div>
                         <div class="col-md-3" style="margin-top:4.4vh;">
                             <div class="col">
-                                <button type="submit" class="btn btn-primary px-5"> <i
+                                <button type="submit" class="btn btn-primary px-5 modal_submit"> <i
                                         class="lni lni-circle-plus"></i>Submit</button>
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p id="image_resolution_error" class="d-none error"></p>
                         </div>
 
 
@@ -142,6 +154,9 @@
             $(document).on('click', '.open_modal', function(e) {
                 $("#exampleModal").modal('show');
                 $("#EnquiryID").val($(this).attr('EnquiryID'));
+                $("#Width").val($(this).attr('Width'));
+                $("#Height").val($(this).attr('Height'));
+
 
             })
 
@@ -149,8 +164,32 @@
                 $(this).closest('form').submit();
             })
 
+            $("#modal_image").on("change", function(event) {
+                var file = event.target.files[0];
 
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var img = new Image();
+                        img.src = e.target.result;
+                        img.onload = function() {
+                            var width = this.width;
+                            var height = this.height;
+                            if (width === $("#Width").val() && height === $("#Height").val()) {
+                                $("#image_resolution_error").addClass("d-none");
+                                $(".modal_submit").prop("disabled", false);
+                            } else {
+                                $("#image_resolution_error").removeClass("d-none");
+                                $("#image_resolution_error").html("Image resolution should be: " +
+                                    $("#Width").val() + "x" + $("#Height").val());
+                                $(".modal_submit").prop("disabled", true);
 
+                            }
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
         })
     </script>

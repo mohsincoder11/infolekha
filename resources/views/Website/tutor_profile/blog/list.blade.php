@@ -1,4 +1,4 @@
-@extends('Website.school_profile.layout')
+@extends('Website.tutor_profile.layout')
 
 @section('profile_content')
 <div class="dashboard-content">
@@ -23,7 +23,7 @@
 
         <div class="dasboard-widget-box fl-wrap">
             <div  style="margin-bottom:8%;">
-                <a href="{{route('school_profile.write-blog')}}" class="add-list color-bg"> <span>Write a Blog</span></a>
+                <a href="{{route('tutor_profile.write-blog')}}" class="add-list color-bg"> <span>Write a Blog</span></a>
             </div>
 
             <div class="col-md-12">
@@ -37,7 +37,7 @@
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        @foreach ($blogs as $blog)
+                        @forelse ($blogs as $blog)
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$blog->subject}}</td>
@@ -47,31 +47,28 @@
                         </td>
                         <td>{{$blog->status}}</td>
                         <td>
-                            <a href="{{route('school_profile.delete-blog',$blog->id)}}">
-                            <i class="fa fa-trash" aria-hidden="true"></i></a>
-                       
-                        <a href="{{route('school_profile.edit-blog',$blog->id)}}">
+                            <a href="{{route('tutor_profile.delete-blog',$blog->id)}}">
+                            <i class="far fa-trash"></i>
+                        </a>
+                        <a href="{{route('tutor_profile.edit-blog',$blog->id)}}">
 
-                           <i class="fa fa-pencil" aria-hidden="true"></i>
+                            <i class="far fa-pencil"></i>
                         </a>
 
                         </td>
                     </tr>
 
-                      
-                    
+                        @empty
+                    <tr>
+                        <p>No records found</p>
 
-                        @endforeach
+                    </tr>
                 </tbody>
-
+                        @endforelse
                       
 
 
                 </table>
-                @if(count($blogs) == 0)
-				   <p>No record found</p>
-
-                @endif
             </div>
 
 

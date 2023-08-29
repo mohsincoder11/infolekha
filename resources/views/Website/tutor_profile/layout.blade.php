@@ -10,6 +10,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <link href="{{ asset('website_asset/images/favicon.png') }}" rel="shortcut icon">
+    <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/bootstrap.css') }}">
 
     <!--=============== css  ===============-->
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/plugins.css') }}">
@@ -18,6 +19,8 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/css/froala_editor.pkgd.min.css">
+
     <style>
         .error {
             color: #ff0202 !important;
@@ -70,6 +73,9 @@
         .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
+        body.swal2-toast-shown .swal2-container {
+    width:460px !important;
+}
     </style>
 </head>
 
@@ -339,6 +345,10 @@
                                         class="fal fa-heart"></i>Job Applied</a>
 
                             </li>
+                            <li><a href="{{ route('tutor_profile.blog') }}"
+                                @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog') class="user-profile-act" @endif><i
+                                    class="fal fa-file"></i> Write a Blog</a>
+                                </li>
 
                             <li>
                                 <a href="{{ route('tutor_profile.user_change_password') }}" @if ($routeName == 'tutor_profile.user_change_password') class="user-profile-act" @endif><i
@@ -422,7 +432,7 @@
                 toast: true,
                 position: 'bottom',
                 showConfirmButton: false,
-                timer: 4000,
+                timer: 6000,
                 background: '#000',
                 color: '#fff',
                 timerProgressBar: true,
@@ -431,6 +441,12 @@
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
             })
+             setTimeout(() => {
+            $("#description1 #fr-logo").css('display', 'none');
+            $("#description2 #fr-logo").css('display', 'none');
+            $("#description3 #fr-logo").css('display', 'none');
+            $("#description4 #fr-logo").css('display', 'none');
+        }, 1000);
 </script>
     @if (session()->has('success'))
         <script>

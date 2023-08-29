@@ -208,7 +208,7 @@
              toast: true,
              position: 'bottom',
              showConfirmButton: false,
-             timer: 4000,
+             timer: 6000,
              background: '#000',
              color: '#fff',
              timerProgressBar: true,

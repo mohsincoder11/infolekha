@@ -18,14 +18,14 @@ use App\Models\AdvertisementEnquiry;
 use App\Models\AdvertisementPackage;
 use App\Models\AnnouncementPackage;
 use App\Models\Blog;
-use App\Models\Coupon;
+use App\Models\Master\Coupon;
 use App\Models\JobVacancyApplied;
 use App\Models\SchoolType;
 use Illuminate\Support\Facades\Hash;
 
 class SchoolProfile extends Controller
 {
-   public function home(Request $request)
+   public function  home(Request $request)
    {
       $school_type = SchoolType::get();
 
@@ -43,26 +43,23 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
    }
 
    public function activate_profile(){
-      $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->first();
-     
+      $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->orderby('id','desc')->first();
       if($check_transaction){
-          $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
-          if ($expiry_check->isPast()) {
-            return redirect('payment_form');
-          }
-      }
-     
-      if($check_transaction){
+      $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
+
+      if(!$expiry_check->isPast()){
          if(Auth::user()->role=='1'){
-            return redirect()->route('school_profile.home')->with(['info'=>'Please wait for admin approval.']);
+            return redirect()->route('school_profile.home')->with(['info'=>'Profile is under review. Please wait for admin approval.']);
 
          } 
          if(Auth::user()->role=='2'){
-            return redirect()->route('tutor_profile.home')->with(['info'=>'Please wait for admin approval.']);
+            return redirect()->route('tutor_profile.home')->with(['info'=>'Profile is under review. Please wait for admin approval.']);
 
          }
       }
-      return redirect('payment_form');
+   }
+
+      return redirect()->route('payment_form');
 
    }
 
@@ -329,18 +326,6 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
 
    public function pay_for_announcement(Request $request)
    {
-      $package = AnnouncementPackage::find($request->PackageID);
-      if ($package) {
-         $exist = Announcement::find($request->announcement_id);
-          $exist->PackageName=$package->PackageName;
-          $exist->OriginalPrice=$package->OriginalPrice;
-          $exist->Discount=$package->Discount;
-          $exist->MinDays=$package->MinDays;
-          $exist->MaxDays=$package->MaxDays;
-          $exist->SelectedDays=$request->SelectedDays;
-          $exist->TotalAmount=$request->TotalAmount;
-         $exist->save();
-      }
       $validator = Validator::make(
          $request->all(),
          [
@@ -353,8 +338,23 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       if ($validator->fails()) {
          return redirect()->back()->with(['error' => 'Something went wrong.']);
       }
+      
+      $package = AnnouncementPackage::find($request->PackageID);
+      if ($package) {
+         $exist = Announcement::find($request->announcement_id);
+          $exist->PackageName=$package->PackageName;
+          $exist->OriginalPrice=$package->OriginalPrice;
+          $exist->Discount=$package->Discount;
+          $exist->MinDays=$package->MinDays;
+          $exist->MaxDays=$package->MaxDays;
+          $exist->SelectedDays=$request->SelectedDays;
+          $exist->TotalAmount=$request->TotalAmount;
+         $exist->save();
+      }
+      
 
       if ($validator->passes()) {
+        
 
          $txnid = 'I-LEKHA' . rand(1111, 9999) . time() . rand(001, 999);
          $it = transaction::updateOrCreate(
@@ -372,11 +372,14 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
                'user_role' => auth::user()->role,
                'transaction_id' => $txnid,
                'type' => 'Announcement',
-               'transaction_status' => 'NA',
+               'transaction_status'=>$request->TotalAmount==0 ? 'success' : 'NA',
                'type' => 'Announcement',
                'AnnouncementID' => $request->get('announcement_id'),
             ]
          );
+         if($request->TotalAmount==0){
+            return redirect()->route('school_profile.post_announcement')->with(['success' => 'Announcement sent successfully.']);;
+          }
 
 
          $MERCHANT_KEY = env('MERCHANT_KEY', null);
@@ -481,6 +484,19 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
 
    public function insert_advertisement(Request $request)
    {
+     
+      $validator = Validator::make(
+         $request->all(),
+         [
+            'PackageID' => 'required',
+            'SelectedDays' => 'required',
+            'TotalAmount' => 'required',
+         ]
+      );
+
+      if ($validator->fails()) {
+         return redirect()->back()->with(['error' => 'Something went wrong.']);
+      }
       $package = AdvertisementPackage::find($request->PackageID);
       if ($package) {
          $new = new AdvertisementEnquiry();
@@ -499,10 +515,15 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          $new->TotalAmount = $request->TotalAmount;
 
          $new->save();
-         return redirect()->back()->with(['success' => 'Enquiry send successfully.']);
+         return redirect()->back()->with(['success' => 'Advertisement enquiry send successfully.']);
       } else {
          return redirect()->back()->with(['error' => 'Something went wrong.']);
       }
+   }
+
+   public function delete_advertisement($id){
+      AdvertisementEnquiry::where('EnquiryID', $id)->delete();
+      return redirect()->back()->with(['success' => 'Advertisement enquiry deleted successfully.']);
    }
 
    public function blog_index(Request $request)
@@ -552,7 +573,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             'content4' => $request['content4'],
             'status' => 'Pending',
      ]);
-     return redirect()->back()->with(['success' => 'Blog created successfully.']);
+     return redirect('school-profile/blog')->with(['success' => 'Blog created successfully.']);
 
    }
 
@@ -601,7 +622,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             $blog->content4= $request['content4'];
 
             $blog->save();
-     return redirect()->back()->with(['success' => 'Blog updated successfully.']);
+     return redirect('school-profile/blog')->with(['success' => 'Blog updated successfully.']);
    }
    else{
       return redirect()->back()->with(['error' => 'Blog not found.']);

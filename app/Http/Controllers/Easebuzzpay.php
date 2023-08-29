@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Easebuzz;
-
+use App\Models\Master\Subscription;
 use Illuminate\Http\Request;
 use Session;
 use DB;
 use Auth;
 use App\Models\transaction;
+use App\Models\TransactionSubscription;
 use Validator;
+use Carbon\Carbon;
 
 
 class Easebuzzpay extends Controller
@@ -17,9 +19,10 @@ class Easebuzzpay extends Controller
 
     public function initiatePaymentAPI(Request $request)
     {
+      
         $validator = Validator::make($request->all(),
         [
-        'amount'=>'required',
+        'subscription_id'=>'required',
         ]);
 
         if ($validator->fails())
@@ -41,19 +44,28 @@ class Easebuzzpay extends Controller
         $data=DB::table('users')->join('user_tutor_detail','user_tutor_detail.user_id','=','users.id')
         ->select('users.*','user_tutor_detail.*')->where('user_tutor_detail.user_id',auth::user()->id)->first();
       }
-        $txnid='I-LEKHA' . time() . rand(001, 999);
+      $subscription=Subscription::find($request->subscription_id);
+      $txnid='I-LEKHA' . time() . rand(001, 999);
         $it=new transaction;
         $it->name=$data->name;
         $it->mob=$data->mob;
         $it->address=$data->address;
         $it->user_id=auth::user()->id;
-        $it->amount=$request->get('amount');
+        $it->amount=$subscription->amount;
         $it->user_role=auth::user()->role;
         $it->transaction_id=$txnid;
         $it->type='Subscription';
-        $it->transaction_status=$request->get('amount')==0 ? 'success' : 'NA';
+        $it->transaction_status=$subscription->amount==0 ? 'success' : 'NA';
+        $addDays=$subscription->type=='Year' ? 365 : 30;
+        $it->expiry=Carbon::now()->addDays($addDays)->format('Y-m-d');
         $it->save();
-        if($request->get('amount')==0){
+        $transaction_subscription=TransactionSubscription::create([
+          'plan' => $subscription->plan,
+          'type' => $subscription->type,
+          'amount' => $subscription->amount,
+          'transaction_id' => $it->id,
+        ]);
+        if($subscription->amount==0){
           return redirect()->route('success-complete');
         }
 
@@ -66,7 +78,7 @@ class Easebuzzpay extends Controller
 		$state=$data->address;
         $postData = array(
             "txnid" => $txnid,
-            "amount" => $request->get('amount').'.00',
+            "amount" => $subscription->amount,
             "firstname" => str_replace(' ', '', $data->name),
             "email" => $data->email,
             "phone" => $data->mob,
@@ -88,7 +100,6 @@ class Easebuzzpay extends Controller
             "zipcode" => $data->pin_code,
             
         );
-        
 
         Session::put('newdata', $postData);
         Session::save();

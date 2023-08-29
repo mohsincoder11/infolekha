@@ -52,7 +52,7 @@
                                
 
 
-                                <div class="col-md-12">
+                                <div class="col-md-12" style="margin-top:10px;">
                                     <button type="submit" class="btn  color-bg  float-btn">Publish Announcement </button>
                                 </div>
 
@@ -101,6 +101,9 @@
                                         </div>
                                     </td>
                                     <td>
+                                        @if(check_announcement_payment($announcement->id)=='N/A')
+                                <a href="{{route('school_profile.announcement-package', $announcement->id)}}">Make Payment</a>
+                                <br> @endif
                                        {!!check_announcement_payment($announcement->id)!!}
                                         
                                     </td>

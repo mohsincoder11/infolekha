@@ -78,8 +78,8 @@
                                                         </option>
                                                     </select>
                                                 </form> --}}
-                                                {{ $announcements->status }}
-
+                                               <span class="badge @if($announcements->status=='Pending') bg-secondary @elseif($announcements->status=='Active') bg-primary @elseif($announcements->status=='Reject') bg-danger @endif">  {{ $announcements->status }}
+                                            </span>
 
                                             <td>
 

@@ -70,6 +70,9 @@
         .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
+        body.swal2-toast-shown .swal2-container {
+    width:460px !important;
+}
     </style>
 </head>
 
@@ -415,7 +418,7 @@
                 toast: true,
                 position: 'bottom',
                 showConfirmButton: false,
-                timer: 4000,
+                timer: 6000,
                 background: '#000',
                 color: '#fff',
                 timerProgressBar: true,

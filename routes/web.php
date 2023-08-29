@@ -24,6 +24,7 @@ use App\Http\Controllers\Master\SliderlinkController;
 use App\Http\Controllers\school_institute_profile_dashboard;
 use App\Http\Controllers\Easebuzzpay;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\Master\SubscriptionController;
 use App\Http\Controllers\UserLikeFeedback;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\SchoolProfile;
@@ -55,6 +56,7 @@ Route::get('database-backup', [WebsiteformController::class, 'database_backup'])
 
 
 Route::get('blog', [WebsiteformController::class, 'blog'])->name('blog');
+Route::get('blog-details/{id}', [WebsiteformController::class, 'blog_details'])->name('blog-details');
 
 Route::get('role', [WebsiteformController::class, 'role'])->name('role');
 Route::get('stratigic', [WebsiteformController::class, 'stratigic'])->name('stratigic');
@@ -181,6 +183,13 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
      Route::post('master/update_coupon', [CouponController::class, 'update'])->name('master.update_coupon');
      Route::get('master/destroy_coupon/{id}', [CouponController::class, 'destroy'])->name('master.destroy_coupon');
 
+       //Coupon
+       Route::get('master/subscription', [SubscriptionController::class, 'index'])->name('master.subscription');
+       Route::post('master/create_subscription', [SubscriptionController::class, 'create'])->name('master.create_subscription');
+       Route::get('master/edit-subscription/{id}', [SubscriptionController::class, 'edit'])->name('master.edit_subscription');
+       Route::post('master/update_subscription', [SubscriptionController::class, 'update'])->name('master.update_subscription');
+       Route::get('master/destroy_subscription/{id}', [SubscriptionController::class, 'destroy'])->name('master.destroy_subscription');
+
 });
 
 
@@ -251,7 +260,7 @@ Route::get('city', [state_city::class, 'city'])->name('city');
 Route::post('city_create', [state_city::class, 'city_create'])->name('city_create');
 
 Route::group(['middleware' => ['AuthCheck']], function () {
-    Route::get('payment_form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
+    Route::get('payment-form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
     Route::get('school_institute_detail_form/{data}', [SignUpController::class, 'school_institute_detail_form'])->name('school_institute_detail_form');
     Route::get('student_detail_form/{data}', [SignUpController::class, 'student_detail_form'])->name('student_detail_form');
     Route::get('tutor_detail_form/{data}', [SignUpController::class, 'tutor_detail_form'])->name('tutor_detail_form');
@@ -298,6 +307,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
         Route::get('school-profile/post-advertisement', [SchoolProfile::class, 'post_advertisement'])->name('school_profile.post_advertisement');
         Route::post('school_profile/insert-advertisement', [SchoolProfile::class, 'insert_advertisement'])->name('school_profile.insert-advertisement');
+        Route::get('school_profile/delete-advertisement/{id}', [SchoolProfile::class, 'delete_advertisement'])->name('school_profile.delete-advertisement');
 
         Route::get('school-profile/blog', [SchoolProfile::class, 'blog_index'])->name('school_profile.blog');
         Route::get('school-profile/write-blog', [SchoolProfile::class, 'write_blog'])->name('school_profile.write-blog');
@@ -308,7 +318,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
        
     });
 
-    Route::get('activate_profile',[SchoolProfile::class,'activate_profile'])->name('activate_profile');
+    Route::get('activate-profile',[SchoolProfile::class,'activate_profile'])->name('activate_profile');
 
 
     Route::get('school-profile/get_advertisement_size', [SchoolProfile::class, 'get_advertisement_size'])->name('school_profile.get_advertisement_size');
@@ -335,7 +345,14 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::get('tutor-change-password', [TutorProfileController::class, 'change_password'])->name('tutor_profile.user_change_password');
         Route::get('job-applied', [TutorProfileController::class, 'job_applied'])->name('tutor_profile.job_applied');
         Route::get('remove-job/{id}', [TutorProfileController::class, 'job_remove'])->name('tutor_profile.job_remove');
-
+       
+        Route::get('tutor-profile/blog', [TutorProfileController::class, 'blog_index'])->name('tutor_profile.blog');
+        Route::get('tutor-profile/write-blog', [TutorProfileController::class, 'write_blog'])->name('tutor_profile.write-blog');
+        Route::post('tutor-profile/insert-blog', [TutorProfileController::class, 'insert_blog'])->name('tutor_profile.insert-blog');
+        Route::get('tutor-profile/edit-blog/{id}', [TutorProfileController::class, 'edit_blog'])->name('tutor_profile.edit-blog');
+        Route::post('tutor-profile/update-blog', [TutorProfileController::class, 'update_blog'])->name('tutor_profile.update-blog');
+        Route::get('tutor-profile/delete-blog/{id}', [TutorProfileController::class, 'delete_blog'])->name('tutor_profile.delete-blog');
+  
         
     });
 

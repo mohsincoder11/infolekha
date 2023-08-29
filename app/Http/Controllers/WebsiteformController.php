@@ -12,6 +12,7 @@ use App\Models\school_institute_detail;
 use App\Models\tutor_detail;
 use App\Models\transaction;
 use App\Models\Announcement;
+use App\Models\Blog;
 use App\Models\City;
 use App\Models\Contact_Us;
 use App\Models\Master\state;
@@ -26,6 +27,7 @@ use App\Models\SchoolType;
 use App\Models\CollegelistingEnquiry;
 use App\Models\JobVacancy;
 use App\Models\JobVacancyApplied;
+use App\Models\Master\Subscription;
 use App\Models\PostResult;
 use Hash;
 use Session;
@@ -49,7 +51,7 @@ class WebsiteformController extends Controller
             $announcements=$announcements->where('city_id',Auth::user()->city_id);
         }
         $announcements= $announcements->get();
-                $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','home')->where('status','Active')->take(8)->get(); //we need to add city id condition
+                $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','home')->where('status','Active')->take(1)->get(); //we need to add city id condition
 
         return view('Website.index', ['announcements' => $announcements,'advertisements'=>$advertisements]);
     }
@@ -375,7 +377,14 @@ public function database_backup(){
 
     public function blog(Request $request)
     {
-        return view('Website.blog');
+        $blogs=Blog::select('id','subject','blog_image')->where('status','Active')->get();
+        return view('Website.blogs.blog',compact('blogs'));
+    }
+
+    public function blog_details(Request $request)
+    {
+        $blog=Blog::find($request->id);
+        return view('Website.blogs.blog-details',compact('blog'));
     }
 
     public function payfail(Request $request)
@@ -409,7 +418,8 @@ public function database_backup(){
 
     public function payment_form(Request $request)
     {
-        return view('Website.payment_form');
+        $Subscriptions=Subscription::orderby('amount','asc')->get();
+        return view('Website.payment_form',compact('Subscriptions'));
     }
 
     public function role(Request $request)

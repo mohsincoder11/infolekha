@@ -1,4 +1,4 @@
-@extends('Website.school_profile.layout')
+@extends('Website.tutor_profile.layout')
 @section('css')
     <style>
         #description {
@@ -24,12 +24,12 @@
           
             <div class="dasboard-widget-box fl-wrap">
                 <div style="margin-bottom:8%;">
-                    <a href="{{ route('school_profile.blog') }}" class="add-list color-bg"> <span>Show Blog</span></a>
+                    <a href="{{ route('tutor_profile.blog') }}" class="add-list color-bg"> <span>Show Blog</span></a>
                 </div>
 
                 <div class="col-md-12">
                     <div class="row">
-                        <form method="post" action="{{route('school_profile.update-blog')}}" id="blog_form" enctype="multipart/form-data">
+                        <form method="post" action="{{route('tutor_profile.update-blog')}}" id="blog_form" enctype="multipart/form-data">
                         <div class="custom-form">
 @csrf
 <input type="hidden" name="id" value="{{$edit_data->id}}">
@@ -66,21 +66,21 @@
                                 <textarea id="description1" rows="8" name="content1" >{{$edit_data->content1}}
                                   </textarea>
                                   {{-- <div id="description1"></div> --}}
+
                                   <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
                                 <textarea id="description2" rows="8" name="content2" >{{$edit_data->content2}}
                                       </textarea>
-                                  {{-- <div id="description2"></div> --}}
-
+                                      {{-- <div id="description2"></div> --}}
                                       <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
                                 <textarea id="description3" rows="8" name="content3" >{{$edit_data->content3}}
                                           </textarea>
-                                  {{-- <div id="description3"></div> --}}
+                                      {{-- <div id="description3"></div> --}}
 
                                           <span class="editor_error"></span>
                             </div>
@@ -88,7 +88,7 @@
                             <div class="col-md-12" style="margin-top:10px;">
                                 <textarea id="description4" rows="8" name="content4" >{{$edit_data->content4}}
                                               </textarea>
-                                  {{-- <div id="description4"></div> --}}
+                                      {{-- <div id="description4"></div> --}}
 
                                               <span class="editor_error"></span>
                             </div>
@@ -108,29 +108,84 @@
 @stop
 
 @section('js')
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/js/froala_editor.pkgd.min.js"></script>
 
-<!-- include summernote css/js -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script>
-   $(document).ready(function() {
-    $('#description1').summernote({
-      height: 300, 
+    // Initialize the Quill editor
+    var toolbarButtonsArray=   [
+    'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|',
+    'fontSize', 'color', 'inlineStyle', '|',
+    'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '|',
+    'quote', 'insertHR', '|',
+    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|',
+    'emoticons', 'fontAwesome', 'specialCharacters', 'insertHR', '|',
+    'selectAll', 'clearFormatting', 'print', 'help'
+];
+new FroalaEditor('#description1', {
+        height: 200, // Set the editor height
+        toolbarButtons:toolbarButtonsArray,
+        tableStyles: {
+            tableStyle1: {
+                'border': '1px solid #ccc',
+                'width': '100%'
+            },
+            tableStyle2: {
+                'border': '1px solid #000',
+                'width': '50%'
+            }
+        }
     });
-    $('#description2').summernote({
-      height: 300, 
+
+    new FroalaEditor('#description2', {
+        height: 200, // Set the editor height
+        toolbarButtons:toolbarButtonsArray,
+        tableStyles: {
+            tableStyle1: {
+                'border': '1px solid #ccc',
+                'width': '100%'
+            },
+            tableStyle2: {
+                'border': '1px solid #000',
+                'width': '50%'
+            }
+        }
     });
-    $('#description3').summernote({
-      height: 300, 
+
+    new FroalaEditor('#description3', {
+        height: 200, // Set the editor height
+        toolbarButtons:toolbarButtonsArray,
+        tableStyles: {
+            tableStyle1: {
+                'border': '1px solid #ccc',
+                'width': '100%'
+            },
+            tableStyle2: {
+                'border': '1px solid #000',
+                'width': '50%'
+            }
+        }
     });
-    $('#description4').summernote({
-      height: 300, 
+
+    new FroalaEditor('#description4', {
+        height: 200, // Set the editor height
+        toolbarButtons:toolbarButtonsArray,
+        tableStyles: {
+            tableStyle1: {
+                'border': '1px solid #ccc',
+                'width': '100%'
+            },
+            tableStyle2: {
+                'border': '1px solid #000',
+                'width': '50%'
+            }
+        }
     });
-  });
- 
+
 </script>
+
     <script>
        $(document).ready(function () {
+       
         $("#category").on("change", function(){
             $("#other_category").val('');
 

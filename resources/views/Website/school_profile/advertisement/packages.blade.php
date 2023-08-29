@@ -23,16 +23,18 @@
                                 <li class="card-element">Original Price - Rs. {{ $advertisements->OriginalPrice }} Per
                                     Day</li>
                                 <li class="card-element">Discount - <span class="discount_span">0</span>
-                                <input type="hidden" name="Discount" class="discount_input">
-                              </li>
+                                    <input type="hidden" name="Discount" class="discount_input">
+                                </li>
                                 <li class="card-element">Final Price - Rs.
-                                   <span class="final_price"> {{ $advertisements->OriginalPrice}}</span>
-                                    Per Day</li>
+                                    <span class="final_price"> {{ $advertisements->OriginalPrice }}</span>
+                                    Per Day
+                                </li>
                                 <li class="card-element" style="padding:0 10px">
                                     <div class="chosen-select on-radius no-search-select">
                                         <input type="hidden" class="original_price"
-                                            value="{{ $advertisements->OriginalPrice}}">
-                                        <select class="select_days" name="SelectedDays" style="line-height:0px! important;">
+                                            value="{{ $advertisements->OriginalPrice }}">
+                                        <select class="select_days" name="SelectedDays"
+                                            style="line-height:0px! important;">
                                             <option value="">Select no of days</option>
                                             @for ($i = $advertisements->MinDays; $i <= $advertisements->MaxDays; $i++)
                                                 <option value="{{ $i }}">{{ $i }} @if ($i > 1)
@@ -52,11 +54,14 @@
                                 </li>
                                 <li class="card-element" style="padding:0 10px;">
                                     <label style="text-align: center !important;"> Apply Coupon Code</label>
-                                   
+
                                 </li>
-       <div class="listing-rating card-popup-rainingvis" > 
-		   <input type="text" class="form-control CouponCode" name="CouponCode" value=""  style="margin-left:10px;"/>
-		   <span class="re_stars-title"><button style="margin-left:60px; padding:5px;" type="submit" >Apply</button></span></div>
+                                <div class="listing-rating card-popup-rainingvis">
+                                    <input type="text" class="form-control CouponCode" name="CouponCode"
+                                        value="" style="margin-left:10px;" />
+                                    <span class="re_stars-title"><button style="margin-left:60px; padding:5px;"
+                                            type="button" class="ApplyCouponCode">Apply</button></span>
+                                </div>
 
                             </ul>
                             {{-- <div style="padding:0 10px;">

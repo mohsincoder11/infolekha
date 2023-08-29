@@ -133,13 +133,17 @@
                             method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
+							
 
-                                <div class="col-md-6">
+                                <div class="col-md-5">
+									    <div class="listsearch-input-item">
                                     <label style="font-size:16px;">Upload Logo</label>
                                     <input type="file" name="logo" class="upload" value="{{ $data->logo }}" />
                                     <img height="50px" width="50px" src="{{ asset('public') . '/' . $data->logo }}"
                                         alt="">
+									</div>
                                 </div>
+									<div class="col-md-1"></div>
                                 <div class="col-md-6 ">
                                     <label style="font-size:16px;"> Your Name </label>
                                     <input type="text" placeholder="Name" name="name" value="{{ $data->name }}" />
@@ -263,7 +267,7 @@
 
                                                 <a target="_blank" href="{{ asset('public') . '/' . $i }}"
                                                     class="geodir-category-img_item img">
-                                                    <iframe height="115" width="210" src="{{ asset('public') . '/' . $i }}"
+                                                    <iframe height="100%" width="210" src="{{ asset('public') . '/' . $i }}"
                                                         alt="" title="YouTube video player" frameborder="0"
                                                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                             </a>

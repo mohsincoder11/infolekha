@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\JobVacancyApplied;
 use App\Models\tutor_detail;
 use Illuminate\Http\Request;
@@ -148,7 +149,109 @@ class TutorProfileController extends Controller
             return redirect()->back()->with(['error'=>'Existing password do not match.']);
 
         }
+    }
 
-
+    public function blog_index(Request $request)
+    {
+       $blogs = Blog::where('user_id', Auth::id())->orderby('id', 'desc')->get();
+       return view('Website.tutor_profile.blog.list', compact('blogs'));
+    }
+ 
+    public function write_blog(Request $request)
+    {
+       return view('Website.tutor_profile.blog.create');
+    }
+    public function insert_blog(Request $request){
+      
+       $validator = Validator::make(
+          $request->all(),
+          [
+             'subject' => 'required',
+             'category' => 'required',
+             'blog_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4048',
+             'content1' => 'required',
+             'content2' => 'required',
+             'content3' => 'required',
+             'content4' => 'required',
+          ]
+       );
+       if ($validator->fails()) {
+          return  redirect()
+             ->back()
+             ->withErrors($validator)
+             ->withInput();
+       }
+       if ($request->hasFile('blog_image')) {
+          $file = $request->file('blog_image');
+          $filename = time() . '.' . $file->getClientOriginalExtension();
+          $file->move(public_path('/blog/'), $filename);
+       }
+ 
+      Blog::create([
+       'subject' => $request['subject'],
+             'category' => $request['category'],
+             'user_id' => Auth::id(),
+             'blog_image' => 'blog/'.$filename,
+             'content1' => $request['content1'],
+             'content2' => $request['content2'],
+             'content3' => $request['content3'],
+             'content4' => $request['content4'],
+             'status' => 'Pending',
+      ]);
+      return redirect('tutor-profile/blog')->with(['success' => 'Blog created successfully.']);
+ 
+    }
+ 
+    public function delete_blog($id){
+       Blog::where('id', $id)->delete();
+       return redirect()->back()->with(['success' => 'Blog deleted successfully.']);
+    }
+    public function edit_blog($id){
+       $edit_data=Blog::where('id', $id)->first();
+       return view('Website.tutor_profile.blog.edit',compact('edit_data'));
+    }
+ 
+    public function update_blog(Request $request){
+      
+       $validator = Validator::make(
+          $request->all(),
+          [
+             'subject' => 'required',
+             'category' => 'required',
+             'content1' => 'required',
+             'content2' => 'required',
+             'content3' => 'required',
+             'content4' => 'required',
+          ]
+       );
+       if ($validator->fails()) {
+          return  redirect()
+             ->back()
+             ->withErrors($validator)
+             ->withInput();
+       }
+       $blog=Blog::find($request->id);
+       if($blog){
+          if ($request->hasFile('blog_image')) {
+             $file = $request->file('blog_image');
+             $filename = time() . '.' . $file->getClientOriginalExtension();
+             $file->move(public_path('/blog/'), $filename);
+             $blog->blog_image= 'blog/'.$filename;
+          }
+ 
+             $blog->subject= $request['subject'];
+             $blog->category= isset($request['other_category']) && $request['other_category']!=null  ? $request['other_category'] : $request['category'];
+             $blog->content1= $request['content1'];
+             $blog->content2= $request['content2'];
+             $blog->content3= $request['content3'];
+             $blog->content4= $request['content4'];
+ 
+             $blog->save();
+      return redirect('tutor-profile/blog')->with(['success' => 'Blog updated successfully.']);
+    }
+    else{
+       return redirect()->back()->with(['error' => 'Blog not found.']);
+    }
+ 
     }
 }

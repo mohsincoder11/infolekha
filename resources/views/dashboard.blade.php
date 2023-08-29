@@ -17,7 +17,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Schools</p>
-                                    <h4 class="my-1">{{ $school_data_count }}</h4>
+                                    <h4 class="my-1">{{ $count['school'] }}</h4>
                                     <p class="mb-0 font-13 text-success">
                                 </div>
                                 <div class="widgets-icons bg-light-success text-success ms-auto"><i
@@ -33,7 +33,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Colleges</p>
-                                    <h4 class="my-1">{{ $college_data_count }}</h4>
+                                    <h4 class="my-1">{{ $count['college'] }}</h4>
 
                                 </div>
                                 <div class="widgets-icons bg-light-info text-info ms-auto"><i
@@ -49,7 +49,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Institutions</p>
-                                    <h4 class="my-1">{{ $institute_data_count }}</h4>
+                                    <h4 class="my-1">{{ $count['institute'] }}</h4>
                                 </div>
                                 <div class="widgets-icons bg-light-danger text-danger ms-auto"><i
                                         class="fadeIn animated bx bx-buildings"></i>
@@ -64,7 +64,7 @@
                             <div class="d-flex align-items-center">
                                 <div>
                                     <p class="mb-0 text-secondary">Parents/Students</p>
-                                    <h4 class="my-1">{{ $student_data_count }}</h4>
+                                    <h4 class="my-1">{{ count($student_data) }}</h4>
                                 </div>
                                 <div class="widgets-icons bg-light-info text-info ms-auto"><i class='bx bxs-group'></i>
                                 </div>
@@ -74,18 +74,24 @@
                 </div>
                 <div class="col">
                     <div class="card radius-10">
+                        
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Approved Announcements</p>
-                                    <h4 class="my-1">0</h4>
-                                    <p class="mb-0 font-13 text-success">
+                                    <a href="{{route('admin.announcement')}}"> <p class="mb-0 text-secondary">Approved Announcements</p>
+                                    <h4 class="my-1">{{ $count['announcement_active'] }}
+                                    </h4>
+                                    </a>
                                 </div>
-                                <div class="widgets-icons bg-light-success text-success ms-auto"><i
-                                        class="lni lni-checkmark"></i>
+                                <div class="widgets-icons bg-light-success text-success ms-auto">
+                                    <a href="{{route('admin.announcement')}}">
+                                        <i class="lni lni-checkmark"></i>
+                                    </a>
+                                    
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col">
@@ -93,14 +99,19 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Rejected Announcements</p>
-                                    <h4 class="my-1">0</h4>
+                        <a href="{{route('admin.announcement')}}">
+                            <p class="mb-0 text-secondary">Rejected Announcements</p>
+                                    <h4 class="my-1">{{ $count['announcement_rejected'] }}</h4>
+                        </a>
                                 </div>
-                                <div class="widgets-icons bg-light-danger text-danger ms-auto"><i
-                                        class="lni lni-cross-circle"></i>
+                                <div class="widgets-icons bg-light-danger text-danger ms-auto">
+                        <a href="{{route('admin.announcement')}}">
+                            <i class="lni lni-cross-circle"></i>
+                        </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -109,16 +120,21 @@
                     <div class="card radius-10">
                         <div class="card-body">
                             <div class="d-flex align-items-center">
-                                <div>
+                                    <div>
+                                <a href="{{ route('admin.advertisement') }}">
                                     <p class="mb-0 text-secondary">Approved Ads</p>
-                                    <h4 class="my-1">0</h4>
-                                    <p class="mb-0 font-13 text-success">
+                                    <h4 class="my-1">{{ $count['advertisement_active'] }}</h4>
+                                </a>
                                 </div>
-                                <div class="widgets-icons bg-light-success text-success ms-auto"><i
+                                <div class="widgets-icons bg-light-success text-success ms-auto">
+                                <a href="{{ route('admin.advertisement') }}">
+                                    <i
                                         class="lni lni-checkmark"></i>
+                                </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
                 <div class="col">
@@ -126,14 +142,20 @@
                         <div class="card-body">
                             <div class="d-flex align-items-center">
                                 <div>
-                                    <p class="mb-0 text-secondary">Rejected Ads</p>
-                                    <h4 class="my-1">0</h4>
+                                    <a href="{{ route('admin.advertisement') }}">
+                                        <p class="mb-0 text-secondary">Rejected Ads</p>
+                                        <h4 class="my-1">{{ $count['advertisement_rejected'] }}</h4>
+                                    </a>
                                 </div>
-                                <div class="widgets-icons bg-light-danger text-danger ms-auto"><i
-                                        class="lni lni-cross-circle"></i>
+                                <div class="widgets-icons bg-light-danger text-danger ms-auto">
+                                    <a href="{{ route('admin.advertisement') }}">
+                                        <i class="lni lni-cross-circle">
+                                    </i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -234,17 +256,17 @@
                                                                 <td>
                                                                     <button type="button" class="btn">
                                                                         <div class="form-check form-switch">
-                                                                            <input
-                                                                                class="form-check-input " type="checkbox"
+                                                                            <input class="form-check-input "
+                                                                                type="checkbox"
                                                                                 value="{{ $dt->user_id }}"
                                                                                 id="id{{ $dt->user_id }}"
-                                                                                @if ($dt->active == 1) checked='true' @endif @if($dt->subscription_status==0) disabled @endif>
+                                                                                @if ($dt->active == 1) checked='true' @endif
+                                                                                @if ($dt->subscription_status == 0) disabled @endif>
                                                                         </div>
-                                                                        @if($dt->subscription_status==0)
-                                                                        Not Paid
-                                                                        @endif
-                                                                         @if($dt->subscription_status==1)
-                                                                        Paid
+                                                                        @if ($dt->subscription_status == 0)
+                                                                            Not Paid
+                                                                        @elseif ($dt->subscription_status == 1)
+                                                                            Paid
                                                                         @endif
                                                                     </button>
                                                                 </td>
@@ -409,8 +431,13 @@
                                                                             value="{{ $dt->user_id }}"
                                                                             id="id{{ $dt->user_id }}"
                                                                             @if ($dt->active == 1) checked='true' @endif
-                                                                            @if($dt->subscription_status==0) disabled @endif>
+                                                                            @if ($dt->subscription_status == 0) disabled @endif>
                                                                     </div>
+                                                                    @if ($dt->subscription_status == 0)
+                                                                            Not Paid
+                                                                        @elseif ($dt->subscription_status == 1)
+                                                                            Paid
+                                                                        @endif
                                                                 </button>
                                                             </td>
 
@@ -483,11 +510,11 @@
             const a = $(String('#' + variable_id));
             $("#id_val").text(a.val());
             $('#exampleModal').modal({
-                    keyboard: false,
-                    backdrop: "static"
-                });
+                keyboard: false,
+                backdrop: "static"
+            });
             if (a.is(':Checked')) {
-                
+
                 $("#text").html("Are You Sure For <span id='action'>Activate</span> This Account Of Id.");
                 $('#exampleModal').modal('show');
 

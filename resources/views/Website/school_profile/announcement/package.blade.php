@@ -109,7 +109,7 @@
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item">Select Subscription Plan</div>
+                <div class="dashboard-title-item">Select Announcement Plan</div>
                 @include('Website.school_profile.profile_header')
 
 
@@ -164,6 +164,13 @@
                                        <li class="card-element">Total Amount - Rs. <span class="total_amount"></span>
                                          <input type="hidden" name="TotalAmount" class="total_amount">
                      
+                                       </li>
+                                       
+                                       <li class="card-element">Apply Coupon Code
+
+                                       </li> <li class="card-element">
+                                        <input type="text">
+                                        <button>Apply</button>
                                        </li>
                      
                                      </ul>

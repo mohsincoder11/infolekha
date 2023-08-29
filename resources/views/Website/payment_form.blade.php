@@ -63,20 +63,22 @@
                                                     @csrf
                                                     <div class="row" style="margin-right: 5%;">
                                                         <div class="col-md-3"></div>
-                                                        <div class="col-md-3">
+                                                        @foreach ($Subscriptions as $subscription)
+                                                            
+                                                        <div class="col-md-4">
                                                             <div class="">
                                                                 <label class="checkbox-wrapper">
-                                                                    <input type="radio" name="amount" value="500"
-                                                                        class="radio-input" checked />
+                                                                    <input type="radio" name="subscription_id" value="{{$subscription->id}}"
+                                                                        class="radio-input" @if($loop->index==0) checked @endif/>
                                                                     <span class="checkbox-tile">
                                                                         <span class="checkbox-icon">
                                                                             <div class="box-content">
                                                                                 <h4 for="vehicle1" style="color: #073D5F; ">
-                                                                                    <b>Monthly</b>
+                                                                                    <b>{{Ucwords($subscription->plan)}}</b>
                                                                                 </h4>
                                                                                 <h6
                                                                                     style="color:#073D5F; margin-top: 8%;  ">
-                                                                                    ₹ 500 / Per Month</h6>
+                                                                                    ₹ {{round($subscription->amount)}} / Per {{$subscription->type}}</h6>
 
                                                                             </div>
                                                                         </span>
@@ -85,29 +87,9 @@
                                                                 </label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-3">
-                                                            <div class="">
-                                                                <label class="checkbox-wrapper">
-                                                                    <input type="radio" name="amount" value="5000"
-                                                                        class="radio-input" />
-                                                                    <span class="checkbox-tile">
-                                                                        <span class="checkbox-icon">
-                                                                            <div class="box-content">
-                                                                                <h3 for="vehicle1" style="color: #073D5F; ">
-                                                                                    <b>Yearly</b>
-                                                                                </h3>
-                                                                                <h6
-                                                                                    style="color:#073D5F; margin-top: 8%;  ">
-                                                                                    ₹ 5000 / Per Year</h6>
+                                                        @endforeach
 
-                                                                            </div>
-                                                                        </span>
-
-                                                                    </span>
-                                                                </label>
-                                                            </div>
-                                                        </div>
+                                                       
 
 
                                                         <!-- <div class="update-profile" style="margin-left:42%;">
@@ -129,6 +111,25 @@
                                                                     placeholder="Coupon Code">
                                                             </td>
                                                         </table>
+     <!-- <div class="row">
+                                                    <div class="col-md-1"></div>
+                                                    <div class="col-md-4">
+                                                        <p class="form-control-label"
+                                                            style="color: #073D5F; font-size:16px">        
+                                                             <b>Apply Coupon Code</b></p>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Cupon Code">
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <button type="button" class="btn " style="">Apply</button>
+                                                    </div>
+
+
+                                                </div> -->
 
 
                                                         <div class="update-profile" style="margin-left:38%; margin-top:2%;">

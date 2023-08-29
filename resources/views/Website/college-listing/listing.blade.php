@@ -388,7 +388,7 @@
 
                                         </div>
                                     @empty
-                                        <div class="listing-list">No Records Found</div>
+                                        <div class="listing-list">No Record Found</div>
                                     @endforelse
 
                                     <div class="modal fade flat-popupform" id="popup_login">

@@ -6,6 +6,7 @@
         }
     </style>
 
+      <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 @stop
 
 @section('profile_content')
@@ -97,44 +98,29 @@
 @stop
 
 @section('js')
-    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#description1'))
-            .then(editor => {
-                
-            })
-            .catch(error => {
-                console.error(error);
-            });
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-            ClassicEditor
-            .create(document.querySelector('#description2'))
-            .then(editor => {
-                
-            })
-            .catch(error => {
-                console.error(error);
-            });
+<!-- include summernote css/js -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script>
+   $(document).ready(function() {
+    $('#description1').summernote({
+      height: 300, 
+    });
+    $('#description2').summernote({
+      height: 300, 
+    });
+    $('#description3').summernote({
+      height: 300, 
+    });
+    $('#description4').summernote({
+      height: 300, 
+    });
+  });
+ 
+</script>
 
-            ClassicEditor
-            .create(document.querySelector('#description3'))
-            .then(editor => {
-                
-            })
-            .catch(error => {
-                console.error(error);
-            });
 
-            ClassicEditor
-            .create(document.querySelector('#description4'))
-            .then(editor => {
-                
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
     <script>
        $(document).ready(function () {
         $("#category").on("change", function(){
@@ -146,59 +132,60 @@
                 $("#other_category_div").addClass('d-none');
             }
         })
-    $('#blog_form').validate({
-        rules: {
-            subject: 'required',
-            category: 'required',
-            blog_image: {
-                required: true,
-                extension: 'jpg,jpeg,png,gif'
-            },
-            content1:{
-                required: true,
-                minlength:1
-            },  
-            content2:{
-                required: true,
-                minlength:1
-            },  
-            content3:{
-                required: true,
-                minlength:1
-            }, 
-             content4:{
-                required: true,
-                minlength:1
-            },
+
+    // $('#blog_form').validate({
+    //     rules: {
+    //         subject: 'required',
+    //         category: 'required',
+    //         blog_image: {
+    //             required: true,
+    //             extension: 'jpg,jpeg,png,gif'
+    //         },
+    //         content1:{
+    //             required: true,
+    //             minlength:1
+    //         },  
+    //         content2:{
+    //             required: true,
+    //             minlength:1
+    //         },  
+    //         content3:{
+    //             required: true,
+    //             minlength:1
+    //         }, 
+    //          content4:{
+    //             required: true,
+    //             minlength:1
+    //         },
           
            
-        },
-        messages: {
-            blog_image: {
-                extension: 'Please select a valid image file (jpg, jpeg, png, gif)'
-            }
-        },
-        submitHandler: function(form) {
-                   return true;
-                },
-        errorPlacement: function(error, element) {
-            console.log($("#content1").text().length); // For HTML content
+    //     },
+    //     messages: {
+    //         blog_image: {
+    //             extension: 'Please select a valid image file (jpg, jpeg, png, gif)'
+    //         }
+    //     },
+    //     submitHandler: function(form) {
+    //                return true;
+    //             },
+    //     errorPlacement: function(error, element) {
+    //         console.log($("#content1").text().length); // For HTML content
 
-            if (element.attr("name") === "content1" || element.attr("name") === "content2" || element.attr("name") === "content3" || element.attr("name") === "content4") {
-                        element.closest('.editor_error').append(error);
-                    }
-                    if (element.attr("name") === "subject") {
-                        element.closest('.col-md-12').append(error);
-                    }
-                    else{
-        element.closest('.col-md-6').append(error);
+    //         if (element.attr("name") === "content1" || element.attr("name") === "content2" || element.attr("name") === "content3" || element.attr("name") === "content4") {
+    //                     element.closest('.editor_error').append(error);
+    //                 }
+    //                 if (element.attr("name") === "subject") {
+    //                     element.closest('.col-md-12').append(error);
+    //                 }
+    //                 else{
+    //     element.closest('.col-md-6').append(error);
                         
-                    }
+    //                 }
                    
 
 
-                },
-    });
+    //             },
+    // });
 });
     </script>
 @stop

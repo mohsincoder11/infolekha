@@ -1,5 +1,6 @@
 @extends('layout')
 @section('content')
+ 
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
@@ -117,8 +118,8 @@
 		<!--end page wrapper -->
 
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content ">
 					<div class="modal-header">
 						<h5 class="modal-title" id="exampleModalLabel">Update Blog Status</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -127,9 +128,13 @@
 						<form action="{{ route('admin.change-blog-status') }}" method="post"
 							enctype="multipart/form-data" class="row g-2" id="announcement_form">
 							@csrf
-							<input type="hidden" id="BlogID" name="BlogID">
-							
-							<div class="col-md-6 form-group">
+
+							<div class="col-md-4 ">
+								<label>Subject</label>
+								<input class="form-control mb-3" name="note" type="text" aria-label=""
+									placeholder="Subject">
+							</div>
+							<div class="col-md-4 form-group">
 								<label>Status</label>
 								<select class="form-select mb-3" aria-label="Default select example" name="status">
 									<option value="">Select</option>
@@ -139,17 +144,47 @@
 	
 								</select>
 							</div>
-							<div class="col-md-6 ">
+								<div class="col-md-4 form-group">
+								<label>Category</label>
+								<select class="form-select mb-3" aria-label="Default select example" name="status">
+									<option value="">Select</option>
+									<option>Physics</option>
+									<option>Mathematics</option>
+									<option>Chemistry</option>
+	
+								</select>
+							</div>
+							<div class="col-md-4 ">
 								<label>Note</label>
 								<input class="form-control mb-3" name="note" type="text" aria-label="default input example"
 									placeholder="Note">
 							</div>
-							<div class="col-md-6" style="margin-top:4.4vh;">
-								<div class="col">
-									<button type="submit" class="btn btn-primary px-5"> <i
-											class="lni lni-circle-plus"></i>Submit</button>
+							
+								<div class="col-md-12" style="margin-top:2%;">
+										<label for="about_from"></label><br>
+                                      <div id="about_from" style="height: 200px;"></div><br><br>
+									</div>
+							
+							<div class="col-md-12" style="margin-top:2%;">
+										<label for="about_to"></label><br>
+										<div id="about_to" style="height: 200px;"></div><br><br>
+									</div>
+
+									<div class="col-md-12" style="margin-top:2%;">
+										<label for="tourist_attraction"></label><br>
+										<div id="tourist_attraction" style="height: 200px;"></div><br><br>
+									</div>
+							
+							<div class="col-md-12" style="margin-top:2%;">
+										<label for="tourist_attraction"></label><br>
+										<div id="tourist_attraction1" style="height: 200px;"></div><br><br>
+									</div>
+								
+					
+								<div class="col" align="center">
+									<button type="submit" class="btn btn-primary px-5" >Update</button>
 								</div>
-							</div>
+							
 	
 	
 						</form>
@@ -179,5 +214,54 @@ ClassicEditor
 	console.error( error );
 } );
 });
+</script>
+<script>
+ document.addEventListener("DOMContentLoaded", function () {
+            var quillAboutFrom = new Quill("#about_from", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],        
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],   
+                        ['link', 'image', 'video'],                     
+                        ['clean']                                       
+                    ]
+                }
+            });
+            var quillAboutTo = new Quill("#about_to", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],       
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],   
+                        ['link', 'image', 'video'],                     
+                        ['clean']                                       
+                    ]
+                }
+            });
+            var quillTouristAttraction = new Quill("#tourist_attraction", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],       
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],   
+                        ['link', 'image', 'video'],                      
+                        ['clean']                                      
+                    ]
+                }
+            });
+	 
+	   var quillTouristAttraction = new Quill("#tourist_attraction1", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],       
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],   
+                        ['link', 'image', 'video'],                      
+                        ['clean']                                      
+                    ]
+                }
+            });
+        });
 </script>
 @stop

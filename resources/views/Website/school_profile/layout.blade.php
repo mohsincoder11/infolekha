@@ -18,7 +18,10 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/dashboard-style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
 
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
     
+    {{-- <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/bootstrap2.css') }}"> --}}
+
 {{-- 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -29,7 +32,7 @@
 
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
 
         .error {
@@ -191,6 +194,18 @@ font-size: 16px;
     padding: 10px 15px;
     border-radius: 5px;
 }
+.swal2-toast .swal2-title {
+            font-size: 14px !important;
+        }
+body.swal2-toast-shown .swal2-container {
+    width:460px !important;
+}
+.note-editor .btn{
+    color:#1c1c1c;
+}
+.d-none{
+			display: none !important;
+		}
     </style>
     @yield('css')
     @stack('css2')
@@ -217,7 +232,7 @@ font-size: 16px;
    
 @if(checkpayment_status())
     <div class="sitebanner">
-        <h4>Your profile is under review. It will be activated within 24 hours.</h4>
+        <h4>Your profile is under review, It will be activated within 48 hours.</h4>
     </div>
     @endif
 
@@ -500,6 +515,10 @@ font-size: 16px;
                                     </a>
 
                                 </li>
+                                  <li>
+                                    <a href="#" class="disable-li"><i class="fal fa-briefcase"></i>Write a Blog</a>
+
+                                </li>
                                 <li>
                                     <a href="{{ route('activate_profile') }}"
                                         @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
@@ -599,7 +618,7 @@ font-size: 16px;
             toast: true,
             position: 'bottom',
             showConfirmButton: false,
-            timer: 4000,
+            timer: 6000,
             background: '#000',
             color: '#fff',
             timerProgressBar: true,
@@ -608,6 +627,9 @@ font-size: 16px;
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
+
+      
+
     </script>
     @if (session()->has('success'))
     <script>
@@ -636,7 +658,14 @@ font-size: 16px;
         </script>
     @endif
     @yield('js')
-
+<script>
+      setTimeout(() => {
+            $("#description1 #fr-logo").css('display', 'none');
+            $("#description2 #fr-logo").css('display', 'none');
+            $("#description3 #fr-logo").css('display', 'none');
+            $("#description4 #fr-logo").css('display', 'none');
+        }, 3000);
+</script>
 </body>
 
 </html>

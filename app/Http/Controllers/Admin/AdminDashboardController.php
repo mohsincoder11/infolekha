@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
-
+use App\Models\Advertisement;
+use App\Models\AdvertisementEnquiry;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use App\Models\user_student;
 use App\Models\user_school_institute;
@@ -29,49 +31,54 @@ class AdminDashboardController extends Controller
     public function dashboard()
     {
         $student_data = DB::table('users')->select('users.*', 'user_student.*')
-
             ->join('user_student', 'user_student.user_id', '=', 'users.id')
-            ->orderby('users.id','desc')
+            ->orderBy('users.id','desc')
+            ->limit(50)
             ->get();
 
-        $student_data_count = count($student_data);
 
 
         $tutor_data = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
             ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
             ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
-            ->orderby('users.id','desc')
+            ->orderBy('users.id','desc')
+            ->limit(50)
             ->get();
 
-        $tutor_data_count = count($tutor_data);
 
-        $school_institute_data = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
+        $query = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->orderby('users.id','desc')
-            ->get();
+            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id');
             
 
-        $school_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
-            ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('r_entity', "school")
+            $count['school'] = (clone $query)
+            ->where('r_entity', 'school')
+            ->count();
+        
+        $count['college'] = (clone $query)
+            ->where('r_entity', 'College')
+            ->count();
+        
+        $count['institute'] = (clone $query)
+            ->where('r_entity', 'Institute')
             ->count();
 
-        $college_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
-            ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('r_entity', "College")
-            ->count();
+            $school_institute_data=$query
+            ->orderBy('users.id','desc')
+            ->limit(50)
+            ->get();
 
-        $institute_data_count = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
-            ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-            ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-            ->where('r_entity', "Institute")
-            ->count();
+            $announcement=Announcement::query();
+            $count['announcement_active']=(clone $announcement)->where('status','Active')->count();
+            $count['announcement_rejected']=(clone $announcement)->where('status','Reject')->count();
+
+            $advertisement=AdvertisementEnquiry::query();
+            $count['advertisement_active']=(clone $advertisement)->where('status','Active')->count();
+            $count['advertisement_rejected']=(clone $advertisement)->where('status','Rejected')->count();
 
 
-        return view('dashboard', ['tutor_data' => $tutor_data, 'student_data' => $student_data, 'school_institute_data' => $school_institute_data, 'tutor_data_count' => $tutor_data_count, 'student_data_count' => $student_data_count, 'institute_data_count' => $institute_data_count, 'college_data_count' => $college_data_count, 'school_data_count' => $school_data_count]);
+
+        return view('dashboard', ['tutor_data' => $tutor_data, 'student_data' => $student_data, 'school_institute_data' => $school_institute_data, 'count' => $count]);
     }
 
     public function activation(Request $request)

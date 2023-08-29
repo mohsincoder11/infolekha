@@ -17,7 +17,7 @@
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item">Job For vacancy</div>
+                <div class="dashboard-title-item">Job For vacancy1</div>
                 @include('Website.school_profile.profile_header')
 
                 <!--Tariff Plan menu-->
@@ -68,7 +68,7 @@
 
 
                                 <div class="col-md-6 form-group">
-                                    <label style="font-size:16px;">Experience required</label>
+                                    <label style="font-size:16px;">Experience required </label>
                                     <p>{{ ucfirst($vacancy->experience_required) }}</p>
 
                                 </div>

@@ -27,6 +27,8 @@
 	<link rel="stylesheet" href="{{asset('css/dark-theme.css')}}" />
 	<link rel="stylesheet" href="{{asset('css/semi-dark.css')}}" />
 	<link rel="stylesheet" href="{{asset('css/header-colors.css')}}" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  
 	<title>Infolekha</title>
 </head>
 <style>
@@ -121,6 +123,9 @@
 
  
         }
+		.d-none{
+			display: none !important;
+		}
 </style>
 
 <body>
@@ -212,7 +217,7 @@
 	
 					
 					<li>
-						<a href="Coupan applied for subscription.html">
+						<a href="{{route('admin.master.subscription')}}">
 							<div class="parent-icon"><i class="fadeIn animated bx bx-merge" style="font-size: 17px;"></i>
 							</div>
 							<div class="menu-title">Make Subscriptions </div>
@@ -726,7 +731,8 @@
 <!--app JS-->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
-
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 @yield('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
      {{-- <script>
@@ -734,7 +740,7 @@
 toast: true,
 position: 'bottom',
 showConfirmButton: false,
-timer: 4000,
+timer: 6000,
 background:'#000',
 color:'#fff',
 timerProgressBar: true,

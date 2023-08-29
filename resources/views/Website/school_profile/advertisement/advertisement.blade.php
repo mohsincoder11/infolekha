@@ -198,9 +198,9 @@
                                 <td>{{ $advertisement->status }}</td>
 
                                 <td>
-                                    <a class="" href="#">
-                                        <i class="fal fa-trash"></i>
-                                    </a>
+                                    <a class="" href="{{route('school_profile.delete-advertisement',$advertisement->EnquiryID)}}">
+                                      <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    
                                   
                                 </td>
 
@@ -269,10 +269,12 @@
             })
 
 
-            $(document).on("blur", ".CouponCode", function() {
+            $(document).on("click", ".ApplyCouponCode", function() {
                 let parent_div = $(this).closest('.card-element-container');
+                if($('.CouponCode').val()){
+                    calculate_discount(parent_div);
+                }
 
-              calculate_discount(parent_div);
              
             })
             function calculate_discount(parent_div) {

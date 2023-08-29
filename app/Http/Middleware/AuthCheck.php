@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\transaction;
 use Closure;
 use Illuminate\Http\Request;
 use DB;
@@ -33,8 +34,21 @@ class AuthCheck
         }
 
        }
-
+      
         if (auth()->user()) {
+            $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->orderby('id','desc')->first();
+            if($check_transaction){
+             $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
+             if ($expiry_check->isPast()) {
+                $user_data=User::find(Auth::id());
+                if($user_data->active=='1'){
+                    $user_data->active='0';
+                    $user_data->save();
+               return redirect()->route('school_profile.home')->with('error', 'Subscription expired.Please purchase a subscription to activate your account.');;
+                }
+               
+             }
+         }
             return $next($request);
         } else {
             return redirect()->route('index')->with(['error'=>'Please login to access the page.']);

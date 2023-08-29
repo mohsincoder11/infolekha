@@ -97,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                   <div class="col-md-6" style="margin-top:2.3%;">
+                                   <div class="col-md-6">
                             <button type="submit" class="btn color-bg  float-btn" >Save
                                 Changes</button></div>
 
@@ -148,8 +148,8 @@
                                     <td>{{ $vacancy->scope_of_work }}</td>
                                     <td>
                                         <a class="" href="{{route('delete_job_vacancy',$vacancy->id)}}">
-                                            <i class="fal fa-trash"></i>
-                                            </a> 
+                                          <i class="fa fa-trash" aria-hidden="true"></i></a>
+                                       
                                             <a class="" href="{{route('school_profile.view-applied-job',$vacancy->id)}}">
                                                 <i class="fal fa-eye"></i>
                                                 </a>

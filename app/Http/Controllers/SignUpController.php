@@ -242,7 +242,7 @@ class SignUpController extends Controller
                 // $inst->activate = 0;
 
                 $inst->save();
-                return redirect('payment_form');
+                return redirect()->route('payment_form');
     }
 
 
@@ -370,7 +370,7 @@ class SignUpController extends Controller
                     'cv'=>$cv_file
                 ]);
                 user_tutor::where('user_id',auth::user()->id)->update(['r_name'=>$request->get('name')]);
-                return redirect('payment_form');
+                return redirect()->route('payment_form');
     }
 
     public function student_detail_update(request $request)
