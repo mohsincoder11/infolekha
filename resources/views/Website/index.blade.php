@@ -238,7 +238,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            @foreach($advertisements as $advertisement)
+                            @foreach($advertisements_650 as $advertisement)
                             <div class="row">
                                 <a>
                                     <img src="{{ asset('public/'.$advertisement->image) }}" alt="image"
@@ -263,7 +263,7 @@
     <section class="flat-row blog-shortcode">
         <div class="container">
             <div class="row">
-                <!-- <div class="col-md-12">
+                <div class="col-md-12">
                                         <div class="title-section text-center">
                                             
                                             <div class="sub-title">
@@ -274,7 +274,22 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-6">
+                            @foreach($advertisements_370 as $advertisement2)
+                                <div class="col-lg-4 col-sm-6">
+                                        <article class="post clearfix">
+                                            <div class="featured-post">
+                                                <a href="blog-single.html">
+                                                    <img src="{{ asset('public/'.$advertisement2->image) }}" alt="image"
+                                        style="margin-top: 2%; ">
+                                                    </a>
+
+                                            </div>
+
+                                        </article>
+                                </div>
+                            @endforeach
+
+                                    {{-- <div class="col-lg-4 col-sm-6">
                                         <article class="post clearfix">
                                             <div class="featured-post">
                                                 <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
@@ -293,17 +308,7 @@
                                             </div>
 
                                         </article>
-                                    </div>
-                                    <div class="col-lg-4 col-sm-6">
-                                        <article class="post clearfix">
-                                            <div class="featured-post">
-                                                <a href="blog-single.html"><img src="https://via.placeholder.com/370x240"
-                                                        alt="image"></a>
-
-                                            </div>
-
-                                        </article>
-                                    </div>-->
+                                    </div> --}}
 
             </div>
         </div>

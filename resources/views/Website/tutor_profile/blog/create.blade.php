@@ -30,70 +30,70 @@
                 <div class="col-md-12">
                     <div class="row">
                         <form method="post" action="{{route('tutor_profile.insert-blog')}}" id="blog_form" enctype="multipart/form-data">
-                        <div class="custom-form">
-@csrf
-
-
-                            <div class="col-md-12">
-                                <label style="font-size:16px;">Subject of Blog </label>
-                                <input type="text" placeholder="Subject of Blog" name="subject"/>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label style="font-size:16px;">Category </label>
-                                <select data-placeholder="Status" class="chosen-select on-radius no-search-select" name="category" id="category">
-                                    @foreach (get_blog_categories() as $cat)
-                                        <option value="{{$cat}}" >{{$cat}}</option>
-                                    @endforeach
-                                    <option value="Other" >Other</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 d-none" id="other_category_div">
-                                <label style="font-size:16px;">Specify other category </label>
-                                <input type="text" placeholder="other category"   name="other_category" id="other_category" />
-                            </div>
-
-                            <div class="col-md-6">
-                                <label style="font-size:16px;">Upload Blog Image</label>
-                                <input type="file" class="upload" name="blog_image" />
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description1" rows="8" name="content1" >
-                                  </textarea>
-                                  {{-- <div id="description1"></div> --}}
-                                  <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description2" rows="8" name="content2" >
-                                      </textarea>
-                                  {{-- <div id="description2"></div> --}}
-
-                                      <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description3" rows="8" name="content3" >
-                                          </textarea>
-                                  {{-- <div id="description3"></div> --}}
-
+                            
+                                <div class="custom-form">
+        @csrf
+        
+        
+                                    <div class="col-md-12">
+                                        <label style="font-size:16px;">Subject of Blog </label>
+                                        <input type="text" placeholder="Subject of Blog" name="subject"/>
+                                    </div>
+        
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Category </label>
+                                        <select data-placeholder="Status" class="chosen-select on-radius no-search-select" name="category" id="category">
+                                            @foreach (get_blog_categories() as $cat)
+                                                <option value="{{$cat}}" >{{$cat}}</option>
+                                            @endforeach
+                                            <option value="Other" >Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6  d-none" id="other_category_div">
+                                        <label style="font-size:16px;">Specify other category </label>
+                                        <input type="text" placeholder="other category"   name="other_category" id="other_category" />
+                                    </div>
+        
+                                    <div class="col-md-6">
+                                        <label style="font-size:16px;">Upload Blog Image</label>
+                                        <input type="file" class="upload" name="blog_image" />
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description1" rows="8"  style="height: 150px;" >
+                                          </div>
+                                          <input type="hidden" name="content1" id="editor_content1" />
+        
                                           <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description4" rows="8" name="content4" >
-                                              </textarea>
-                                  {{-- <div id="description4"></div> --}}
-
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description2" rows="8"  style="height: 150px;" >
+                                              </div>
+                                    <input type="hidden" name="content2" id="editor_content2" />
+        
                                               <span class="editor_error"></span>
-                            </div>
-                            <div class="col-md-12">
-                                <button class="btn  color-bg  float-btn">Save </button>
-
-                            </div>
-                        </div>
-                    </form>
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description3" rows="8"  style="height: 150px;" >
+                                                  </div>
+                                                  <input type="hidden" name="content3" id="editor_content3" />
+                                                  <span class="editor_error"></span>
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description4" rows="8"  style="height: 150px;" >
+                                                      </div>
+                                                      <input type="hidden" name="content4" id="editor_content4" />
+                                                      <span class="editor_error"></span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn  color-bg  float-btn">Save </button>
+        
+                                    </div>
+                                </div>
+                            </form>
                     </div>
                 </div>
 
@@ -104,79 +104,75 @@
 @stop
 
 @section('js')
-<script src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/js/froala_editor.pkgd.min.js"></script>
-
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script>
-    // Initialize the Quill editor
-    var toolbarButtonsArray=   [
-    'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript', '|',
-    'fontSize', 'color', 'inlineStyle', '|',
-    'paragraphFormat', 'align', 'formatOL', 'formatUL', 'outdent', 'indent', '|',
-    'quote', 'insertHR', '|',
-    'insertLink', 'insertImage', 'insertVideo', 'insertFile', 'insertTable', '|',
-    'emoticons', 'fontAwesome', 'specialCharacters', 'insertHR', '|',
-    'selectAll', 'clearFormatting', 'print', 'help'
-];
-new FroalaEditor('#description1', {
-        height: 200, // Set the editor height
-        toolbarButtons:toolbarButtonsArray,
-        tableStyles: {
-            tableStyle1: {
-                'border': '1px solid #ccc',
-                'width': '100%'
-            },
-            tableStyle2: {
-                'border': '1px solid #000',
-                'width': '50%'
-            }
-        }
-    });
+   $(document).ready(function() {
+    var description1 = new Quill("#description1", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
 
-    new FroalaEditor('#description2', {
-        height: 200, // Set the editor height
-        toolbarButtons:toolbarButtonsArray,
-        tableStyles: {
-            tableStyle1: {
-                'border': '1px solid #ccc',
-                'width': '100%'
-            },
-            tableStyle2: {
-                'border': '1px solid #000',
-                'width': '50%'
-            }
-        }
-    });
+            var description2 = new Quill("#description2", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
 
-    new FroalaEditor('#description3', {
-        height: 200, // Set the editor height
-        toolbarButtons:toolbarButtonsArray,
-        tableStyles: {
-            tableStyle1: {
-                'border': '1px solid #ccc',
-                'width': '100%'
-            },
-            tableStyle2: {
-                'border': '1px solid #000',
-                'width': '50%'
-            }
-        }
-    });
+            var description3 = new Quill("#description3", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
 
-    new FroalaEditor('#description4', {
-        height: 200, // Set the editor height
-        toolbarButtons:toolbarButtonsArray,
-        tableStyles: {
-            tableStyle1: {
-                'border': '1px solid #ccc',
-                'width': '100%'
-            },
-            tableStyle2: {
-                'border': '1px solid #000',
-                'width': '50%'
-            }
-        }
-    });
-
+            var description4 = new Quill("#description4", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+  });
+ 
 </script>
 
 

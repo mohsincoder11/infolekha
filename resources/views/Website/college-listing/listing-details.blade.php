@@ -399,6 +399,12 @@
         .job-card button i {
     margin-right: 8px;
   }
+  .box-content a{
+    color: #0275d8;
+  }
+  .box-content a:hover{
+   text-decoration: underline;
+  }
     </style>
     <!--modal end-->
 @stop
@@ -634,20 +640,14 @@
 
                             <h3 class="title-listing">Past Results</h3>
                             <div class="wrap-list clearfix">
-                                @foreach ($past_results as $past_result)
-                              <!--  <ul>
-                                        <li>
-                                            {{$past_result->start_year}}-{{$past_result->end_year}} <a target="_blank" href="{{asset('public/'.$past_result->file)}}">View File</a>
-                                        </li>
-                                    </ul>-->
-								     <div class="row">
+                                <div class="row">
                                     <div class="col-lg-7" >
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class=" icon-text text-left">
                                                     <div class="box-content">
-                                                        <div style="color: #000000;"><b>Year of Reslut</b></div>
-                                                        <p>{{$past_result->start_year}}-{{$past_result->end_year}}</p>
+                                                        <div style="color: #000000;"><b>Year of Result</b></div>
+                                                       
                                                     </div>
                                                 </div>
                                             </div>
@@ -656,7 +656,33 @@
                                                     <div class="box-content">
                                                         <div style="color: #000000;"><b>View Result</b></div>
 
-                                                        <div> <a target="_blank" href="{{asset('public/'.$past_result->file)}}">View File </a>   </div>
+                                                       
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @foreach ($past_results as $past_result)
+                             
+								     <div class="row">
+                                    <div class="col-lg-7" >
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class=" icon-text text-left">
+                                                    <div class="box-content">
+                                                        <p>{{$past_result->start_year}}-{{$past_result->end_year}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class=" icon-text text-left">
+                                                    <div class="box-content">
+
+                                                        <div> <a target="_blank" href="{{asset('public/'.$past_result->file)}}">Click here to check the result </a>   </div>
                                                                   
 
                                                     </div>

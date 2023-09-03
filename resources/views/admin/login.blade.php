@@ -2,6 +2,7 @@
 <html>
 <head>
   <link href="{{asset('website_asset/images/favicon.png')}}" rel="shortcut icon">
+	<link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
   <title>Admin Login</title>
   <style>
@@ -57,6 +58,12 @@
 </head>
 <body>
   <div class="container">
+    @if (Session::has('error'))
+    <div class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+        <div class="text-white">{!! Session::get('error') !!}</div>
+        <button type="button" class="btn-close btn-alert-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
     <h2>Admin Login</h2>
     <form action="{{route('admin.post_login')}}" method="POST" id="form1">
         @csrf
@@ -75,6 +82,7 @@
   <script src="{{asset('website_asset/javascript/jquery.min.js')}}"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
+  <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 
   <script>
 

@@ -205,16 +205,22 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label">Select School*</label>
                                                                     <select class="form-select select country-select"
-                                                                        name="school"> 
+                                                                        name="school" id="school_entity"> 
                                                                         <option>Select</option>
                                                                         @foreach ($school_type as $school_type )
-                                                                            <option value="{{$school_type->id}}">{{$school_type->type}}</option>
+                                                                            <option value="{{$school_type->type}}">{{$school_type->type}}</option>
                                                                         @endforeach
-																		
                                                                        
-                                                                        <option>Other (Please Specify)</option>
-                                                                        <option></option>
+                                                                        <option value="Other">Other (Please Specify)</option>
                                                                     </select>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            <div class="col-lg-6" id="school_entity_other_div">
+                                                                <div class="form-group">
+                                                                    <label class="form-label">Specify Other Board</label>
+                                                                    <input type="text" class="form-control"
+                                                                    placeholder="" name="school_other">
                                                                 </div>
                                                             </div>
 															@endif
@@ -419,7 +425,7 @@ $streams=get_college_stream();
                                                   </div>
 													
 
-                                                             <div class="update-profile centered-container" style=" margin-top: 5%;">
+                                                             <div class="update-profile centered-container" style=" margin-top: 5%;margin-left:2%">
                                                                 
 
                                                             
@@ -522,6 +528,19 @@ $(document).ready(function(){
         $(this).select2('close');
     }
 });
+
+
+$('#school_entity_other_div').hide();
+
+$('#school_entity').on('change', function() { 
+    $('#school_entity_other_div input').val('');
+    if($(this).val()=='Other'){
+        $('#school_entity_other_div').show();
+    } else{
+        $('#school_entity_other_div').hide();
+
+    }
+})
 
  $('#course').on('change', function() {  
     const selectedOptions = $(this).val(); 

@@ -83,11 +83,27 @@ class LoginController extends Controller
 
     public function tutor_subscription()
     {
-        $check_subscribed = tutor_detail::where('user_id', Auth::user()->id)->first();
-        if ($check_subscribed && $check_subscribed->subscription_status == '0') {
-            return redirect('payment_form')->with(['info' => 'Subscribe to get the jobs.']);
-        }
+        if(Auth::check()){
+            $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->orderby('id','desc')->first();
+            if($check_transaction){
+             $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
+             if ($expiry_check->isPast()) {
+            return redirect()->route('payment_form')->with(['info' => 'Subscription has expired. Please subscribe to see the jobs available.']);
+            }else{
+                return redirect('college-listing/tutorjob');
+            }
+    }else{
+        return redirect()->route('payment_form')->with(['info' => 'Subscribe to see the jobs available.']);
+
     }
+       
+    }
+    else{
+        return redirect('login')->with(['error'=>'Please login to access the page.']);
+
+        
+    }
+}
 
     public function log_out()
     {

@@ -27,6 +27,7 @@ use App\Models\SchoolType;
 use App\Models\CollegelistingEnquiry;
 use App\Models\JobVacancy;
 use App\Models\JobVacancyApplied;
+use App\Models\Master\Coupon;
 use App\Models\Master\Subscription;
 use App\Models\PostResult;
 use Hash;
@@ -38,6 +39,9 @@ use Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Contracts\Encryption\DecryptException;
+
 class WebsiteformController extends Controller
 
 
@@ -47,13 +51,18 @@ class WebsiteformController extends Controller
     {
 
         $announcements = Announcement::where('status','Active');
+        $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','home')->where('status','Active')->select('advertisement_enquiries.*'); //we need to add city id condition
         if(Auth::check()){
             $announcements=$announcements->where('city_id',Auth::user()->city_id);
+            $advertisements=$advertisements_query->where('users.city_id',Auth::user()->city_id);
         }
         $announcements= $announcements->get();
-                $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','home')->where('status','Active')->take(1)->get(); //we need to add city id condition
-
-        return view('Website.index', ['announcements' => $announcements,'advertisements'=>$advertisements]);
+        $advertisements_650=(clone $advertisements_query)
+        ->where(['BannerWidth'=>650,'BannerHeight'=>450])->take(1)->get();
+        
+        $advertisements_370=(clone $advertisements_query)
+        ->where(['BannerWidth'=>370,'BannerHeight'=>450])->get();
+        return view('Website.index', ['announcements' => $announcements,'advertisements_650'=>$advertisements_650,'advertisements_370'=>$advertisements_370]);
     }
 
 
@@ -251,7 +260,8 @@ public function database_backup(){
 
     public function send_mobile_verify_otp(Request $request)
     {
-        $otp=$this->send_otp($request->mob);
+        //$otp=$this->send_otp($request->mob);
+        $otp=send_sms($request->mob);
         return response()->json($otp);
     }
 
@@ -420,6 +430,41 @@ public function database_backup(){
     {
         $Subscriptions=Subscription::orderby('amount','asc')->get();
         return view('Website.payment_form',compact('Subscriptions'));
+    }
+
+    public function apply_subscription_amount(Request $request){
+        $coupon=Coupon::where('code',$request->code)->where('status','active')->first();
+        if(isset($coupon)){
+            $subscription=\App\Models\Master\Subscription::find($request->id);
+            if($coupon->type=="PERCENT"){
+                $payable_amount=$subscription->amount-($subscription->amount/100*$coupon->discount);
+            }else{
+                $payable_amount=$subscription->amount-$coupon->discount;
+            }
+            return response()->json(['status'=>true,'amount'=>$payable_amount]);
+
+        }else{
+            return response()->json(['status'=>false,'message'=>'Invalid coupon code.']);
+        }
+        
+    }
+
+    public function renew_subscription($transaction_id = '', $email = '')
+    {
+        if (!empty($email)) {
+            $transaction_id = base64_decode($transaction_id);
+            try {
+                $email = Crypt::decryptString($email);
+                $user = User::where('email', $email)->first();
+                
+                if (!empty($user)) {
+                    Auth::login($user, true);
+                }
+            } catch (DecryptException $e) {
+            }
+        }
+        return redirect()->route('payment_form');
+
     }
 
     public function role(Request $request)

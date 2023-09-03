@@ -18,8 +18,10 @@ use App\Models\AdvertisementEnquiry;
 use App\Models\AdvertisementPackage;
 use App\Models\AnnouncementPackage;
 use App\Models\Blog;
+use App\Models\City;
 use App\Models\Master\Coupon;
 use App\Models\JobVacancyApplied;
+use App\Models\Master\Subscription;
 use App\Models\SchoolType;
 use Illuminate\Support\Facades\Hash;
 
@@ -75,8 +77,23 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
 
    public function post_update_profile(Request $request)
    {
+      $validator = Validator::make(
+         $request->all(),
+         [
+             'name' => 'required',
+          'entity_name'=>'required',
+          'address'=>'required',
+          'about'=>'required',
+         ]);
+         if ($validator->fails()) {
+             return back()->with(['error'=>'Please fill all the fields.']);
+         }
 
       $user = User::find(auth::user()->id);
+      $city=trim(explode(',', $request->address)[0]);
+      $createOrupdate=City::firstOrCreate(['city'=>$city]);
+      $user->city_id=$createOrupdate->id;
+
       if ($request->hasfile('logo')) {
          $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
          $request->logo->move(public_path('database_files/school_institute/logo/'), $logo);
@@ -338,9 +355,23 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       if ($validator->fails()) {
          return redirect()->back()->with(['error' => 'Something went wrong.']);
       }
+      if ($validator->passes()) {
+
       
       $package = AnnouncementPackage::find($request->PackageID);
+    
       if ($package) {
+         $coupon=Coupon::where('code',$request->CouponCode)->where('status','active')->first();
+         $payable_amount=$package->OriginalPrice*$request->SelectedDays;
+         
+           if(isset($coupon)){
+               if($coupon->type=="PERCENT"){
+                   $payable_amount=$package->OriginalPrice*$request->SelectedDays-($package->OriginalPrice*$request->SelectedDays/100*$coupon->discount);
+               }else{
+                   $payable_amount=$package->OriginalPrice*$request->SelectedDays-$coupon->discount;
+               }
+            }
+             
          $exist = Announcement::find($request->announcement_id);
           $exist->PackageName=$package->PackageName;
           $exist->OriginalPrice=$package->OriginalPrice;
@@ -349,11 +380,10 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
           $exist->MaxDays=$package->MaxDays;
           $exist->SelectedDays=$request->SelectedDays;
           $exist->TotalAmount=$request->TotalAmount;
+          
          $exist->save();
-      }
       
 
-      if ($validator->passes()) {
         
 
          $txnid = 'I-LEKHA' . rand(1111, 9999) . time() . rand(001, 999);
@@ -368,16 +398,20 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
                'mob' => auth::user()->school_detail->mob,
                'address' => auth::user()->school_detail->address,
                'user_id' => auth::user()->id,
-               'amount' => $request->get('TotalAmount'),
+               "amount" => number_format($payable_amount,2),
                'user_role' => auth::user()->role,
                'transaction_id' => $txnid,
                'type' => 'Announcement',
                'transaction_status'=>$request->TotalAmount==0 ? 'success' : 'NA',
                'type' => 'Announcement',
                'AnnouncementID' => $request->get('announcement_id'),
+              'coupon'=>isset($coupon) ? $coupon->code : null,
+       
             ]
          );
-         if($request->TotalAmount==0){
+      }
+
+         if((int)$payable_amount==0){
             return redirect()->route('school_profile.post_announcement')->with(['success' => 'Announcement sent successfully.']);;
           }
 

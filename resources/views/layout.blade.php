@@ -167,8 +167,7 @@
 						</a>
 						<ul>
 							
-							</li>
-							<li> <a href="{{route('admin.master.school')}}"><i class="bx bx-right-arrow-alt"></i>School</a>
+							{{-- <li> <a href="{{route('admin.master.school')}}"><i class="bx bx-right-arrow-alt"></i>School</a>
 							</li>
 							
 							<li> <a href="{{route('admin.master.college')}}"><i class="bx bx-right-arrow-alt"></i>College</a>
@@ -191,11 +190,56 @@
 							</li>
 	
 							<li> <a href="{{route('admin.master.job')}}"><i class="bx bx-right-arrow-alt"></i>Job Type</a>
+							</li> --}}
+							
+							<li> <a href="{{route('admin.master.subscription')}}"><i class="bx bx-right-arrow-alt"></i>Make Subscriptions</a>
 							</li>
-							<li> <a href="{{route('admin.master.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Coupons</a>
+							<li> <a href="{{route('admin.master.coupon')}}"><i class="bx bx-right-arrow-alt"></i>Add Coupons</a>
+							</li>
+							
+							<li> <a href="{{route('admin.master.advertisement')}}"><i class="bx bx-right-arrow-alt"></i>Advertisements Package</a>
+							</li>
+							<li> <a href="{{route('admin.master.announcement')}}"><i class="bx bx-right-arrow-alt"></i>Announcements Package</a>
 							</li>
 	
 	
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class="lni lni-list"  style="font-size: 17px;"></i>
+							</div>
+							<div class="menu-title">Registrations</div>
+						</a>
+						<ul>
+							
+							<li> <a href="{{route('admin.registration.college')}}"><i class="bx bx-right-arrow-alt"></i>College</a>
+							</li>
+							<li> <a href="{{route('admin.registration.school')}}"><i class="bx bx-right-arrow-alt"></i>School</a>
+							</li>
+							<li> <a href="{{route('admin.registration.institute')}}"><i class="bx bx-right-arrow-alt"></i>Institute</a>
+							</li>
+							<li> <a href="{{route('admin.registration.student')}}"><i class="bx bx-right-arrow-alt"></i>Student</a>
+							</li>
+							<li> <a href="{{route('admin.registration.tutor')}}"><i class="bx bx-right-arrow-alt"></i>Tutor</a>
+							</li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="javascript:;" class="has-arrow">
+							<div class="parent-icon"><i class="lni lni-list"  style="font-size: 17px;"></i>
+							</div>
+							<div class="menu-title">Transaction</div>
+						</a>
+						<ul>
+							
+							
+							<li> <a href="{{route('admin.transaction')}}"><i class="bx bx-right-arrow-alt"></i>Transaction List</a>
+							</li>
+							<li> <a href="{{route('admin.transaction-due')}}"><i class="bx bx-right-arrow-alt"></i>Transaction Due</a>
+							</li>
 						</ul>
 					</li>
 	
@@ -216,21 +260,15 @@
 					</li>
 	
 					
-					<li>
-						<a href="{{route('admin.master.subscription')}}">
-							<div class="parent-icon"><i class="fadeIn animated bx bx-merge" style="font-size: 17px;"></i>
-							</div>
-							<div class="menu-title">Make Subscriptions </div>
-						</a>
-					</li> 
-					<li>
+				
+					{{-- <li>
 						<a href="Approve or Reject Vacancy.html">
 							<div class="parent-icon"><i class="fadeIn animated bx bx-shape-square"
 								style="font-size: 17px;"></i>
 							</div>
 							<div class="menu-title">Approve/Reject Vacancy </div>
 						</a>
-					</li> 
+					</li>  --}}
 	
 					<li>
 						<a href="{{route('admin.blog')}}">
@@ -240,14 +278,14 @@
 						</a>
 					</li>
 					
-					<li>
+					{{-- <li>
 						<a href="#">
 							<div class="parent-icon"><i class="lni lni-laptop-phone" style="font-size: 17px;"></i>
 							</div>
 							<div class="menu-title">Contact</div>
 						</a>
 					</li> 
-				
+				 --}}
 	
 	
 				</ul>
@@ -672,7 +710,7 @@
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="{{asset('images/avatars/user.png')}}" class="user-img" alt="user avatar">
 								<div class="user-info ps-3">
-									<p class="user-name mb-0">{{ucFirst(Auth::user()->name)}}</p>
+									<p class="user-name mb-0">{{ucFirst(Auth::guard('admin')->user()->name)}}</p>
 									<p class="designattion mb-0"></p>
 								</div>
 							</a>
@@ -733,8 +771,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"> </script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
-@yield('js')
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+	setTimeout(() => {
+		$(".alert .btn-alert-close").trigger("click");
+	}, 4000);
+</script>
      {{-- <script>
 		 const Toast = Swal.mixin({
 toast: true,
@@ -771,6 +813,8 @@ title: "{{session()->get('error')}}"
 </script>
 
 @endif --}}
+@yield('js')
+
 </body>
 
 

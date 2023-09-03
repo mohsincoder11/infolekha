@@ -60,26 +60,32 @@
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description1" rows="8" name="content1" >
-                                  </textarea>
+                                <div id="description1" rows="8"  style="height: 150px;" >
+                                  </div>
+                                  <input type="hidden" name="content1" id="editor_content1" />
+
                                   <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description2" rows="8" name="content2" >
-                                      </textarea>
+                                <div id="description2" rows="8"  style="height: 150px;" >
+                                      </div>
+                            <input type="hidden" name="content2" id="editor_content2" />
+
                                       <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description3" rows="8" name="content3" >
-                                          </textarea>
+                                <div id="description3" rows="8"  style="height: 150px;" >
+                                          </div>
+                                          <input type="hidden" name="content3" id="editor_content3" />
                                           <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description4" rows="8" name="content4" >
-                                              </textarea>
+                                <div id="description4" rows="8"  style="height: 150px;" >
+                                              </div>
+                                              <input type="hidden" name="content4" id="editor_content4" />
                                               <span class="editor_error"></span>
                             </div>
                             <div class="col-md-12">
@@ -99,23 +105,73 @@
 
 @section('js')
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- include summernote css/js -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script>
    $(document).ready(function() {
-    $('#description1').summernote({
-      height: 300, 
-    });
-    $('#description2').summernote({
-      height: 300, 
-    });
-    $('#description3').summernote({
-      height: 300, 
-    });
-    $('#description4').summernote({
-      height: 300, 
-    });
+    var description1 = new Quill("#description1", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description2 = new Quill("#description2", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description3 = new Quill("#description3", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description4 = new Quill("#description4", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
   });
  
 </script>

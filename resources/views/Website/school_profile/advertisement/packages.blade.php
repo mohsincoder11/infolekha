@@ -19,7 +19,7 @@
                         <div class="card-element-hidden-standard">
                             <ul class="card-element-container">
                                 <li class="card-element">{{ $advertisements->label }} :
-                                    {{ $advertisements->BannerWidth }} x {{ $advertisements->BannerHeight }} pxl</li>
+                                    {{ $advertisements->BannerWidth }} x {{ $advertisements->BannerHeight }} px</li>
                                 <li class="card-element">Original Price - Rs. {{ $advertisements->OriginalPrice }} Per
                                     Day</li>
                                 <li class="card-element">Discount - <span class="discount_span">0</span>
@@ -59,8 +59,8 @@
                                 <div class="listing-rating card-popup-rainingvis">
                                     <input type="text" class="form-control CouponCode" name="CouponCode"
                                         value="" style="margin-left:10px;" />
-                                    <span class="re_stars-title"><button style="margin-left:60px; padding:5px;"
-                                            type="button" class="ApplyCouponCode">Apply</button></span>
+                                    <span class="re_stars-title"><button style="margin-left:60px; padding:5px; border-radius:10px; color:#fff; border:none;"
+                                            type="button" class="btn-standard ApplyCouponCode">Apply</button></span>
                                 </div>
 
                             </ul>

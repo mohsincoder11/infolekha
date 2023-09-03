@@ -71,11 +71,21 @@
 
 
 @stop
+
 @section('js')
+@if(Auth::user()->role=='1')
 <script>
     setTimeout(() => {
         window.location.href = "{{ route('school_profile.home') }}";
 
     }, 4000);
 </script>
+@elseif(Auth::user()->role=='2')
+<script>
+    setTimeout(() => {
+        window.location.href = "{{ route('tutor_profile.home') }}";
+
+    }, 4000);
+</script>
+@endif
 @stop

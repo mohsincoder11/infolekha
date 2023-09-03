@@ -24,8 +24,10 @@ class Role
     $user = Auth::user();
     $roles = explode('|', $role);
 
-    if (in_array($user->role, $roles))
+    if (in_array($user->role, $roles)){
       return $next($request);
+
+    }
     else
 
     return redirect()->route('index')->with(['error'=>'Please login to access the page.']);

@@ -16,7 +16,7 @@
                         <div class="list-searh-input-wrap-title fl-wrap"></div>
                         <div class="block-box fl-wrap search-sb" id="filters-column">
                             <!-- listsearch-input-item -->
-                            <table id="customers">
+                                                        <table id="customers">
                                 <tr>
                                     <th>Sr.no</th>
                                     <th>College Name</th>
@@ -46,7 +46,10 @@
                                 @endforeach
                               
                             </table>
+                            @if(count($jobs)==0)
 
+                            <p>No record found</p>
+                            @endif
                         </div>
                     </div>
                 </div>

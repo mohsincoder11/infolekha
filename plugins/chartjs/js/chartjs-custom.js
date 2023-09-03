@@ -183,10 +183,12 @@ $(function () {
 		}
 	});
 	// chart 6
+    var chartData = '@json($chart_count)';
+	console.log(chartData);
 	new Chart(document.getElementById("chart6"), {
 		type: 'doughnut',
 		data: {
-			labels: ["Africa", "Asia", "Europe", "Latin America", "North America"],
+			labels: ["School", "College", "Institute", "Parent/Student","Tutor"],
 			datasets: [{
 				label: "Population (millions)",
 				backgroundColor: ["#0d6efd", "#212529", "#17a00e", "#f41127", "#ffc107"],
@@ -288,6 +290,7 @@ $(function () {
 		}
 	});
 	// chart 10
+	if($("#chart10").length > 0) {
 	new Chart(document.getElementById("chart10"), {
 		type: 'bubble',
 		data: {
@@ -352,4 +355,5 @@ $(function () {
 			}
 		}
 	});
+}
 });

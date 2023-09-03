@@ -70,9 +70,7 @@
         .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
-        body.swal2-toast-shown .swal2-container {
-    width:460px !important;
-}
+       
     </style>
 </head>
 

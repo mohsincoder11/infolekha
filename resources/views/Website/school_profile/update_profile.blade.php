@@ -100,6 +100,7 @@
   background-color: #073D5F;
   margin-left: 10px;
 }
+
     </style>
     
 @stop
@@ -228,6 +229,10 @@
                                     <label style="font-size:16px;">Linkedin Link</label>
                                     <input type="text" placeholder="Linkdin Link" name="google"
                                         value="{{ $data->google }}" />
+                                </div>
+                                <div class="col-md-6 ">
+                                    <label style="font-size:16px;"> Address </label>
+                                    <input type="text" placeholder="Address" id="current_location_at_form" name="address" value="{{ $data->address }}" />
                                 </div>
                                 <div class="col-md-12">
 
@@ -384,5 +389,27 @@ $(document).on('mouseenter', '.select2-results__options', function() {
 })
 
 	
+</script>
+<script type="text/javascript"
+src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places"></script>
+<script>
+    google.maps.event.addDomListener(window, 'load', initialize);
+
+    function initialize() {
+        /* var input = document.getElementById('current_location');*/
+        var autocomplete = new google.maps.places.Autocomplete(
+            (document.getElementById('current_location_at_form')), {
+                types: ['locality']
+            });
+            autocomplete.setComponentRestrictions({
+             'country': 'in'
+         });
+        /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+
+        autocomplete.addListener('place_changed', function() {
+            var place = autocomplete.getPlace();
+
+        });
+    }
 </script>
 @stop

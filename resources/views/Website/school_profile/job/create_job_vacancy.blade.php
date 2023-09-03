@@ -43,7 +43,7 @@
                                             id="vacancy_type">
                                             <option value="">Select Type</option>
                                             {{-- <option>All</option> --}}
-                                            <option value="teaching">Teaching Staff</option>
+                                            <option value="teaching" >Teaching Staff</option>
                                             <option value="admin">Admin Staff</option>
                                         </select>
                                     <span id="vacancy_type_error_span"></span>

@@ -133,8 +133,8 @@
                                     @endforeach
                                   @endif
                                 </div>
-                                <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
-                                <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
+                                <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="fa fa-caret-left"></i></div>
+                                <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="fa fa-caret-right"></i></div>
                             </div>
 
 
@@ -175,8 +175,8 @@
                                                         @endif
                                                         <!-- slick-slide-item end -->
                                                     </div>
-                                                    <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="far fa-angle-left"></i></div>
-                                                    <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="far fa-angle-right"></i></div>
+                                                    <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i class="fa fa-caret-left"></i></div>
+                                                    <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i class="fa fa-caret-right"></i></div>
                                                 </div>
                                                 
                                                 </div>

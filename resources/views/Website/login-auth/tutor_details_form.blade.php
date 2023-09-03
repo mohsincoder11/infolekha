@@ -67,7 +67,7 @@
                                                                     <label class="form-control-label">Name of Tutor </label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Name of Tutor"
-                                                                        value="{{ $data->r_name }}" name="name">
+                                                                        value="{{ $data->r_name }}" name="name" readonly="readonly" >
                                                                 </div>
                                                             </div>
                                                             <!-- <div class="col-lg-6" >
@@ -89,7 +89,7 @@
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Years of Experience
                                                                     </label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" step="0.1" class="form-control"
                                                                         placeholder="Years of Experience" name='experiance'>
                                                                 </div>
                                                             </div>
@@ -138,7 +138,7 @@
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Pin Code*</label>
-                                                                    <input type="text" class="form-control"
+                                                                    <input type="number" class="form-control"
                                                                         placeholder="Pin Code " name="pin_code">
                                                                 </div>
                                                             </div>

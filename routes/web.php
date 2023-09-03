@@ -16,6 +16,9 @@ use App\Http\Controllers\WebsiteformController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Master\state_city;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\MailController;
+use App\Http\Controllers\Admin\RegistrationController;
+use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Master\BrochureController;
 use App\Http\Controllers\Master\CouponController;
@@ -161,6 +164,8 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('destroy_blog/{id}', [BlogController::class, 'destroy'])->name('destroy_blog');
     Route::post('change-blog-status', [BlogController::class, 'change_blog_status'])->name('change-blog-status');
 
+    Route::get('get-blog', [BlogController::class, 'get_blog'])->name('get-blog');
+
 
     //slider
     Route::get('master/slider', [SliderlinkController::class, 'index'])->name('master.slider');
@@ -190,8 +195,40 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
        Route::post('master/update_subscription', [SubscriptionController::class, 'update'])->name('master.update_subscription');
        Route::get('master/destroy_subscription/{id}', [SubscriptionController::class, 'destroy'])->name('master.destroy_subscription');
 
-});
+        //Advertisement
+        Route::get('master/advertisement', [AdvertisementController::class, 'advertisement_list'])->name('master.advertisement');
+        Route::post('master/create_advertisement', [AdvertisementController::class, 'create'])->name('master.create_advertisement');
+        Route::get('master/edit-advertisement/{id}', [AdvertisementController::class, 'edit'])->name('master.edit_advertisement');
+        Route::post('master/update_advertisement', [AdvertisementController::class, 'update'])->name('master.update_advertisement');
+        Route::get('master/destroy_advertisement/{id}', [AdvertisementController::class, 'destroy'])->name('master.destroy_advertisement');
 
+        //Announcement
+        Route::get('master/announcement', [AnnouncementController::class, 'announcement_list'])->name('master.announcement');
+        Route::post('master/create_announcement', [AnnouncementController::class, 'create'])->name('master.create_announcement');
+        Route::get('master/edit-announcement/{id}', [AnnouncementController::class, 'edit'])->name('master.edit_announcement');
+        Route::post('master/update_announcement', [AnnouncementController::class, 'update'])->name('master.update_announcement');
+        Route::get('master/destroy_announcement/{id}', [AnnouncementController::class, 'destroy'])->name('master.destroy_announcement');
+
+       Route::get('transaction', [TransactionController::class, 'index'])->name('transaction');
+       Route::get('transaction-due', [TransactionController::class, 'transaction_due'])->name('transaction-due');
+
+      //Register User
+       Route::get('registration/college', [RegistrationController::class, 'college'])->name('registration.college');
+       Route::get('registration/school', [RegistrationController::class, 'school'])->name('registration.school');
+       Route::get('registration/institute', [RegistrationController::class, 'institute'])->name('registration.institute');
+       Route::get('registration/student', [RegistrationController::class, 'student'])->name('registration.student');
+       Route::get('registration/tutor', [RegistrationController::class, 'tutor'])->name('registration.tutor');
+
+        //admin login to user acoount
+
+       
+       //Mail
+       Route::get('subscription_mail/{id}', [MailController::class, 'subscription_mail'])->name('subscription_mail');
+
+});
+Route::get('admin-login-to-user/{id}', [RegistrationController::class, 'admin_login_to_user'])->name('admin-login-to-user');
+
+Route::get('renew-subscription/{transaction_id}/{email}', [WebsiteformController    ::class, 'renew_subscription'])->name('renew-subscription');
 
 Route::get('web-contacts', [WebsiteformController::class, 'index_contact'])->name('web_contacts');
 Route::post('create_contacts', [WebsiteformController::class, 'create_contact'])->name('create_contacts');
@@ -261,6 +298,8 @@ Route::post('city_create', [state_city::class, 'city_create'])->name('city_creat
 
 Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('payment-form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
+    Route::get('apply_subscription_amount', [WebsiteformController::class, 'apply_subscription_amount'])->name('apply_subscription_amount');
+    
     Route::get('school_institute_detail_form/{data}', [SignUpController::class, 'school_institute_detail_form'])->name('school_institute_detail_form');
     Route::get('student_detail_form/{data}', [SignUpController::class, 'student_detail_form'])->name('student_detail_form');
     Route::get('tutor_detail_form/{data}', [SignUpController::class, 'tutor_detail_form'])->name('tutor_detail_form');

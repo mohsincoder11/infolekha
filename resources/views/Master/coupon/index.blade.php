@@ -99,7 +99,7 @@
                                           <td>{{ucFirst($Coupon->status)}}</td>
 
                                             <td>
-                                                {{-- <button type="button" class="btn"><div class="form-check form-switch">  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">  </div>	</button> --}}
+                                               
                                                 <a href="{{ route('admin.master.edit_coupon', $Coupon->id) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
                                                             class='bx bx-edit-alt me-0'></i></button> </a>

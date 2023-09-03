@@ -37,6 +37,10 @@
                                 @endforeach
                               
                             </table>
+                            @if(count($wishlists)==0)
+
+                            <p>No record found</p>
+                            @endif
 
                         </div>
                     </div>

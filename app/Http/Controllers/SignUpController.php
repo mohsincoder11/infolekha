@@ -217,7 +217,11 @@ class SignUpController extends Controller
                 $inst->yt = $request->get('yt');
 
                 if ($test->r_entity == 'School') {
-                    $inst->entity_select = $request->get('school');
+                    if($request->school=="Other"){
+                        $inst->entity_select = $request->get('school_other');
+                    }else{
+                        $inst->entity_select = $request->get('school');
+                    }
                 } elseif ($test->r_entity == 'College') {
                     $inst->entity_select = $request->get('college');
                 } elseif ($test->r_entity == 'Institute') {
@@ -559,7 +563,7 @@ class SignUpController extends Controller
 
             if ($validator->passes()) {
 
-$city=trim(explode(',', $request->address)[0]);
+                $city=trim(explode(',', $request->address)[0]);
                 $createOrupdate=City::firstOrCreate(['city'=>$city]);
                 
                 $users3 = User::create([

@@ -816,7 +816,7 @@ body {
  padding: 5px 8px;
  cursor: pointer;
  transition: background-color 0.2s ease-in-out;
- border-top: 1px solid #fff;
+ border-top: 1px solid #fff !important;
 }
 
 .pac-item span.pac-icon-marker {
@@ -840,7 +840,7 @@ body {
 .detect-location-text{
    position: absolute;
    margin-top:-4px;
-   color:#0076d7
+   color:#0076d7 !important;
 }
 
 .fade-out {
@@ -856,17 +856,42 @@ body {
  }
 }
 </style>
+<style>
+    .loader-container {
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: none;
+}
 
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
 @yield('css')
 
 
 <body class="header_sticky">
     <!-- Preloader -->
-    <!--<section class="loading-overlay">
-       <div class="Loading-Page">
-           <h2 class="loader">Loading</h2>
-       </div>
-   </section>-->
+    <div class="loader-container">
+        <div class="loader"></div>
+      </div>
 
     <!-- Boxed -->
     <div class="boxed">

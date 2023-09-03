@@ -29,7 +29,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Year of Experience </label>
-                                            <input name="experiance" type="text" placeholder="2-3" value="{{$user_data->tutor_detail->experiance}}"  />
+                                            <input name="experiance" type="number" step="0.1" placeholder="" value="{{$user_data->tutor_detail->experiance}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Mobile </label>
@@ -42,11 +42,11 @@
     
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Address </label>
-                                            <input name="address" type="text" placeholder="Address" value="{{$user_data->address}}"  />
+                                            <input name="address" id="address" type="text" placeholder="Address" value="{{$user_data->address}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Pin Code </label>
-                                            <input name="pin_code" type="text" placeholder="444604" value="{{$user_data->tutor_detail->pin_code}}"  />
+                                            <input name="pin_code" type="number" placeholder="444604" value="{{$user_data->tutor_detail->pin_code}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Select Type </label>
@@ -61,11 +61,11 @@
                                             <label style="font-size:16px;">Upload Logo</label>
                                             <input type="file" class="upload" name="logo" accept="image/*" />
                                         </div> 
-                                        
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Upload CV</label>
                                             <input type="file" class="upload" name="cv" accept=".pdf,.doc,.docx" />
-                                        </div>
+                                            <a target="_blank" href="{{asset('public/'.$user_data->tutor_detail->cv)}}">Open CV</a></div>
+                                        
     
                                         <label style="font-size:16px;">Declaration </label>
                                         <textarea name="declaration" cols="40" rows="3" placeholder=""
@@ -82,3 +82,29 @@
             </div>
 
        @stop
+
+       @section('js')
+       <script type="text/javascript"
+       src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
+   </script>
+       <script>
+        google.maps.event.addDomListener(window, 'load', initialize);
+        
+        function initialize() {
+            /* var input = document.getElementById('address');*/
+            var autocomplete = new google.maps.places.Autocomplete(
+                (document.getElementById('address')), {
+                    types: ['locality']
+                });
+                autocomplete.setComponentRestrictions({
+                 'country': 'in'
+             });
+            /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+        
+            autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+        
+            });
+        }
+        </script>
+        @stop

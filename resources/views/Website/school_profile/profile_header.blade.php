@@ -1,7 +1,7 @@
 <div class="dashbard-menu-header">
     <div class="dashbard-menu-avatar fl-wrap">
       
-        <img src="{{asset('public/'.Auth::user()->logo)}}" alt="">
+        <img src="{{isset(Auth::user()->logo) ? asset('public/'.Auth::user()->logo) : asset('public/images/blank.jpg')}}" alt="">
         <h4>Welcome, <span>{{ ucfirst(Auth::user()->name ?? '') }}</span></h4>
 
     </div>

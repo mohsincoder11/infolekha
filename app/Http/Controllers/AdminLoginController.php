@@ -10,18 +10,15 @@ use DB,Hash;
 class AdminLoginController extends Controller
 {
     public function login_submit(Request $request){
-        // $user=User::find(232);
-        // Auth::login($user, true);
-
-        if (Auth::attempt(array('email' => $request->email, 'password' => $request->password))) {
+            if (Auth::guard('admin')->attempt(array('email' => $request->email, 'password' => $request->password))) {                
             return redirect()->route('admin.dashboard');
         }else{
-            return redirect()->route('admin.login');
+            return redirect()->route('admin.login')->with(['error'=>'Please enter valid email address and password.']);
         }
     }
 
     public function logout(){
-        Auth::logout();
+        Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }
 }

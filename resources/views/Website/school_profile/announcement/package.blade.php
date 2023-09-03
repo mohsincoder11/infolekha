@@ -129,7 +129,7 @@
                     <div class="col-md-12">
 
                         <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 10px; margin-top: 10px;"><b>Our
-                                Subscription Plans </b></h4>
+                                Announcement Plans </b></h4>
                         <!-- listsearch-input-item -->
 
 
@@ -146,11 +146,13 @@
                                <div class="card-body">
                                 <input type="hidden" name="PackageID" value="{{$advertisements->PackageID}}">
                                    <div class="card-element-hidden-standard">
-                                     <ul class="card-element-container">
+                                    <ul class="card-element-container">
                                        
                                        <li class="card-element">Original Price - Rs. {{$advertisements->OriginalPrice}} Per Day</li>
-                                       <li class="card-element">Discount - {{$advertisements->Discount}}%</li>
-                                       <li class="card-element">Final Price - Rs. {{$advertisements->OriginalPrice-(($advertisements->OriginalPrice/100)*$advertisements->Discount)}} Per Day</li>
+                                       <li class="card-element">Discount - <span class="discount_span">0</span>
+                                        <input type="hidden" name="Discount" class="discount_input">
+                                    </li> 
+                                    <li class="card-element">Final Price - Rs. {{$advertisements->OriginalPrice}} Per Day</li>
                                        <li class="card-element" style="padding:0 10px">
                                             <input type="hidden" class="original_price" value="{{$advertisements->OriginalPrice-(($advertisements->OriginalPrice/100)*$advertisements->Discount)}}">
                                              <select class="select_days" name="SelectedDays">
@@ -168,10 +170,13 @@
                                        
                                        <li class="card-element">Apply Coupon Code
 
-                                       </li> <li class="card-element">
-                                        <input type="text">
-                                        <button>Apply</button>
                                        </li>
+                                        <li class="card-element">
+                                        <input type="text" class="form-control CouponCode" name="CouponCode"
+                                        value="">
+                                        <button style="margin-left:60px; padding:5px; border-radius:10px; color:#fff; border:none;"
+                                        type="button" class="btn-standard ApplyCouponCode">Apply</button>
+                                                                           </li>
                      
                                      </ul>
                                      <div>
@@ -215,17 +220,17 @@
            
             $(".select_days").niceSelect();
 
-            $(document).on("change", ".select_days", function() {
-                let selected_day = $(this).val();
-                let original_price = $(this).siblings('.original_price').val();
-                $(this).closest('li').next('.card-element').find('.total_amount').text(original_price *
-                    selected_day);
-                $(this).closest('li').next('.card-element').find('.total_amount').val(original_price *
-                    selected_day);
-                if (selected_day && selected_day > 0) {
-                    $(this).closest("form").find(".no_of_days_error").html('');
-                }
-            })
+            // $(document).on("change", ".select_days", function() {
+            //     let selected_day = $(this).val();
+            //     let original_price = $(this).siblings('.original_price').val();
+            //     $(this).closest('li').next('.card-element').find('.total_amount').text(original_price *
+            //         selected_day);
+            //     $(this).closest('li').next('.card-element').find('.total_amount').val(original_price *
+            //         selected_day);
+            //     if (selected_day && selected_day > 0) {
+            //         $(this).closest("form").find(".no_of_days_error").html('');
+            //     }
+            // })
 
             $(document).on("click", ".btn-submit", function(e) {
                 e.preventDefault(); // Prevent the default form submission
@@ -242,6 +247,73 @@
                 }
 
             });
+
+            $(document).on("change", ".select_days", function() {
+                let parent_div = $(this).closest('.card-element-container');
+                let selected_day = $(this).val();
+
+                calculate_discount(parent_div);
+
+                if (selected_day && selected_day > 0) {
+                    $(this).closest("form").find(".no_of_days_error").html('');
+                }
+            })
+
+
+            $(document).on("click", ".ApplyCouponCode", function() {
+                let parent_div = $(this).closest('.card-element-container');
+                if(parent_div.find('.CouponCode').val()){
+                    calculate_discount(parent_div);
+                }
+
+             
+            })
+            function calculate_discount(parent_div) {
+                $.ajax({
+                    type: "get",
+                    url: "{{ route('school_profile.get_coupon_val') }}",
+                    data: {
+                        code: parent_div.find('.CouponCode').val(),
+                    },
+                    dataType: "json",
+                    success: function(data) {
+                        
+                        let original_price = parent_div.find('.original_price').val();
+                        var selected_days2=parent_div.find('.select_days').val();
+                        let total_amount=0;
+                        if(data.status && selected_days2){
+                            let coupon=data.coupon;
+                            total_amount=Math.round(original_price * selected_days2);
+                            
+                            if(coupon.type=='PERCENT'){
+                                let discount=(total_amount/100)*coupon.discount;
+                                total_amount=parseFloat(total_amount)-parseFloat(discount);
+                                parent_div.find('.discount_span').text(coupon.discount+'%');
+                                parent_div.find('.discount_input').val(discount);
+                            }
+
+                            if(coupon.type=='FLAT'){
+                                total_amount=parseFloat(total_amount)-parseFloat(coupon.discount);
+                                parent_div.find('.discount_span').text(coupon.discount+' RS');
+                            parent_div.find('.discount_input').val(coupon.discount);
+                            }
+                                
+                        }else{
+                            total_amount=Math.round(original_price * selected_days2);
+                            parent_div.find('.discount_span').text('0');
+                            parent_div.find('.discount_input').val('0');
+
+                        }
+                        parent_div.find('.total_amount').text(total_amount);
+                        parent_div.find('.total_amount').val(total_amount);
+                        if(total_amount && total_amount>0)
+                        parent_div.find('.final_price').text((total_amount/selected_days2).toFixed(2));
+                        
+
+                       
+                    }
+                })
+            }
 
            
         });

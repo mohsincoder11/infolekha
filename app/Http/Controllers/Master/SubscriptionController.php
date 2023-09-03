@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
         ]);
 
         $Subscription->save();
-        return redirect()->back()->with(['success'=>'Successfully Inserted.']);
+        return redirect()->back()->with(['success'=>'Subscription successfully Inserted.']);
        }
 
        public function edit(Request $request){
@@ -77,7 +77,7 @@ class SubscriptionController extends Controller
             'status' => $request->input('status'),
         ]);
 
-        return redirect()->route('admin.master.subscription')->with(['success'=>'Successfully Updated.']);
+        return redirect()->route('admin.master.subscription')->with(['success'=>'Subscription successfully Updated.']);
        }
 
         public function destroy($id)
@@ -86,7 +86,7 @@ class SubscriptionController extends Controller
             if ($Subscription) {
                 $Subscription->delete();
             }
-            return redirect()->route('admin.master.subscription')->with(['success'=>'Successfully Deleted.']);
+            return redirect()->route('admin.master.subscription')->with(['success'=>'Subscription successfully Deleted.']);
         }
 
 }

@@ -27,7 +27,8 @@
             </div>
 
             <div class="col-md-12">
-                <table id="customers">
+               
+                                           <table id="customers">
                    <thead>
                         <th>Sr.No</th>
                         <th>Subject</th>
@@ -37,7 +38,7 @@
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        @forelse ($blogs as $blog)
+                        @foreach ($blogs as $blog)
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$blog->subject}}</td>
@@ -58,17 +59,16 @@
                         </td>
                     </tr>
 
-                        @empty
-                    <tr>
-                        <p>No records found</p>
-
-                    </tr>
+                      
                 </tbody>
-                        @endforelse
+                        @endforeach
                       
 
 
                 </table>
+                @if(count($blogs)==0)
+                            <p>No record found</p>
+                            @endif
             </div>
 
 

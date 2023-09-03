@@ -2,36 +2,36 @@
 @section('css')
     <style>
         /*   .sidebar {
-                          height: 100%;
-                          overflow: hidden;
-                        }*/
+                              height: 100%;
+                              overflow: hidden;
+                            }*/
 
         /*.marquee ul {
-                          list-style: none;
-                          padding: 0;
-                          margin: 0;
-                          animation: scroll 15s linear infinite;
-                          animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
+                              list-style: none;
+                              padding: 0;
+                              margin: 0;
+                              animation: scroll 15s linear infinite;
+                              animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
         }
 
         /*.marquee ul li {
-                          margin-bottom: 10px;
-                        }
+                              margin-bottom: 10px;
+                            }
 
-                        .marquee ul li img {
-                          display: block;
-                          max-width: 100%;
-                          height: auto;
-                        }
+                            .marquee ul li img {
+                              display: block;
+                              max-width: 100%;
+                              height: auto;
+                            }
 
-                        @keyframes scroll {
-                          0% {
-                            transform: translateY(0%);
-                          }
-                          100% {
-                            transform: translateY(-100%);
-                          }
-                        }*/
+                            @keyframes scroll {
+                              0% {
+                                transform: translateY(0%);
+                              }
+                              100% {
+                                transform: translateY(-100%);
+                              }
+                            }*/
     </style>
 
 
@@ -45,7 +45,7 @@
             /* background-color: #000; */
             position: relative;
             /* behavior: scroll;
-                             direction: up; */
+                                 direction: up; */
         }
 
         /* nested div inside the container */
@@ -117,7 +117,7 @@
 
         .popup2 h2 {
             font-size: 24px;
-            margin-bottom: 10px;
+            margin : 15px 0;
             text-transform: uppercase;
         }
 
@@ -147,19 +147,20 @@
 
 
         .pac-item-query {
-    font-size: 14px;
-    padding-right: 3px;
-    color: #111;
-    font-weight: normal !important;
-}
+            font-size: 14px;
+            padding-right: 3px;
+            color: #111;
+            font-weight: normal !important;
+        }
 
-.pac-item {
-    padding: 10px;
-    border-top: 1px solid #ffffff
-}
-.pac-container{
-    width: 33%;
-}
+        .pac-item {
+            padding: 10px;
+            border-top: 1px solid #ffffff
+        }
+
+        .pac-container {
+            width: 33%;
+        }
     </style>
 
 @stop
@@ -176,74 +177,91 @@
                     <section class="main-content page-listing-grid">
                         <div class="container">
                             <div class="row">
-							 <div class="col-md-12">
-                                <form action="">
+                                <div class="col-md-12">
+                                    <form action="">
                                         <div class="row">
                                             <div class="col-lg-2">
                                                 <div class="form-group">
-                                                  <select class="form-select select country-select filter filter_form" name="type">
-                                                    <option value="" @if(request()->type=='All')selected @endif>All</option>
-                                                    <option value="School" @if(request()->type=='School')selected @endif>School</option>
-                                                    <option value="College" @if(request()->type=='College')selected @endif>College</option>
-                                                    <option value="Institute" @if(request()->type=='Institute')selected @endif>Institute</option>
-                                                   
-                                                  </select>
+                                                    <select class="form-select select country-select filter filter_form"
+                                                        name="type">
+                                                        <option value=""
+                                                            @if (request()->type == 'All') selected @endif>All</option>
+                                                        <option value="School"
+                                                            @if (request()->type == 'School') selected @endif>School
+                                                        </option>
+                                                        <option value="College"
+                                                            @if (request()->type == 'College') selected @endif>College
+                                                        </option>
+                                                        <option value="Institute"
+                                                            @if (request()->type == 'Institute') selected @endif>Institute
+                                                        </option>
+
+                                                    </select>
                                                 </div>
-                                              </div>
-                                              
+                                            </div>
+
                                             @if (request()->segment(2) && request()->segment(2) == 'School')
-                                            <div class="col-lg-2">
-                                                <div class="form-group">
-                                                  <select class="form-select select country-select filter filter_form" name="board_type">
-                                                    <option value="">Select Board Type </option>
-                                                    @foreach ($school_type as $board_type)
-                                                    <option value="{{$board_type->id}}" @if(request()->board_type==$board_type->id)selected @endif>{{$board_type->type}}</option>
-                                                    @endforeach
-                                                  </select>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <select class="form-select select country-select filter filter_form"
+                                                            name="board_type">
+                                                            <option value="">Select Board Type </option>
+                                                            @foreach ($school_type as $board_type)
+                                                                <option value="{{ $board_type->id }}"
+                                                                    @if (request()->board_type == $board_type->id) selected @endif>
+                                                                    {{ $board_type->type }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                              </div>
                                             @endif
                                             @if (request()->segment(2) && request()->segment(2) == 'College')
-                                            <div class="col-lg-2">
-                                                <div class="form-group">
-                                                  <select class="form-select select country-select filter filter_form" name="stream">
-                                                    <option value="">Select Stream Type</option>
-                                                    @foreach (get_college_stream() as $stream)
-                                                   
-                                                    <option value="{{$stream}}" @if(request()->stream==$stream)selected @endif> {{$stream }}</option>
-                                                    @endforeach
-                                                  </select>
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <select class="form-select select country-select filter filter_form"
+                                                            name="stream">
+                                                            <option value="">Select Stream Type</option>
+                                                            @foreach (get_college_stream() as $stream)
+                                                                <option value="{{ $stream }}"
+                                                                    @if (request()->stream == $stream) selected @endif>
+                                                                    {{ $stream }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                                 </div>
-                                              </div>
                                             @endif
 
 
-                                            
 
-                                            <div class="col-lg-2"  style="margin-bottom:20px;">
-                                                <div class="form-group " >
-                                                    <input type="text" value="{{request()->city}}" name="city" id="city_search" class="form-control f1 " placeholder="City">
-                                                  </div>
-                                              </div>
-                                              @if(auth()->check() && auth()->user()->role=='2' && auth()->user()->tutordetail->subscription_status=='1')
-                                              <div class="col-lg-2">
-                                                <div class="form-group">
-                                                  <select class="form-select select country-select filter filter_form" name="tutor_vacancy">
-                                                    <option value="All" @if(request()->tutor_vacancy=='All')selected @endif>All</option>
-                                                    <option value="vacancy" @if(request()->tutor_vacancy=='vacancy')selected @endif>Vacancy</option>
-                                                   
-                                                  </select>
+
+                                            <div class="col-lg-2" style="margin-bottom:20px;">
+                                                <div class="form-group ">
+                                                    <input type="text" value="{{ request()->city }}" name="city"
+                                                        id="city_search" class="form-control f1 " placeholder="City">
                                                 </div>
-                                              </div>
-                                              
+                                            </div>
+                                            @if (auth()->check() && auth()->user()->role == '2' && auth()->user()->tutordetail->subscription_status == '1')
+                                                <div class="col-lg-2">
+                                                    <div class="form-group">
+                                                        <select class="form-select select country-select filter filter_form"
+                                                            name="tutor_vacancy">
+                                                            <option value="All"
+                                                                @if (request()->tutor_vacancy == 'All') selected @endif>All
+                                                            </option>
+                                                            <option value="vacancy"
+                                                                @if (request()->tutor_vacancy == 'vacancy') selected @endif>Vacancy
+                                                            </option>
 
-                                              @endif
-                                             
-                                        
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            @endif
 
-                                         
 
-                                          {{-- <div class="col-lg-2">
+
+
+
+                                            {{-- <div class="col-lg-2">
                                             <div class="form-group">
                                               <select class="form-select select country-select filter " name="sellist1">
                                                 <option>Select </option>
@@ -291,12 +309,12 @@
                                             </div>
                                           </div> --}}
 
-                                       
-                                    </div>
-                                </form>
-                                    </div>
+
+                                        </div>
+                                    </form>
+                                </div>
                                 <div class="col-lg-9">
-                                   
+
                                     @forelse ($college_list as $anno)
 
                                         <div class="listing-list">
@@ -400,7 +418,8 @@
                                                 </div>
 
                                                 <div class="modal-body text-center clearfix">
-                                                    <label class="form-label" style="color:#073D5F; font-size:20px; ">Mobile
+                                                    <label class="form-label"
+                                                        style="color:#073D5F; font-size:20px; ">Mobile
                                                         Number</label><br>
                                                     <label style="color: black;" id="mobile_number"></label>
                                                 </div>
@@ -424,18 +443,19 @@
                                             <br/>
                                         </div>
                                     </div> --}}
-
-                                @if(auth()->check() && auth()->user()->role=='2' && auth()->user()->tutordetail->subscription_status=='0')
-                                    <div id="popup2" class="popup2">
-                                        <div class="popup-content">
-                                            <span class="close2">&times;</span>
-                                            <h2>{{vacancy_count()}} Vacancies are available in your area</h2>
-                                            <p>Apply now!</p>
-                                            <div class="center">
-                                                <a href="{{route('tutor_subscription')}}">Click here for details</a>
+                                    @if (request()->segment(2) && request()->segment(2) == 'tutorjob')
+                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0)
+                                        <div id="popup2" class="popup2">
+                                            <div class="popup-content">
+                                                <span class="close2">&times;</span>
+                                                <h2>{{ vacancy_count() }} Vacancies are available in your area</h2>
+                                                <p>Apply now!</p>
+                                                <div class="center">
+                                                    <a href="{{ route('tutor_subscription') }}">Click here for details</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endif
                                     @endif
 
 
@@ -527,34 +547,34 @@
     <script>
         $(document).ready(function() {
 
-            $(document).on('change','.filter_form',function(){
+            $(document).on('change', '.filter_form', function() {
                 $(this).closest('form').submit();
             })
 
             var autocomplete2 = new google.maps.places.Autocomplete(
-                 (document.getElementById('city_search')), {
-                     types: ['(cities)']
-                 });
+                (document.getElementById('city_search')), {
+                    types: ['(cities)']
+                });
 
-             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
-             autocomplete2.setComponentRestrictions({
-                 'country': 'in'
-             });
-             autocomplete2.addListener('place_changed', function() {
-                 var place = autocomplete2.getPlace();
-                 var address = place.formatted_address;
-                 var city_name = address.substr(0, address.indexOf(',')).trim();
-                 $("#city_search").val(city_name);
-                 $("#city_search").closest('form').submit();
+            /*var autocomplete = new google.maps.places.Autocomplete(input);*/
+            autocomplete2.setComponentRestrictions({
+                'country': 'in'
+            });
+            autocomplete2.addListener('place_changed', function() {
+                var place = autocomplete2.getPlace();
+                var address = place.formatted_address;
+                var city_name = address.substr(0, address.indexOf(',')).trim();
+                $("#city_search").val(city_name);
+                $("#city_search").closest('form').submit();
                 console.log('submit');
 
-                 //localStorage.setItem('city_search', city_name);
-                 //stored_city_function(city_name);
+                //localStorage.setItem('city_search', city_name);
+                //stored_city_function(city_name);
 
-             });
+            });
 
 
-            $("#popup2").css('display','flex');
+            $("#popup2").css('display', 'flex');
             $(".close2").click(function() {
                 $("#popup2").hide();
             });

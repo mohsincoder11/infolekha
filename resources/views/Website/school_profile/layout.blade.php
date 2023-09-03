@@ -33,6 +33,8 @@
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <style>
 
         .error {
@@ -71,7 +73,6 @@
 
         .disable-li {
             color: #a1a0a0 !important;
-
         }
 
         .swal2-toast .swal2-title {
@@ -182,7 +183,11 @@
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 9;
+    z-index: 9999;
+}
+.sitebanner.error h4{
+    background-color: #ff0202b0  !important;
+
 }
 .sitebanner h4{
 font-size: 16px;
@@ -197,15 +202,80 @@ font-size: 16px;
 .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
-body.swal2-toast-shown .swal2-container {
-    width:460px !important;
-}
+
 .note-editor .btn{
     color:#1c1c1c;
 }
 .d-none{
 			display: none !important;
 		}
+        .pac-container {
+ font-family: Arial, sans-serif;
+ background-color: #fff;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+ max-height: 300px;
+ overflow-y: auto;
+ margin-top: 5px;
+ border: 0.5px solid #170cf0;
+ border-radius: 7px;
+ width: 480px !important;
+ padding: 10px 20px;
+}
+.pac-container.pac-logo.hdpi::after{
+   display: none !important;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 991px) {
+ .pac-container {
+   width: 90% !important;
+   max-width: 90%;
+ }
+}
+
+.pac-item {
+ padding: 5px 8px;
+ cursor: pointer;
+ transition: background-color 0.2s ease-in-out;
+ border-top: 1px solid #fff !important;
+}
+
+.pac-item span.pac-icon-marker {
+ display: none; /* Hide the marker symbol */
+}
+
+.pac-item:hover {
+ background-color: #f2f2f2;
+}
+
+.pac-item .pac-item-query {
+ font-weight: bold;
+}
+.marker-icon{
+   display: inline-table;
+   background-image: url(https://akam.cdn.jdmagicbox.com/images/icontent/newwap/web2022/search_locat_icon.svg);
+   width: 20px;
+   height: 20px;
+   margin: 0 10px 0 0px;
+}
+.detect-location-text{
+   position: absolute;
+   margin-top:-4px;
+   color:#0076d7 !important;
+}
+
+.fade-out {
+ animation: fadeOutAnimation 2.5s forwards;
+}
+
+@keyframes fadeOutAnimation {
+ from {
+   opacity: 1;
+ }
+ to {
+   opacity: 0;
+ }
+}
     </style>
     @yield('css')
     @stack('css2')
@@ -230,11 +300,22 @@ body.swal2-toast-shown .swal2-container {
     </div>
     <!--loader end-->
    
-@if(checkpayment_status())
+    @if(checkpayment_status())
     <div class="sitebanner">
-        <h4>Your profile is under review, It will be activated within 48 hours.</h4>
+        <h4>Your profile is under review. It will be activated within 48 hours.</h4>
     </div>
     @endif
+    @php
+        $reject_data=checkreject_status();
+       
+    @endphp
+    @if(isset($reject_data['status']) && $reject_data['status'] && $reject_data['message'])
+    <div class="sitebanner error">
+        <h4>{{$reject_data['message']}}</h4>
+    </div>
+    @endif
+
+    
 
 
     <!-- main -->
@@ -499,24 +580,24 @@ body.swal2-toast-shown .swal2-container {
                                     </li>
                             <li>
                             @else
-                                <li><a href="#" class="disable-li"><i class="fal fa-file"></i> Post
+                                <li><a href="javascript:void(0)" class="disable-li"><i class="fal fa-file"></i> Post
                                         Your
                                         Results</a></li>
                                 <li>
-                                    <a href="#" class="disable-li"><i class="fal fa-briefcase"></i>Create Job
+                                    <a href="javascript:void(0)" class="disable-li"><i class="fal fa-briefcase"></i>Create Job
                                         Vacancy</a>
 
                                 </li>
 
                                 <li>
-                                    <a href="#" class="disable-li"><i
+                                    <a href="javascript:void(0)" class="disable-li"><i
                                             class="fa-angle-right user-profile-act"></i>Promote Your
                                         {{ Auth::user()->entity_type }}
                                     </a>
 
                                 </li>
                                   <li>
-                                    <a href="#" class="disable-li"><i class="fal fa-briefcase"></i>Write a Blog</a>
+                                    <a href="javascript:void(0)" class="disable-li"><i class="fal fa-briefcase"></i>Write a Blog</a>
 
                                 </li>
                                 <li>
@@ -545,7 +626,7 @@ body.swal2-toast-shown .swal2-container {
                            
 
                             <li>
-                                <a href="#" class="disable-li"><i class="fal fa-cloud-download"></i>Download
+                                <a href="javascript:void(0)" class="disable-li"><i class="fal fa-cloud-download"></i>Download
                                     Profile</a>
 
                             </li>
@@ -627,8 +708,6 @@ body.swal2-toast-shown .swal2-container {
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-
-      
 
     </script>
     @if (session()->has('success'))

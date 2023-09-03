@@ -112,7 +112,8 @@
 
                     <div class="row" style="margin-top:20px;">
 
-                        <table id="customers">
+                                                   
+                                                   <table id="customers">
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Tutor Name</th>
@@ -143,7 +144,9 @@
 
 
                         </table>
-
+                        @if(count($applied_jobs)==0) 
+                            <p>No record found</p>
+                            @endif
 
 
                     </div>

@@ -73,8 +73,99 @@
         .swal2-toast .swal2-title {
             font-size: 14px !important;
         }
-        body.swal2-toast-shown .swal2-container {
-    width:460px !important;
+
+.disable-li {
+            color: #a1a0a0 !important;
+        }
+        .sitebanner{
+    background-color: transparent !important;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9;
+}
+.sitebanner h4{
+font-size: 16px;
+    margin: 0;
+    position: relative;
+    background-color: #0f3a50;
+    color: #fff;
+    font-weight: normal;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+/* Styles for the autocomplete dropdown list */
+.pac-container {
+ font-family: Arial, sans-serif !important;
+ background-color: #fff !important;
+ box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+ max-height: 300px !important;
+ overflow-y: auto !important;
+ margin-top: 5px !important;
+ border: 0.5px solid #170cf0 !important;
+ border-radius: 7px !important;
+ width: 480px !important;
+ padding: 10px 20px !important;
+}
+.pac-container.pac-logo.hdpi::after{
+   display: none !important;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 991px) {
+ .pac-container {
+   width: 90% !important;
+   max-width: 90%;
+ }
+}
+
+.pac-item {
+ padding: 5px 8px;
+ cursor: pointer;
+ transition: background-color 0.2s ease-in-out;
+ border-top: 1px solid #fff;
+}
+.pac-container :hover{
+    color:#000 !important;
+}
+
+.pac-item span.pac-icon-marker {
+ display: none; /* Hide the marker symbol */
+}
+
+.pac-item:hover {
+ background-color: #f2f2f2;
+}
+
+.pac-item .pac-item-query {
+ font-weight: bold;
+}
+.marker-icon{
+   display: inline-table;
+   background-image: url(https://akam.cdn.jdmagicbox.com/images/icontent/newwap/web2022/search_locat_icon.svg);
+   width: 20px;
+   height: 20px;
+   margin: 0 10px 0 0px;
+}
+.detect-location-text{
+   position: absolute;
+   margin-top:-4px;
+   color:#0076d7
+}
+
+.fade-out {
+ animation: fadeOutAnimation 2.5s forwards;
+}
+
+@keyframes fadeOutAnimation {
+ from {
+   opacity: 1;
+ }
+ to {
+   opacity: 0;
+ }
 }
     </style>
 </head>
@@ -96,6 +187,11 @@
         </div>
     </div>
     <!--loader end-->
+    @if(checkpayment_status())
+    <div class="sitebanner">
+        <h4>Your profile is under review. It will be activated within 48 hours.</h4>
+    </div>
+    @endif
     <!-- main -->
     <div id="main">
         <!-- header -->
@@ -308,6 +404,7 @@
         </header>
         <!-- header end  -->
         <!-- wrapper  -->
+      
         @php
         $routeName = request()
             ->route()
@@ -339,7 +436,7 @@
                                         class="fal fa-heart"></i>Wishlist</a>
 
                             </li>
-
+                            @if (Auth::user()->active == '1')
                             <li>
                                 <a href="{{ route('tutor_profile.job_applied') }}" @if ($routeName == 'tutor_profile.job_applied') class="user-profile-act" @endif><i
                                         class="fal fa-heart"></i>Job Applied</a>
@@ -348,7 +445,23 @@
                             <li><a href="{{ route('tutor_profile.blog') }}"
                                 @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog') class="user-profile-act" @endif><i
                                     class="fal fa-file"></i> Write a Blog</a>
-                                </li>
+                            </li>
+                            @else
+                            <li>
+                                <a href="javascript:void(0)" class="disable-li" ><i
+                                        class="fal fa-heart"></i>Job Applied</a>
+
+                            </li>
+                            <li><a href="javascript:void(0)" class="disable-li" ><i
+                                    class="fal fa-file"></i> Write a Blog</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('activate_profile') }}"
+                                    @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
+                                        class="fal fa-unlock"></i>Activate Profile</a>
+
+                            </li>
+                            @endif
 
                             <li>
                                 <a href="{{ route('tutor_profile.user_change_password') }}" @if ($routeName == 'tutor_profile.user_change_password') class="user-profile-act" @endif><i

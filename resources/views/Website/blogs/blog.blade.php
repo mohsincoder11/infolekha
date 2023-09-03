@@ -33,7 +33,7 @@
             </div>
 
             <div class="row listing-grid">
-                @forelse ($blogs as $blog)
+                {{-- @forelse ($blogs as $blog)
                 <div class="col-md-4">
                     <div class="flat-product">
                         <div class="featured-product">
@@ -63,9 +63,9 @@
                 </div>
                 @empty
                     <p>No blogs present</p>
-                @endforelse
+                @endforelse --}}
                
-                {{-- <div class="col-md-4">
+                <div class="col-md-4">
                     <div class="flat-product">
                         <div class="featured-product">
                             <img src="{{asset('website_asset/images/Opportunity1.jpg')}}" alt="image">
@@ -192,7 +192,7 @@
 		</a>
                     </div>
                   
-                </div> --}}
+                </div>
           
             </div>
                        

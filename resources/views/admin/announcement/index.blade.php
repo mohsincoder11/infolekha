@@ -126,10 +126,9 @@
 
                             </select>
                         </div>
-                        <div class="col-md-6 ">
+                        <div class="col-md-12">
                             <label>Note</label>
-                            <input class="form-control mb-3" name="note" type="text" aria-label="default input example"
-                                placeholder="Note">
+                            <textarea class="form-control mb-3" name="note" type="text" aria-label="default input example" placeholder="Note"></textarea>
                         </div>
                         <div class="col-md-6" style="margin-top:4.4vh;">
                             <div class="col">

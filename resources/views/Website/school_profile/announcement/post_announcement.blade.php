@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <table id="customers">
+                                                   <table id="customers">
                             <tr>
                                 <th>Sr.no</th>
                                 <th>Announcement Title</th>
@@ -112,8 +112,12 @@
                             @endforeach
 
 
-
                         </table>
+                        
+@if(count($announcements)==0) 
+
+<p>No record found</p>
+@endif
                     </div>
 
                 </div>

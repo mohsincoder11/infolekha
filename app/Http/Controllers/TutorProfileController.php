@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\City;
 use App\Models\JobVacancyApplied;
 use App\Models\tutor_detail;
 use Illuminate\Http\Request;
@@ -58,8 +59,11 @@ class TutorProfileController extends Controller
             if ($validator->fails()) {
                 return back()->with(['error'=>'Please fill all the fields.']);
             }
+            $city=trim(explode(',', $request->address)[0]);
+            $createOrupdate=City::firstOrCreate(['city'=>$city]);
         $user=User::find(Auth::user()->id);
         $user->email=$request->email;
+        $user->city_id=$createOrupdate->id;
 
         $user_tutor=user_tutor::where('user_id',Auth::user()->id)->first();
 

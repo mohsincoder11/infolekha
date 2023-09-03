@@ -1,0 +1,9 @@
+ALTER TABLE `transaction` ADD `coupon` VARCHAR(20) NULL DEFAULT NULL AFTER `expiry`;
+
+ALTER TABLE `users` CHANGE `active` `active` ENUM('0','1','2') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0' COMMENT '0 pending,1 active,2 for reject';
+
+ALTER TABLE `users` ADD `note` VARCHAR(255) NULL DEFAULT NULL AFTER `active`;
+
+ALTER TABLE `users` CHANGE `note` `note` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;
+
+ALTER TABLE `announcements` CHANGE `note` `note` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL;

@@ -67,7 +67,6 @@
 
                         <div class="row" style="margin-top:20px;">
 
-
                                     <table id="customers">
                                         <tr>
                                             <th >Sr.no</th>
@@ -109,7 +108,10 @@
                                         @endforeach
                                       
                                     </table>
+                                    @if(count($school_post_result)==0)
 
+                            <p>No record found</p>
+                            @endif
 
 
                             </div>

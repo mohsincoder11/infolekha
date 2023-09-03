@@ -137,8 +137,10 @@
                             <div class="col-md-4">
                                 <label style="font-size:16px;">Select Size(pxl)</label>
                                 <span id="advertisement_area">
+									      
                                     <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
                                         id="advertisement_size">
+										        <option>Select Size</option>
                                     </select>
                                 </span>
                             </div>
@@ -165,7 +167,7 @@
 
                 <div class="row" style="margin-top:20px;">
 
-                    <table id="customers">
+                                              <table id="customers">
                         <tr>
                             <th>Sr.no</th>
                             <th>Location</th>
@@ -211,7 +213,9 @@
 
 
                     </table>
-
+                    @if(count($advertisements)==0)
+                            <p>No record found</p>
+                            @endif
 
 
                 </div>
@@ -271,7 +275,7 @@
 
             $(document).on("click", ".ApplyCouponCode", function() {
                 let parent_div = $(this).closest('.card-element-container');
-                if($('.CouponCode').val()){
+                if(parent_div.find('.CouponCode').val()){
                     calculate_discount(parent_div);
                 }
 

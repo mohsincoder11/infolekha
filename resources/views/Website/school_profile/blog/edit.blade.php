@@ -30,74 +30,74 @@
                 <div class="col-md-12">
                     <div class="row">
                         <form method="post" action="{{route('school_profile.update-blog')}}" id="blog_form" enctype="multipart/form-data">
-                        <div class="custom-form">
-@csrf
-<input type="hidden" name="id" value="{{$edit_data->id}}">
+                            <form method="post" action="{{route('school_profile.insert-blog')}}" id="blog_form" enctype="multipart/form-data">
+                                <div class="custom-form">
+        @csrf
+        <input type="hidden" name="id" value="{{$edit_data->id}}">
 
+        
+        
+        <div class="col-md-12">
+            <label style="font-size:16px;">Subject of Blog </label>
+            <input type="text" placeholder="Subject of Blog" value="{{$edit_data->subject}}" name="subject"/>
+        </div>
 
-                            <div class="col-md-12">
-                                <label style="font-size:16px;">Subject of Blog </label>
-                                <input type="text" placeholder="Subject of Blog" value="{{$edit_data->subject}}" name="subject"/>
-                            </div>
+        <div class="col-md-6">
+            <label style="font-size:16px;">Category </label>
+            <select data-placeholder="Status" class="chosen-select on-radius no-search-select" name="category" id="category">
+                @foreach (get_blog_categories() as $cat)
+                    <option value="{{$cat}}" @if($cat==$edit_data->category) selected="selected" @endif>{{$cat}}</option>
+                @endforeach
+                <option value="Other" @if(!in_array($edit_data->category,get_blog_categories())) selected="selected" @endif >Other</option>
+            </select>
+        </div>
+        <div class="col-md-6 @if(!in_array($edit_data->category,get_blog_categories())) @else d-none @endif" id="other_category_div">
+            <label style="font-size:16px;">Specify other category </label>
+            <input type="text" placeholder="other category" value="{{$edit_data->category}}"  name="other_category" id="other_category" />
+        </div>
 
-                            <div class="col-md-6">
-                                <label style="font-size:16px;">Category </label>
-                                <select data-placeholder="Status" class="chosen-select on-radius no-search-select" name="category" id="category">
-                                    @foreach (get_blog_categories() as $cat)
-                                        <option value="{{$cat}}" @if($cat==$edit_data->category) selected="selected" @endif>{{$cat}}</option>
-                                    @endforeach
-                                    <option value="Other" @if(!in_array($edit_data->category,get_blog_categories())) selected="selected" @endif >Other</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 @if(!in_array($edit_data->category,get_blog_categories())) @else d-none @endif" id="other_category_div">
-                                <label style="font-size:16px;">Specify other category </label>
-                                <input type="text" placeholder="other category" value="{{$edit_data->category}}"  name="other_category" id="other_category" />
-                            </div>
-
-                            <div class="col-md-4">
-                                <label style="font-size:16px;">Upload Blog Image</label>
-                                <input type="file" class="upload" name="blog_image" />
-                            </div>
-                            <div class="col-md-2">
-                                <a href="{{asset('public/'.$edit_data->blog_image)}}" target="_blank">  <img height="50" width="50" src="{{asset('public/'.$edit_data->blog_image)}}" alt=""></a>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description1" rows="8" name="content1" >{{$edit_data->content1}}
-                                  </textarea>
-                                  {{-- <div id="description1"></div> --}}
-                                  <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description2" rows="8" name="content2" >{{$edit_data->content2}}
-                                      </textarea>
-                                  {{-- <div id="description2"></div> --}}
-
-                                      <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description3" rows="8" name="content3" >{{$edit_data->content3}}
-                                          </textarea>
-                                  {{-- <div id="description3"></div> --}}
-
+        <div class="col-md-4">
+            <label style="font-size:16px;">Upload Blog Image</label>
+            <input type="file" class="upload" name="blog_image" />
+        </div>
+        <div class="col-md-2">
+            <a href="{{asset('public/'.$edit_data->blog_image)}}" target="_blank">  <img height="50" width="50" src="{{asset('public/'.$edit_data->blog_image)}}" alt=""></a>
+        </div>
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description1" rows="8"  style="height: 150px;" >
+                                          </div>
+                                          <input type="hidden" name="content1" id="editor_content1" />
+        
                                           <span class="editor_error"></span>
-                            </div>
-
-                            <div class="col-md-12" style="margin-top:10px;">
-                                <textarea id="description4" rows="8" name="content4" >{{$edit_data->content4}}
-                                              </textarea>
-                                  {{-- <div id="description4"></div> --}}
-
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description2" rows="8"  style="height: 150px;" >
+                                              </div>
+                                    <input type="hidden" name="content2" id="editor_content2" />
+        
                                               <span class="editor_error"></span>
-                            </div>
-                            <div class="col-md-12">
-                                <button type="submit" class="btn  color-bg  float-btn">Update </button>
-
-                            </div>
-                        </div>
-                    </form>
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description3" rows="8"  style="height: 150px;" >
+                                                  </div>
+                                                  <input type="hidden" name="content3" id="editor_content3" />
+                                                  <span class="editor_error"></span>
+                                    </div>
+        
+                                    <div class="col-md-12" style="margin-top:10px;">
+                                        <div id="description4" rows="8"  style="height: 150px;" >
+                                                      </div>
+                                                      <input type="hidden" name="content4" id="editor_content4" />
+                                                      <span class="editor_error"></span>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn  color-bg  float-btn">Update </button>
+        
+                                    </div>
+                                </div>
+                            </form>
                     </div>
                 </div>
 
@@ -111,21 +111,73 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <!-- include summernote css/js -->
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 <script>
    $(document).ready(function() {
-    $('#description1').summernote({
-      height: 300, 
-    });
-    $('#description2').summernote({
-      height: 300, 
-    });
-    $('#description3').summernote({
-      height: 300, 
-    });
-    $('#description4').summernote({
-      height: 300, 
-    });
+    var description1 = new Quill("#description1", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description2 = new Quill("#description2", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description3 = new Quill("#description3", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
+
+            var description4 = new Quill("#description4", {
+                theme: "snow",
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{
+                            'list': 'ordered'
+                        }, {
+                            'list': 'bullet'
+                        }],
+                        ['link', 'image', 'video'],
+                        ['clean']
+                    ]
+                }
+            });
   });
  
 </script>

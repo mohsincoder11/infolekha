@@ -10,7 +10,12 @@ class BlogController extends Controller
 {
     public function index(){
 
-        $blogs=Blog::orderby('id','desc')->get();
+        $blogs=Blog::select('id','subject',
+        'category',
+        'user_id',
+        'blog_image',
+        'created_at',
+ 'status')->orderby('id','desc')->get();
         return view('add-blogs',['blogs'=>$blogs]);
     }
 
@@ -64,6 +69,12 @@ class BlogController extends Controller
         return redirect(route('admin.blog'))->with(['success'=>'Successfully Inserted.']);
     }
 
+    public function get_blog(Request $request){
+     $editblog = Blog::find($request->BlogID); 
+     return response()->json($editblog);
+
+    }
+
     public function edit($id)
  {
      $editblog = Blog::find($id); 
@@ -72,12 +83,31 @@ class BlogController extends Controller
  }
 
 public function change_blog_status(Request $request){
+    $validator = Validator::make(
+        $request->all(),
+        [
+            'BlogID' => ['required'],
+            'status' => ['required'],
+        ]);
 
-    $updateblog=Blog::find($request->BlogID);
-    $updateblog->status=$request->status;
-    $updateblog->reject_reason=$request->note;
-    $updateblog->save();
+        if ($validator->fails()) {
+            $errors = '';
+            $messages = $validator->messages();
+            foreach ($messages->all() as $message) {
+                $errors .= $message . "<br>";
+            }
+            return back()->with(['error'=>$errors]);
+        }
 
+        $updateblog=Blog::find($request->BlogID);
+        $updateblog->status=$request->status;
+        $updateblog->category=$request->category;
+        $updateblog->content1=$request->content1;
+        $updateblog->content2=$request->content2;
+        $updateblog->content3=$request->content3;
+        $updateblog->content4=$request->content4;
+        $updateblog->reject_reason=$request->note;
+        $updateblog->save();
     return redirect(route('admin.blog'))->with(['success'=>'Status Successfully updated.']);
 
 }

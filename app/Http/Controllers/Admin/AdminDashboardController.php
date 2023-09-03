@@ -30,21 +30,23 @@ class AdminDashboardController extends Controller
 {
     public function dashboard()
     {
-        $student_data = DB::table('users')->select('users.*', 'user_student.*')
+        $query2 = DB::table('users')->select('users.*', 'user_student.*')
             ->join('user_student', 'user_student.user_id', '=', 'users.id')
-            ->orderBy('users.id','desc')
-            ->limit(50)
-            ->get();
+            ->orderBy('users.id','desc');
+            
+            $count['student']=(clone $query2)->count();
+            $student_data =$query2->limit(50)->get();
 
 
-
-        $tutor_data = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
+        $query3 = DB::table('users')->select('users.*', 'user_tutor_detail.*', 'user_tutor.*')
             ->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'users.id')
             ->join('user_tutor', 'user_tutor.user_id', '=', 'users.id')
             ->orderBy('users.id','desc')
-            ->limit(50)
-            ->get();
+           ;
 
+            $count['tutor']=(clone $query3)->count();
+            $tutor_data= $query3->limit(50)
+            ->get();
 
         $query = DB::table('users')->select('users.*', 'user_school_institute_detail.*', 'user_school_institute.*')
             ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
@@ -70,26 +72,56 @@ class AdminDashboardController extends Controller
 
             $announcement=Announcement::query();
             $count['announcement_active']=(clone $announcement)->where('status','Active')->count();
+            $count['announcement_pending']=(clone $announcement)->where('status','Pending')->count();
             $count['announcement_rejected']=(clone $announcement)->where('status','Reject')->count();
 
             $advertisement=AdvertisementEnquiry::query();
+            $count['advertisement_pending']=(clone $advertisement)->where('status','Pending')->count();
             $count['advertisement_active']=(clone $advertisement)->where('status','Active')->count();
             $count['advertisement_rejected']=(clone $advertisement)->where('status','Rejected')->count();
 
+            $chart_count=[$count['school'],$count['college'],$count['institute'],$count['student'],$count['tutor']];
 
+            $transactions_chart = Transaction::select(
+                DB::raw('YEAR(created_at) as year'),
+                DB::raw('MONTH(created_at) as month'),
+                'transaction_status',
+                DB::raw('SUM(amount) as total_amount')
+            )
+            ->groupBy('year', 'month', 'transaction_status')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->orderBy('transaction_status', 'asc')
+            ->get();
 
-        return view('dashboard', ['tutor_data' => $tutor_data, 'student_data' => $student_data, 'school_institute_data' => $school_institute_data, 'count' => $count]);
+            $user_register_by_month_chart = User::select(
+                DB::raw('YEAR(created_at) as year'),
+                DB::raw('MONTH(created_at) as month'),
+                DB::raw('Count(*) as total_user')
+            )
+            ->where('role','!=','0')
+            ->whereYear('created_at', date('Y')) // Filter by the current year
+            ->groupBy('year', 'month')
+            ->orderBy('year', 'asc')
+            ->orderBy('month', 'asc')
+            ->get();
+           
+           $announcement_chart=[$count['announcement_pending'],$count['announcement_active'],$count['announcement_rejected']];
+           $advertisement_chart=[$count['advertisement_pending'],$count['advertisement_active'],$count['advertisement_rejected']];
+        return view('admin.dashboard', ['tutor_data' => $tutor_data, 'student_data' => $student_data, 'school_institute_data' => $school_institute_data, 'count' => $count,'chart_count'=>$chart_count,'transactions_chart'=>$transactions_chart,'announcement_chart'=>$announcement_chart,
+        'advertisement_chart'=>$advertisement_chart,'user_register_by_month_chart'=>$user_register_by_month_chart]);
     }
 
     public function activation(Request $request)
     {
         $record = User::find($request->id);
         if($record){
-             $record->active = ($record->active == '0') ? '1' : '0';
-        $record->save();
-        return response()->json(['status' => 'true', 'action' => $request->action]);
+            $record->active = $request->active;
+            $record->note = $request->note;
+            $record->save();
+        return back()->with(['status' => 'success', 'message' => 'Status updated successfully']);
         }else{
-            return response()->json(['status' => 'false', 'action' => $request->action]);
+            return back()->with(['status' => 'error', 'message' => 'Something went wrong']);
 
         }
        
