@@ -85,6 +85,10 @@
     transform: translateX(-50%);
     z-index: 9;
 }
+.sitebanner.error h4{
+    background-color: #ff0202  !important;
+
+}
 .sitebanner h4{
 font-size: 16px;
     margin: 0;
@@ -190,6 +194,15 @@ font-size: 16px;
     @if(checkpayment_status())
     <div class="sitebanner">
         <h4>Your profile is under review. It will be activated within 48 hours.</h4>
+    </div>
+    @endif
+    @php
+        $reject_data=checkreject_status();
+       
+    @endphp
+    @if(isset($reject_data['status'])  && $reject_data['message'])
+    <div class="sitebanner error">
+        <h4>{{$reject_data['message']}}</h4>
     </div>
     @endif
     <!-- main -->
@@ -455,12 +468,15 @@ font-size: 16px;
                             <li><a href="javascript:void(0)" class="disable-li" ><i
                                     class="fal fa-file"></i> Write a Blog</a>
                             </li>
+                            @if(Auth::user()->active!='2')
+
                             <li>
                                 <a href="{{ route('activate_profile') }}"
                                     @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
                                         class="fal fa-unlock"></i>Activate Profile</a>
 
                             </li>
+                            @endif
                             @endif
 
                             <li>

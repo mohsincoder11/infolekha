@@ -78,7 +78,7 @@ function checkpayment_status(){
     if($check_transaction){
     $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
     $active_status=User::find(auth::user()->id);
-    if($check_transaction && !$expiry_check->isPast() && $active_status->active=0){
+    if($check_transaction && !$expiry_check->isPast() && $active_status->active=='0'){
         return true;
     }else{
         return false;
@@ -94,7 +94,8 @@ function checkreject_status(){
     if($check_transaction){
     $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
     $active_status=User::find(auth::user()->id);
-    if($check_transaction && !$expiry_check->isPast() && $active_status->active==2){
+    //if($check_transaction && !$expiry_check->isPast() && $active_status->active=='2'){
+    if($active_status->active=='2'){
         return ['status'=>true,'message'=>$active_status->note];
     }else{
         return ['status'=>false,'message'=>''];

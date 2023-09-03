@@ -186,7 +186,7 @@
     z-index: 9999;
 }
 .sitebanner.error h4{
-    background-color: #ff0202b0  !important;
+    background-color: #ff0202  !important;
 
 }
 .sitebanner h4{
@@ -309,7 +309,7 @@ font-size: 16px;
         $reject_data=checkreject_status();
        
     @endphp
-    @if(isset($reject_data['status']) && $reject_data['status'] && $reject_data['message'])
+    @if(isset($reject_data['status'])  && $reject_data['message'])
     <div class="sitebanner error">
         <h4>{{$reject_data['message']}}</h4>
     </div>
@@ -600,12 +600,14 @@ font-size: 16px;
                                     <a href="javascript:void(0)" class="disable-li"><i class="fal fa-briefcase"></i>Write a Blog</a>
 
                                 </li>
+                                @if(Auth::user()->active!='2')
                                 <li>
                                     <a href="{{ route('activate_profile') }}"
                                         @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
                                             class="fal fa-unlock"></i>Activate Profile</a>
     
                                 </li>
+                                @endif
                             @endif
 
 
