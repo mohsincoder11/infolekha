@@ -109,7 +109,7 @@
                                 <input type="text" placeholder="Enter OTP*" maxlength="4" id="otp" name="otp" required="required"><i class="fa fa-user field-icon toggle-password"></i>
                             </span>
     
-                                    <div class="otp_error" style="text-align: left;margin-top:-10px;">
+                                    <div class="otp_error" style="text-align: left;">
                                     </div>
                                 </span>
 
