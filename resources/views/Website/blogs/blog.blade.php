@@ -128,7 +128,8 @@
                         <div class="content-product">
                            
                             <div class="text">
-                                <p>Effective Study Habits and Time Management for Student &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p>Effective Study Habits and Time Management for Student</p>
+                                <p>&nbsp;</p>
                             </div>
                        
 
@@ -181,6 +182,8 @@
                             <div class="text">
                                 <p>The benefits and challenges of online learning in the modern age
                                 </p>
+                                <p>&nbsp;</p>
+
                             </div>
                        
 

@@ -124,7 +124,7 @@
 
                         <table id="customers">
                             <tr>
-                                <th>Sr.no</th>
+                                <th> SN</th>
                                 <th>Vacancy For</th>
                                 <th>Subject</th>
                                 <th>Experience Required</th>

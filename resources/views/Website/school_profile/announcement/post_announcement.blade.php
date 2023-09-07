@@ -1,12 +1,16 @@
 @extends('Website.school_profile.layout')
 
 @section('profile_content')
+
+
+
+
     <div class="dashboard-content">
         <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item">Post Announcement</div>
+                <div class="dashboard-title-item">Post Announcement1</div>
                 @include('Website.school_profile.profile_header')
 
 
@@ -65,10 +69,10 @@
                         <hr>
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-12" style="overflow-x:scroll;">
                                                    <table id="customers">
                             <tr>
-                                <th>Sr.no</th>
+                                <th> SN</th>
                                 <th>Announcement Title</th>
                                 <th>Image</th>
                                 <th>Announcement Description</th>
@@ -116,7 +120,7 @@
                         
 @if(count($announcements)==0) 
 
-<p>No record found</p>
+<p>No Record Found</p>
 @endif
                     </div>
 

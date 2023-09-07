@@ -153,7 +153,7 @@ function initHomeradar() {
         slidesToShow: 3,
         dots: true,
         arrows: false,
-       
+       autoplay:false,
         responsive: [{
                 breakpoint: 1024,
                 settings: {

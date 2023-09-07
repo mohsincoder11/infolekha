@@ -16,7 +16,7 @@
             <!-- dashboard-title -->
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item"><span>Blog</span></div>
+                <div class="dashboard-title-item"><span>Add Blog</span></div>
                 @include('Website.school_profile.profile_header')
 
             </div>
@@ -60,35 +60,35 @@
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <div id="description1" rows="8"  style="height: 150px;" >
-                                  </div>
-                                  <input type="hidden" name="content1" id="editor_content1" />
+                                <textarea name="content1" id="content1" rows="8"  style="height: 150px;" >
+                                  </textarea>
+                                  
 
                                   <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <div id="description2" rows="8"  style="height: 150px;" >
-                                      </div>
-                            <input type="hidden" name="content2" id="editor_content2" />
+                                <textarea name="content2" id="content2" rows="8"  style="height: 150px;" >
+                                      </textarea>
+                            
 
                                       <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <div id="description3" rows="8"  style="height: 150px;" >
-                                          </div>
-                                          <input type="hidden" name="content3" id="editor_content3" />
+                                <textarea name="content3" id="content3" rows="8"  style="height: 150px;" >
+                                          </textarea>
+                                          
                                           <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <div id="description4" rows="8"  style="height: 150px;" >
-                                              </div>
-                                              <input type="hidden" name="content4" id="editor_content4" />
+                                <textarea name="content4" id="content4" rows="8"  style="height: 150px;" >
+                                              </textarea>
+                                              
                                               <span class="editor_error"></span>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 mt-2">
                                 <button class="btn  color-bg  float-btn">Save </button>
 
                             </div>
@@ -104,16 +104,11 @@
 @stop
 
 @section('js')
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
 <script>
    $(document).ready(function() {
-    var description1 = new Quill("#description1", {
-                theme: "snow",
-                modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
+    var toolbar=[   ['bold', 'italic', 'underline', 'strike'],
                         [{
                             'list': 'ordered'
                         }, {
@@ -121,55 +116,35 @@
                         }],
                         ['link', 'image', 'video'],
                         ['clean']
-                    ]
+                    ];
+
+
+
+    var description1 = new Quill("#content1", {
+                theme: "snow",
+                modules: {
+                    toolbar: toolbar
                 }
             });
 
-            var description2 = new Quill("#description2", {
+            var description2 = new Quill("#content2", {
                 theme: "snow",
                 modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['link', 'image', 'video'],
-                        ['clean']
-                    ]
+                    toolbar: toolbar
                 }
             });
 
-            var description3 = new Quill("#description3", {
+            var description3 = new Quill("#content3", {
                 theme: "snow",
                 modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['link', 'image', 'video'],
-                        ['clean']
-                    ]
+                    toolbar: toolbar
                 }
             });
 
-            var description4 = new Quill("#description4", {
+            var description4 = new Quill("#content4", {
                 theme: "snow",
                 modules: {
-                    toolbar: [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['link', 'image', 'video'],
-                        ['clean']
-                    ]
+                    toolbar: toolbar
                 }
             });
   });
@@ -189,59 +164,63 @@
             }
         })
 
-    // $('#blog_form').validate({
-    //     rules: {
-    //         subject: 'required',
-    //         category: 'required',
-    //         blog_image: {
-    //             required: true,
-    //             extension: 'jpg,jpeg,png,gif'
-    //         },
-    //         content1:{
-    //             required: true,
-    //             minlength:1
-    //         },  
-    //         content2:{
-    //             required: true,
-    //             minlength:1
-    //         },  
-    //         content3:{
-    //             required: true,
-    //             minlength:1
-    //         }, 
-    //          content4:{
-    //             required: true,
-    //             minlength:1
-    //         },
-          
-           
-    //     },
-    //     messages: {
-    //         blog_image: {
-    //             extension: 'Please select a valid image file (jpg, jpeg, png, gif)'
-    //         }
-    //     },
-    //     submitHandler: function(form) {
-    //                return true;
-    //             },
-    //     errorPlacement: function(error, element) {
-    //         console.log($("#content1").text().length); // For HTML content
+        // $('#blog_form').validate({
+        //     rules: {
+        //         subject: 'required',
+        //         category: 'required',
+        //         blog_image: {
+        //             required: true,
+        //             extension: 'jpg,jpeg,png,gif'
+        //         },
+        //         content1: {
+        //             required: function(element) {
+        //                 return $('#content1').val().trim() === ''; // Check if content1 is empty
+        //             }
+        //         },
+        //         content2:{
+        //             required: true,
+        //             minlength:1
+        //         },  
+        //         content3:{
+        //             required: true,
+        //             minlength:1
+        //         }, 
+        //         content4:{
+        //             required: true,
+        //             minlength:1
+        //         },
+            
+            
+        //     },
+        //     messages: {
+        //         content1: {
+        //     required: "Content 1 is required."
+        // },
+        //         blog_image: {
+        //             extension: 'Please select a valid image file (jpg, jpeg, png, gif)'
+        //         }
+        //     },
+        //     submitHandler: function(form) {
+        //             return true;
+        //             },
+        //     errorPlacement: function(error, element) {
+        //         console.log($("#content1").text().length); // For HTML content
 
-    //         if (element.attr("name") === "content1" || element.attr("name") === "content2" || element.attr("name") === "content3" || element.attr("name") === "content4") {
-    //                     element.closest('.editor_error').append(error);
-    //                 }
-    //                 if (element.attr("name") === "subject") {
-    //                     element.closest('.col-md-12').append(error);
-    //                 }
-    //                 else{
-    //     element.closest('.col-md-6').append(error);
-                        
-    //                 }
-                   
+        //         if (element.attr("name") === "content1" || element.attr("name") === "content2" || element.attr("name") === "content3" || element.attr("name") === "content4") {
+        //                     element.closest('.editor_error').append(error);
+        //                 }
+        //                 if (element.attr("name") === "subject") {
+        //                     element.closest('.col-md-12').append(error);
+        //                 }
+        //                 else{
+        //     element.closest('.col-md-6').append(error);
+                            
+        //                 }
+                    
 
 
-    //             },
-    // });
+        //             },
+        // });
 });
     </script>
 @stop

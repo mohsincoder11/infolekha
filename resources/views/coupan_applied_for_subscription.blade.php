@@ -57,7 +57,7 @@
 							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>	
-										<th>Sr.No.</th>
+										<th> SN.</th>
 										<th>Coupon Code</th> 
 										<th>Type Of coupon</th> 
 										<th>Status</th>

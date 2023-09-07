@@ -59,8 +59,7 @@
                                 <div class="listing-rating card-popup-rainingvis">
                                     <input type="text" class="form-control CouponCode" name="CouponCode"
                                         value="" style="margin-left:10px;" />
-                                    <span class="re_stars-title"><button style="margin-left:60px; padding:5px; border-radius:10px; color:#fff; border:none;"
-                                            type="button" class="btn-standard ApplyCouponCode">Apply</button></span>
+                                    <span class="re_stars-title"><button style="margin-left:60px; padding:10px; border-radius:10px; color:#fff; border:none;" type="button" class="btn-standard ApplyCouponCode">Apply</button></span>
                                 </div>
 
                             </ul>

@@ -69,7 +69,7 @@
 
                                     <table id="customers">
                                         <tr>
-                                            <th >Sr.no</th>
+                                            <th > SN</th>
                                             <th>File</th>
                                             <th>Academic Year</th>
                                             <th>Delete</th>
@@ -110,7 +110,7 @@
                                     </table>
                                     @if(count($school_post_result)==0)
 
-                            <p>No record found</p>
+                            <p>No Record Found</p>
                             @endif
 
 

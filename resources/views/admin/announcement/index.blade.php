@@ -1,4 +1,25 @@
 @extends('layout')
+@section('css')
+<style>
+    .close{
+
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    opacity: .5;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+}
+
+    
+</style>
+
+@stop
+
 @section('content')
     <!--start page wrapper -->
     <div class="page-wrapper">
@@ -23,7 +44,7 @@
                             <table id="example" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sr.no</th>
+                                        <th> SN</th>
                                         <th>Date</th>
                                         <th>Entity</th>
                                         <th>Package Name</th>
@@ -83,10 +104,17 @@
 
                                             <td>
 
-                                                <button type="button" class="btn1 btn-outline-primary open_modal"
+                                                <button type="button" class="btn1 btn-outline-primary open_announcement_modal" title="Preview"  
+                                                heading="{{ $announcements->heading }}"
+                                                    image={{ asset('public/' . $announcements->image) }}
+                                                    content="{{ $announcements->main_content }}"
                                                     EnquiryID="{{ $announcements->id }}"><i
-                                                        class="fadeIn animated bx bx-note"></i></button>
-                                                <button type="button" class="btn1 btn-outline-danger"><i
+                                                        class="fadeIn animated bx bx-unite"></i></button>
+                                                        <button title="update status" type="button" class="btn1 btn-outline-primary open_modal"
+                                                        EnquiryID="{{ $announcements->id }}"><i
+                                                            class="fadeIn animated bx bx-refresh"></i>
+                                                        </button>
+                                                <button title="delete" type="button" class="btn1 btn-outline-danger"><i
                                                         class='bx bx-trash me-0'></i></button>
 
                                             </td>
@@ -130,7 +158,7 @@
                             <label>Note</label>
                             <textarea class="form-control mb-3" name="note" type="text" aria-label="default input example" placeholder="Note"></textarea>
                         </div>
-                        <div class="col-md-6" style="margin-top:4.4vh;">
+                        <div class="col-md-6" >
                             <div class="col">
                                 <button type="submit" class="btn btn-primary px-5"> <i
                                         class="lni lni-circle-plus"></i>Submit</button>
@@ -146,7 +174,30 @@
     </div>
 @stop
 
+<div class="modal fade " id="announcement_modal" style="padding-top: 5%;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <h3 align="center" id="announcement_heading"></h3>
+            <div class="modal-body clearfix">
 
+                <div class="row">
+
+                    <div class="col-md-8">
+                        <p id="announcement_content" align="justify"></p>
+
+                    </div>
+                    <div class="col-md-4">
+                        <img width="100%" height="auto" id="announcement_image" src="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 @section('js')
 
@@ -185,7 +236,15 @@
             });
 
 
-
+            $(document).on('click', '.open_announcement_modal', function() {
+            $("#announcement_modal").modal('show');
+            $("#announcement_heading").text($(this).attr('heading'));
+            $("#announcement_image").attr('src', $(this).attr('image'));
+            $("#announcement_content").html($(this).attr('content'));
+        })
+        $(document).on('click', '.close', function() {
+            $("#announcement_modal").modal('hide');
+        })
         })
     </script>
 @stop

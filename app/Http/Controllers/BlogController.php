@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -15,30 +16,21 @@ class BlogController extends Controller
         'user_id',
         'blog_image',
         'created_at',
- 'status')->orderby('id','desc')->get();
+        'status')->orderby('id','desc')->get();
         return view('add-blogs',['blogs'=>$blogs]);
-    }
+    }   
 
-    public function create(Request $request){
+    public function add_blog(Request $request){
         $validator = Validator::make(
             $request->all(),
             [
+                'category' => ['required'],
+                'status' => ['required'],
+                'content1' => ['required'],
+                'status' => ['required'],
                 'blog_image' => ['required'],
-             'title'=>['required'],
-             'author_name'=>['required'],
-             'publish_date'=>['required'],
-             'blogs'=>['required'],
-                
-            ],
-            [
-               
-               'blog_image.required' => 'Please upload Blog Image.',
-                'title.required' => 'Please enter Title.',
-                'author_name.required' => 'Please enter Author Name.',
-                'publish_date.required' => 'Please enter Publish Date.',
-                'blogs.required' => 'Please enter Blogs.',
-               
             ]);
+    
             if ($validator->fails()) {
                 $errors = '';
                 $messages = $validator->messages();
@@ -47,27 +39,26 @@ class BlogController extends Controller
                 }
                 return back()->with(['error'=>$errors]);
             }
+            $newblog=new Blog();
+            $blog_image = '';
+            if ($request->hasFile('blog_image')) {
+                $file = $request->file('blog_image');
+                $blog_image = time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('/blog/'), $blog_image);
+                $newblog->blog_image='/blog/'.$blog_image;
 
-        $blogcreate=new Blog;
-
-        $filename='';
-        if($request->hasFile('blog_image')){
-            $file= $request->file('blog_image');
-            $filename=rand(0123,9999).time().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path('images/'), $filename);
-            $blogcreate->blog_image= 'images/'.$filename;
-    
-        }
-        // $blogcreate->blog_image=$request->get('blog_image');
-        
-        $blogcreate->title=$request->get('title');
-        $blogcreate->author_name=$request->get('author_name');
-        $blogcreate->publish_date=$request->get('publish_date');
-        $blogcreate->blogs=$request->get('blogs');
-        // $blogcreate->blog_editor=$request->get('blog_editor');
-        $blogcreate->save();
-        return redirect(route('admin.blog'))->with(['success'=>'Successfully Inserted.']);
-    }
+            }
+            $newblog->subject=$request->subject;
+            $newblog->status=$request->status;
+            $newblog->user_id=Auth::guard('admin')->user()->id;
+            $newblog->category=$request->category;
+            $newblog->content1=substr($request->content1, 1, -1);
+            $newblog->content2=substr($request->content2, 1, -1);
+            $newblog->content3=substr($request->content3, 1, -1);
+            $newblog->content4=substr($request->content4, 1, -1);
+            $newblog->save();
+        return redirect(route('admin.blog'))->with(['success'=>'Blog added successfully.']);
+     }
 
     public function get_blog(Request $request){
      $editblog = Blog::find($request->BlogID); 
@@ -100,13 +91,14 @@ public function change_blog_status(Request $request){
         }
 
         $updateblog=Blog::find($request->BlogID);
+        $updateblog->subject=$request->subject;
         $updateblog->status=$request->status;
         $updateblog->category=$request->category;
-        $updateblog->content1=$request->content1;
-        $updateblog->content2=$request->content2;
-        $updateblog->content3=$request->content3;
-        $updateblog->content4=$request->content4;
-        $updateblog->reject_reason=$request->note;
+        $updateblog->content1=substr($request->content1, 1, -1);;
+        $updateblog->content2=substr($request->content2, 1, -1);;
+        $updateblog->content3=substr($request->content3, 1, -1);;
+        $updateblog->content4=substr($request->content4, 1, -1);;
+        $updateblog->reject_reason=$request->reject_reason;
         $updateblog->save();
     return redirect(route('admin.blog'))->with(['success'=>'Status Successfully updated.']);
 

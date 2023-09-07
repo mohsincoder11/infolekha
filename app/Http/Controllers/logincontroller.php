@@ -21,13 +21,11 @@ class LoginController extends Controller
 
     public function login()
     {
-        User::find(251)->update(['password' => Hash::make(12345678)]);
         return view('Website.login-auth.login');
     }
 
     public function forget_password()
     {
-        //User::find(251)->update(['password'=>Hash::make(12345678)]);
         return view('Website.login-auth.forget_password');
     }
 

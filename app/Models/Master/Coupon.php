@@ -14,5 +14,11 @@ class Coupon extends Model
         'type',
         'discount',
         'status',
+        'coupon_for'
     ];
+
+    public function getCouponForAttribute($value)
+    {
+        return $value=='1' ? 'School /Institute /College' : 'Tutor';
+    }
 }

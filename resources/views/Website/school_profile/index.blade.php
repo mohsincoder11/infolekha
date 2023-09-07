@@ -1,7 +1,25 @@
 @extends('Website.school_profile.layout')
 
 @section('profile_content')
+<style>
+	@media (max-width: 768px) {
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+	
+	.social-icons {
+    display: flex;
+    justify-content: center; 
+    list-style: none;
+    padding: 0; 
+  }
 
+  .social-icons li {
+    margin: 0 10px; 
+  }
+</style>
 <div class="dashboard-content">
                     <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
                     <div class="container dasboard-container">
@@ -32,9 +50,9 @@
                                     <div class="dasboard-widget-title fl-wrap">
                                     </div>
                                     <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
-                                       
-                                        <div class="bg-wrap bg-parallax-wrap-gradien">
-                                            <div class="bg" data-bg="{{asset('public')."/".($user_data->logo ?? '')}}"></div>
+                                      
+                                        <div >
+                                            <div ><img src="{{asset('public')."/".($user_data->banner_image ?? '')}}" width="500" height="250"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
                                             {{-- <div class="photoUpload color-bg">
@@ -98,7 +116,7 @@
                                             </div>
                                             
                                             <label style="color:#144273; text-align:center; margin-top: 5%;">About Us</label>
-                                            <textarea cols="40" rows="3" placeholder="" style="margin-bottom:0px;font-size:14px;  color:#144273;">{{$user_data->about}}</textarea>	
+                                            <span class="about" align="justify">{{$user_data->about}}</span>	
                                             
                                                <!-- section -->
                     <section >
@@ -189,15 +207,17 @@
                                             $user_data->insta ||
                                             $user_data->yt ||
                                             $user_data->google) 
-                                              <h1 style="color:#144273;  font-size: 20px; margin-top: 12%;">
+											
+											
+                                              <h1 style="color:#144273;  font-size: 20px; margin-top: 12%;" align="center">
                                                 Social Media Handles</h1>
     
     
                                             <div class="col-md-12" id="demo" style="margin-top:2%;  ">
    
                                                 <div class="footer-social fl-wrap" style="text-align: center;">
-                                                    <div class="col-md-4"></div>
-                                                    <ul>
+                                              
+                                                    <ul class="social-icons">
                                                         @if ($user_data->fb)
                                                             <li><a href="{{ $user_data->fb }}" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
                                                         @endif

@@ -55,6 +55,9 @@ class RegistrationController extends Controller
         ->where('r_entity', 'school')
         ->when(isset($request['from_date']) && isset($request['to_date']) && $request['from_date']!=null && $request['to_date']!=null, function ($query) use ($request) {
             return $query->whereBetween('created_at', [$request['from_date'], $request['to_date']]);
+        })
+         ->when(isset($request['active']) && $request['active']!=null, function ($query) use ($request) {
+            return $query->where('users.active', $request['active']);
         });
        $registers=$query
         ->orderBy('users.id','desc')

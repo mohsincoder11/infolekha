@@ -41,6 +41,7 @@ class CouponController extends Controller
             'type' => $request->input('type'),
             'discount' => $request->input('discount'),
             'status' => $request->input('status'),
+            'coupon_for' => $request->input('coupon_for'),
         ]);
 
         $coupon->save();
@@ -68,6 +69,7 @@ class CouponController extends Controller
             'type' => 'required|in:FLAT,PERCENT',
             'discount' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
+            
         ]);
         if ($validator->fails()) {
             $errors = '';
@@ -85,6 +87,8 @@ class CouponController extends Controller
             'type' => $request->input('type'),
             'discount' => $request->input('discount'),
             'status' => $request->input('status'),
+            'coupon_for' => $request->input('coupon_for'),
+
         ]);
 
         return redirect()->route('admin.master.coupon')->with(['success'=>'Successfully Updated.']);

@@ -29,7 +29,7 @@
             <div class="col-md-12">
                 <table id="customers">
                    <thead>
-                        <th>Sr.No</th>
+                        <th> SN</th>
                         <th>Subject</th>
                         <th>Category</th>
                         <th>Image</th>
@@ -69,7 +69,7 @@
 
                 </table>
                 @if(count($blogs) == 0)
-				   <p>No record found</p>
+				   <p>No Record Found</p>
 
                 @endif
             </div>

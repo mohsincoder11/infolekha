@@ -14,6 +14,7 @@ class school_institute_detail extends Model
         'subscription_status',
         'entity_name',
         'entity_select',
+        'banner_image',
         'address',
         'about',
         'pin_code',

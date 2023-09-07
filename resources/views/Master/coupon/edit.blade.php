@@ -44,7 +44,13 @@
                                     <input type="number" class="form-control" placeholder="Coupon Discount"
                                         name="discount" value="{{$edit->discount}}">
                                 </div>
-
+                                <div class="col-md-6">
+                                    <label for="inputStatus" class="form-label">Coupon For</label>
+                                    <select class="form-select" name="coupon_for">
+                                        <option value="1" @if($edit->coupon_for=='School \/Institute \/College') selected @endif>  School /Institute /College</option>
+                                        <option value="2" @if($edit->coupon_for=='Tutor') selected @endif>Tutor</option>
+                                    </select>
+                                </div>
                                 <div class="col-md-6">
                                     <label for="inputStatus" class="form-label">Coupon Status</label>
                                     <select class="form-select" name="status">
@@ -84,7 +90,9 @@
                                         <th>Code</th>
                                         <th>Type</th>
                                         <th>Discount</th>
+                                        <th>Coupon For</th>
                                         <th>Status</th>
+                                        <th>Action</th>
 
                                     </tr>
                                 </thead>
@@ -96,6 +104,7 @@
                                           <td>{{$Coupon->code}}</td>
                                           <td>{{$Coupon->type}}</td>
                                           <td>{{$Coupon->discount}}</td>
+                                                                                    <td>{{$Coupon->coupon_for}}</td>
                                           <td>{{ucFirst($Coupon->status)}}</td>
 
                                             <td>

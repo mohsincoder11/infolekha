@@ -136,7 +136,7 @@
                                 <div class="row">
 							
 
-                                <div class="col-md-5">
+                                    <div class="col-md-5">
 									    <div class="listsearch-input-item">
                                     <label style="font-size:16px;">Upload Logo</label>
                                     <input type="file" name="logo" class="upload" value="{{ $data->logo }}" />
@@ -144,6 +144,14 @@
                                         alt="">
 									</div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="listsearch-input-item">
+                                <label style="font-size:16px;">Upload Banner</label>
+                                <input type="file" name="banner_image" class="upload" value="{{ $data->banner_image }}" />
+                                <img height="50px" width="50px" src="{{ asset('public') . '/' . $data->banner_image }}"
+                                    alt="">
+                                </div>
+                            </div>
 									<div class="col-md-1"></div>
                                 <div class="col-md-6 ">
                                     <label style="font-size:16px;"> Your Name </label>
@@ -272,7 +280,7 @@
 
                                                 <a target="_blank" href="{{ asset('public') . '/' . $i }}"
                                                     class="geodir-category-img_item img">
-                                                    <iframe height="100%" width="210" src="{{ asset('public') . '/' . $i }}"
+                                                    <iframe height="100%" width="210" src="{{ asset('public') . '/' . $i }}?autoplay=0" class="iframe-click"
                                                         alt="" title="YouTube video player" frameborder="0"
                                                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                             </a>

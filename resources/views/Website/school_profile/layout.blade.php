@@ -18,8 +18,6 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/dashboard-style.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-    
     {{-- <link rel="stylesheet" type="text/css" href="{{ asset('website_asset/stylesheets/bootstrap2.css') }}"> --}}
 
 {{-- 
@@ -321,12 +319,10 @@ font-size: 16px;
     <!-- main -->
     <div id="main">
         <!-- header -->
-        <header class="main-header">
+		  <header class="main-header">
             <!--  logo  -->
-            <div class="logo-holder">
-                <a href="{{ route('index') }}"><img src="{{ asset('website_asset/images/Your-Logo.png') }}"
-                        alt="image"></a>
-            </div>
+            <div class="logo-holder"> <a href="{{ route('index') }}"><img src="{{ asset('website_asset/images/Your-Logo.png') }}"
+                        alt="image"></a></div>
             <!-- logo end  -->
 
             <!--  dashboard-submenu  end -->
@@ -359,8 +355,8 @@ font-size: 16px;
                         </select>
                         <label style="margin-top:10px;">Price Range</label>
                         <div class="price-rage-item fl-wrap">
-                            <input type="text" class="price-range" data-min="100" data-max="100000"
-                                name="price-range1" data-step="1" value="1" data-prefix="$">
+                            <input type="text" class="price-range" data-min="100" data-max="100000" name="price-range1"
+                                data-step="1" value="1" data-prefix="$">
                         </div>
                         <button onclick="location.href='listing.html'" type="button" class="btn float-btn color-bg"><i
                                 class="fal fa-search"></i> Search</button>
@@ -405,8 +401,8 @@ font-size: 16px;
                                             <div class="widget-posts-descr">
                                                 <h4><a href="listing-single.html">Family House</a></h4>
                                                 <div class="geodir-category-location fl-wrap"><a href="#"><i
-                                                            class="fas fa-map-marker-alt"></i> 34-42 Montgomery St ,
-                                                        NY, USA</a></div>
+                                                            class="fas fa-map-marker-alt"></i> 34-42 Montgomery St , NY,
+                                                        USA</a></div>
                                                 <div class="widget-posts-descr-price"><span>Price: </span> $ 50.000
                                                 </div>
                                                 <div class="clear-wishlist"><i class="fal fa-trash-alt"></i></div>
@@ -478,8 +474,8 @@ font-size: 16px;
                                 </div>
                                 <!-- header-modal-container end-->
                                 <div class="header-modal-top fl-wrap">
-                                    <a class="clear_wishlist color-bg" href="compare.html"><i
-                                            class="fal fa-random"></i> Compare</a>
+                                    <a class="clear_wishlist color-bg" href="compare.html"><i class="fal fa-random"></i>
+                                        Compare</a>
                                 </div>
                             </div>
                         </div>
@@ -518,6 +514,7 @@ font-size: 16px;
             </div>
             <!--header-opt-modal end -->
         </header>
+             
         <!-- header end  -->
         <!-- wrapper  -->
         <div id="wrapper">
@@ -548,7 +545,7 @@ font-size: 16px;
                                         @if ($routeName == 'school_profile.post_result') class="user-profile-act" @endif><i
                                             class="fal fa-file"></i> Post
                                         Your
-                                        Results</a></li>
+                                        Result</a></li>
                                 <li>
                                     <a href="{{ route('school_profile.create_job_vacancy') }}"
                                         @if ($routeName == 'school_profile.create_job_vacancy') class="user-profile-act" @endif><i
@@ -741,11 +738,9 @@ font-size: 16px;
     @yield('js')
 <script>
       setTimeout(() => {
-            $("#description1 #fr-logo").css('display', 'none');
-            $("#description2 #fr-logo").css('display', 'none');
-            $("#description3 #fr-logo").css('display', 'none');
-            $("#description4 #fr-logo").css('display', 'none');
-        }, 3000);
+           
+          $("iframe video").prop("autoplay",false);
+        }, 1000);
 </script>
 </body>
 

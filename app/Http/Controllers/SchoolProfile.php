@@ -27,12 +27,13 @@ use Illuminate\Support\Facades\Hash;
 
 class SchoolProfile extends Controller
 {
-   public function  home(Request $request)
+   public function home(Request $request)
    {
       $school_type = SchoolType::get();
 
       $data = DB::table('users')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
+        
 if($data){
    return view('Website.school_profile.index', ['user_data' => $data,'school_type'=>$school_type]);
 
@@ -71,6 +72,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
+       
 
       return view('Website.school_profile.update_profile', ['data' => $data]);
    }
@@ -94,6 +96,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       $createOrupdate=City::firstOrCreate(['city'=>$city]);
       $user->city_id=$createOrupdate->id;
 
+     
       if ($request->hasfile('logo')) {
          $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
          $request->logo->move(public_path('database_files/school_institute/logo/'), $logo);
@@ -123,7 +126,11 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
 
       $exist_image_array = json_decode($school_detail->image);
       $exist_video_array = json_decode($school_detail->video);
-
+      if ($request->hasfile('banner_image')) {
+         $banner_image = time() . '.' . $request->file("banner_image")->getClientOriginalExtension();
+         $request->banner_image->move(public_path('database_files/school_institute/banner_image/'), $banner_image);
+         $banner_image = 'database_files/school_institute/banner_image/' . $banner_image;
+      }
       $school_detail->update([
          // 'image'=>$request->image,
          'entity_name' => $request->entity_name,
@@ -137,6 +144,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          'about' => $request->about,
          'image' => array_merge($image_name, $exist_image_array),
          'video' => array_merge($video_name, $exist_video_array),
+         'banner_image'=>$request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image
 
       ]);
 
@@ -571,7 +579,6 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       return view('Website.school_profile.blog.create');
    }
    public function insert_blog(Request $request){
-     
       $validator = Validator::make(
          $request->all(),
          [
@@ -579,9 +586,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             'category' => 'required',
             'blog_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4048',
             'content1' => 'required',
-            'content2' => 'required',
-            'content3' => 'required',
-            'content4' => 'required',
+           
          ]
       );
       if ($validator->fails()) {
@@ -628,9 +633,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             'subject' => 'required',
             'category' => 'required',
             'content1' => 'required',
-            'content2' => 'required',
-            'content3' => 'required',
-            'content4' => 'required',
+
          ]
       );
       if ($validator->fails()) {
@@ -668,7 +671,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
 
    public function change_password(Request $request)
    {
-      User::where('id',251)->update(['password'=>Hash::make(123456789)]);
+     // User::where('id',251)->update(['password'=>Hash::make(123456789)]);
       return view('Website.school_profile.change_password');
    }
  

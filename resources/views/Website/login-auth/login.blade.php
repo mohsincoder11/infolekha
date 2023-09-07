@@ -38,8 +38,8 @@
                         <h3 class="title-formlogin">Log in</h3>
                         <span class="input-login icon-form"><input type="text" placeholder="Username*" name="email"
                                 required="required"><i class="fa fa-envelope"></i></span>
-                        <span class="input-login icon-form"><input type="password" placeholder="Password*" name="password"
-                                required="required"><i class="fa fa-lock"></i></span>
+                        <span class="input-login icon-form"><input type="password" placeholder="Password*" name="password" id="password"
+                                required="required"><i toggle="#password" class="fa fa-eye-slash toggle-password"></i></span>
                         <div class="flat-fogot clearfix">
 
                             <label class="float-right link-register">
@@ -100,6 +100,15 @@
         });
 
       
+        $(".toggle-password").click(function() {
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
 
 
     </script>

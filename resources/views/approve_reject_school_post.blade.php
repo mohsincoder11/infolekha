@@ -23,7 +23,7 @@
 								<thead>
 									<thead>
 									<tr>	
-										<th>Sr.No.</th>
+										<th> SN.</th>
 										<th>Announced</th>  
 										<th>Announced By</th>
 										<th>Status</th>

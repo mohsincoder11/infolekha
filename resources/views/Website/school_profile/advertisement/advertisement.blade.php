@@ -135,12 +135,12 @@
                             </div>
 
                             <div class="col-md-4">
-                                <label style="font-size:16px;">Select Size(pxl)</label>
+                                <label style="font-size:16px;">Select Size(px)</label>
                                 <span id="advertisement_area">
 									      
                                     <select data-placeholder="Status" class="chosen-select on-radius no-search-select"
                                         id="advertisement_size">
-										        <option>Select Size</option>
+										 <option>Select Size</option>
                                     </select>
                                 </span>
                             </div>
@@ -154,10 +154,10 @@
 
                     </div>
 
-                </div>
+               
 
 
-            </div>
+           
 
             <div class="col-md-12" style="margin-top: 20px;">
                 <hr>
@@ -165,11 +165,11 @@
 
             <div class="col-md-12">
 
-                <div class="row" style="margin-top:20px;">
+                <div class="row" style="margin-top:20px; overflow-x:scroll;">
 
-                                              <table id="customers">
+                       <table id="customers">
                         <tr>
-                            <th>Sr.no</th>
+                            <th>SN.</th>
                             <th>Location</th>
                             <th>Package Name</th>
                             <th>Size</th>
@@ -214,9 +214,9 @@
 
                     </table>
                     @if(count($advertisements)==0)
-                            <p>No record found</p>
+                            <p>No Record Found</p>
                             @endif
-
+ </div>
 
                 </div>
 
@@ -265,7 +265,9 @@
                 let parent_div = $(this).closest('.card-element-container');
                 let selected_day = $(this).val();
 
-                calculate_discount(parent_div);
+                if(parent_div.find('.CouponCode').val()){
+                    calculate_discount(parent_div);
+                }
 
                 if (selected_day && selected_day > 0) {
                     $(this).closest("form").find(".no_of_days_error").html('');
@@ -314,8 +316,14 @@
                             total_amount=Math.round(original_price * selected_days2);
                             parent_div.find('.discount_span').text('0');
                             parent_div.find('.discount_input').val('0');
+                            Toast.fire({
+                icon: 'error',
+                title: "Invalid coupon code."
+            })
 
                         }
+                        total_amount=total_amount.toFixed(2);
+
                         parent_div.find('.total_amount').text(total_amount);
                         parent_div.find('.total_amount').val(total_amount);
                         if(total_amount && total_amount>0)

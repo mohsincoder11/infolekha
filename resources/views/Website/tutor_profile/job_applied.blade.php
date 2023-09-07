@@ -18,7 +18,7 @@
                             <!-- listsearch-input-item -->
                                                         <table id="customers">
                                 <tr>
-                                    <th>Sr.no</th>
+                                    <th> SN</th>
                                     <th>College Name</th>
                                     <th>Job Type</th>
                                     <th>Status</th>
@@ -48,7 +48,7 @@
                             </table>
                             @if(count($jobs)==0)
 
-                            <p>No record found</p>
+                            <p>No Record Found</p>
                             @endif
                         </div>
                     </div>

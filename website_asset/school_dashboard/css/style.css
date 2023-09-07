@@ -237,7 +237,7 @@ blockquote p {
 }
 .logo-holder img {
 	width:auto;
-	height:60px;
+	height:50px;
 }
 .header-search-button{
 	float:left;
@@ -798,7 +798,7 @@ blockquote p {
 	background: #F5F7FB;
 	float:left;
 	width:100%;
-	color: #7d93b2;
+	color:#333333;
    	font-family: 'Jost', sans-serif;
 	border: 1px solid #e5e7f2;
 } 
@@ -1271,7 +1271,7 @@ nav li ul a:before , nav li ul a:after {
 	font-weight: 400;
 }
 .custom-form  textarea::-webkit-input-placeholder , .custom-form  input[type="text"]::-webkit-input-placeholder  , .listsearch-input-item input[type="text"]::-webkit-input-placeholder  , .custom-form  input[type=password]::-webkit-input-placeholder  {
-	color: #7d93b2;
+	color: #333333;
   	font-family: 'Jost', sans-serif;
 }
 .custom-form  textarea:focus , .custom-form input[type="text"]:focus  , .custom-form  input[type=email]:focus  , .custom-form  input[type=password]:focus , .listsearch-input-item input[type="text"]:focus  {
@@ -7506,4 +7506,25 @@ section.single-par2  .scroll-down-wrap{
 		-webkit-background-size: cover;
 		background-position: center;
 	}
+}
+
+.about{
+	float: left;
+    border: 1px solid #e5e7f2;
+    background: #F5F7FB;
+    width: 100%;
+    padding: 15px 20px 15px 70px;
+    border-radius: 4px;
+	color: #7d93b2;
+	font-size:12px;
+	-webkit-appearance: none;
+	outline:none;
+	overflow:hidden;
+	z-index:1;
+	font-weight: 400;
+
+    resize: none;
+    padding: 25px 20px;
+	-webkit-appearance: none;
+
 }

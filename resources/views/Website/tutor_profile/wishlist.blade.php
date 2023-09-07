@@ -18,7 +18,7 @@
                             <!-- listsearch-input-item -->
                             <table id="customers">
                                 <tr>
-                                    <th>Sr.no</th>
+                                    <th> SN</th>
                                     <th>College Name</th>
                                     <th>Remove</th>
                                 </tr>
@@ -39,7 +39,7 @@
                             </table>
                             @if(count($wishlists)==0)
 
-                            <p>No record found</p>
+                            <p>No Record Found</p>
                             @endif
 
                         </div>

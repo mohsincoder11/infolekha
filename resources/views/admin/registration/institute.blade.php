@@ -73,7 +73,7 @@
                     <table id="example" class="table table-striped table-bordered">
                         <thead>
                             <tr>
-                                <th>Sr.No.</th>
+                                <th> SN.</th>
                                 <th>Name of Institution </th>
                                 <th>Contact No</th>
                                 <th>Email</th>
@@ -90,7 +90,7 @@
                                         <div class="tooltip-wrap2">{{ $dt->r_name }}
                                             <div class="tooltip-content2">
 
-                                                <label><b>Sr.No</b>:{{ $dt->user_id }}</label><br>
+                                                <label><b> SN</b>:{{ $dt->user_id }}</label><br>
                                                 <label><b>Name of
                                                         Institution:</b>{{ $dt->r_name }}</label><br>
                                                 <label><b>Name of
@@ -188,20 +188,7 @@
             });
          
         </script>
-        <script>
-            $(document).ready(function() {
-
-                var table = $('#example').DataTable({
-
-                    scrollCollapse: true,
-                    paging: true,
-                    fixedColumns: {
-                        leftColumns: 0,
-                        right: 1
-                    }
-                });
-            });
-        </script>
+         
 
 
     @stop

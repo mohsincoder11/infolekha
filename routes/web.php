@@ -163,7 +163,8 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::post('update_blog', [BlogController::class, 'update'])->name('update_blog');
     Route::get('destroy_blog/{id}', [BlogController::class, 'destroy'])->name('destroy_blog');
     Route::post('change-blog-status', [BlogController::class, 'change_blog_status'])->name('change-blog-status');
-
+    Route::post('add-blog', [BlogController::class, 'add_blog'])->name('add-blog');
+    
     Route::get('get-blog', [BlogController::class, 'get_blog'])->name('get-blog');
 
 
@@ -314,7 +315,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     //school only route
     Route::group(['middleware' => ['role:1']], function () {
         Route::get('profile', [SchoolProfile::class, 'home'])->name('school_profile.home');
-        Route::get('school_profile/update_profile', [SchoolProfile::class, 'update_profile'])->name('school_profile.update_profile');
+        Route::get('school_profile/update-profile', [SchoolProfile::class, 'update_profile'])->name('school_profile.update_profile');
         Route::post('school_profile/post_update_profile',[SchoolProfile::class,'post_update_profile'])->name('school_profile.post_update_profile');
         Route::post('school_profile/insert_post_result',[SchoolProfile::class,'insert_post_result'])->name('school_profile.insert_post_result');
         Route::get('school_profile/destroy_post_result/{id}',[SchoolProfile::class,'destroy_post_result'])->name('school_profile.destroy_post_result');
@@ -335,7 +336,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
         Route::get('school_profile/post_result', [SchoolProfile::class, 'post_result'])->name('school_profile.post_result');
         Route::get('school_profile/pramote_bussiness', [SchoolProfile::class, 'pramote_bussiness'])->name('school_profile.pramote_bussiness');
-        Route::get('school_profile/change_password', [SchoolProfile::class, 'change_password'])->name('school_profile.change_password');
+        Route::get('school_profile/change-password', [SchoolProfile::class, 'change_password'])->name('school_profile.change_password');
         Route::get('school-profile/post-announcement', [SchoolProfile::class, 'post_announcement'])->name('school_profile.post_announcement');
         Route::post('insert-announcement', [SchoolProfile::class, 'insert_announcement'])->name('insert-announcement');
         Route::get('school-profile/announcement-package/{id}', [SchoolProfile::class, 'announcement_package'])->name('school_profile.announcement-package');

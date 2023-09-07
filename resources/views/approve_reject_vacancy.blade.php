@@ -13,7 +13,7 @@
 							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>	
-										<th>Sr.No.</th>
+										<th> SN.</th>
 										<th>Name Of Vacancy</th>  
 										<th>Status</th>
 										<th>Action</th>

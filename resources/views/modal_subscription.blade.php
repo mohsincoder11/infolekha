@@ -23,7 +23,7 @@
 								<thead>
 									<thead>
 									<tr>	
-										<th>Sr.No.</th>
+										<th> SN.</th>
 										<th>Subscriptions</th>  
 										<th>Status</th>
 										<th>Action</th>

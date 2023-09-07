@@ -190,7 +190,7 @@ body {
 }
 
 a {		
-	color: #000000;
+	color: #0000FF;
 	text-decoration: none;
 	-webkit-transition: all 0.3s ease-in-out;
 	   -moz-transition: all 0.3s ease-in-out;
@@ -1285,14 +1285,22 @@ section.main-content.blog-single {
 }
 
 
-.form-listing .icon-form i {
-	position: absolute;
-	right: 14px;
-	top: 0px;
-	color: #d7d7d7;
-	font-size: 16px;
+.icon-form i {
+    position: absolute;
+    right: 10px; /* Adjust this to control the icon's position */
+    top: 95%; /* Vertically center the icon */
+    transform: translateY(-95%); /* Vertically center the icon */
+    cursor: pointer;
+    z-index: 1;
+    color: #d7d7d7;
+    font-size: 16px;
+    vertical-align: middle; /* Add this line to ensure vertical alignment */
 }
-
+.error-message {
+    color: red; /* Customize the error message color */
+    font-size: 14px; /* Customize the error message font size */
+    margin-top: 1px; /* Adjust the margin to separate it from the input field */
+}
 .form-listing .wrap-button button {
 	padding: 17px 50px 15px ;
 }

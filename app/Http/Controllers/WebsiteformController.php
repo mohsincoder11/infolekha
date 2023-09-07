@@ -53,8 +53,8 @@ class WebsiteformController extends Controller
         $announcements = Announcement::where('status','Active');
         $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','home')->where('status','Active')->select('advertisement_enquiries.*'); //we need to add city id condition
         if(Auth::check()){
-            $announcements=$announcements->where('city_id',Auth::user()->city_id);
-            $advertisements=$advertisements_query->where('users.city_id',Auth::user()->city_id);
+           // $announcements=$announcements->where('city_id',Auth::user()->city_id);
+           // $advertisements=$advertisements_query->where('users.city_id',Auth::user()->city_id);
         }
         $announcements= $announcements->get();
         $advertisements_650=(clone $advertisements_query)
@@ -207,7 +207,8 @@ public function database_backup(){
         ->where('user_school_institute_detail.subscription_status', '1')
         ->select('user_school_institute_detail.*', 'user_school_institute.*')
         ->first();
-        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('status','Active')->take(8)->get();
+        $advertisements=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','listing')->where('status','Active')->select('advertisement_enquiries.*')->get();
+        
         $jobs=JobVacancy::where('college_id',$request->id)->orderby('id','desc')->get();
         $past_results=PostResult::where('college_id',$request->id)->orderby('start_year','desc')->get();
         if( $details){
@@ -433,7 +434,7 @@ public function database_backup(){
     }
 
     public function apply_subscription_amount(Request $request){
-        $coupon=Coupon::where('code',$request->code)->where('status','active')->first();
+        $coupon=Coupon::where('code',$request->code)->where('status','active')->where('coupon_for',Auth::user()->role)->first();
         if(isset($coupon)){
             $subscription=\App\Models\Master\Subscription::find($request->id);
             if($coupon->type=="PERCENT"){

@@ -149,6 +149,7 @@ function initHomeradar() {
         }]
     });
     $('.listing-carousel').slick({
+        autoplay:false,
         infinite: true,
         slidesToShow: 3,
         dots: true,

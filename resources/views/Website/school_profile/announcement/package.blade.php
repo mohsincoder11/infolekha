@@ -160,6 +160,7 @@
                                              @for($i=$advertisements->MinDays;$i<=$advertisements->MaxDays;$i++)
                                              <option value="{{$i}}">{{$i}} @if($i>1)days @else day @endif</option>
                                              @endfor
+                                             <option value=""></option>
                                          </select>
                                          <span class="no_of_days_error"></span>
                                       </li>
@@ -171,14 +172,21 @@
                                        <li class="card-element">Apply Coupon Code
 
                                        </li>
-                                        <li class="card-element">
+                                       <!-- <li class="card-element">
                                         <input type="text" class="form-control CouponCode" name="CouponCode"
                                         value="">
                                         <button style="margin-left:60px; padding:5px; border-radius:10px; color:#fff; border:none;"
                                         type="button" class="btn-standard ApplyCouponCode">Apply</button>
-                                                                           </li>
+                                                                           </li>-->
+								<div class="listing-rating ">
+                                    <input type="text" class="form-control CouponCode" name="CouponCode"
+                                        value="" style="margin-left:10px;" />
+                                    <span class="re_stars-title"><button style="margin-left:60px; padding:10px; border-radius:10px; color:#fff; border:none;" type="button" class="btn-standard ApplyCouponCode">Apply</button></span>
+                                </div>
                      
                                      </ul>
+									   
+				
                                      <div>
                      
                                          {{-- <label style="text-align: center !important;"> Apply Coupon Code</label>
@@ -252,7 +260,9 @@
                 let parent_div = $(this).closest('.card-element-container');
                 let selected_day = $(this).val();
 
-                calculate_discount(parent_div);
+                if(parent_div.find('.CouponCode').val()){
+calculate_discount(parent_div);
+                }
 
                 if (selected_day && selected_day > 0) {
                     $(this).closest("form").find(".no_of_days_error").html('');
@@ -302,8 +312,13 @@
                             total_amount=Math.round(original_price * selected_days2);
                             parent_div.find('.discount_span').text('0');
                             parent_div.find('.discount_input').val('0');
+                            Toast.fire({
+                icon: 'error',
+                title: "Invalid coupon code."
+            })
 
                         }
+                        total_amount=total_amount.toFixed(2);
                         parent_div.find('.total_amount').text(total_amount);
                         parent_div.find('.total_amount').val(total_amount);
                         if(total_amount && total_amount>0)

@@ -115,7 +115,7 @@
                                                    
                                                    <table id="customers">
                             <tr>
-                                <th>Sr.no</th>
+                                <th> SN</th>
                                 <th>Tutor Name</th>
                                 <th>Subject</th>
                                 <th>Experience</th>
@@ -145,7 +145,7 @@
 
                         </table>
                         @if(count($applied_jobs)==0) 
-                            <p>No record found</p>
+                            <p>No Record Found</p>
                             @endif
 
 

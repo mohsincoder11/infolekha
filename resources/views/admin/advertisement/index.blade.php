@@ -22,7 +22,7 @@
                             <table id="example" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Sr.no</th>
+                                        <th> SN</th>
                                         <th>Date</th>
                                         <th>Entity</th>
                                         <th>Location</th>
@@ -86,12 +86,12 @@
 
                                             <td>
 
-                                                <button type="button" class="btn1 btn-outline-primary open_modal"
+                                                <button title="upload image" type="button" class="btn1 btn-outline-primary open_modal"
                                                     EnquiryID="{{ $advertisement->EnquiryID }}"
                                                     width="{{ $advertisement->BannerWidth }}"
                                                     height="{{ $advertisement->BannerHeight }}"><i
-                                                        class="fadeIn animated bx bx-note"></i></button>
-                                                <button type="button" class="btn1 btn-outline-danger"><i
+                                                        class="fadeIn animated bx bx-upload"></i></button>
+                                                <button title="delete" type="button" class="btn1 btn-outline-danger"><i
                                                         class='bx bx-trash me-0'></i></button>
 
                                             </td>

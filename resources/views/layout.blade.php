@@ -127,6 +127,7 @@
 			display: none !important;
 		}
 </style>
+@yield('css')
 
 <body>
 	<!--wrapper-->
@@ -814,7 +815,19 @@ title: "{{session()->get('error')}}"
 
 @endif --}}
 @yield('js')
+<script>
+	$(document).ready(function() {
+		var table = $('#example').DataTable({
 
+scrollCollapse: true,
+paging: true,
+fixedColumns: {
+	leftColumns: 0,
+	right: 1
+}
+});
+	})
+</script>
 </body>
 
 

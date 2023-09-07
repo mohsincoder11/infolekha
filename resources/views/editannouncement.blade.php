@@ -78,7 +78,7 @@
 							<table id="example" class="table table-striped table-bordered">
 								<thead>
 									<tr>	
-										<th>Sr.No.</th>
+										<th> SN.</th>
 										<th>Title</th>  
 										<th>City</th> 
 										<th>Date</th> 

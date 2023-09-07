@@ -55,7 +55,8 @@
 									<tr>
 										<td>1</td>
 										<td></td>	
-										<td><button type="button" class="btn1 btn-outline-success"><i class='bx bx-edit-alt me-0'></i></button> <button type="button" class="btn1 btn-outline-danger"><i class='bx bx-trash me-0'></i></button> 
+										<td><button type="button" class="btn1 btn-outline-success"><i class='bx bx-edit-alt me-0'></i>
+										</button> <button type="button" class="btn1 btn-outline-danger"><i class='bx bx-trash me-0'></i></button> 
 										</td>
 							
 									</tr>
