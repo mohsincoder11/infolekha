@@ -182,8 +182,7 @@ class TutorProfileController extends Controller
        if ($validator->fails()) {
           return  redirect()
              ->back()
-             ->withErrors($validator)
-             ->withInput();
+             ->with(['error'=>'Please enter all the details.']);
        }
        if ($request->hasFile('blog_image')) {
           $file = $request->file('blog_image');
@@ -231,8 +230,7 @@ class TutorProfileController extends Controller
        if ($validator->fails()) {
           return  redirect()
              ->back()
-             ->withErrors($validator)
-             ->withInput();
+             ->with(['error'=>'Please enter all the details.']);
        }
        $blog=Blog::find($request->id);
        if($blog){

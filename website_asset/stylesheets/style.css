@@ -3049,3 +3049,30 @@ footer a:hover {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
+
+
+
+	 @media (max-width: 768px) {
+        .d1 {
+       margin-left:30px;
+        }
+        .d2 {
+       margin-top:20px;
+        }
+
+        .d3 {
+       margin-left:55px;
+       margin-top:10px;
+        }
+
+        
+        .d4 {
+       margin-right:10px;
+        }
+    }
+
+	.btn-danger{
+		color: #fff;
+    background-color: #d9534f;
+    border-color: #d9534f;
+	}

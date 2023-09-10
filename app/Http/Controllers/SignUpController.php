@@ -114,7 +114,6 @@ class SignUpController extends Controller
 
     public function school_institute_detail_create(Request $request)
     {
-      
         $request->merge(['about' => preg_replace('/\r\n|\r|\n/', ' ', $request->about)]);
 
             $validator = Validator::make(
@@ -246,6 +245,8 @@ class SignUpController extends Controller
                 // $inst->activate = 0;
 
                 $inst->save();
+
+                app('App\Http\Controllers\Admin\MailController')->welcome_email(auth::user()->id);
                 return redirect()->route('payment_form');
     }
 
@@ -374,7 +375,10 @@ class SignUpController extends Controller
                     'cv'=>$cv_file
                 ]);
                 user_tutor::where('user_id',auth::user()->id)->update(['r_name'=>$request->get('name')]);
-                return redirect()->route('payment_form');
+                app('App\Http\Controllers\Admin\MailController')->welcome_email(auth::user()->id);
+
+               // return redirect()->route('payment_form');
+                return redirect()->route('tutor_profile.home');
     }
 
     public function student_detail_update(request $request)
@@ -589,6 +593,8 @@ class SignUpController extends Controller
                 Auth::attempt(array('email' => $request->email, 'password' => $request->password));
 
                 $data = Auth::user()->id;
+                app('App\Http\Controllers\Admin\MailController')->welcome_email(auth::user()->id);
+
                 return redirect()->route('college_listing');
             }
         }

@@ -343,6 +343,10 @@ section.flat-row.section-product {
 
 .flat-product .rate-product .start-review {
     padding-top: 6px;
+    cursor: pointer;
+}
+.flat-product .rate-product .start-review label{
+    cursor: pointer;
 }
 
 .flat-product .rate-product .start-review a.review {

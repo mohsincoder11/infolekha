@@ -211,6 +211,7 @@
                                                                     @if (request()->board_type == $board_type->id) selected @endif>
                                                                     {{ $board_type->type }}</option>
                                                             @endforeach
+                                                            <option value="Other"  @if (request()->board_type == 'Other') selected @endif>Other</option>
                                                         </select>
                                                     </div>
                                                 </div>

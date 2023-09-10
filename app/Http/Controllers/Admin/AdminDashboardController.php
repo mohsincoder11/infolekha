@@ -111,6 +111,16 @@ class AdminDashboardController extends Controller
         return view('admin.dashboard', ['tutor_data' => $tutor_data, 'student_data' => $student_data, 'school_institute_data' => $school_institute_data, 'count' => $count,'chart_count'=>$chart_count,'transactions_chart'=>$transactions_chart,'announcement_chart'=>$announcement_chart,
         'advertisement_chart'=>$advertisement_chart,'user_register_by_month_chart'=>$user_register_by_month_chart]);
     }
+    public function delete_user($id){
+        $user = User::find($id);
+        if($user){
+           $user->delete();
+        return back()->with(['status' => 'success', 'message' => 'User deleted successfully']);
+        }else{
+            return back()->with(['status' => 'error', 'message' => 'Something went wrong']);
+
+        }
+    }
 
     public function activation(Request $request)
     {

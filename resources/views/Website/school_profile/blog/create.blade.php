@@ -37,7 +37,7 @@
 
                             <div class="col-md-12">
                                 <label style="font-size:16px;">Subject of Blog </label>
-                                <input type="text" placeholder="Subject of Blog" name="subject"/>
+                                <input type="text" placeholder="Subject of Blog" name="subject" />
                             </div>
 
                             <div class="col-md-6">
@@ -56,7 +56,7 @@
 
                             <div class="col-md-6">
                                 <label style="font-size:16px;">Upload Blog Image</label>
-                                <input type="file" class="upload" name="blog_image" />
+                                <input type="file" class="upload" name="blog_image" accept="image/*" />
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">

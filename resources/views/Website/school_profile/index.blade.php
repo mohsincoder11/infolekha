@@ -51,8 +51,19 @@
                                     </div>
                                     <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
                                       
+										
+										  <!--  <div class="" >
+                                        <div style="background-image: url('images/clg.jpeg'); height: 250px;
+                                        width: 100%;"> 
+                                     
+                                            <img  class="mt"  src="images/clg.jpeg" alt=""   
+                                            style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index: 1000; margin-top:32%; "> 
+                                        </div>
+
+                                        
+                                    </div>-->
                                         <div >
-                                            <div ><img src="{{asset('public')."/".($user_data->banner_image ?? '')}}" width="500" height="250"></div>
+                                            <div ><img src="{{ isset($user_data->banner_image) ? asset('public').'/'.($user_data->banner_image) : 'https://via.placeholder.com/950x250' }}" width="500" height="250"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
                                             {{-- <div class="photoUpload color-bg">

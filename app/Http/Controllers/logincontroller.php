@@ -21,6 +21,7 @@ class LoginController extends Controller
 
     public function login()
     {
+        //User::find(307)->update(['password'=>Hash::make(12345678)]);
         return view('Website.login-auth.login');
     }
 
@@ -51,7 +52,9 @@ class LoginController extends Controller
                     }
                     return redirect()->route('tutor_profile.home');
                 } else {
-                    return redirect()->route('payment_form');
+                return redirect()->route('tutor_profile.home');
+
+                    //return redirect()->route('payment_form');
                 }
             } elseif (Auth::user()->role == 1) {
                 $int = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')

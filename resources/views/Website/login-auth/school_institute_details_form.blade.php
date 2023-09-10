@@ -3,500 +3,834 @@
 
 
 @if ($errors->any())
-    <div class="alert alert-danger">
-        There were some errors with your request.
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+<div class="alert alert-danger">
+    There were some errors with your request.
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
 @endif
-       <!-- Page title -->
-       <div class="page-title parallax parallax1">
-            <div class="section-overlay">
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="page-title-heading">
-							<h3 class="title" style="color:white;">Welcome</h3><br>
-                            <h1 class="title">{{$data->r_name}}</h1>
-                        </div><!-- /.page-title-captions -->
-                        <div class="breadcrumbs">
-                            <ul>
-                               <!-- <li><a href="index.html">Home</a></li>
+<!-- Page title -->
+<div class="page-title parallax parallax1">
+    <div class="section-overlay">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-title-heading">
+                    <h3 class="title" style="color:white;">Welcome</h3><br>
+                    <h1 class="title">{{$data->r_name}}</h1>
+                </div><!-- /.page-title-captions -->
+                <div class="breadcrumbs">
+                    <ul>
+                        <!-- <li><a href="index.html">Home</a></li>
                                 <li> - </li>
                                 <li><a href="index.html">Page</a></li>
                                 <li> - </li>-->
-                               
-                            </ul>
-                        </div><!-- /.breadcrumbs -->
-                    </div><!-- /.col-md-12 -->
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-        </div><!-- /.page-title -->
 
-        <section class="flat-row page-profile bg-theme">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-1">
-                       
-                    </div>
-                    <div class="col-lg-10">
-                        <div class="flat-tabs style2" data-effect="fadeIn">
-                            <ul class="menu-tab clearfix">
-                                <!-- <li class="active"><a href="#"><i class="ion-navicon-round"></i>(3) Listings</a></li> -->
-                                <!-- <li class=""><a href="#"><i class="ion-chatbubbles"></i> Reviews</a></li> -->
-                            </ul>
+                    </ul>
+                </div><!-- /.breadcrumbs -->
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</div><!-- /.page-title -->
 
-                            <div class="content-tab listing-user profile">
-                                <div class="content-inner ">
-                                    <div class="basic-info">
-                                        <h5>{{$data->r_entity}}</h5>
-									
-                                         <form method="post" action="{{url('school_institute_detail_create')}}"  class="form-profile" enctype="multipart/form-data" id="form2">
-                                             @csrf
-                                        <div class="row">
-                                      
-                                            <div class="col-md-8">
+<section class="flat-row page-profile bg-theme">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-1">
 
-                                                <div>
-                                                   
-                                                    <div class="row">                                                   
-                                                            <div class="col-lg-6">
-                                                            
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Name of {{$data->r_entity}}</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Name" value="{{$data->r_name}}" name="school_institute"  required="required" ><!--name="school_institute" -->
-                                                                      
-                                                                </div>
-                                                            </div>
+            </div>
+            <div class="col-lg-10">
+                <div class="flat-tabs style2" data-effect="fadeIn">
+                    <ul class="menu-tab clearfix">
+                        <!-- <li class="active"><a href="#"><i class="ion-navicon-round"></i>(3) Listings</a></li> -->
+                        <!-- <li class=""><a href="#"><i class="ion-chatbubbles"></i> Reviews</a></li> -->
+                    </ul>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Address*</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Address" name="address" required="required" value="{{$data->address}}" readonly>
-                                                                      
-                                                                </div>
-                                                            </div>
+                    <div class="content-tab listing-user profile">
+                        <div class="content-inner ">
+                            <div class="basic-info">
+                                <h5>{{$data->r_entity}}</h5>
 
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">About
-                                                                        School/College/institution   <span id="charcount">0 out of 500 characters</span></label><br>
-                                                                    <span id=charcount></span>
-																	<textarea minlength="20" maxlength="500"  name="about" id="about" onkeyup="charcountupdate(this.value)"></textarea>
+                                <form method="post" action="{{url('school_institute_detail_create')}}"
+                                    class="form-profile" enctype="multipart/form-data" id="form2">
+                                    @csrf
+                                    <div class="row">
 
-                                                                     
+                                        <div class="col-md-8">
 
+                                            <div>
 
-                                                                </div>
-                                                            </div>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
 
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Name of
+                                                                {{$data->r_entity}}</label>
+                                                            <input type="text" class="form-control" placeholder="Name"
+                                                                value="{{$data->r_name}}" name="school_institute"
+                                                                required="required">
+                                                            <!--name="school_institute" -->
 
+                                                        </div>
+                                                    </div>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Pin Code*</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Enter your Pin code" name="pin_code" required="required">
-                                                                      
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Address*</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Address" name="address" required="required"
+                                                                value="{{$data->address}}" readonly>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Operating Since
-                                                                    </label>
-                                                                    <select id="ddlYears" name="oprating_since">
-                                                                        <option value="">Select Year</option>
+                                                        </div>
+                                                    </div>
 
-                                                                        @for($i=date('Y');$i>=1950;$i--)
-                                                                        <option value="{{$i}}">{{$i}}</option>
-                                                                        @endfor
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">About
+                                                                School/College/institution <span id="charcount">0 out of
+                                                                    500 characters</span></label><br>
+                                                            <span id=charcount></span>
+                                                            <textarea minlength="20" maxlength="500" name="about"
+                                                                id="about"
+                                                                onkeyup="charcountupdate(this.value)"></textarea>
 
 
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Registration
-                                                                        No</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Registration No" name="registration_no" >
-                                                                      
-                                                                </div>
-                                                            </div>
+
+                                                        </div>
+                                                    </div>
 
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Contact No</label>
-                                                                    <input type="text" readonly class="form-control"
-                                                                        placeholder="Contact No" name="mob" value="{{$data->r_mob}}" required="required" >
-                                                                      
-                                                                </div>
-                                                            </div>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Email ID*</label>
-                                                                    <input readonly type="text" class="form-control"
-                                                                        placeholder="Email ID" value="{{$data->email}}" name="email" required="required">
-                                                                       
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Pin Code*</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter your Pin code" name="pin_code"
+                                                                required="required">
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Website</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Website-URL" name="website" >
-                                                                     
-                                                                </div>
-                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Facebook </label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Facebook-URL " name="fb">
-                                                                       
-                                                                </div>
-                                                            </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Operating Since
+                                                            </label>
+                                                            <select id="ddlYears" name="oprating_since">
+                                                                <option value="">Select Year</option>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Instagram</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Instagram-URL " name="insta" >
-                                                                        
-                                                                </div>
-                                                            </div>
+                                                                @for($i=date('Y');$i>=1950;$i--)
+                                                                <option value="{{$i}}">{{$i}}</option>
+                                                                @endfor
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Google
-                                                                        Business</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Google Business URL" name="google" >
-                                                                      
-                                                                </div>
-                                                            </div>
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Youtube</label>
-                                                                    <input type="text" class="form-control"
-                                                                        placeholder="Youtube-URL " name="yt" >
-                                                                      
-                                                                </div>
-                                                            </div>
-                                                         
-														
-                                                         @if($data->r_entity =='School')
-                                                           <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Select School*</label>
-                                                                    <select class="form-select select country-select"
-                                                                        name="school" id="school_entity"> 
-                                                                        <option>Select</option>
-                                                                        @foreach ($school_type as $school_type )
-                                                                            <option value="{{$school_type->type}}">{{$school_type->type}}</option>
-                                                                        @endforeach
-                                                                       
-                                                                        <option value="Other">Other (Please Specify)</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            <div class="col-lg-6" id="school_entity_other_div">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Specify Other Board</label>
-                                                                    <input type="text" class="form-control"
-                                                                    placeholder="" name="school_other">
-                                                                </div>
-                                                            </div>
-															@endif
-													
-														@if($data->r_entity=='College')
-@php 
-$streams=get_college_stream();
-@endphp
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Select College Stream*</label>
-                                                                    <select class="form-select select country-select"
-                                                                        name="college" >
-                                                                        <option>Select </option>
-																		@foreach($streams as $stream)
-                                                                       <option>{{$stream}}</option>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Registration
+                                                                No</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Registration No" name="registration_no">
 
-                                                                        @endforeach
-                                                                        
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                             @endif
+                                                        </div>
+                                                    </div>
 
 
-                                                          @if($data->r_entity=='Institute')
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-label">Select Institute*</label>
-                                                                    <select class="form-select select country-select"
-                                                                        name="institute"  required="required">
-                                                                        <option>Select </option>
-                                                                        <option>Professional (please specify your
-                                                                            professional field)</option>
-                                                                        <option>Competitive courses</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                          @endif
-                                                          
-                                                        
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Contact No</label>
+                                                            <input type="text" readonly class="form-control"
+                                                                placeholder="Contact No" name="mob"
+                                                                value="{{$data->r_mob}}" required="required">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Email ID*</label>
+                                                            <input readonly type="text" class="form-control"
+                                                                placeholder="Email ID" value="{{$data->email}}"
+                                                                name="email" required="required">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Website</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Website-URL" name="website">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Facebook </label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Facebook-URL " name="fb">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Instagram</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Instagram-URL " name="insta">
+
+                                                        </div>
+                                                    </div>
 
 
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> course*</label>
-                                                                   <!-- <select class="form-select select country-select"
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Google
+                                                                Business</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Google Business URL" name="google">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Youtube</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Youtube-URL " name="yt">
+
+                                                        </div>
+                                                    </div>
+
+
+                                                    @if($data->r_entity =='School')
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Select School*</label>
+                                                            <select class="form-select select country-select"
+                                                                name="school" id="school_entity">
+                                                                <option>Select</option>
+                                                                @foreach ($school_type as $school_type )
+                                                                <option value="{{$school_type->type}}">
+                                                                    {{$school_type->type}}</option>
+                                                                @endforeach
+
+                                                                <option value="Other">Other (Please Specify)</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6" id="school_entity_other_div">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Specify Other Board</label>
+                                                            <input type="text" class="form-control" placeholder=""
+                                                                name="school_other">
+                                                        </div>
+                                                    </div>
+                                                    @endif
+
+                                                    @if($data->r_entity=='College')
+                                                    @php
+                                                    $streams=get_college_stream();
+                                                    @endphp
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Select College Stream*</label>
+                                                            <select class="form-select select country-select"
+                                                                name="college">
+                                                                <option>Select </option>
+                                                                @foreach($streams as $stream)
+                                                                <option>{{$stream}}</option>
+
+                                                                @endforeach
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    @endif
+
+
+                                                    @if($data->r_entity=='Institute')
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label">Select Institute*</label>
+                                                            <select class="form-select select country-select"
+                                                                name="institute" required="required">
+                                                                <option>Select </option>
+                                                                <option>Professional (please specify your
+                                                                    professional field)</option>
+                                                                <option>Competitive courses</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    @endif
+
+
+
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> course*</label>
+                                                            <!-- <select class="form-select select country-select"
                                                                         name="course"  required="required">-->
-                                                                       
-																	<select id="course" name="course[]"  class="form-select select country-select"  multiple >
-																		@if('School'== $data->r_entity)
-                                                                        @foreach(get_school_course() as $course)
-                                                                        <option>{{$course}}</option>
-                                                                        @endforeach
-                                                                     
-																		@endif
-																		@if('College'== $data->r_entity)
-                                                                        @foreach(get_college_course() as $course)
-                                                                        <option>{{$course}}</option>
-                                                                        @endforeach
-																		@endif
-																		@if('Institute'== $data->r_entity)
-                                                                        @foreach(get_institute_course() as $course)
-                                                                        <option>{{$course}}</option>
-                                                                        @endforeach
-																		@endif
-																		<option> Other </option> 
 
-                                                                    </select>
-                                                                </div>
-                                                            </div>
+                                                            <select id="course" name="course[]"
+                                                                class="form-select select country-select" multiple>
+                                                                @if('School'== $data->r_entity)
+                                                                @foreach(get_school_course() as $course)
+                                                                <option>{{$course}}</option>
+                                                                @endforeach
 
-                                                            <div class="col-lg-6" id="other_course_div">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> Other Course*</label>
-                                                                    <input type="text" class="form-control"
-                                                                    placeholder="Specify other course" name="course[]" >
+                                                                @endif
+                                                                @if('College'== $data->r_entity)
+                                                                @foreach(get_college_course() as $course)
+                                                                <option>{{$course}}</option>
+                                                                @endforeach
+                                                                @endif
+                                                                @if('Institute'== $data->r_entity)
+                                                                @foreach(get_institute_course() as $course)
+                                                                <option>{{$course}}</option>
+                                                                @endforeach
+                                                                @endif
+                                                                <option> Other </option>
 
-                                                                </div>
-                                                            </div>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    {{--
+                                                    <div class="col-lg-6" id="other_course_div">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> Other Course*</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Specify other course" name="course[]">
 
-                                                            <div class="col-lg-6" >
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label"> Office
-                                                                        Timings (From)</label>
-                                                                    
-                                                                        <input type="text" id="timepicker" class="from-control">
-                                                                </div>
-                                                            </div>
+                                                        </div>
+                                                    </div> --}}
 
-                                                            <div class="col-lg-6" >
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Office
-                                                                        Timings (To)</label>
-                                                                        <input type="text" id="timepicker2" name="timepicker-12-hr" class="timepicker-12-hr">
-                                                                      
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> Facilities*</label>
-                                                                    <!--<select class="form-select select country-select"
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label"> Office
+                                                                Timings (From)</label>
+
+                                                            <input name="opening_time" type="text" id="timepicker" class="from-control" autocomplete="off">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Office
+                                                                Timings (To)</label>
+                                                            <input type="text" id="timepicker2" name="closing_time" 
+                                                                class="timepicker-12-hr" autocomplete="off">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> Facilities*</label>
+                                                            <!--<select class="form-select select country-select"
                                                                     name="facilities"  required="required">-->
-																<select id="facilities" name="facilities[]"  class="form-select select country-select"  multiple >
-																		
-                                                                     @foreach (get_facilities() as $facility )
-                                                                         <option>{{$facility}}</option>
-                                                                     @endforeach
-                                                                        
-																		<option> Other </option> 
-                                                            
+                                                            <select id="facilities" name="facilities[]"
+                                                                class="form-select select country-select" multiple>
 
-                                                                    </select>
-                                                                </div>
+                                                                @foreach (get_facilities() as $facility )
+                                                                <option>{{$facility}}</option>
+                                                                @endforeach
+
+                                                                <option> Other </option>
+
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    {{-- <div class="col-lg-6" id="other_facilities_div">
+                                                        <div class="form-group">
+                                                            <label class="form-label"> Other Facilities*</label>
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Specify other facilities"
+                                                                name="facilities[]">
+
+                                                        </div>
+                                                    </div> --}}
+
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Upload Photos of
+                                                                School (Max. 5 )</label>
+                                                            <input type="file" class="form-control" name="image[]"
+                                                                multiple accept="image/*">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Upload Video of
+                                                                School (Max. 2)</label>
+                                                            <input type="file" class="form-control" name="video[]"
+                                                                multiple accept="video/*">
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <div class="row policy_checkbox_class"
+                                                                style="margin-left: 1%;">
+                                                                <input class="form-control-lable" type="checkbox"
+                                                                    name="policy_checkbox" id="checkbox"
+                                                                    style="margin-right: 1%;">
+                                                                <label for="checkbox">I have read and accepted the <spam
+                                                                        style="color:#073D5F;cursor: pointer;"
+                                                                        onclick="openPopup1()">Terms & Condition</spam>
+                                                                    </label>
+
                                                             </div>
-                                                            <div class="col-lg-6" id="other_facilities_div">
-                                                                <div class="form-group">
-                                                                    <label class="form-label"> Other Facilities*</label>
-                                                                    <input type="text" class="form-control"
-                                                                    placeholder="Specify other facilities" name="facilities[]" >
 
+                                                            <div id="popup1" class="popup1"
+                                                                style="overflow-y: scroll !important;">
+
+                                                                <div
+                                                                    style="width: 100%; text-align: right; position: sticky; top: 0;">
+                                                                    <a class="close-btn1" onclick="closePopup1()"><i
+                                                                            class="fas fa-times"></i></a>
                                                                 </div>
-                                                            </div>
 
-
-
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Upload Photos of
-                                                                        School (Max. 5 )</label>
-                                                                    <input type="file" class="form-control" name="image[]"  multiple accept="image/*">
-                                                                    
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Upload Video of
-                                                                        School (Max. 2)</label>
-                                                                    <input type="file" class="form-control" name="video[]" multiple  accept="video/*" >
-                                                                   
-                                                                </div>
-                                                            </div>
-
-                                            
-                                                      
-														
-														
-                                                           <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <div class="row policy_checkbox_class" style="margin-left: 1%;">
-                                                           <input class="form-control-lable" type="checkbox" name="policy_checkbox" id="checkbox" style="margin-right: 1%;" >
-                                                           <label for="checkbox">I have read and accepted the <spam style="color:#073D5F;cursor: pointer;"  onclick="openPopup1()">Terms & Condition</spam></label>	
-
-                                                         </div>
-
-                                                        <div id="popup1" class="popup1" style="overflow-y: scroll !important;">
-                                                           
-                                                            <div style="width: 100%; text-align: right; position: sticky; top: 0;">
-                                                                <a class="close-btn1" onclick="closePopup1()"><i class="fas fa-times"></i></a>
-                                                              </div>
-
-                                                             <br>
+                                                                <br>
                                                                 <!-- Popup1 content goes here -->
-                                                             <p>
                                                                 <p>
-																	<h4> <b>TERMS & CONDITION</b></h4>
-                                                                    <p style="margin-top:10px;color:#000;">As a authorised representative of above mentioned educational institution I hereby declare and accept following terms and conditions</p></p>
-                                                              <p><b>  1.</b>	By signing up for a listing on INFOlekha.org, we confirm that we are a legitimate educational institution, and that all information provided to INFOlekha.org is accurate and up-to-date. We understand that INFOlekha.org has the right to verify the information provided and may remove our listing if any information is found to be false or misleading.</p><br>
-                                                                
-                                                                <p><b>2.</b>	We acknowledge that by listing on INFOlekha.org, we agree to provide timely and accurate updates to any changes in our institution's information, including contact details, programs offered, admission requirements, and any other relevant information.</p><br>
-                                                                
-                                                               <p><b> 3. </b>We understand that INFOlekha.org is not responsible for any decisions made by students or parents based on our institution's information listed on the website. We also agree that INFOlekha.org is not responsible for any disputes that may arise between us and any students, parents, or other parties.</p><br>
-                                                                
-                                                               <p><b>4.</b> 	We acknowledge that INFOlekha.org may use our institution's information, including logo and images, for promotional purposes on the website and in other marketing materials.</p><br>
-                                                                
+                                                                <p>
+                                                                <h4> <b>TERMS & CONDITION</b></h4>
+                                                                <p style="margin-top:10px;color:#000;">As a authorised
+                                                                    representative of above mentioned educational
+                                                                    institution I hereby declare and accept following
+                                                                    terms and conditions</p>
+                                                                </p>
+                                                                <p><b> 1.</b> By signing up for a listing on
+                                                                    INFOlekha.org, we confirm that we are a legitimate
+                                                                    educational institution, and that all information
+                                                                    provided to INFOlekha.org is accurate and
+                                                                    up-to-date. We understand that INFOlekha.org has the
+                                                                    right to verify the information provided and may
+                                                                    remove our listing if any information is found to be
+                                                                    false or misleading.</p><br>
+
+                                                                <p><b>2.</b> We acknowledge that by listing on
+                                                                    INFOlekha.org, we agree to provide timely and
+                                                                    accurate updates to any changes in our institution's
+                                                                    information, including contact details, programs
+                                                                    offered, admission requirements, and any other
+                                                                    relevant information.</p><br>
+
+                                                                <p><b> 3. </b>We understand that INFOlekha.org is not
+                                                                    responsible for any decisions made by students or
+                                                                    parents based on our institution's information
+                                                                    listed on the website. We also agree that
+                                                                    INFOlekha.org is not responsible for any disputes
+                                                                    that may arise between us and any students, parents,
+                                                                    or other parties.</p><br>
+
+                                                                <p><b>4.</b> We acknowledge that INFOlekha.org may use
+                                                                    our institution's information, including logo and
+                                                                    images, for promotional purposes on the website and
+                                                                    in other marketing materials.</p><br>
+
                                                                 <p><b>5.
-																	</b>	We agree to indemnify and hold harmless INFOlekha.org, its affiliates, and its directors, officers, employees, and agents from and against any claims, damages, liabilities, costs, and expenses arising from our institution's listing on the website, including any inaccuracies or omissions in our institution's information, and any disputes or other issues that may arise between us and any students, parents, or other parties.</p><br>
-                                                                
-                                                               <p><b> 6.</b>	We acknowledge that INFOlekha.org may use third-party vendors or service providers to assist in the provision of the website and its services. We understand that these vendors or service providers may have access to our institution's data for the purpose of providing their services to INFOlekha.org. We agree that INFOlekha.org is not responsible for the actions or omissions of any third-party vendors or service providers.</p><br>
-                                                                
-                                                               <p><b> 7.</b>	We also acknowledge that we are responsible for ensuring the security of our institution's login credentials for the website. We agree to notify INFOlekha.org immediately if we suspect any unauthorized use of our login credentials.</p><br>
-                                                                
-                                                               <p><b> 8.</b>	We understand that INFOlekha.org may terminate our institution's listing on the website at any time, with or without cause. We also understand that we may terminate our institution's listing on the website at any time, but that any fees paid to INFOlekha.org are non-refundable.</p><br>
-                                                                
-                                                              <p><b>  9.</b>	This declaration constitutes the entire agreement between our institution and INFOlekha.org and supersedes all prior or contemporaneous agreements or understandings, whether written or oral. Any modifications to this declaration must be made in writing and signed by both parties.<br>
-                                                                
-                                                               <p><b> 10.</b>	We have the authority to enter into this declaration on behalf of our institution and have read and understand its terms and conditions.</p><br>
-                                                                
-                                                               <p><b> 11.</b>	This declaration shall be governed by and construed in accordance with the laws of India, without giving effect to any principles of conflicts of law.</p><br>
-                                                                
-                                                               <p><b> 12.</b>	Furthermore, we have read and understood the terms and conditions of INFOlekha.org and agree to abide by them. We also acknowledge that INFOlekha.org may update the terms and conditions from time to time, and it is our responsibility to review them regularly.</p><br>
-                                                                
-                                                               <p><b>13.</b>	By signing up for a listing on INFOlekha.org, we acknowledge that we have read and understood this declaration and agree to be bound by its terms and conditions.<br>
-                                                             
+                                                                    </b> We agree to indemnify and hold harmless
+                                                                    INFOlekha.org, its affiliates, and its directors,
+                                                                    officers, employees, and agents from and against any
+                                                                    claims, damages, liabilities, costs, and expenses
+                                                                    arising from our institution's listing on the
+                                                                    website, including any inaccuracies or omissions in
+                                                                    our institution's information, and any disputes or
+                                                                    other issues that may arise between us and any
+                                                                    students, parents, or other parties.</p><br>
+
+                                                                <p><b> 6.</b> We acknowledge that INFOlekha.org may use
+                                                                    third-party vendors or service providers to assist
+                                                                    in the provision of the website and its services. We
+                                                                    understand that these vendors or service providers
+                                                                    may have access to our institution's data for the
+                                                                    purpose of providing their services to
+                                                                    INFOlekha.org. We agree that INFOlekha.org is not
+                                                                    responsible for the actions or omissions of any
+                                                                    third-party vendors or service providers.</p><br>
+
+                                                                <p><b> 7.</b> We also acknowledge that we are
+                                                                    responsible for ensuring the security of our
+                                                                    institution's login credentials for the website. We
+                                                                    agree to notify INFOlekha.org immediately if we
+                                                                    suspect any unauthorized use of our login
+                                                                    credentials.</p><br>
+
+                                                                <p><b> 8.</b> We understand that INFOlekha.org may
+                                                                    terminate our institution's listing on the website
+                                                                    at any time, with or without cause. We also
+                                                                    understand that we may terminate our institution's
+                                                                    listing on the website at any time, but that any
+                                                                    fees paid to INFOlekha.org are non-refundable.</p>
+                                                                <br>
+
+                                                                <p><b> 9.</b> This declaration constitutes the entire
+                                                                    agreement between our institution and INFOlekha.org
+                                                                    and supersedes all prior or contemporaneous
+                                                                    agreements or understandings, whether written or
+                                                                    oral. Any modifications to this declaration must be
+                                                                    made in writing and signed by both parties.<br>
+
+                                                                <p><b> 10.</b> We have the authority to enter into this
+                                                                    declaration on behalf of our institution and have
+                                                                    read and understand its terms and conditions.</p>
+                                                                <br>
+
+                                                                <p><b> 11.</b> This declaration shall be governed by and
+                                                                    construed in accordance with the laws of India,
+                                                                    without giving effect to any principles of conflicts
+                                                                    of law.</p><br>
+
+                                                                <p><b> 12.</b> Furthermore, we have read and understood
+                                                                    the terms and conditions of INFOlekha.org and agree
+                                                                    to abide by them. We also acknowledge that
+                                                                    INFOlekha.org may update the terms and conditions
+                                                                    from time to time, and it is our responsibility to
+                                                                    review them regularly.</p><br>
+
+                                                                <p><b>13.</b> By signing up for a listing on
+                                                                    INFOlekha.org, we acknowledge that we have read and
+                                                                    understood this declaration and agree to be bound by
+                                                                    its terms and conditions.<br>
+
                                                                 </p>
 
-                                                               
-                                                       </div>
-												
-                                                    </div>
-                                                  </div>
-													
 
-                                                             <div class="update-profile centered-container" style=" margin-top: 5%;margin-left:2%">
-                                                                
-
-                                                            
-                                                                <button type="submit"
-                                                                    class="btn btn-primary" > <i class="fa fa-hand-o-right" aria-hidden="true"></i> Submit</button>
                                                             </div>
+
+
+                                                         
+
                                                         </div>
-        <div id="popup" class="popup">
-        <a class="close-btn" onclick="closePopup()"></a>
-        <!-- Popup content goes here -->
-        
-    </div>
+                                                    </div>
 
-    <!--modal-->
-   
-    <!---modal-2-->
-    
-                                                    </form>
+
+                                                    <div class="update-profile centered-container"
+                                                        style=" margin-top: 5%;margin-left:2%">
+
+
+
+                                                        <button type="submit" class="btn btn-primary"> <i
+                                                                class="fa fa-hand-o-right" aria-hidden="true"></i>
+                                                            Submit</button>
+                                                    </div>
                                                 </div>
-                                            </div>
-										
-													     <div class="col-md-4">
-                                                <div class="upload-img">
-                                                <label>
-                                                <input id="image1" type="file" name="logo" style="display:none;">
-                                                <img  id="category-img-tag" src="{{asset('website_asset/images/223.jpg')}}" class="dropzone" >
-                                            </label>
-                                                
+                                                <div id="popup" class="popup">
+                                                    <a class="close-btn" onclick="closePopup()"></a>
+                                                    <!-- Popup content goes here -->
 
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                                <!--modal-->
+
+                                                <!---modal-2-->
+
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="upload-img">
+                                <label>
+                                    <input id="image1" type="file" name="logo" style="display:none;">
+                                    <img id="category-img-tag" src="{{asset('website_asset/images/223.jpg')}}"
+                                        class="dropzone">
+                                </label>
 
 
                             </div>
-
                         </div>
                     </div>
                 </div>
-          
-    </section>
+            </div>
 
-    
-				
-					
-					
+
+        </div>
+
+    </div>
+    </div>
+    </div>
+
+</section>
+
+<div id="popup2" class="popup1"
+style="overflow-y: scroll !important;width: 40vw!important;">
+
+<div
+    style="width: 100%; text-align: right; position: sticky; top: 0;">
+    <a class="close-btn1" onclick="closePopup2()"><i
+            class="fas fa-times"></i></a>
+</div>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label class="form-control-label">Other
+                Course</label>
+            <input type="text" class="form-control"
+                placeholder="Enter Other Course"
+                id="other_course_modal_input">
+            <!--name="school_institute" -->
+
+        </div>
+    </div>
+    <div class="col-lg-3" style="padding-top: 2.5rem">
+        <button type="button" class="btn btn-primary"><i
+                class="fa fa-plus-square"></i></button>
+    </div>
+
+</div>
+<span class="other_course_container">
+
+</span>
+<div class="row centered-container mt-2">
+    <button type="button"
+        class="btn btn-primary popup2-submit-btn">Submit</button>
+</div>
+
+</div>
+
+<div id="popup3" class="popup1"
+style="overflow-y: scroll !important;width: 40vw!important;">
+
+<div
+    style="width: 100%; text-align: right; position: sticky; top: 0;">
+    <a class="close-btn1" onclick="closePopup3()"><i
+            class="fas fa-times"></i></a>
+</div>
+
+<div class="row">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-8">
+        <div class="form-group">
+            <label class="form-control-label">Other
+                Facilities</label>
+            <input type="text" class="form-control"
+                placeholder="Enter Other Facilities"
+                id="other_facilities_modal_input">
+            <!--name="school_institute" -->
+
+        </div>
+    </div>
+    <div class="col-lg-3" style="padding-top: 2.5rem">
+        <button type="button" class="btn btn-primary"><i
+                class="fa fa-plus-square"></i></button>
+    </div>
+
+</div>
+<span class="other_facilities_container">
+
+</span>
+<div class="row centered-container mt-2">
+    <button type="button"
+        class="btn btn-primary popup3-submit-btn">Submit</button>
+</div>
+
+</div>
+
+
+
+
 
 
 
 @stop
 @section("js")
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 <script>
-function charcountupdate(str) {
+    function charcountupdate(str) {
 	var lng = str.length;
 	document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
 }
-</script>
-<script>
+
+$("#popup2 button").on('click', function(e) {
+    if($("#other_course_modal_input").val()){
+        console.log($("#other_course_modal_input").val());
+    var newRow = $('<div class="row other_course_row">' +
+        '<div class="col-lg-1"></div>' +
+        '<div class="col-lg-8">' +
+        '<div class="form-group">' +
+        '<label class="form-control-label">Course</label>' +
+        '<input name="other_course[]" type="text" class="form-control" value="'+$("#other_course_modal_input").val()+'">' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-lg-3" style="padding-top: 2.5rem">' +
+        '<button type="button" class="btn btn-danger delete-row"><i class="fa fa-trash"></i></button>' +
+        '</div>' +
+        '</div>');
+    $("#other_course_modal_input").val('');
+
+    $(".other_course_container").append(newRow);
+    $("#other_course_modal_input").focus();
+    }
+
+});
+
+$(".other_course_container").on('click', '.delete-row', function(e) {
+    $(this).closest('.other_course_row').remove();
+});
+
+$(".popup2-submit-btn").on('click', function(e) {
+    var inputFields = $("input[name='other_course[]']");
+    var values = [];
+    inputFields.each(function() {
+        values.push($(this).val());
+    });
+
+    var $select2 = $('#course');
+    $select2.select2('destroy');
+
+    values.forEach(function(value) {
+        $select2.append('<option selected>' + value + '</option>');
+    });
+    $select2.select2();
+
+    $select2.trigger('change');
+    
+    closePopup2();
+});
+
+ $('#course').on('change', function() {  
+    const selectedOptions = $(this).val(); 
+    if(selectedOptions){
+const otherOption = selectedOptions.includes('Other'); 
+if(otherOption){
+     var index = selectedOptions.indexOf('Other');
+        if (index > -1) {
+                selectedOptions.splice(index, 1); // Remove the "Other" option
+            $(this).val(selectedOptions).trigger('change'); // Update the selected value           
+        }
+  
+      openPopup2();
+}
+   
+    }
+    
+    });
+
+
+
+    $("#popup3 button").on('click', function(e) {
+    if($("#other_facilities_modal_input").val()){
+    var newRow = $('<div class="row other_facilities_row">' +
+        '<div class="col-lg-1"></div>' +
+        '<div class="col-lg-8">' +
+        '<div class="form-group">' +
+        '<label class="form-control-label">Facilities</label>' +
+        '<input name="other_facilities[]" type="text" class="form-control" value="'+$("#other_facilities_modal_input").val()+'">' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-lg-3" style="padding-top: 2.5rem">' +
+        '<button type="button" class="btn btn-danger delete-row"><i class="fa fa-trash"></i></button>' +
+        '</div>' +
+        '</div>');
+    $("#other_facilities_modal_input").val('');
+
+    $(".other_facilities_container").append(newRow);
+    $("#other_facilities_modal_input").focus();
+    }
+
+});
+
+$(".other_facilities_container").on('click', '.delete-row', function(e) {
+    $(this).closest('.other_facilities_row').remove();
+});
+
+$(".popup3-submit-btn").on('click', function(e) {
+    var inputFields = $("input[name='other_facilities[]']");
+    var values = [];
+    inputFields.each(function() {
+        values.push($(this).val());
+    });
+
+    var $select2 = $('#facilities');
+    $select2.select2('destroy');
+
+    values.forEach(function(value) {
+        $select2.append('<option selected>' + value + '</option>');
+    });
+    $select2.select2();
+
+    $select2.trigger('change');
+    
+    closePopup3();
+});
+
+ $('#facilities').on('change', function() {  
+    const selectedOptions = $(this).val(); 
+    if(selectedOptions){
+const otherOption = selectedOptions.includes('Other'); 
+if(otherOption){
+     var index = selectedOptions.indexOf('Other');
+        if (index > -1) {
+                selectedOptions.splice(index, 1); // Remove the "Other" option
+            $(this).val(selectedOptions).trigger('change'); // Update the selected value           
+        }
+  
+      openPopup3();
+}
+   
+    }
+    
+    });
+
+
         function openPopup1() {
                 setTimeout(() => {
                 document.getElementById('popup1').style.display = 'block';
                 }, 200);
-           
         }
+
         function closePopup1() {
             document.getElementById('popup1').style.display = 'none';
         }
+
+        function openPopup2() {
+                setTimeout(() => {
+                document.getElementById('popup2').style.display = 'block';
+                }, 200);
+        }
+
+        function closePopup2() {
+            document.getElementById('popup2').style.display = 'none';
+        }
+
+        function openPopup3() {
+                setTimeout(() => {
+                document.getElementById('popup3').style.display = 'block';
+                }, 200);
+        }
+
+        function closePopup3() {
+            document.getElementById('popup3').style.display = 'none';
+        }
         const $modal = $('#popup1');
+        const $modal2 = $('#popup2');
+        const $modal3 = $('#popup3');
 
 // Function to handle the click event outside the modal
 $(document).click(function(event) {
@@ -504,22 +838,24 @@ $(document).click(function(event) {
     // Clicked outside the modal, so hide it
     closePopup1();
   }
-
 });
-    </script>
 
 
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
-<script> 	
+   
 $(document).ready(function(){
-    $('#other_course_div').hide(); 
-         $('#other_facilities_div').hide();
-
+    //$('#other_course_div').hide(); 
+        // $('#other_facilities_div').hide();
          $('#course').select2({
+    closeOnSelect: false
+}).on('select2:select', function (e) {
+    var selectedValue = e.params.data.id; 
+    
+    if (selectedValue === 'Other') { 
+        $(this).select2('close');
+    }
+});
+
+$('#facilities').select2({
     closeOnSelect: false
 }).on('select2:select', function (e) {
     var selectedValue = e.params.data.id; 
@@ -542,60 +878,11 @@ $('#school_entity').on('change', function() {
     }
 })
 
- $('#course').on('change', function() {  
-    const selectedOptions = $(this).val(); 
-
- const otherOption = selectedOptions.includes('Other'); 
-  
-     //var index = selectedOptions.indexOf('Other');
-        // if (index > -1) {
-        //         selectedOptions.splice(index, 1); // Remove the "Other" option
-        //     $(this).val(selectedOptions).trigger('change'); // Update the selected value           
-        // }
-        if (otherOption) {
-      $('#other_course_div').show();  
-    } else {  
-        $('#other_course_div').hide(); 
-        $('#other_course_div input').val(''); 
-     } 
-    });
 
 
-$('#facilities').select2({
-    closeOnSelect: false
-}).on('select2:select', function (e) {
-    var selectedValue = e.params.data.id; 
-    
-    if (selectedValue === 'Other') { 
-        $(this).select2('close');
-    }
-});
- $('#facilities').on('change', function() {  const selectedOptions = $(this).val(); 
- const otherOption = selectedOptions.includes('Other'); 
-  
-    //  var index = selectedOptions.indexOf('Other');
-    //     if (index > -1) {
-    //             selectedOptions.splice(index, 1); // Remove the "Other" option
-    //         $(this).val(selectedOptions).trigger('change'); // Update the selected value           
-    //     }
-      
- if (otherOption) { 
-     $('#other_facilities_div').show(); 
-     } else { 
-         $('#other_facilities_div').hide();
-         $('#other_facilities_div input').val('');
-          }  
-        });
-
-	
 
 
-});
 
-	
-
-</script> 
-<script>
  function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -611,6 +898,8 @@ $('#facilities').select2({
     $("#image1").change(function(){
         readURL(this);
     });
+});
+
 </script>
 
 
@@ -621,7 +910,7 @@ $('#facilities').select2({
 <script src="{{asset('js/wickedpicker.min.js')}}"></script>
 
 <script>
-//   var twelveHour = $('.timepicker-12-hr').wickedpicker();
+    //   var twelveHour = $('.timepicker-12-hr').wickedpicker();
 //             $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
 //             $('.timepicker-24-hr').wickedpicker({twentyFour: true});
 //             $('.timepicker-12-hr-clearable').wickedpicker({clearable: true});

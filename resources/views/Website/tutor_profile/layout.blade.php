@@ -19,7 +19,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('website_asset/school_dashboard/css/color.css') }}">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/favicon.ico">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.6/css/froala_editor.pkgd.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
     <style>
         .error {
@@ -456,7 +456,7 @@ font-size: 16px;
 
                             </li>
                             <li><a href="{{ route('tutor_profile.blog') }}"
-                                @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog') class="user-profile-act" @endif><i
+                                @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog' || $routeName == 'tutor_profile.edit-blog') class="user-profile-act" @endif><i
                                     class="fal fa-file"></i> Write a Blog</a>
                             </li>
                             @else

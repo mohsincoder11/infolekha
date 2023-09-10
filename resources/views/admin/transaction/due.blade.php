@@ -112,9 +112,11 @@
                                             <td>{!! $transaction->expiry_difference !!}</td>
 
                                             <td>
-                                                <button class="btn1 btn-outline-success">
+                                                <button title="Send subscription mail" class="btn btn-warning">
                                                     <a  href="{{route('admin.subscription_mail',$transaction->id)}}" >
-                                                    <i class="bx bx-envelope mb-0"></i>
+                                                        <i
+                                                        class='bx bx-envelope me-0'></i>
+                                                        </button>
                                                 </a> 
                                                 </button>
                                             </td>

@@ -48,7 +48,17 @@
                             <button type="submit" class="btn btn-primary "> <i class="lni lni-circle-plus"></i>Search</button>
                         </div>
                     </div>
-
+                    @if(request('active') == '0')
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="col">
+                                <button name="send_email" value="true" type="submit" class="btn btn-sm btn-warning "> <i class="lni lni-envelope"></i>
+                                    Send Mail to All
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endif
 
 
                 </form>
@@ -140,12 +150,17 @@
                                         </div>
                                       
                                     </td>
-                                    <td style="background-color: #ffff;"><button
-                                            type="button" class="btn1 btn-outline-success"><i
-                                                class='bx bx-edit-alt me-0'></i></button>
-                                        <button type="button"
-                                            class="btn1 btn-outline-danger"><i
-                                                class='bx bx-trash me-0'></i></button>
+                                    <td style="background-color: #ffff;">
+                                        <a href="{{route('admin.delete-user',$dt->user_id)}}"
+                                            class="btn btn-outline-danger"><i
+                                                class='bx bx-trash me-0'></i></a> 
+                                                @if ($dt->subscription_status == 0)
+                                            
+                                                <a href="{{route('admin.buy-subscription-email',$dt->user_id)}}" title="Send subscription mail" class="btn btn-outline-warning">
+                                                    <i
+                                                class='bx bx-envelope me-0'></i>
+                                                </a>
+                                                @endif
                                     </td>
 
                                 </tr>

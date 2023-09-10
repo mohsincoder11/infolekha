@@ -32,6 +32,7 @@
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelementplayer.min.css" />
 
     <style>
 
@@ -552,6 +553,11 @@ font-size: 16px;
                                             class="fal fa-briefcase"></i>Create Job Vacancy</a>
 
                                 </li>
+                                <li>
+                                    <a href="{{ route('school_profile.enquiries') }}"
+                                    @if ($routeName == 'school_profile.enquiries') class="user-profile-act" @endif><i
+                                        class="fal fa-envelope"></i> Enquiries</a>
+                                </li>
 
                                 <li>
                                     <a
@@ -572,10 +578,10 @@ font-size: 16px;
                                     </ul>
                                 </li>
                                 <li><a href="{{ route('school_profile.blog') }}"
-                                    @if ($routeName == 'school_profile.blog' || $routeName == 'school_profile.write-blog') class="user-profile-act" @endif><i
+                                    @if ($routeName == 'school_profile.blog' || $routeName == 'school_profile.write-blog' || $routeName == 'school_profile.edit-blog') class="user-profile-act" @endif><i
                                         class="fal fa-file"></i> Write a Blog</a>
                                     </li>
-                            <li>
+                           
                             @else
                                 <li><a href="javascript:void(0)" class="disable-li"><i class="fal fa-file"></i> Post
                                         Your
@@ -680,6 +686,7 @@ font-size: 16px;
     <script src="{{ asset('website_asset/school_dashboard/js/dashboard.js') }}"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
     {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.16/mediaelement-and-player.min.js"></script>
 
     <script>
         $.validator.addMethod(

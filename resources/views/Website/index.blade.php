@@ -237,7 +237,7 @@
 
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-6" style="padding-left:2%;">
                             @foreach($advertisements_650 as $advertisement)
                             <div class="row">
                                 <a>

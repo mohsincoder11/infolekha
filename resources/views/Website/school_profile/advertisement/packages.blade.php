@@ -44,6 +44,8 @@
                                                     @endif
                                                 </option>
                                             @endfor
+                                            <option value=""></option>
+
                                         </select>
                                         <span class="no_of_days_error"></span>
                                     </div>

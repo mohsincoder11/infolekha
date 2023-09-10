@@ -83,24 +83,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 style="font-size: 24px;">Your Subscription is Expiring</h1>
+            <h1 style="font-size: 24px;">Welcome</h1>
         </div>
         <div class="content">
             <p style="font-size: 18px;">Dear {{$user_info['name']}},</p>
-            <p style="font-size: 18px;">We'd like to remind you that your subscription {{$expiry_label}}. To continue enjoying our premium services, please renew your subscription today.</p>
-            <div class="subscription-details">
-                <p class="details-heading">Subscription Details:</p>
-                <p class="details-text"><strong>Subscription Plan:</strong> 
-                    @if($transaction->type=='Subscription')
-                    {{$transaction->transaction_subscription->plan}} {{$transaction->transaction_subscription->amount}}/{{$transaction->transaction_subscription->type}}
-                    @else
-                    {{$transaction->transaction_subscription->PackageName}} {{$transaction->transaction_subscription->OriginalPrice}} for {{$transaction->transaction_subscription->SelectedDays}}
-                    @endif
-                </p>
-                <p class="details-text"><strong>Expiry Date:</strong> {{date('M d,Y',strtotime($transaction['expiry']))}}</p>
-            </div>
-            <p class="mb-10">Click the button below to renew your subscription:</p>
-            <a class="btn" href="{{$url}}">Renew Subscription</a>
+            <p style="font-size: 18px;">welcome.</p>
+          
+            <p class="mb-10">Click the button below to login</p>
+            <a class="btn" href="{{$url}}">Login</a>
             <p style="font-size: 16px; color: #888; margin-top: 20px;">Thank you for choosing our services! <b>Infolekha</b></p>
         </div>
     </div>

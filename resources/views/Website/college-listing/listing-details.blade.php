@@ -444,6 +444,7 @@
                                         $filledStars = floor($rating_count);
                                         $hasHalfStar = $rating_count - $filledStars >= 0.5;
                                     @endphp
+                                    
                                     <div class="start-review">
                                         <span class="flat-start">
                                             @for ($i = 1; $i <= 5; $i++)
@@ -456,8 +457,9 @@
                                                 @endif
                                             @endfor
                                         </span>
-                                        <label href="#" class="review"
-                                            style="background-color:rgb(151, 201, 2); padding:2px 4px; border-radius:5px; color:#fff;margin-left:5px;"><b>{{ $rating_count }}</b></label>
+                                        <label  class="review"
+                                            style="background-color:rgb(151, 201, 2); padding:2px 4px; border-radius:5px; color:#fff;margin-left:5px;"><b>{{ $rating_count }}</b>
+                                        </label>
                                     </div>
 
 
@@ -745,7 +747,7 @@
                                     </ol><!-- .comment-list -->
 
                                     <div class="comment-respond" id="respond">
-                                        <h3 class="title-listing">Add a Review</h3>
+                                        <h3 class="title-listing" style="margin-bottom: 10px !important;">Add a Review</h3>
                                         <form novalidate="" class="comment-form clearfix" id="reviewform"
                                             method="post" action="{{ route('insert_feedback') }}">
                                             @csrf
@@ -772,7 +774,7 @@
                                             </div>
                                             <p class="comment-form-comment">
                                                 <textarea class="" tabindex="4" placeholder="write review" name="comment" required></textarea>
-                                                <span style="line-height:40px" id="feedback_comment"></span>
+                                                <span style="line-height:24px" id="feedback_comment"></span>
 
 
                                             </p>
@@ -787,7 +789,7 @@
                                                 </div>
                                             </div>
 
-                                            <p class="form-submit">
+                                            <p class="form-submit mt-2">
                                                 <button type="submit" class="comment-submit effect-button">Send
                                                     Review</button>
                                             </p>
@@ -985,7 +987,16 @@
     <script>
         $(document).ready(function() {
 
-
+            $(".start-review").click(function() {
+                $('html, body').animate({
+                    scrollTop: $("#respond").offset().top
+                }, 
+                {
+                    duration: 2000, // Animation duration in milliseconds
+                    easing: 'easeOutQuad', // Easing function for the animation
+                }
+                ); // Adjust the animation duration as needed (in milliseconds)
+            });
             const stars = $('.stars i');
 
             // ---- ---- Stars ---- ---- //

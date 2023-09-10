@@ -72,8 +72,9 @@ Route::post('admin/post_login', [AdminLoginController::class, 'login_submit'])->
 
 Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('delete-user/{id}', [AdminDashboardController::class, 'delete_user'])->name('delete-user');
     Route::post('activation', [AdminDashboardController::class, 'activation'])->name('activation');
-
+    
     Route::get('logout', [AdminLoginController::class, 'logout'])->name('logout');
     Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
     Route::post('upload-advertisement', [AdvertisementController::class, 'uploadAdvertisement'])->name('upload-advertisement');
@@ -225,11 +226,15 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
        
        //Mail
        Route::get('subscription_mail/{id}', [MailController::class, 'subscription_mail'])->name('subscription_mail');
+       Route::get('buy-subscription-email/{id}', [MailController::class, 'buy_subscription_email'])->name('buy-subscription-email');
+
 
 });
 Route::get('admin-login-to-user/{id}', [RegistrationController::class, 'admin_login_to_user'])->name('admin-login-to-user');
 
 Route::get('renew-subscription/{transaction_id}/{email}', [WebsiteformController    ::class, 'renew_subscription'])->name('renew-subscription');
+Route::get('buy-subscription/{email}', [WebsiteformController    ::class, 'buy_subscription'])->name('buy-subscription');
+Route::get('login-using-email/{email}', [WebsiteformController    ::class, 'login_using_email'])->name('login-using-email');
 
 Route::get('web-contacts', [WebsiteformController::class, 'index_contact'])->name('web_contacts');
 Route::post('create_contacts', [WebsiteformController::class, 'create_contact'])->name('create_contacts');
@@ -356,6 +361,8 @@ Route::group(['middleware' => ['AuthCheck']], function () {
         Route::post('school-profile/update-blog', [SchoolProfile::class, 'update_blog'])->name('school_profile.update-blog');
         Route::get('school-profile/delete-blog/{id}', [SchoolProfile::class, 'delete_blog'])->name('school_profile.delete-blog');
        
+        Route::get('school-profile/enquiries', [SchoolProfile::class, 'enquiries'])->name('school_profile.enquiries');
+
     });
 
     Route::get('activate-profile',[SchoolProfile::class,'activate_profile'])->name('activate_profile');

@@ -64,7 +64,7 @@
                                                             <div class="col-md-3"></div>
                                                         @foreach ($Subscriptions as $subscription)
                                                             <div class="col-md-4 payment_cards">
-                                                                <div class="">
+                                                                <div class="d2">
                                                                     <label class="checkbox-wrapper">
                                                                         <input type="radio" name="subscription_id"
                                                                             value="{{ $subscription->id }}"
@@ -95,29 +95,29 @@
 
                                                   
                                                     <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-4" style="margin-top:10px;">
+                                                        <div class="col-md-2"></div>
+                                                        <div class="col-md-3" style="margin-top:10px;">
                                                             <p class="form-control-label"
-                                                                style="color: #073D5F; font-size:16px">
+                                                                style="color: #073D5F; font-size:14px">
                                                                 <b>Apply Coupon Code</b>
                                                             </p>
                                                         </div>
 
-                                                        <div class="col-md-4" style="margin-top:10px;">
+                                                        <div class="col-md-3 d4" style="margin-top:10px;">
                                                             <input type="text" class="form-control" id="coupn_code_field" name="coupon"
-                                                                placeholder="Cuopon Code" style="border-radius:10px;">
+                                                                placeholder="Cuopon Code" style="border-radius:5px; height:90%; ">
                                                         </div>
 
-                                                        <div class="col-md-2" style="margin-top:20px;">
+                                                        <div class="col-md-2 d3" style="margin-top:20px;">
                                                             <button type="button" class="btn btn-primary coupon_apply"
-                                                                style="">Apply</button>
+                                                               style="background-color: #073D5F; border-radius:5px; padding: 10px;">Apply</button>
                                                         </div>
 
 
                                                     </div>
 
 
-                                                    <div class="update-profile" style="margin-left:38%; margin-top:2%;">
+                                                    <div class="update-profile d1" style="margin-left:38%; margin-top:2%;">
                                                         <button type="submit" class="btn btn-primary"
                                                             style="width: 40%;">Pay Now</button>
                                                     </div>

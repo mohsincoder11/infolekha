@@ -433,18 +433,27 @@ $data = [10, 20, 30];
                                                                     </button>
                                                                 </td>
                                                                 <td>
-                                                                    <div class="d-grid"> <a target="_blank" class="btn btn-sm btn-outline-success radius-15" href="{{route('admin-login-to-user',$dt->user_id)}}">Log In</a>
+                                                                    <div class="d-grid"> 
+                                                                        <a target="_blank" class="btn btn-sm btn-outline-success radius-15" href="{{route('admin-login-to-user',$dt->user_id)}}">Log In</a>
                                                                     </div>
                                                                   
                                                                 </td>
 
 
-                                                                <td style="background-color: #ffff;"><button
+                                                                <td style="background-color: #ffff;">
+                                                                    {{-- <button
                                                                         type="button" class="btn1 btn-outline-success"><i
-                                                                            class='bx bx-edit-alt me-0'></i></button>
-                                                                    <button type="button"
-                                                                        class="btn1 btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></button>
+                                                                            class='bx bx-edit-alt me-0'></i></button>--}}
+                                                                    <a href="{{route('admin.delete-user',$dt->user_id)}}"
+                                                                        class="btn btn-outline-danger"><i
+                                                                            class='bx bx-trash me-0'></i></a> 
+                                                                            @if ($dt->subscription_status == 0)
+                                            
+                                                                            <a href="{{route('admin.buy-subscription-email',$dt->user_id)}}" title="Send subscription mail" class="btn btn-outline-warning">
+                                                                                <i
+                                                                            class='bx bx-envelope me-0'></i>
+                                                                            </a>
+                                                                            @endif
                                                                 </td>
 
                                                             </tr>

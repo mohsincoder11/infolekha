@@ -152,14 +152,12 @@ public function database_backup(){
 
     public function college_listing(Request $request)
     {
-      
         $main_query = school_institute_detail::join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
         ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
         ->where('users.active', '1')
         ->where('user_school_institute_detail.subscription_status', '1')
         ->select('user_school_institute_detail.*', 'users.logo', 'users.city_id')
         ->groupBy('users.id');
-    
     if (isset($request->type) && $request->type != 'tutorjob' && $request->type != null) {
         $main_query->where('user_school_institute.r_entity', $request->type);
     }
@@ -169,7 +167,11 @@ public function database_backup(){
     }
     
     if (isset($request->board_type) && $request->board_type != null) {
+        if($request->board_type != 'Other') {
         $main_query->where('user_school_institute_detail.entity_select', $request->board_type);
+        }else{
+            $main_query->whereNotIn('user_school_institute_detail.entity_select',[1,2,3]);
+        }
     }
     
     if (isset($request->stream) && $request->stream != null) {
@@ -468,41 +470,65 @@ public function database_backup(){
 
     }
 
+
+    public function buy_subscription($email = '')
+    {
+        if (!empty($email)) {
+            try {
+                $email = Crypt::decryptString($email);
+                $user = User::where('email', $email)->first();
+                
+                if (!empty($user)) {
+                    Auth::login($user, true);
+                }
+            } catch (DecryptException $e) {
+            }
+        }
+        return redirect()->route('payment_form');
+    }
+
+    public function login_using_email($email = ''){
+        if (!empty($email)) {
+            try {
+                $email = Crypt::decryptString($email);
+                $user = User::where('email', $email)->first();
+                
+                if (!empty($user)) {
+                    Auth::login($user, true);
+                }
+            } catch (DecryptException $e) {
+            }
+        }
+        return redirect()->route('index')->with(['success'=>'Log in successfull']);
+    }
+
     public function role(Request $request)
     {
        // return view('Website.role-blog-5');
         return view('Website.blogs.blog-new5');
-
     }
 
     public function opportunites(Request $request)
     {
-
         return view('Website.blogs.blog-new1');
     }
 
     public function choosing(Request $request)
     {
-
         //return view('Website.choosing-carrier-blog2');
         return view('Website.blogs.blog-new2');
-
     }
 
     public function stratigic(Request $request)
     {
-
        // return view('Website.stratigic-blog3');
         return view('Website.blogs.blog-new3');
-
     }
 
     public function benifite(Request $request)
     {
-
        // return view('Website.benifite4');
         return view('Website.blogs.blog-new4');
-
     }
 
     public function save_city(Request $request){

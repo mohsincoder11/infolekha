@@ -264,11 +264,7 @@
             $(document).on("change", ".select_days", function() {
                 let parent_div = $(this).closest('.card-element-container');
                 let selected_day = $(this).val();
-
-                if(parent_div.find('.CouponCode').val()){
                     calculate_discount(parent_div);
-                }
-
                 if (selected_day && selected_day > 0) {
                     $(this).closest("form").find(".no_of_days_error").html('');
                 }
@@ -316,10 +312,12 @@
                             total_amount=Math.round(original_price * selected_days2);
                             parent_div.find('.discount_span').text('0');
                             parent_div.find('.discount_input').val('0');
+                            if (parent_div.find('.CouponCode').val()) {
                             Toast.fire({
-                icon: 'error',
-                title: "Invalid coupon code."
-            })
+                                icon: 'error',
+                                title: "Invalid coupon code."
+                            })
+                        }
 
                         }
                         total_amount=total_amount.toFixed(2);

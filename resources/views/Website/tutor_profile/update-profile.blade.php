@@ -64,7 +64,11 @@
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Upload CV</label>
                                             <input type="file" class="upload" name="cv" accept=".pdf,.doc,.docx" />
-                                            <a target="_blank" href="{{asset('public/'.$user_data->tutor_detail->cv)}}">Open CV</a></div>
+                                            <a style="color:#3030f0;text-decoration:underline" target="_blank" href="{{asset('public/'.$user_data->tutor_detail->cv)}}">
+                                                <b>
+                                                Open CV
+                                                </b>
+                                            </a></div>
                                         
     
                                         <label style="font-size:16px;">Declaration </label>

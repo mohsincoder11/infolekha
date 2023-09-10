@@ -23,6 +23,7 @@ use App\Models\Master\Coupon;
 use App\Models\JobVacancyApplied;
 use App\Models\Master\Subscription;
 use App\Models\SchoolType;
+use App\Models\UserEnquiry;
 use Illuminate\Support\Facades\Hash;
 
 class SchoolProfile extends Controller
@@ -144,7 +145,9 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          'about' => $request->about,
          'image' => array_merge($image_name, $exist_image_array),
          'video' => array_merge($video_name, $exist_video_array),
-         'banner_image'=>$request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image
+         'banner_image'=>$request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image,
+         'opening_time' => $request->get('opening_time'),
+         'closing_time' => $request->get('closing_time'),
 
       ]);
 
@@ -592,8 +595,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       if ($validator->fails()) {
          return  redirect()
             ->back()
-            ->withErrors($validator)
-            ->withInput();
+            ->with(['error'=>'Please enter all the details.']);
       }
       if ($request->hasFile('blog_image')) {
          $file = $request->file('blog_image');
@@ -675,6 +677,10 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       return view('Website.school_profile.change_password');
    }
  
+   public function enquiries(){
+      $enquiries =UserEnquiry::where('college_id',Auth::user()->id)->orderby('id','desc')->get();
+      return view('Website.school_profile.enquiries',compact('enquiries'));
+   }
 
 
 }

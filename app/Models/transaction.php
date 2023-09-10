@@ -63,15 +63,14 @@ class transaction extends Model
     public function getExpiryDifferenceAttribute()
     {
         $differenceInHours = Carbon::now()->endOfDay()->diffInHours(Carbon::parse($this->expiry));
-    
-        if ($differenceInHours > 0) {
+        if (Carbon::parse($this->expiry)->isPast()) {
+            $formattedDifference = '<span class="badge  bg-danger ">Expired</span>';
+        } else {
             if ($differenceInHours < 24) {
                 $formattedDifference = '<span class="badge  bg-warning ">1 day</span>';
             } else {
                 $formattedDifference = '<span class="badge  bg-warning ">'.ceil($differenceInHours / 24) . ' days</span>';
             }
-        } else {
-            $formattedDifference = '<span class="badge  bg-danger ">Expired</span>';
         }
     
         return $formattedDifference;
