@@ -49,22 +49,71 @@ class WebsiteformController extends Controller
 
     public function index()
     {
+        $array=$this->get_home_page_array();
+        return view('Website.index', $array);
+    }
 
+    public function get_home_page_array($city_id1=null){
         $announcements = Announcement::where('status','Active');
         $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','home')->where('status','Active')->select('advertisement_enquiries.*'); //we need to add city id condition
         if(Auth::check()){
-           // $announcements=$announcements->where('city_id',Auth::user()->city_id);
-           // $advertisements=$advertisements_query->where('users.city_id',Auth::user()->city_id);
+            $city_id=Auth::user()->city_id;
         }
+        if($city_id1 && $city_id1 !=null){
+            $city_id=$city_id1;
+        }
+        if(Auth::check() || ($city_id1 && $city_id1 !=null)){
+            $announcements=$announcements->where('city_id',$city_id);
+           $advertisements_query=$advertisements_query->where('users.city_id',$city_id);
+        }
+    
+           
         $announcements= $announcements->get();
         $advertisements_650=(clone $advertisements_query)
         ->where(['BannerWidth'=>650,'BannerHeight'=>450])->take(1)->get();
         
         $advertisements_370=(clone $advertisements_query)
         ->where(['BannerWidth'=>370,'BannerHeight'=>450])->get();
-        return view('Website.index', ['announcements' => $announcements,'advertisements_650'=>$advertisements_650,'advertisements_370'=>$advertisements_370]);
+        return ['announcements' => $announcements,'advertisements_650'=>$advertisements_650,'advertisements_370'=>$advertisements_370];
+    }
+   
+    public function get_home_page_data(Request $request){
+        $array=$this->get_home_page_array($request->city_id);
+        $view=view('Website.index-data-fetch',$array)->render();
+        return response()->json($view);
     }
 
+     public function get_listing_page_data(Request $request){
+        $advertisements=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')
+        ->where('image','!=',null)
+        ->select('advertisement_enquiries.*')
+        ->where('users.city_id',$request->city_id)
+        ->where('location','listing')
+        ->where('status','Active')
+        ->take(8)
+        ->get();
+        $view=view('Website.college-listing.listing-advertisement',compact('advertisements'))->render();
+        return response()->json($view);
+    }
+
+    public function save_city(Request $request){
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'city' => 'required',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return response()->json(false);
+            }
+            $createOrupdate=City::firstOrCreate(['city'=>$request->city]);
+            if(Auth::check() && (Auth::user()->role==2 )){
+                User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
+            }
+           
+        return response()->json($createOrupdate->id);
+    }
 
 public function database_backup(){
     try {
@@ -529,24 +578,6 @@ public function database_backup(){
     {
        // return view('Website.benifite4');
         return view('Website.blogs.blog-new4');
-    }
-
-    public function save_city(Request $request){
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'city' => 'required',
-                ]
-            );
-
-            if ($validator->fails()) {
-                return response()->json(false);
-            }
-            $createOrupdate=City::firstOrCreate(['city'=>$request->city]);
-            if(Auth::check() && (Auth::user()->role==2 )){
-                User::find(Auth::user()->id)->update(['city_id'=>$createOrupdate->id]);
-            }
-        return response()->json(true);
     }
 
     public function remove_wishlist(Request $request){

@@ -97,7 +97,7 @@
                                                     <div class="row">
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-3" style="margin-top:10px;">
-                                                            <p class="form-control-label"
+                                                            <p class="form-control-label d"
                                                                 style="color: #073D5F; font-size:14px">
                                                                 <b>Apply Coupon Code</b>
                                                             </p>
@@ -117,7 +117,7 @@
                                                     </div>
 
 
-                                                    <div class="update-profile d1" style="margin-left:38%; margin-top:2%;">
+                                                    <div class="update-profile d1" style=" margin-top:2%;" align="center">
                                                         <button type="submit" class="btn btn-primary"
                                                             style="width: 40%;">Pay Now</button>
                                                     </div>

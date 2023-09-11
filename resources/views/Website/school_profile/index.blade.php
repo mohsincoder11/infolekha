@@ -19,7 +19,17 @@
   .social-icons li {
     margin: 0 10px; 
   }
+	.banner
+	{
+    height: 250px;
+    background-image: url(https://infolekha.org/public/database_files/school_institute/logo/1693991378.jpeg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+	}
 </style>
+
+
 <div class="dashboard-content">
                     <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
                     <div class="container dasboard-container">
@@ -46,24 +56,20 @@
                         
                         <div class="dasboard-wrapper fl-wrap no-pag">
                             <div class="row">
-                                         <div class="col-md-10">
+                               <div class="col-md-10">
                                     <div class="dasboard-widget-title fl-wrap">
                                     </div>
                                     <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
-                                      
-										
-										  <!--  <div class="" >
-                                        <div style="background-image: url('images/clg.jpeg'); height: 250px;
-                                        width: 100%;"> 
-                                     
-                                            <img  class="mt"  src="images/clg.jpeg" alt=""   
-                                            style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index: 1000; margin-top:32%; "> 
+									  <div class="" >
+                                     <div class="banner" style="background-image: url('{{asset('public')."/".($user_data->logo ?? '' )}} " >
+  <img  class="mt"  src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index:2; margin-top:180px;"> 
                                         </div>
 
                                         
-                                    </div>-->
-                                        <div >
-                                            <div ><img src="{{ isset($user_data->banner_image) ? asset('public').'/'.($user_data->banner_image) : 'https://via.placeholder.com/950x250' }}" width="500" height="250"></div>
+										</div>
+											 </div>
+                                       <!-- <div >
+                                           <div ><img src="{{ isset($user_data->banner_image) ? asset('public').'/'.($user_data->banner_image) : 'https://via.placeholder.com/950x250' }}" width="500" height="250"></div>
                                         </div>
                                         <div class="change-photo-btn cpb-2  ">
                                             {{-- <div class="photoUpload color-bg">
@@ -79,7 +85,8 @@
                                         <div class="custom-form">
                                            
 
-                                            <img src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;"> <label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($user_data->entity_name) ?? ''}}</label>
+    <!-- <img src="{{asset('public')."/".($user_data->logo ?? '')}}" alt="" style="height:60px; width:60px; border-radius:50%;">-->
+	<label style="text-align: center;  color: #144273; font-size:28px;">{{ucfirst($user_data->entity_name) ?? ''}}</label>
                                             {{-- <label style="text-align:center; color:#144273; font-size:16px;">
                                                 Lorem ipsum dolor, sit amet consectetur adipisicing elit!!</label> --}}
 

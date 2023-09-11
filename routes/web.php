@@ -49,6 +49,12 @@ Route::get('/2', function () {
     return view('Website.login');
 });
 
+Route::get('/', [WebsiteformController::class, 'index'])->name('index');
+Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
+Route::get('get_home_page_data', [WebsiteformController::class, 'get_home_page_data'])->name('get_home_page_data');
+Route::get('get_listing_page_data', [WebsiteformController::class, 'get_listing_page_data'])->name('get_listing_page_data');
+
+
 Route::get('database-backup', [WebsiteformController::class, 'database_backup'])->name('database-backup');
 
 
@@ -414,14 +420,12 @@ Route::view('success-complete', 'Website.success')->name('success-complete');
 
    
 });
-Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
 
 Route::post('apply-for-job', [WebsiteformController::class, 'apply_for_job'])->name('apply-for-job');
 
 
 Route::get('like-login-redirect', [UserLikeFeedback::class, 'like_login_redirect'])->name('like-login-redirect');
 
-Route::get('/', [WebsiteformController::class, 'index'])->name('index');
 Route::get('event', [WebsiteformController::class, 'event'])->name('event');
 Route::get('coming-soon', [WebsiteformController::class, 'coming_soon'])->name('coming_soon');
 Route::get('anouncement/{city}', [WebsiteformController::class, 'anouncement'])->name('anouncement');

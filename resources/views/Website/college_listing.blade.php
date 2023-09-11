@@ -258,7 +258,7 @@
                                             </div> <!-- /.flat-pagination -->
                                         </div><!-- /.blog-pagination -->
                                     </div><!-- /.col-lg-9 -->
-                                           <div class="col-lg-3" style="margin-top:7%;">
+                                           <div class="col-lg-3">
                                         <div class="sidebar">
                                             <div class=" widget widget-form style2 ">
                                                 <marquee behavior="scroll" direction="up" scrollamount="7">

@@ -80,8 +80,8 @@
             display: none;
             position: fixed;
             z-index: 1;
-            left: 0;
-            top: 0;
+            left: 50%;
+            top: 50%;
             width: 100%;
             height: 100%;
             overflow: auto;
@@ -161,6 +161,7 @@
         .pac-container {
             width: 33%;
         }
+    
     </style>
 
 @stop
@@ -507,26 +508,25 @@
                                         </div> <!-- /.flat-pagination -->
                                     </div><!-- /.blog-pagination -->
                                 </div><!-- /.col-lg-9 -->
-                                <div class="col-lg-3" style="margin-top:7%;">
-                                    <div class="sidebar">
+                                <div class="col-lg-3" id="city-wise-data">
+                                    <div class="sidebar" style="margin-top:0.01rem;">
                                         <div class=" widget widget-form style2 ">
-                                            @foreach ($advertisements as $advertisement)
+                        <span id="city-wise-data">
+                            <div class="card">
+                                <div class="cover-image-skeleton"></div>
+                               
+                            </div>
+                            {{-- @foreach ($advertisements as $advertisement)
                                                 <span><img class="listing_image"
                                                         src="{{ asset('public/' . $advertisement->image) }}"
                                                         alt="image">
                                                 </span>
                                                 <br>
                                                 <br>
-                                            @endforeach
+                                            @endforeach --}}
+                        </span>
 
                                         </div>
-
-                                        {{-- <div class=" widget widget-form style2 ">
-                                            <span><img src="{{ asset('website_asset/images/clg-listing1.png') }}"></span>
-
-
-
-                                        </div> --}}
 
                                     </div>
                                 </div><!-- /.col-md-3 -->

@@ -109,7 +109,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 700px;
-        height: 400px;
+        height: 300px;
         background-color: #fff;
         padding: 1px 20px 20px 20px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -156,6 +156,17 @@
     font-size: 14px;
     }
     </style>
+
+<style>
+	  @media (max-width: 768px) {
+       .wt {
+            width:90% !important;
+           
+        }
+
+        
+    }
+</style>
    <link href="
    https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.css
    " rel="stylesheet">
@@ -433,8 +444,8 @@
       </div>
 
 
-      <div id="popup2" class="popup1"
-style="overflow-y: scroll !important;width: 40vw!important;">
+      <div id="popup2" class="popup1 wt"
+style="overflow-y: scroll !important;width: 40vw;">
 
 <div
     style="width: 100%; text-align: right; position: sticky; top: 0;">
@@ -442,7 +453,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
             class="fas fa-times"></i></a>
 </div>
 
-<div class="row">
+<div class="row wt">
     <div class="col-lg-1"></div>
     <div class="col-lg-8">
         <div class="form-group">
@@ -455,9 +466,9 @@ style="overflow-y: scroll !important;width: 40vw!important;">
 
         </div>
     </div>
-    <div class="col-lg-3" >
-        <button type="button" class="btn btn-primary"><i
-                class="fa fa-plus-square"></i></button>
+    <div class="col-lg-1" style="margin-top:25px;" >
+        <button type="button" class=" color-bg  float-btn" style="padding:8px; color:#fff;"><i
+                class="fa fa-plus-square"  ></i></button>
     </div>
 
 </div>
@@ -466,13 +477,13 @@ style="overflow-y: scroll !important;width: 40vw!important;">
 </span>
 <div class="row centered-container mt-2">
     <button type="button"
-        class="btn btn-primary popup2-submit-btn">Submit</button>
+        class=" btn color-bg  float-btn popup2-submit-btn" style="padding:12px;">Submit</button>
 </div>
 
 </div>
 
-<div id="popup3" class="popup1"
-style="overflow-y: scroll !important;width: 40vw!important;">
+<div id="popup3" class="popup1 wt"
+style="overflow-y: scroll !important;width: 40vw;">
 
 <div
     style="width: 100%; text-align: right; position: sticky; top: 0;">
@@ -480,7 +491,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
             class="fas fa-times"></i></a>
 </div>
 
-<div class="row">
+<div class="row wt">
     <div class="col-lg-1"></div>
     <div class="col-lg-8">
         <div class="form-group">
@@ -493,8 +504,8 @@ style="overflow-y: scroll !important;width: 40vw!important;">
 
         </div>
     </div>
-    <div class="col-lg-3" >
-        <button type="button" class="btn btn-primary"><i
+    <div class="col-lg-1" style="margin-top:25px;" >
+        <button type="button" class=" color-bg  float-btn" style="padding:8px; color:#fff;"><i
                 class="fa fa-plus-square"></i></button>
     </div>
 
@@ -504,7 +515,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
 </span>
 <div class="row centered-container mt-2">
     <button type="button"
-        class="btn btn-primary popup3-submit-btn">Submit</button>
+        class=" color-bg  float-btn popup3-submit-btn" style="padding:12px; color:#fff;">Submit</button>
 </div>
 
 </div>
@@ -647,8 +658,8 @@ if(otherOption){
         '<input name="other_facilities[]" type="text" class="form-control" value="'+$("#other_facilities_modal_input").val()+'">' +
         '</div>' +
         '</div>' +
-        '<div class="col-lg-3">' +
-        '<button type="button" class="btn btn-danger delete-row"><i class="fa fa-trash"></i></button>' +
+        '<div class="col-lg-1">' +
+        '<button type="button" class=" btn-danger delete-row" style="padding:12px;"><i class="fa fa-trash"></i></button>' +
         '</div>' +
         '</div>');
     $("#other_facilities_modal_input").val('');

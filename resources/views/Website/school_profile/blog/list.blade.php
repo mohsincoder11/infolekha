@@ -22,11 +22,11 @@
 
 
         <div class="dasboard-widget-box fl-wrap">
-            <div  style="margin-bottom:8%;">
-                <a href="{{route('school_profile.write-blog')}}" class="add-list color-bg"> <span>Write a Blog</span></a>
+            <div  style="margin-bottom:2%; float:right;">
+                <a href="{{route('school_profile.write-blog')}}" class="btn color-bg"> <span>Write a Blog</span></a>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12" style="overflow-x:scroll;">
                 <table id="customers">
                    <thead>
                         <th> SN</th>

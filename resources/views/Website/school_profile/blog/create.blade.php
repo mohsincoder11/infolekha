@@ -4,6 +4,14 @@
         #description {
             height: 200px;
         }
+		
+		    @media (max-width: 768px) {
+    
+        .mt {
+            margin-top:18%;
+        }
+    }
+
     </style>
 
       <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -24,19 +32,19 @@
             <!-- dasboard-wrapper-->
           
             <div class="dasboard-widget-box fl-wrap">
-                <div style="margin-bottom:8%;">
-                    <a href="{{ route('school_profile.blog') }}" class="add-list color-bg"> <span>Show Blog</span></a>
+                <div style="margin-bottom:0%; float:right;">
+                    <a href="{{ route('school_profile.blog') }}" class="btn color-bg"> <span>Show Blog</span></a>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 ">
                     <div class="row">
                         <form method="post" action="{{route('school_profile.insert-blog')}}" id="blog_form" enctype="multipart/form-data">
                         <div class="custom-form">
 @csrf
 
 
-                            <div class="col-md-12">
-                                <label style="font-size:16px;">Subject of Blog </label>
+                            <div class="col-md-12 mt">
+                                <label style="font-size:16px;" class="mt">Subject of Blog </label>
                                 <input type="text" placeholder="Subject of Blog" name="subject" />
                             </div>
 

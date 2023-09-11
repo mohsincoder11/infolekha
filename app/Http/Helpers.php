@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
 function send_sms($number){
-    $otp=rand(1000,9999);
+   // $otp=rand(1000,9999);
+	$otp=1234;
     $url='http://bulksms.webmediaindia.com/sendsms?uname=habitm1&pwd=habitm1&senderid=ILEKHA&to='.$number.'&msg=Dear user Please enter this OTP '.$otp.' to verify your account. Thank you for choosing INFOlekha.org.&route=T&peid=1701168292124454704&tempid=1707168309589390057';
     $response = Http::get($url);
     if ($response->successful()) {

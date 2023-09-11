@@ -1,6 +1,15 @@
 @extends('website_layout')
 @section('website_content')
+<style>
+	  @media (max-width: 768px) {
+       .wt {
+            width:90% !important;
+           
+        }
 
+        
+    }
+</style>
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -574,8 +583,8 @@
 
 </section>
 
-<div id="popup2" class="popup1"
-style="overflow-y: scroll !important;width: 40vw!important;">
+<div id="popup2" class="popup2 wt"
+style="overflow-y: scroll !important;width: 40vw;">
 
 <div
     style="width: 100%; text-align: right; position: sticky; top: 0;">
@@ -583,7 +592,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
             class="fas fa-times"></i></a>
 </div>
 
-<div class="row">
+<div class="row ht">
     <div class="col-lg-1"></div>
     <div class="col-lg-8">
         <div class="form-group">
@@ -612,7 +621,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
 
 </div>
 
-<div id="popup3" class="popup1"
+<div id="popup3" class="popup2 wt"
 style="overflow-y: scroll !important;width: 40vw!important;">
 
 <div
@@ -621,7 +630,7 @@ style="overflow-y: scroll !important;width: 40vw!important;">
             class="fas fa-times"></i></a>
 </div>
 
-<div class="row">
+<div class="row wt">
     <div class="col-lg-1"></div>
     <div class="col-lg-8">
         <div class="form-group">

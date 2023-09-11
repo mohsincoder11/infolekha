@@ -8,6 +8,8 @@
 .condition-label.valid {
   color: green;
 }
+	
+
 </style>
 @stop
 @section('website_content')
@@ -84,13 +86,13 @@
 
 
 
-                        <span class="input-login icon-form">
+                        <span class="input-login icon-form field-icon.error">
                             <input type="password" placeholder="Password*" id="password" name="password"
                                 required="required"><i toggle="#password"
                                 class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
                         </span>
 
-                        <span class="input-login icon-form">
+                        <span class="input-login icon-form field-icon.error">
                             <input type="password" placeholder="Confirm Password*" name="password_confirmation"
                                 id="password_confirmation" required="required"><i toggle="#password_confirmation"
                                 class="fa fa-fw fa-eye-slash field-icon toggle-password"></i>
@@ -166,6 +168,8 @@
             });
 
         });
+		
+		
     </script>
 
     <script>
@@ -264,6 +268,8 @@
                 return true;
             },
             errorPlacement: function(error, element) {
+				 $(element).next("i.toggle-password").addClass("error");
+                error.insertAfter(element);
                 if (element.attr("name") === "r_mob") {
                     error.insertAfter(element.closest('.input-login'));
                 } else {
@@ -444,6 +450,8 @@
 
             });
         }
+		
+		
     </script>
 
 @stop

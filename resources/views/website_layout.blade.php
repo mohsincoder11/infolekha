@@ -466,7 +466,22 @@
 
 
 
-    .popup1 {
+    .popup2 {
+        display: none;
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        height: 300px;
+        background-color: #fff;
+        padding: 1px 20px 20px 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+       
+    }
+	
+	   .popup1 {
         display: none;
         position:fixed;
         top: 50%;
@@ -702,6 +717,9 @@
            border-radius: 2px;
            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
        }
+       .field-icon.error {
+    margin-top: -15px;
+}
 </style>
 <style>
 body { 
@@ -883,6 +901,27 @@ body {
   100% { transform: rotate(360deg); }
 }
 
+    :root {
+    --loader-background-color: #EEEEEE;
+    --loader-highlight-color: #DEDEDE;
+}
+.cover-image-skeleton {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(90deg, var(--loader-background-color) 25%, var(--loader-highlight-color) 50%, var(--loader-background-color) 75%);
+    background-size: 200% 100%;
+    animation: loading 2s infinite ease-in-out;
+    
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
 </style>
 @yield('css')
 
@@ -1627,20 +1666,79 @@ fetch(google_url).then(function(response) {
                $('.detect-location').remove();
            }, 2500);
        });
+       var current_Route='{{request()->route()->getName()}}';
+                    if(current_Route=='index'){
+                        get_home_page_data(localStorage.getItem('city_id'));
+                    } 
+                    if(current_Route=='college_listing' || current_Route=='listing-details'){
+                        get_listing_page_data(localStorage.getItem('city_id'));
+                    }
+       function stored_city_function(city) {
+            $(".loader-container").show();
 
-        function stored_city_function(city) {
             $.ajax({
                 type: 'GET',
                 url: '{{ route('save-city') }}',
                 data: {
                     city: city
                 },
-                success: function(data) {
-                    console.log(data);
+                success: function(city_id) {
+                localStorage.setItem('city_id', city_id);
+                    if(current_Route=='index'){
+                        get_home_page_data(city_id);
+                    } 
+                    if(current_Route=='college_listing' || current_Route=='listing-details'){
+                        get_listing_page_data(city_id);
+                    }
+
                 },
                 error: function(data) {
+                    $(".loader-container").hide();
 
-                    console.log(data);
+                }
+            });
+        }
+
+        
+        function get_home_page_data(city_id) {
+            $(".loader-container").show();
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('get_home_page_data') }}',
+                data: {
+                    city_id: city_id
+                },
+                success: function(data) {
+                    $("#city-wise-data").html(data);
+                    $(".loader-container").hide();
+
+                },
+                error: function(data) {
+                    $(".loader-container").hide();
+
+                }
+            });
+        }
+
+           
+        function get_listing_page_data (city_id) {
+            $(".loader-container").show();
+
+            $.ajax({
+                type: 'GET',
+                url: '{{ route('get_listing_page_data') }}',
+                data: {
+                    city_id: city_id
+                },
+                success: function(data) {
+                    $("#city-wise-data").html(data);
+                    $(".loader-container").hide();
+
+                },
+                error: function(data) {
+                    $(".loader-container").hide();
+
                 }
             });
         }

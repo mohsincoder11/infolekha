@@ -24,8 +24,8 @@
             <div class="dasboard-widget-box fl-wrap">
 
 
-                <div class="col-md-12">
-                    <table id="customers">
+                <div class="col-md-12" style="overflow-x:scroll;">
+                    <table id="customers" >
                         <thead>
                             <th>SN</th>
                             <th>Name</th>

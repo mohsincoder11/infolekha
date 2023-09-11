@@ -857,13 +857,20 @@
 
 
                             </div>
-                        </div><br>
-                        @foreach ($advertisements as $advertisement)
+                        </div>
+                        <br>
+                        <span id="city-wise-data">
+                            <div class="card">
+                                <div class="cover-image-skeleton"></div>
+                               
+                            </div>
+                        {{-- @foreach ($advertisements as $advertisement)
                             <img class="listing_image" src="{{ asset('public/' . $advertisement->image) }}"
                                 alt="image">
                             <br>
                             <br>
-                        @endforeach
+                        @endforeach --}}
+                    </span>
 
 
                     </div><!-- /.sidebar -->

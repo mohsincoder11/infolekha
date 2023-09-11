@@ -10,7 +10,7 @@
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item">Post Announcement1</div>
+                <div class="dashboard-title-item">Post Announcement</div>
                 @include('Website.school_profile.profile_header')
 
 
@@ -19,7 +19,7 @@
 
             <div class="col-md-12">
                 <div class="list-searh-input-wrap-title fl-wrap"></div>
-                <div class="block-box fl-wrap search-sb" id="filters-column">
+                <div class="block-box fl-wrap search-sb dasboard-widget-box" id="filters-column" >
                     <div class="row">
                         <form action="{{ route('insert-announcement') }}" method="post" enctype="multipart/form-data"
                             id="post_announcement_form">
@@ -40,7 +40,7 @@
                                     <div class="listsearch-input-item">
 
                                         <label style="font-size:16px;">Upload Image</label>
-                                        <input name="image" type="file" onClick="this.select()" value=""
+                                        <input name="image" width="500" height="250" type="file" onClick="this.select()" value=""
                                             accept="image/*" />
                                     </div>
                                 </div>

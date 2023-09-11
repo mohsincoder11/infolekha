@@ -105,25 +105,18 @@
                             </div>
 	                     
 
-
-
-
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-md-12" style="margin-top: 20px;">
+ <div class="col-md-12" style="margin-top: 20px;">
                     <hr>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12" style="overflow-x:scroll;">
 
                     <div class="row" style="margin-top:20px;">
 
 
                         <table id="customers">
                             <tr>
-                                <th> SN</th>
+                                <th style="padding:12px;"> SN</th>
                                 <th>Vacancy For</th>
                                 <th>Subject</th>
                                 <th>Experience Required</th>
@@ -170,6 +163,13 @@
                     </div>
 
                 </div>
+
+
+                        </div>
+                    </form>
+                </div>
+
+               
 
             </div>
         </div>

@@ -18,7 +18,7 @@
 
             <div class="col-md-12">
                 <div class="list-searh-input-wrap-title fl-wrap"></div>
-                <div class="block-box fl-wrap search-sb" id="filters-column">
+                <div class="block-box fl-wrap search-sb dasboard-widget-box" id="filters-column">
                     <div class="row">
                         <div class="col-md-4">
                             <form action="{{ route('school_profile.insert_post_result') }}" method="POST"

@@ -245,6 +245,8 @@
                 return true;
             },
             errorPlacement: function(error, element) {
+                $(element).next("i.toggle-password").addClass("error");
+                error.insertAfter(element);
                 if (element.attr("name") === "r_mob") {
                     error.insertAfter(element.closest('.input-login'));
                 } else {
