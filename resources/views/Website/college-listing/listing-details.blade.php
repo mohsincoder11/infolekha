@@ -822,11 +822,11 @@
                                     </a>
                                 </li><br>
 
-                                @if (auth()->user()->role == '2' && count($jobs) > 0 && auth()->user()->tutordetail->subscription_status=='1')
+                                @if (auth()->user()->role == '2' && count($jobs) > 0 && auth()->user()->tutordetail->subscription_status=='1' &&  auth()->user()->active=='1')
                                     <div class="wrapper">
                                         <button type="button" class=" login-btn effect-button " data-toggle="modal"
-                                            data-target="#jobModal"> <i class="fa fa-eye" aria-hidden="true"></i> View
-                                            Jobs</button>
+                                            data-target="#jobModal"> <i class="fa fa-eye" aria-hidden="true"></i> 
+                                            View Jobs</button>
                                     </div>
                                 @endif
 
@@ -943,8 +943,7 @@
                 <div class="modal-header">
 
             <h4 class="modal-title" id="myModalLabel" style="text-align:right;" >View Jobs</h4>
-					                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                            aria-hidden="true" >&times;</span></button>
+					                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
                 </div>
                 <div class="modal-body">
 

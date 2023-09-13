@@ -10,3 +10,14 @@ ALTER TABLE `announcements` CHANGE `note` `note` TEXT CHARACTER SET utf8mb4 COLL
 
 
 ALTER TABLE `coupons` ADD `coupon_for` ENUM('1','2') NOT NULL DEFAULT '1' COMMENT '1 is school,2 is tutor' AFTER `type`;
+
+
+//12/09----------------------------------------------------------------
+ALTER TABLE `subscriptions` ADD `days` INT NOT NULL DEFAULT '0' AFTER `type`, ADD `view_once` ENUM('0','1') NOT NULL DEFAULT '0' COMMENT 'this is for tutor who can see job once. o default for no, 1 for yes' AFTER `days`;
+
+ALTER TABLE `subscriptions` ADD `user_type` ENUM('1','2','3') NOT NULL AFTER `amount`;
+
+ALTER TABLE `transaction_subscriptions` ADD `days` INT NOT NULL DEFAULT '0' AFTER `type`, ADD `view_once` ENUM('0','1') NOT NULL DEFAULT '0' COMMENT 'this is for tutor who can see job once. o default for no, 1 for yes' AFTER `days`;
+
+
+ALTER TABLE `transaction_subscriptions` ADD `user_type` ENUM('1','2','3') NOT NULL AFTER `amount`;

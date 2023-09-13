@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionSubscription extends Model
 {
     use HasFactory;
-    protected $fillable = ['plan', 'amount', 'type', 'transaction_id'];
+    protected $fillable = [
+        'plan', 
+        'amount', 
+        'type', 
+        'user_type',
+        'days',
+        'view_once',
+        'transaction_id'
+    ];
 
 }

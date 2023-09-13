@@ -480,7 +480,7 @@ public function database_backup(){
 
     public function payment_form(Request $request)
     {
-        $Subscriptions=Subscription::orderby('amount','asc')->get();
+        $Subscriptions=Subscription::where('user_type',Auth::user()->role)->orderby('amount','asc')->get();
         return view('Website.payment_form',compact('Subscriptions'));
     }
 

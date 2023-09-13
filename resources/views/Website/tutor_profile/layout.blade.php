@@ -452,7 +452,7 @@ font-size: 16px;
                             @if (Auth::user()->active == '1')
                             <li>
                                 <a href="{{ route('tutor_profile.job_applied') }}" @if ($routeName == 'tutor_profile.job_applied') class="user-profile-act" @endif><i
-                                        class="fal fa-heart"></i>Job Applied</a>
+                                        class="fal fa-briefcase"></i>Job Applied</a>
 
                             </li>
                             <li><a href="{{ route('tutor_profile.blog') }}"
@@ -473,7 +473,7 @@ font-size: 16px;
                             <li>
                                 <a href="{{ route('activate_profile') }}"
                                     @if ($routeName == 'activate_profile') class="user-profile-act" @endif><i
-                                        class="fal fa-unlock"></i>Activate Profile</a>
+                                        class="fal fa-unlock"></i>Become Prime Member</a>
 
                             </li>
                             @endif

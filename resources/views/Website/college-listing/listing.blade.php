@@ -242,7 +242,7 @@
                                                         id="city_search" class="form-control f1 " placeholder="City">
                                                 </div>
                                             </div>
-                                            @if (auth()->check() && auth()->user()->role == '2' && auth()->user()->tutordetail->subscription_status == '1')
+                                            @if (auth()->check() && auth()->user()->role == '2' && auth()->user()->tutordetail->subscription_status == '1' && auth()->user()->active=='1')
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
                                                         <select class="form-select select country-select filter filter_form"
@@ -446,7 +446,7 @@
                                         </div>
                                     </div> --}}
                                     @if (request()->segment(2) && request()->segment(2) == 'tutorjob')
-                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0)
+                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0 && auth()->user()->tutordetail->subscription_status != '1')
                                         <div id="popup2" class="popup2">
                                             <div class="popup-content">
                                                 <span class="close2">&times;</span>

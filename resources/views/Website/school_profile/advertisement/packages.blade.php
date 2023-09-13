@@ -1,5 +1,5 @@
 <h4 style="color: #073D5F; font-size: 22px; margin-bottom: 1rem; margin-top: 2rem;">
-    <b>Our Subscription Plans </b>
+    <b>Our Advertisement Plans </b>
 </h4>
 <!-- listsearch-input-item -->
 
@@ -58,20 +58,20 @@
                                     <label style="text-align: center !important;"> Apply Coupon Code</label>
 
                                 </li>
-                                <div class="listing-rating card-popup-rainingvis">
+                                <li class="card-element">
+                                <div>
                                     <input type="text" class="form-control CouponCode" name="CouponCode"
-                                        value="" style="margin-left:10px;" />
-                                    <span class="re_stars-title"><button style="margin-left:60px; padding:10px; border-radius:10px; color:#fff; border:none;" type="button" class="btn-standard ApplyCouponCode">Apply</button></span>
+                                        value="" style="margin-left:10px;display:inline;width:50%" />
+                                   <button style="margin-left:10px; padding:10px; border-radius:10px; color:#fff; border:none;display:inline;width:30%;" type="button" class="btn-standard ApplyCouponCode">Apply</button>
                                 </div>
+                            </li>
+                            <li class="card-element"><button style="margin:10px 0;" type="submit" class="btn btn-standard btn-submit">Send
+                                Enquiry</button>
+                            </li>
 
                             </ul>
-                            {{-- <div style="padding:0 10px;">
-
-                    <label style="text-align: center !important;margin:10px 0;"> Apply Coupon Code</label>
-                    <input type="text" class="form-control CouponCode" name="CouponCode"  value="" />
-                </div> --}}
-                            <button style="margin:10px 0;" type="submit" class="btn btn-standard btn-submit">Send
-                                Enquiry</button>
+                            
+                            
                         </div>
                     </div>
                 </div>

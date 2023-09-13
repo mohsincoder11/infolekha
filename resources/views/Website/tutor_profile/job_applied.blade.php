@@ -16,6 +16,8 @@
                         <div class="list-searh-input-wrap-title fl-wrap"></div>
                         <div class="block-box fl-wrap search-sb" id="filters-column">
                             <!-- listsearch-input-item -->
+                        <a class="btn color-bg float-btn mb-2" href="{{ route('college_listing', 'tutorjob') }}">Apply For Jobs</a>
+
                                                         <table id="customers">
                                 <tr>
                                     <th> SN</th>

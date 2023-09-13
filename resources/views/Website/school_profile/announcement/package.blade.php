@@ -183,30 +183,26 @@
                                                     <li class="card-element">Apply Coupon Code
 
                                                     </li>
-                                                    <!-- <li class="card-element">
-                                            <input type="text" class="form-control CouponCode" name="CouponCode"
-                                            value="">
-                                            <button style="margin-left:60px; padding:5px; border-radius:10px; color:#fff; border:none;"
-                                            type="button" class="btn-standard ApplyCouponCode">Apply</button>
-                                                                               </li>-->
-                                                    <div class="listing-rating ">
+                                                   
+                                                    <li class="card-element">
+                                                        <div>
                                                         <input type="text" class="form-control CouponCode"
-                                                            name="CouponCode" value="" style="margin-left:10px;" />
-                                                        <span class="re_stars-title"><button
-                                                                style="margin-left:60px; padding:10px; border-radius:10px; color:#fff; border:none;"
+                                                            name="CouponCode" value="" style="margin-left:10px;display:inline;width:50%" " />
+                                                       <button
+                                                                style="margin-left:10px; padding:10px; border-radius:10px; color:#fff; border:none;display:inline;width:30%" "
                                                                 type="button"
-                                                                class="btn-standard ApplyCouponCode">Apply</button></span>
+                                                                class="btn-standard ApplyCouponCode">Apply</button>
                                                     </div>
+                                                    </li>
 
                                                 </ul>
 
 
                                                 <div>
 
-                                                    {{-- <label style="text-align: center !important;"> Apply Coupon Code</label>
-                                         <input type="text" class="form-control" name="CouponCode"  value="" /> --}}
+                                                    <button type="submit" class="btn btn-standard btn-submit">Pay Now</button>
+
                                                 </div>
-                                                <button type="submit" class="btn btn-standard btn-submit">Pay Now</button>
                                             </div>
                                         </div>
                                     </div>

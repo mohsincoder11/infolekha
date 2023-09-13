@@ -11,7 +11,7 @@ use Illuminate\Validation\Rule;
 class SubscriptionController extends Controller
 {
     public function index(){
-        $Subscription=Subscription::all();
+        $Subscription=Subscription::orderby('id','desc')->get();
         return view('Master.subscription.index',['Subscription'=>$Subscription]);
        }
 
@@ -20,7 +20,9 @@ class SubscriptionController extends Controller
             $request->all(),
            [
             'plan' => 'required|string|max:255',
-            'type' => 'required|in:Month,Year',
+            'type' => 'required|in:Month,Year,Days',
+            'user_type' => 'required|in:1,2,3',
+            'days' => 'required|numeric',
             'amount' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
         ]);
@@ -36,8 +38,11 @@ class SubscriptionController extends Controller
         $Subscription = new Subscription([
             'plan' => $request->input('plan'),
             'type' => $request->input('type'),
+            'user_type' => $request->input('user_type'),
             'amount' => $request->input('amount'),
             'status' => $request->input('status'),
+            'days' => $request->input('days'),
+            'view_once' => $request->input('view_once') ?? '0',
         ]);
 
         $Subscription->save();
@@ -56,7 +61,9 @@ class SubscriptionController extends Controller
             $request->all(),
            [
             'plan' => 'required|string|max:255',
-            'type' => 'required|in:Month,Year',
+            'type' => 'required|in:Month,Year,Days',
+            'user_type' => 'required|in:1,2,3',
+            'days' => 'required|numeric',
             'amount' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
         ]);
@@ -73,8 +80,11 @@ class SubscriptionController extends Controller
         Subscription::where('id',$request->id)->update([
             'plan' => $request->input('plan'),
             'type' => $request->input('type'),
+            'user_type' => $request->input('user_type'),
             'amount' => $request->input('amount'),
             'status' => $request->input('status'),
+            'days' => $request->input('days'),
+            'view_once' => $request->input('view_once') ?? '0',
         ]);
 
         return redirect()->route('admin.master.subscription')->with(['success'=>'Subscription successfully Updated.']);

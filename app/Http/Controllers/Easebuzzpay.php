@@ -70,14 +70,16 @@ class Easebuzzpay extends Controller
         $it->transaction_id=$txnid;
         $it->type='Subscription';
         $it->transaction_status=(int)$payable_amount==0 ? 'success' : 'NA';
-        $addDays=$subscription->type=='Year' ? 365 : 30;
+        $addDays=$subscription->days;
         $it->expiry=Carbon::now()->addDays($addDays)->format('Y-m-d');
         $it->coupon=isset($coupon) ? $coupon->code : null;
        
         $it->save();
         $transaction_subscription=TransactionSubscription::create([
           'plan' => $subscription->plan,
+          'user_type' => $subscription->user_type,
           'type' => $subscription->type,
+          'days' => $subscription->days,
           'amount' => $subscription->amount,
           'transaction_id' => $it->id,
         ]);

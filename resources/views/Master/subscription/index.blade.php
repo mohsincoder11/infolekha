@@ -21,30 +21,42 @@
 
                                 <div class="col-md-12"></div>
 
-                              	<div class="col-md-3">
+                              	<div class="col-md-4">
 								<label class="form-label">Plan Name</label>
 								<input class="form-control " type="text" placeholder="Plan Name"
 									aria-label="default input example" name="plan">
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<label class="form-label">Amount</label>
-								<input class="form-control " type="text" placeholder="Amount"
+								<input class="form-control " type="number" placeholder="Amount"
 									aria-label="default input example" name="amount">
 							</div>
 
-							<div class="col-md-3">
-								<label class="form-label">Select Type</label>		
-								<select class="form-select mb-3" aria-label="Default select example" name="type">
-									<option selected>Select Type</option>
-									<option value="Month">Month</option>
-									<option value="Year">Year</option>
-								
-							
+							<div class="col-md-4">
+								<label class="form-label">User Type</label>		
+								<select class="form-select mb-3" aria-label="Default select example" name="user_type" id="user_type">
+									<option selected disabled>Select User</option>
+									<option value="1">School/Institute/College</option>
+									<option value="2">Tutor</option>
 								</select>
 							</div>
-
-							<div class="col-md-3">
+                            
+                            <div class="col-md-4">
+								<label class="form-label">Select Duration</label>		
+								<select class="form-select mb-3" aria-label="Default select example" name="type" id="type">
+									<option selected disabled>Select Duration</option>
+									<option value="Month">Month</option>
+									<option value="Year">Year</option>
+									<option value="Days">Days</option>
+								</select>
+							</div>
+                            
+                            <div class="col-md-4 d-none" id="days_div">
+								<label class="form-label">Enter Days</label>		
+								<input class="form-control" type="number" step="1" name="days" value="1" id="days">
+							</div>
+                            <div class="col-md-4">
 								<label class="form-label">Status</label>		
 								<select class="form-select mb-3" aria-label="Default select example" name="status">
 									<option value="active">Active</option>
@@ -52,7 +64,12 @@
 							
 								</select>
 							</div>
-
+                            <div class="col-md-12 d-none" id="view_once">
+								<div class="form-check" style="padding-left:1.5em !important;">
+                                    <input class="form-check-input" type="checkbox" name="view_once" id="gridCheck" value="1">
+                                    <label class="form-check-label" for="gridCheck">View Job Once</label>
+                                </div>
+							</div>
 
                                 <div class="col-md-12" style="margin-top:2%;">
                                     <button type="submit" class="btn btn-primary px-3"><i class="lni lni-circle-plus"></i>
@@ -124,6 +141,30 @@
 @section('js')
     <script>
         $(document).ready(function() {
+            $("#type").on('change', function() {
+                if($(this).val() =='Days'){
+                $("#days_div").removeClass("d-none");
+                }
+                else if($(this).val() =='Month'){
+                    $("#days").val(30);
+                    $("#days_div").addClass("d-none");
+                }
+                else{
+                    $("#days").val(365);
+                    $("#days_div").addClass("d-none");
+                }
+            })
+
+            $("#user_type").on('change', function() {
+                if($(this).val() =='2'){
+                $("#view_once").removeClass("d-none");
+                }
+                else{
+                    $("#view_once").addClass("d-none");
+                }
+            })
+            
+
             $('.select_box').select2();
             ClassicEditor
                 .create(document.querySelector('#editor'))
