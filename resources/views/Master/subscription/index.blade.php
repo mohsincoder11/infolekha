@@ -99,9 +99,11 @@
                                         <th>Sr. No.</th>
 
                                         <th>Plan</th>
+                                        <th>User Type</th>
                                         <th>Type</th>
                                         <th>Amount</th>
                                         <th>Status</th>
+                                        <th>Action</th>
 
                                     </tr>
                                 </thead>
@@ -109,17 +111,21 @@
                                     @foreach ($Subscription as $subscription)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                          <td>{{$subscription->plan}}</td>
-                                          <td>{{$subscription->type}}</td>
-                                          <td>{{$subscription->amount}}</td>
-                                          <td>{{ucFirst($subscription->status)}}</td>
+                                            <td>{{ $subscription->plan }}</td>
+                                            <td>
+                                                {{ $subscription->user_name }}
+                                            </td>
+                                            <td>{{ $subscription->subscription_month_detail }}</td>
+                                            <td>{{ $subscription->amount }}</td>
+                                            <td>{{ ucFirst($subscription->status) }}</td>
 
                                             <td>
                                                 {{-- <button type="button" class="btn"><div class="form-check form-switch">  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">  </div>	</button> --}}
                                                 <a href="{{ route('admin.master.edit_subscription', $subscription->id) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
                                                             class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a href="{{ route('admin.master.destroy_subscription', $subscription->id) }}">
+                                                <a
+                                                    href="{{ route('admin.master.destroy_subscription', $subscription->id) }}">
                                                     <button type="button" class="btn1 btn-outline-danger"><i
                                                             class='bx bx-trash me-0'></i></button> </a>
                                             </td>

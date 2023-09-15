@@ -162,6 +162,8 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::post('update_announcement', [AnnouncementController::class, 'update'])->name('update_announcement');
     Route::get('destroy_announcement/{id}', [AnnouncementController::class, 'destroy'])->name('destroy_announcement');
 
+    Route::post('add-announcement', [AnnouncementController::class, 'add_announcement'])->name('add-announcement');
+
 
     //blogs
     Route::get('blog', [BlogController::class, 'index'])->name('blog');

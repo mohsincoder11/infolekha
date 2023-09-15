@@ -63,8 +63,9 @@ class WebsiteformController extends Controller
             $city_id=$city_id1;
         }
         if(Auth::check() || ($city_id1 && $city_id1 !=null)){
-            $announcements=$announcements->where('city_id',$city_id);
-           $advertisements_query=$advertisements_query->where('users.city_id',$city_id);
+            $announcements=$announcements->where('city_id',$city_id)->orwhere('city_id',0);
+           $advertisements_query=$advertisements_query->where('users.city_id',$city_id)->orwhere('city_id',0);
+           //city id 0 for admin inserted annppuncment/advertisement
         }
     
            

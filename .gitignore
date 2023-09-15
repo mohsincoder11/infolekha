@@ -1,6 +1,10 @@
 /node_modules
 /public/hot
 /public/storage
+/public/advertisement
+/public/blog
+/public/school_result
+/public/announcement
 /storage/*.key
 /vendor
 .env
