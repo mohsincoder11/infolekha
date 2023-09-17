@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-center">
 
-                                <h5 class="mb-0 text-primary">Edit Coupons</h5>
+                                <h5 class="mb-0 text-primary">Edit Coupon</h5>
                             </div>
                             <hr>
 
@@ -38,7 +38,6 @@
                                         <option value="PERCENT" @if($edit->type=='PERCENT') selected @endif>PERCENT</option>
                                     </select>
                                 </div>
-
                                 <div class="col-md-6">
                                     <label for="inputDiscount" class="form-label">Coupon Discount</label>
                                     <input type="number" class="form-control" placeholder="Coupon Discount"
@@ -47,8 +46,10 @@
                                 <div class="col-md-6">
                                     <label for="inputStatus" class="form-label">Coupon For</label>
                                     <select class="form-select" name="coupon_for">
-                                        <option value="1" @if($edit->coupon_for=='School \/Institute \/College') selected @endif>  School /Institute /College</option>
-                                        <option value="2" @if($edit->coupon_for=='Tutor') selected @endif>Tutor</option>
+                                        <option value="1" @if($edit->coupon_for=='1') selected @endif>  School /Institute /College</option>
+                                        <option value="2" @if($edit->coupon_for=='2') selected @endif>Tutor</option>
+                                        <option value="3"  @if($edit->coupon_for=='3') selected @endif>Advertisement</option>
+                                        <option value="4"  @if($edit->coupon_for=='4') selected @endif>Announcement</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
@@ -104,7 +105,8 @@
                                           <td>{{$Coupon->code}}</td>
                                           <td>{{$Coupon->type}}</td>
                                           <td>{{$Coupon->discount}}</td>
-                                                                                    <td>{{$Coupon->coupon_for}}</td>
+                                          <td>{{$Coupon->coupon_for_name}}</td>
+
                                           <td>{{ucFirst($Coupon->status)}}</td>
 
                                             <td>

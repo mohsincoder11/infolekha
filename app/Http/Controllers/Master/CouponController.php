@@ -25,6 +25,8 @@ class CouponController extends Controller
             'type' => 'required|in:FLAT,PERCENT',
             'discount' => 'required|numeric|min:0',
             'status' => 'required|in:active,inactive',
+            'coupon_for'=>'required',
+
         ]);
         if ($validator->fails()) {
             $errors = '';
@@ -68,6 +70,7 @@ class CouponController extends Controller
             ],
             'type' => 'required|in:FLAT,PERCENT',
             'discount' => 'required|numeric|min:0',
+            'coupon_for'=>'required',
             'status' => 'required|in:active,inactive',
             
         ]);

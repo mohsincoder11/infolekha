@@ -28,6 +28,10 @@ class AuthCheck
             $user = User::find($user_id);
             if ($user) {
                 Auth::loginUsingId($user->id);
+                if(Auth::user()->role==2){
+            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(253);
+
+                }
             }
         }else{
             return redirect()->route('index')->with(['error'=>'Please login to access the page.']);

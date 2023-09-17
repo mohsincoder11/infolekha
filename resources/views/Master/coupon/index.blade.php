@@ -11,7 +11,7 @@
                         <div class="card-body">
                             <div class="card-title d-flex align-items-center">
 
-                                <h5 class="mb-0 text-primary">Add Coupons</h5>
+                                <h5 class="mb-0 text-primary">Add Coupon</h5>
                             </div>
                             <hr>
 
@@ -51,6 +51,9 @@
                                     <select class="form-select" name="coupon_for">
                                         <option value="1">School /Institute /College</option>
                                         <option value="2">Tutor</option>
+                                        <option value="3">Advertisement</option>
+                                        <option value="4">Announcement</option>
+
                                     </select>
                                 </div>
                                 <div class="col-md-6">
@@ -106,7 +109,7 @@
                                           <td>{{$Coupon->code}}</td>
                                           <td>{{$Coupon->type}}</td>
                                           <td>{{$Coupon->discount}}</td>
-                                          <td>{{$Coupon->coupon_for}}</td>
+                                          <td>{{$Coupon->coupon_for_name}}</td>
                                           <td>{{ucFirst($Coupon->status)}}</td>
 
                                             <td>
@@ -136,12 +139,13 @@
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.select_box').select2();
-            ClassicEditor
-                .create(document.querySelector('#editor'))
-                .catch(error => {
-                    console.error(error);
-                });
+                
+            // $('.select_box').select2();
+            // ClassicEditor
+            //     .create(document.querySelector('#editor'))
+            //     .catch(error => {
+            //         console.error(error);
+            //     });
         });
     </script>
 @stop

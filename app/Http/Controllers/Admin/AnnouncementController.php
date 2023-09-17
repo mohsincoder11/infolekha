@@ -10,6 +10,7 @@ use App\Models\AnnouncementPackage;
 use Illuminate\Support\Facades\Validator;
 use App\Models\City;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class AnnouncementController extends Controller
@@ -47,6 +48,12 @@ class AnnouncementController extends Controller
          $announcement->main_content = $request->main_content;
          $announcement->note = $request->note;
          $announcement->save(); 
+         if($request->status=='Active'){
+            app('App\Http\Controllers\Admin\MailController')->announcement_confirmation_mail($announcement->college_id,$announcement);
+         }
+         else if($request->status=='Reject'){
+            app('App\Http\Controllers\Admin\MailController')->announcement_rectification_mail($announcement->college_id,$announcement);
+         }
            
         return redirect()->back()->with(['success' => 'Status Updated Successfully.']);
     }

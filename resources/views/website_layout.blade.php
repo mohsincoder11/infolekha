@@ -1562,14 +1562,15 @@ fetch(google_url).then(function(response) {
         }, "Invalid email format");
 
         $.validator.addMethod(
-            "strongPassword",
-            function(value, element) {
-                return (
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
-                );
-            },
-            ""
+    "strongPassword",
+    function(value, element) {
+        return (
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(value)
         );
+    },
+    ""
+);
+
        });
 
     </script>

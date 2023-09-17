@@ -64,7 +64,7 @@ class WebsiteformController extends Controller
         }
         if(Auth::check() || ($city_id1 && $city_id1 !=null)){
             $announcements=$announcements->where('city_id',$city_id)->orwhere('city_id',0);
-           $advertisements_query=$advertisements_query->where('users.city_id',$city_id)->orwhere('city_id',0);
+           $advertisements_query=$advertisements_query->where('users.city_id',$city_id)->orwhere('college_id',1);//1 id for admin
            //city id 0 for admin inserted annppuncment/advertisement
         }
     
@@ -286,7 +286,7 @@ public function database_backup(){
                 ->back()
                 ->with(['error'=>'Something went wrong.']);
         }
-        JobVacancyApplied::firstOrCreate(
+        $vacancy=JobVacancyApplied::firstOrCreate(
             [
                 'tutor_id'=>Auth::user()->id,
                 'job_vacancy_id'=>$request->job_vacancy_id,
@@ -297,6 +297,9 @@ public function database_backup(){
                 'college_id'=>$request->college_id,
             ]
             );
+
+            app('App\Http\Controllers\Admin\MailController')->tutor_vacancy_application_mail($vacancy->college_id,$vacancy->tutor_details);
+
             return  redirect()
             ->back()
             ->with(['success'=>'Job applied successfully.']);
@@ -344,26 +347,27 @@ public function database_backup(){
     }
 
     public function update_password_using_mobile(Request $request){
+
         $validator = Validator::make(
             $request->all(),
             [
                 'password' => 'required',
                 'otp' => 'required',
                 'r_mob' => 'required',
-
             ]
         );
 
         if ($validator->fails()) {
             //  return redirect()->back()->with('error',$validator->errors());
             return redirect()->back()->with(['error'=>'Please fill all the data.']);
-
         }
 
         $user=User::find($request->user_id);
         if ($user) {
             $user->password=Hash::make($request->new_password);
             $user->save();
+            app('App\Http\Controllers\Admin\MailController')->password_reset_mail($request->user_id);
+
             return redirect()->back()->with(['success'=>'Password has been updated.']);
         }else{
             return redirect()->back()->with(['error'=>'Existing password do not match.']);
@@ -481,12 +485,13 @@ public function database_backup(){
 
     public function payment_form(Request $request)
     {
-        $Subscriptions=Subscription::where('user_type',Auth::user()->role)->orderby('amount','asc')->get();
+        $Subscriptions=Subscription::where('user_type',Auth::user()->role)->where('status','active')->orderby('amount','asc')->get();
         return view('Website.payment_form',compact('Subscriptions'));
     }
 
     public function apply_subscription_amount(Request $request){
-        $coupon=Coupon::where('code',$request->code)->where('status','active')->where('coupon_for',Auth::user()->role)->first();
+        $coupon=Coupon::where('code',$request->code)->where('status','active')
+        ->where('coupon_for',$request->coupon_for)->first();
         if(isset($coupon)){
             $subscription=\App\Models\Master\Subscription::find($request->id);
             if($coupon->type=="PERCENT"){
@@ -494,7 +499,7 @@ public function database_backup(){
             }else{
                 $payable_amount=$subscription->amount-$coupon->discount;
             }
-            return response()->json(['status'=>true,'amount'=>$payable_amount]);
+            return response()->json(['status'=>true,'amount'=>$payable_amount,'discount'=>round($subscription->amount-$payable_amount)]);
 
         }else{
             return response()->json(['status'=>false,'message'=>'Invalid coupon code.']);

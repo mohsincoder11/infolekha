@@ -24,6 +24,8 @@
     <!--start page wrapper -->
     <div class="page-wrapper">
         <div class="page-content">
+            @include('alerts')
+
             <div class="row">
                 <div class="card-title d-flex align-items-center">
 

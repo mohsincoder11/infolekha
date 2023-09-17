@@ -502,7 +502,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       id="advertisement_size"><option value="">Select Size</option>';
       $advertisements = AdvertisementPackage::where('location', $request->location)->distinct()->get(['BannerWidth', 'BannerHeight']);
       foreach ($advertisements as $advertisement) {
-         $options .= '<option>' . $advertisement->BannerWidth . ' - ' . $advertisement->BannerHeight . ' pxl</option>';
+         $options .= '<option>' . $advertisement->BannerWidth . ' - ' . $advertisement->BannerHeight . ' px</option>';
       }
       $options . '</select>';
       return response()->json($options);
@@ -517,7 +517,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
    }
    
    public function get_coupon_val(Request $request){
-      $coupon=Coupon::where('code',$request->code)->where('status','=','active')->first();
+      $coupon=Coupon::where('code',$request->code)->where('status','=','active')
+      ->where('coupon_for',$request->coupon_for)->first();
       if($coupon){
          return response()->json(['status'=>true,'coupon'=>$coupon]);
       }

@@ -196,7 +196,7 @@
                                 <option value="">Select</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Active">Active</option>
-                                <option value="Rejected">Rejected</option>
+                                <option value="Reject">Reject</option>
 
                             </select>
                         </div>

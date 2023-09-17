@@ -11,12 +11,9 @@ class BlogController extends Controller
 {
     public function index(){
 
-        $blogs=Blog::select('id','subject',
-        'category',
-        'user_id',
-        'blog_image',
-        'created_at',
-        'status')->orderby('id','desc')->get();
+        $blogs=Blog::
+        join('users','users.id','=','blogs.user_id')
+        ->select('blogs.*')->orderby('id','desc')->get();
         return view('add-blogs',['blogs'=>$blogs]);
     }   
 
@@ -100,7 +97,13 @@ public function change_blog_status(Request $request){
         $updateblog->content4=substr($request->content4, 1, -1);;
         $updateblog->reject_reason=$request->reject_reason;
         $updateblog->save();
-    return redirect(route('admin.blog'))->with(['success'=>'Status Successfully updated.']);
+        if($request->status=='Active'){
+            app('App\Http\Controllers\Admin\MailController')->blog_approve_mail($updateblog->user_id,$updateblog);
+         }
+        elseif($request->status=='Reject'){
+            app('App\Http\Controllers\Admin\MailController')->blog_rectification_mail($updateblog->user_id,$updateblog);
+         }
+        return redirect(route('admin.blog'))->with(['success'=>'Status Successfully updated.']);
 
 }
  public function update(Request $request)

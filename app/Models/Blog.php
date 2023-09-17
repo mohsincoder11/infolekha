@@ -23,7 +23,7 @@ class Blog extends Model
 ];
 
 public function getAuthorNameAttribute(){
-    return User::find($this->user_id)->name;
+    return User::find($this->user_id)->name ?? '';
 }
 
 }

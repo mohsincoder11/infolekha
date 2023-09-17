@@ -706,7 +706,11 @@
 								</li>
 							</ul>
 						</div>
+						<a class="btn btn-primary" target="_blank" href="{{route('index')}}"
+							> <i class="bx bx-globe"></i>Website
+							</a>
 						<div class="user-box dropdown">
+							
 							<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
 								role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<img src="{{asset('images/avatars/user.png')}}" class="user-img" alt="user avatar">
@@ -716,24 +720,6 @@
 								</div>
 							</a>
 							 <ul class="dropdown-menu dropdown-menu-end">
-								<!-- <li><a class="dropdown-item" href="javascript:;"><i
-											class="bx bx-user"></i><span>Profile</span></a>
-								</li>
-								<li><a class="dropdown-item" href="javascript:;"><i
-											class="bx bx-cog"></i><span>Settings</span></a>
-								</li>
-								<li><a class="dropdown-item" href="javascript:;"><i
-											class='bx bx-home-circle'></i><span>Dashboard</span></a>
-								</li>
-								<li><a class="dropdown-item" href="javascript:;"><i
-											class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-								</li>
-								<li><a class="dropdown-item" href="javascript:;"><i
-											class='bx bx-download'></i><span>Downloads</span></a>
-								</li>
-								<li>
-									<div class="dropdown-divider mb-0"></div>
-								</li> -->
 								<li><a href="{{route('admin.logout')}}" class="dropdown-item" href="javascript:;"><i
 											class='bx bx-log-out-circle'></i><span>Log Out</span></a>
 								</li>

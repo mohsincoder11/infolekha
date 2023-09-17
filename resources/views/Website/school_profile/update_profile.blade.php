@@ -166,10 +166,15 @@
 
         
     }
+    .plyr {
+        height: 10em !important;
+
+    }
 </style>
    <link href="
    https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.css
    " rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css" integrity="sha512-yexU9hwne3MaLL2PG+YJDhaySS9NWcj6z7MvUDSoMhwNghPgXgcvYgVhfj4FMYpPh1Of7bt8/RK5A0rQ9fPMOw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @stop
 @section('profile_content')
     <div class="dashboard-content">
@@ -382,13 +387,13 @@
                                         @foreach (json_decode($data->video) as $i)
                                             <div class="col-md-4 multi-image" >
 
-
-                                                <a target="_blank" href="{{ asset('public') . '/' . $i }}"
-                                                    class="geodir-category-img_item img">
-                                                    <iframe height="100%" width="210" src="{{ asset('public') . '/' . $i }}?autoplay=0" class="iframe-click"
-                                                        alt="" title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                            </a>
+                                            <video controls crossorigin playsinline poster="{{asset('website_asset/icon/video-play-icon.png')}}" style="height:30vh">
+                                                <source src="{{ asset('public') . '/' . $i }}" type="video/mp4" size="576">
+                                       
+                                                   <!-- Caption files -->
+                                                   <!-- Fallback for browsers that don't support the <video> element -->
+                                                   <a>Video Oynatılamıyor</a>
+                                           </video>
                                             <i class="fas fa-times-circle delete-icon delete-video" video_name="{{$i}}"></i>
 
                                             
@@ -527,8 +532,20 @@ style="overflow-y: scroll !important;width: 40vw;">
 https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.js
 "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.min.js" integrity="sha512-vONptKEoKbP1gaC5UkbYDa9OPr04ur4bxaaqT7DAJxGHB2oogtseCPrl5e5hPFokGYotlGNV4d+GM593ka7iNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     $(document).ready(function() {
+        var videoElements = document.querySelectorAll('.container video');
+
+// Loop through each video element and initialize Plyr
+videoElements.forEach(function(videoElement) {
+    var player = new Plyr(videoElement, {
+        muted: false,
+        volume: 1,
+        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'fullscreen'],
+    });
+});
+
 $( "#timepicker" ).timepicker({
     timeFormat: 'h:i A' // Format as two-digit hours with AM/PM
   });

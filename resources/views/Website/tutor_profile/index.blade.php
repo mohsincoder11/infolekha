@@ -17,125 +17,82 @@
             <!-- dasboard-wrapper-->
             <div class="dasboard-wrapper fl-wrap no-pag">
                 <div class="row">
-                    <div class="col-md-10">
-
-                        <div class="dasboard-widget-box fl-wrap">
-                            <div class="custom-form">
+                   
 
 
-                                @if (isset($user_data->logo))
-                                    <img src="{{ asset('public/' . $user_data->logo) }}" alt=""
-                                        style="height:90px; width:90px; border-radius:50%;">
-                                @else
-                                    <img src="{{ asset('public/icon/user.png') }}" alt=""
-                                        style="height:90px; width:90px; border-radius:50%;">
-                                @endif
-                                <label style="text-align: center;  color: #144273; font-size:28px;">
-                                    {{ $user_data->name }}
-                                </label>
-                                <!-- <label style="text-align:center; color:#144273; font-size:16px;">Lorem ipsum
-                                                dolor, sit amet consectetur adipisicing elit!!</label> -->
-                                <div class="col-md-12">
-                                    <div class="row" style="margin-top: 40px;">
 
-                                        <div class="col-md-4">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-user"></i> {{ $user_data->name }}
-
-                                            </span>
+                    <div class="dasboard-widget-box fl-wrap">
+                        <div class="box-widget fl-wrap">
+                            <div class="profile-widget">
+                                <div class="profile-widget-header color-bg smpar fl-wrap">
+                                    <div class="pwh_bg"></div>
+                                    <div class="call-btn"><a href="tel:123-456-7890" class="tolt color-bg" data-microtip-position="right"  data-tooltip="Call Now"><i class="fas fa-phone-alt"></i></a></div>
+                                    <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
+                                    <div class="show-more-snopt-tooltip bxwt">
+                                        <a href="#"> <i class="fas fa-comment-alt"></i> Write a review</a>
+                                        <a href="#"> <i class="fas fa-exclamation-triangle"></i> Report </a>
+                                    </div>
+                                    <div class="profile-widget-card">
+                                        <div class="profile-widget-image">
+                                            @if (isset($user_data->logo))
+                                            <img src="{{ asset('public/' . $user_data->logo) }}" alt="">
+                                            @else
+                                            <img src="{{ asset('public/icon/user.png') }}" alt=""
+                                                style="height:90px; width:90px; border-radius:50%;">
+                                            @endif
                                         </div>
-
+                                        <div class="profile-widget-header-title">
+                                            <h4><a href="agent-single.html">{{ $user_data->name }}</a></h4>
+                                          
                                         
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                {{ $user_data->email }}
-
-                                            </span>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-phone"></i>
-                                                {{ $user_data->mob }}
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="profile-widget-content fl-wrap">
+                                    <div class="contats-list fl-wrap">
+                                        <ul class="no-list-style">
+                                            <li><span> <i class="fa fa-phone" aria-hidden="true"></i>  Phone :</span> <a href="#">{{ $user_data->mob }}</a></li>
+                                            <li><span>  <i class="fa fa-envelope" aria-hidden="true"></i> Mail :</span> <a href="#">{{ $user_data->email }}</a></li>
+                                            <li><span>  <i class="fa fa-book"></i>Subject :</span> <a href="#">{{ $user_data->subject }}
+                                            </a></li>
+                                            <li><span><i class="fal fa-file-pdf"></i> CV:</span> <a target="_blank" href="{{asset('public/'.$user_data->cv)}}">View CV</a></li>
+                                            <li><span>  <i class="fa fa-table" aria-hidden="true"></i> Experience :</span> <a href="#"> {{ $user_data->experiance }}
+                                                {{ $user_data->experiance > 0 ? 'Years' : 'Year' }}</a></li>
+                                            <li><span>  <i class="fa fa-briefcase" aria-hidden="true"></i> Job Type :</span> <a href="#">{{ $user_data->job_type }}</a></li>
+                                            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i> Address :</span> <a href="#">{{ $user_data->address }}</a></li>
+                                            <li><span>   <i class="fa fa-location-arrow" aria-hidden="true"></i>Pin code :</span> <a href="#">{{ $user_data->pin_code }}
+                                            </a></li>
 
-
-
-                                <div class="col-md-12">
-                                    <div class="row" style="margin-top: 40px;">
-
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-file-pdf" aria-hidden="true"></i>
-                                               <a target="_blank" href="{{asset('public/'.$user_data->cv)}}">CV</a> 
-
-                                            </span>
-                                        </div>
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-book" aria-hidden="true"></i>
-                                                {{ $user_data->subject }}
-
-                                            </span>
-                                        </div>
-
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                {{ $user_data->experiance }}
-                                                {{ $user_data->experiance > 0 ? 'Years' : 'Year' }}
-
-                                            </span>
-                                        </div>
-
-                                      
-
-
+                                        </ul>
                                     </div>
+
+                                    <div class="col-md-12 "  >
+
+                            <label
+                                style="color:#144273; text-align:center;">Declaration</label>
+                            <p  align="justify" 
+                                style="margin-bottom:20px;  color:#144273;">{{ $user_data->declaration }}
+                            </p>
+
+                        </div>
+                                    <!-- <div class="profile-widget-footer fl-wrap">
+                                        <a href="agent-single.html" class="btn float-btn color-bg small-btn">View Profile</a>
+                                    </div> -->
                                 </div>
-
-
-
-                                <div class="col-md-12">
-                                    <div class="row" style="margin-top: 40px;">
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                {{ $user_data->job_type }}
-
-                                            </span>
-                                        </div>
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-book" aria-hidden="true"></i>
-                                                {{ $user_data->address }}
-
-                                            </span>
-                                        </div>
-
-                                        <div class="col-md-4" style="margin-top: 5px;">
-                                            <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                {{ $user_data->pin_code }}
-
-                                            </span>
-                                        </div>
-
-
-
-
-                                    </div>
-                                </div>
-
-
-
-
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
+
+
+
+
                 </div>
 
 

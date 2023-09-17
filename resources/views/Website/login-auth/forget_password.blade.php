@@ -138,9 +138,13 @@
                 return true;
             },
             errorPlacement: function(error, element) {
-                element.closest('.input-login').next('.error-message').remove();
+                $(element).next("i.toggle-password").addClass("error");
+                error.insertAfter(element);
+                element.closest('.input-login').after(error);
 
-                element.closest('.input-login').after('<div class="error-message">'+error.text()+'</div>');
+
+                //element.closest('.input-login').next('.error-message').remove();
+                //element.closest('.input-login').after('<div class="error-message">'+error.text()+'</div>');
 
 
 

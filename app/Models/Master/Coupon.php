@@ -17,8 +17,28 @@ class Coupon extends Model
         'coupon_for'
     ];
 
-    public function getCouponForAttribute($value)
+    public function getCouponForNameAttribute()
     {
-        return $value=='1' ? 'School /Institute /College' : 'Tutor';
+
+        switch ($this->coupon_for) {
+            case '1':
+                $result = 'School';
+                break;
+            case '2':
+                $result = 'Tutor';
+                break;
+            case '3':
+                $result = 'Advertisement';
+                break;
+            case '4':
+                $result = 'Announcement';
+                break;
+            default:
+                $result = 'Unknown';
+                break;
+        }
+
+        echo $result;
+
     }
 }

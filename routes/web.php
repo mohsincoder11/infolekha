@@ -73,6 +73,9 @@ Route::get('choosing', [WebsiteformController::class, 'choosing'])->name('choosi
 Route::get('opportunites', [WebsiteformController::class, 'opportunites'])->name('opportunites');
 Route::get('benifite', [WebsiteformController::class, 'benifite'])->name('benifite');
 
+Route::get('admin',function(){
+    return redirect()->route('admin.login');
+});
 Route::view('admin/login', 'admin.login')->name('admin.login');
 Route::post('admin/post_login', [AdminLoginController::class, 'login_submit'])->name('admin.post_login');
 
@@ -85,6 +88,11 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
     Route::post('upload-advertisement', [AdvertisementController::class, 'uploadAdvertisement'])->name('upload-advertisement');
     Route::post('change-advertisement-status', [AdvertisementController::class, 'ChangeAdvertisementStatus'])->name('change-advertisement-status');
+    Route::post('add-advertisement', [AdvertisementController::class, 'add_advertisement'])->name('add-advertisement');
+    Route::get('delete-advertisement/{id}', [AdvertisementController::class, 'delete_advertisement'])->name('delete-advertisement');
+    Route::get('get_advertisement_size', [AdvertisementController::class, 'get_advertisement_size'])->name('get_advertisement_size');
+    
+    
     
     //................Master...............//
 

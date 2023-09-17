@@ -20,7 +20,6 @@ class Easebuzzpay extends Controller
 
     public function initiatePaymentAPI(Request $request)
     {
-  
         $validator = Validator::make($request->all(),
         [
         'subscription_id'=>'required',
@@ -47,7 +46,7 @@ class Easebuzzpay extends Controller
       }
       $subscription=Subscription::find($request->subscription_id);
       $txnid='I-LEKHA' . time() . rand(001, 999);
-      $coupon=Coupon::where('code',$request->coupon)->where('status','active')->first();
+      $coupon=Coupon::where('code',$request->CouponCode)->where('status','active')->first();
       $payable_amount=$subscription->amount;
         if(isset($coupon)){
             if($coupon->type=="PERCENT"){
@@ -58,7 +57,6 @@ class Easebuzzpay extends Controller
           }
           $payable_amount=number_format($payable_amount,2);
           $payable_amount=str_replace(',', '', $payable_amount);
-
 
         $it=new transaction;
         $it->name=$data->name;
@@ -84,6 +82,9 @@ class Easebuzzpay extends Controller
           'transaction_id' => $it->id,
         ]);
         if((int)$payable_amount==0){
+          if(Auth::user()->role==2){
+            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(253);
+          }
           return redirect()->route('success-complete');
         }
 

@@ -375,7 +375,9 @@ class SignUpController extends Controller
                     'cv'=>$cv_file
                 ]);
                 user_tutor::where('user_id',auth::user()->id)->update(['r_name'=>$request->get('name')]);
-                app('App\Http\Controllers\Admin\MailController')->welcome_email(auth::user()->id);
+
+                app('App\Http\Controllers\Admin\MailController')->tutor_welcome_mail(auth::user()->id);
+
 
                // return redirect()->route('payment_form');
                 return redirect()->route('tutor_profile.home');

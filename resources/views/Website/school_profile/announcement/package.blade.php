@@ -276,11 +276,22 @@
             })
 
             function calculate_discount(parent_div) {
+                var SelectedDays=parent_div.find('.select_days').val();
+                if (SelectedDays && SelectedDays > 0) {
+                    $(this).closest("form").submit();
+                    parent_div.find(".no_of_days_error").html('');
+
+                } else {
+                    parent_div.find(".no_of_days_error").html(
+                        '<label class="error">Please select no of days.<label>');
+                            return;
+                }
                 $.ajax({
                     type: "get",
                     url: "{{ route('school_profile.get_coupon_val') }}",
                     data: {
                         code: parent_div.find('.CouponCode').val(),
+                        coupon_for:4,
                     },
                     dataType: "json",
                     success: function(data) {
@@ -309,7 +320,7 @@
                             total_amount = Math.round(original_price * selected_days2);
                             parent_div.find('.discount_span').text('0');
                             parent_div.find('.discount_input').val('0');
-                            if (parent_div.find('.CouponCode').val()) {
+                            if (!data.status && parent_div.find('.CouponCode').val()) {
                                 Toast.fire({
                                     icon: 'error',
                                     title: "Invalid coupon code."
@@ -317,7 +328,6 @@
                             }
 
                         }
-                        console.log(total_amount);
                         total_amount = total_amount.toFixed(2);
                         parent_div.find('.total_amount').text(total_amount);
                         parent_div.find('.total_amount').val(total_amount);

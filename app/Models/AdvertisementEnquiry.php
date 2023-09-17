@@ -29,6 +29,15 @@ class AdvertisementEnquiry extends Model
 
     public function getCollegeDetailsAttribute(){
         return user_school_institute::where('user_id',$this->college_id)->first();
-
     }
+
+    public function getUserNameAttribute(){
+        if($this->college_id==1){
+            return 'Infolekha';
+        }else{
+            $data=user_school_institute::where('user_id',$this->college_id)->first();
+            return $data->r_name.' ('.$data->r_entity.')';
+        }
+    }
+
 }
