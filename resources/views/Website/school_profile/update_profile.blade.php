@@ -208,7 +208,7 @@
                                 <div class="row">
 							
 
-                                    <div class="col-md-5">
+                                    <div class="col-md-6">
 									    <div class="listsearch-input-item">
                                     <label style="font-size:16px;">Upload Logo</label>
                                     <input type="file" name="logo" class="upload" value="{{ $data->logo }}" />
@@ -224,7 +224,7 @@
                                 alt="">
                                 </div>
                             </div>
-									<div class="col-md-1"></div>
+								
                                 <div class="col-md-6 ">
                                     <label style="font-size:16px;"> Your Name </label>
                                     <input type="text" placeholder="Name" name="name" value="{{ $data->name }}" />
@@ -358,7 +358,7 @@
                                     <label style="font-size:16px;">About Us <span id="charcount">0 out of 500 characters</span> </label>
                                     <textarea cols="40" rows="3" maxlength="500" placeholder="About Me" style="margin-bottom:20px;" name="about" onkeyup="charcountupdate(this.value)">{{ $data->about }}</textarea>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label style="font-size:16px;">Upload School Image</label>
                                     <input type="file" class="upload" multiple name="image[]" accept="image/*" />
                                 </div>
@@ -378,7 +378,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label style="font-size:16px;">Upload School Video</label>
                                     <input type="file" class="upload" multiple name="video[]" accept="video/*" />
                                 </div>
@@ -454,7 +454,7 @@ style="overflow-y: scroll !important;width: 40vw;">
 
 <div
     style="width: 100%; text-align: right; position: sticky; top: 0;">
-    <a class="close-btn1" onclick="closePopup2()"><i
+    <a class="close-btn1" id="close_popup2"><i
             class="fas fa-times"></i></a>
 </div>
 
@@ -492,7 +492,7 @@ style="overflow-y: scroll !important;width: 40vw;">
 
 <div
     style="width: 100%; text-align: right; position: sticky; top: 0;">
-    <a class="close-btn1" onclick="closePopup3()"><i
+    <a class="close-btn1" id="close_popup3"><i
             class="fas fa-times"></i></a>
 </div>
 
@@ -734,7 +734,12 @@ if(otherOption){
                 document.getElementById('popup2').style.display = 'block';
                 }, 200);
         }
-
+        $(document).on("click","#close_popup2",function(){
+    closePopup2();
+})
+$(document).on("click","#close_popup3",function(){
+    closePopup3();
+})
         function closePopup2() {
             document.getElementById('popup2').style.display = 'none';
         }

@@ -23,13 +23,14 @@ class AuthCheck
     {
         //dd($request->all());
        if($request->has('txnid')){
-        $user_id=DB::table('transaction')->where('transaction_id',$request->get('txnid'))->first()->user_id;
+        $transaction=DB::table('transaction')->where('transaction_id',$request->get('txnid'))->first();
+        $user_id=$transaction->user_id;
         if($user_id){
             $user = User::find($user_id);
             if ($user) {
                 Auth::loginUsingId($user->id);
-                if(Auth::user()->role==2){
-            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(253);
+                if(Auth::user()->role==2 && $transaction->transaction_status=='success'){
+            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(Auth::user()->id);
 
                 }
             }

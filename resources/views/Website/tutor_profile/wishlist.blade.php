@@ -31,7 +31,7 @@
                                     </a>
                                     </td>
                                     <td>
-                                        <a href="{{route('remove-wishlist',$wishlist->id)}}" class="btn1 btn-outline-success"><i class="fa fa-trash"
+                                        <a href="{{route('remove-wishlist',$wishlist->id)}}" class="btn1 "><i class="fa fa-trash"
                                                 aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach

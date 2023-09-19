@@ -631,7 +631,7 @@ font-size: 16px;
                            
 
                             <li>
-                                <a href="javascript:void(0)" class="disable-li"><i class="fal fa-cloud-download"></i>Download
+                                <a href="{{route('school_profile.download_profile')}}" ><i class="fal fa-cloud-download"></i>Download
                                     Profile</a>
 
                             </li>

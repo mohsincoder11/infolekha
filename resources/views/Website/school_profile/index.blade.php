@@ -75,7 +75,7 @@ width: 350px; /* Set a global width for all slides */
                         <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
                             <div class="">
                                 <div class="banner"
-                                    style="background-image: url('{{ asset('public') . '/' . ($user_data->logo ?? '') }} ">
+                                    style="background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }} ">
                                     <img class="mt" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
                                         alt=""
                                         style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index:2; margin-top:180px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
@@ -111,8 +111,6 @@ width: 350px; /* Set a global width for all slides */
                                 <label style="color:#144273; text-align:center; font-size: 20px;">Courses</label>
 
                                 <div class="col-md-12" style="margin-top:2%; margin-bottom: 5%;  ">
-
-
 
                                     @if (json_decode($user_data->course))
                                         @foreach (json_decode($user_data->course) as $c)

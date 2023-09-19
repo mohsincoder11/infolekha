@@ -104,7 +104,7 @@
             <p style="font-size: 18px;">Dear {{ $user_info['name'] }},</p>
             
             <p class="content-p mb-10">
-                We are thrilled to welcome you as a distinguished member of  <a target="_blank" href="{{env('Web_URL')}}">INFOlekha.org.</a>,org Prime! Your choice to subscribe to our Prime Membership underscores your commitment to enriching your educational journey, and we are genuinely excited to have you join our community.
+                We are thrilled to welcome you as a distinguished member of  <a target="_blank" href="{{env('Web_URL')}}">INFOlekha.org.</a> Prime! Your choice to subscribe to our Prime Membership underscores your commitment to enriching your educational journey, and we are genuinely excited to have you join our community.
             </p>
             <p class="content-p mb-10">
                 <a target="_blank" href="{{env('Web_URL')}}">INFOlekha.org.</a> Prime opens doors to a plethora of opportunities curated to elevate your teaching experience and extend your influence.

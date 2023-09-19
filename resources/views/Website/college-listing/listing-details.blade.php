@@ -517,10 +517,10 @@
 
 
 
-                        <div class="text p1" style="margin-top: 3%;word-wrap: break-word;">
+                        <div class=" p1" style="margin-top: 3%;word-wrap: break-word;">
 
 
-                            <h5 class="title-listing">About Us</h5>
+                            <h5 class="title-listing" style="margin-bottom:5px;">About Us</h5>
 
                             <p >{!! $details->about !!}.</p><br>
                         </div>

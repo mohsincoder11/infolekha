@@ -335,6 +335,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     //school only route
     Route::group(['middleware' => ['role:1']], function () {
+        Route::get('download_profile', [SchoolProfile::class, 'download_profile'])->name('school_profile.download_profile');
         Route::get('profile', [SchoolProfile::class, 'home'])->name('school_profile.home');
         Route::get('school_profile/update-profile', [SchoolProfile::class, 'update_profile'])->name('school_profile.update_profile');
         Route::post('school_profile/post_update_profile',[SchoolProfile::class,'post_update_profile'])->name('school_profile.post_update_profile');

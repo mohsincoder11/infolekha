@@ -26,12 +26,8 @@
                             <div class="profile-widget">
                                 <div class="profile-widget-header color-bg smpar fl-wrap">
                                     <div class="pwh_bg"></div>
-                                    <div class="call-btn"><a href="tel:123-456-7890" class="tolt color-bg" data-microtip-position="right"  data-tooltip="Call Now"><i class="fas fa-phone-alt"></i></a></div>
-                                    <div class="box-widget-menu-btn smact"><i class="far fa-ellipsis-h"></i></div>
-                                    <div class="show-more-snopt-tooltip bxwt">
-                                        <a href="#"> <i class="fas fa-comment-alt"></i> Write a review</a>
-                                        <a href="#"> <i class="fas fa-exclamation-triangle"></i> Report </a>
-                                    </div>
+  
+                                   
                                     <div class="profile-widget-card">
                                         <div class="profile-widget-image">
                                             @if (isset($user_data->logo))
@@ -42,14 +38,14 @@
                                             @endif
                                         </div>
                                         <div class="profile-widget-header-title">
-                                            <h4><a href="agent-single.html">{{ $user_data->name }}</a></h4>
+                                            <h4 style="font-size:22px;"><a href="agent-single.html">{{ $user_data->name }}</a></h4>
                                           
                                         
                                         </div>
                                     </div>
                                 </div>
                                 <div class="profile-widget-content fl-wrap">
-                                    <div class="contats-list fl-wrap">
+                                    <div class="contats-list fl-wrap" style="padding-left:10px; padding-right:10px;">
                                         <ul class="no-list-style">
                                             <li><span> <i class="fa fa-phone" aria-hidden="true"></i>  Phone :</span> <a href="#">{{ $user_data->mob }}</a></li>
                                             <li><span>  <i class="fa fa-envelope" aria-hidden="true"></i> Mail :</span> <a href="#">{{ $user_data->email }}</a></li>
@@ -66,19 +62,22 @@
                                         </ul>
                                     </div>
 
-                                    <div class="col-md-12 "  >
+                       
+                                    <!-- <div class="profile-widget-footer fl-wrap">
+                                        <a href="agent-single.html" class="btn float-btn color-bg small-btn">View Profile</a>
+                                    </div> -->
+                                </div>
+								
+								             <div class="col-md-12 "   style="margin-top:5%;
+box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
 
-                            <label
-                                style="color:#144273; text-align:center;">Declaration</label>
+                            <span 
+								  style="color:#3c628b; text-align:center;"><b>Declaration</b></span>
                             <p  align="justify" 
                                 style="margin-bottom:20px;  color:#144273;">{{ $user_data->declaration }}
                             </p>
 
                         </div>
-                                    <!-- <div class="profile-widget-footer fl-wrap">
-                                        <a href="agent-single.html" class="btn float-btn color-bg small-btn">View Profile</a>
-                                    </div> -->
-                                </div>
                             </div>
                         </div>
                     </div>
