@@ -27,6 +27,7 @@ use App\Http\Controllers\Master\SliderlinkController;
 use App\Http\Controllers\school_institute_profile_dashboard;
 use App\Http\Controllers\Easebuzzpay;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\CronJobController;
 use App\Http\Controllers\Master\SubscriptionController;
 use App\Http\Controllers\UserLikeFeedback;
 use App\Http\Controllers\SignUpController;
@@ -48,6 +49,8 @@ use App\Http\Controllers\UserProfileController;
 Route::get('/2', function () {
     return view('Website.login');
 });
+
+Route::get('cron_job_testing', [CronJobController::class, 'cron_job_testing'])->name('cron_job_testing');
 
 Route::get('/', [WebsiteformController::class, 'index'])->name('index');
 Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
@@ -469,6 +472,7 @@ Route::post('initiatePaymentAPI', [Easebuzzpay::class, 'initiatePaymentAPI'])->n
 
 
 Route::post('mail', [ContactController::class, 'mail'])->name('mail');
+Route::get('test-mail/{id}', [MailController::class, 'welcome_email'])->name('test-maill');
 
 
 Route::get('val_form', [WebsiteformController::class, 'val_form'])->name('val_form');

@@ -57,7 +57,6 @@ class UserLikeFeedback extends Controller
         $contact->email = $request->get('email');
         $contact->message = $request->get('message');
         $contact->save();
-        dd($contact);
 
         app('App\Http\Controllers\Admin\MailController')->student_enquiry_mail($contact->college_id,$contact);
 

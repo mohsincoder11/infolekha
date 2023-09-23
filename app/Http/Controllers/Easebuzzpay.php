@@ -83,7 +83,20 @@ class Easebuzzpay extends Controller
         ]);
         if((int)$payable_amount==0){
           if(Auth::user()->role==2){
-            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(253);
+            DB::table('transaction')->join('user_tutor_detail', 'user_tutor_detail.user_id', '=', 'transaction.user_id')
+            ->where('transaction.transaction_id', $txnid)->update([
+                'user_tutor_detail.subscription_status' => 1,
+                'transaction.transaction_status' => 'success'
+            ]);
+            app('App\Http\Controllers\Admin\MailController')->tutor_welcome_prime_mail(Auth::user()->id);
+          }
+          else if(Auth::user()->role==1){
+            DB::table('transaction')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'transaction.user_id')
+            ->where('transaction.transaction_id', $txnid)->update([
+                'user_school_institute_detail.subscription_status' => 1,
+                'transaction.transaction_status' =>'success'
+
+            ]);
           }
           return redirect()->route('success-complete');
         }

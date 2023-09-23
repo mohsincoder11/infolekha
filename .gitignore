@@ -4,6 +4,7 @@
 /public/advertisement
 /public/blog
 /public/school_result
+/public/database_files
 /public/announcement
 /storage/*.key
 /vendor

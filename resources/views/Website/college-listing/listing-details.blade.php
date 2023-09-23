@@ -405,7 +405,20 @@
   .box-content a:hover{
    text-decoration: underline;
   }
+  .plyr {
+        height: 10em !important;
+
+    }
+    .slick-slide {
+width: 0px; /* Set a global width for all slides*/
+} 
+.owl-theme .owl-controls .owl-nav div {
+    background-color: #073D5f;
+}
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"
+    integrity="sha512-yexU9hwne3MaLL2PG+YJDhaySS9NWcj6z7MvUDSoMhwNghPgXgcvYgVhfj4FMYpPh1Of7bt8/RK5A0rQ9fPMOw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!--modal end-->
 @stop
 @section('website_content')
@@ -525,6 +538,7 @@
                             <p >{!! $details->about !!}.</p><br>
                         </div>
 
+                        @if(count(json_decode($details->image))>0)
                         <section class="flat-row section-client">
                             <div class="container">
                                 <div class="row">
@@ -553,7 +567,9 @@
                                 </div>
                             </div>
                         </section>
+                        @endif
 
+                        @if(count(json_decode($details->video))>0)
                         <section class="flat-row section-client">
                             <div class="container">
                                 <div class="row">
@@ -573,11 +589,13 @@
                                                     <div class="featured-client">
                                                         <a target="_blank" href="{{ asset('public') . '/' . $i }}"
                                                             class="geodir-category-img_item">
-                                                            <iframe width="560" height="115"
-                                                                src="{{ asset('public') . '/' . $i }}" alt=""
-                                                                title="YouTube video player" frameborder="0"
-                                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                                allowfullscreen></iframe>
+                                                             <video controls crossorigin playsinline poster="{{asset('website_asset/icon/video-play-icon.png')}}" style="height:30vh">
+                                                                        <source src="{{ asset('public') . '/' . $i }}" type="video/mp4" size="576">
+                                                               
+                                                                           <!-- Caption files -->
+                                                                           <!-- Fallback for browsers that don't support the <video> element -->
+                                                                          
+                                                                   </video>
                                                         </a>
                                                     </div>
 
@@ -589,6 +607,9 @@
                                 </div>
                             </div>
                         </section>
+                        @endif
+
+                        @if(json_decode($details->facilities)>0)
 
                         <div class="content-listing">
 
@@ -615,7 +636,9 @@
                                 </ul>
 
                             </div>
+                            @endif
 
+                        @if(json_decode($details->course)>0)
                             <h3 class="title-listing">Courses</h3>
                             <div class="wrap-list clearfix">
                                 <ul class="list float-left">
@@ -639,7 +662,9 @@
                                 </ul>
 
                             </div>
+                            @endif
 
+                    @if(count($past_results)>0)
                             <h3 class="title-listing">Past Results</h3>
                             <div class="wrap-list clearfix">
                                 <div class="row">
@@ -698,6 +723,7 @@
                                 </div>
                                 @endforeach
                             </div>
+                            @endif
 
 
 
@@ -990,6 +1016,27 @@
 @stop
 
 @section('js')
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.min.js"
+        integrity="sha512-vONptKEoKbP1gaC5UkbYDa9OPr04ur4bxaaqT7DAJxGHB2oogtseCPrl5e5hPFokGYotlGNV4d+GM593ka7iNA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).on('click','.plyr__sr-only',function() {
+            })
+            var videoElements = document.querySelectorAll('.container video');
+
+            // Loop through each video element and initialize Plyr
+            videoElements.forEach(function(videoElement) {
+                var player = new Plyr(videoElement, {
+                    muted: false,
+                    volume: 1,
+                    controls: ['play-large', 'play', 'progress', 'current-time',  'volume',
+                        'fullscreen'
+                    ],
+                });
+            });
+        });
+        </script>
     <script>
         $(document).ready(function() {
 

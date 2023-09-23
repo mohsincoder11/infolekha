@@ -96,7 +96,7 @@ class SignUpController extends Controller
 
         $school_type = SchoolType::get();
         $courses = Cources::get();
-        $facalitys = Faculties::get();
+        //$facalitys = Faculties::get();
 
         $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
             ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
@@ -107,7 +107,6 @@ class SignUpController extends Controller
             'data' => $data,
             'school_type' => $school_type,
             'courses' => $courses,
-            'facalitys' => $facalitys
         ]);
     }
 
@@ -208,7 +207,7 @@ class SignUpController extends Controller
                 $inst->oprating_since = $request->get('oprating_since');
                 $inst->registration_no = $request->get('registration_no');
                 $inst->mob = $request->get('mob');
-                $inst->email = $request->get('email');
+                //$inst->email = $request->get('email');
                 $inst->website = $request->get('website');
                 $inst->fb = $request->get('fb');
                 $inst->insta = $request->get('insta');
@@ -366,7 +365,7 @@ class SignUpController extends Controller
                     'experiance' => $request->get('experiance'),
                     'job_type' => $request->get('job_type'),
                     'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
+                   // 'email' => $request->get('email'),
                     'address' => $request->get('address'),
                     'pin_code' => $request->get('pin_code'),
                     'declaration' => $request->get('declaration'),
@@ -424,7 +423,7 @@ class SignUpController extends Controller
                     'name' => $request->get('name'),
                     'class' => $request->get('class'),
                     'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
+                    //'email' => $request->get('email'),
                     'address' => $request->get('address'),
                     'state' => $request->get('state'),
                     'city' => $request->get('city'),
@@ -508,7 +507,7 @@ class SignUpController extends Controller
                     'oprating_since' => $request->get('oprating_since'),
                     'registration_no' => $request->get('registration_no'),
                     'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
+                   // 'email' => $request->get('email'),
                     'website' => $request->get('website'),
                     'fb' => $request->get('fb'),
                     'insta' => $request->get('insta'),
@@ -650,7 +649,7 @@ class SignUpController extends Controller
                     'name' => $request->get('name'),
                     'class' => $request->get('class'),
                     'mob' => $request->get('mob'),
-                    'email' => $request->get('email'),
+                    //'email' => $request->get('email'),
                     'address' => $request->get('address'),
                     'state' => $request->get('state'),
                     'city' => $request->get('city'),

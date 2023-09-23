@@ -51,13 +51,16 @@ class MailController extends Controller
     
     public function welcome_email($id){
         $user=User::find($id);
-        $payment_url = url('/login-using-email') . '/' . Crypt::encryptString($user->email);
+        if($user){
+             $payment_url = url('/login-using-email') . '/' . Crypt::encryptString($user->email);
 
         $data = ['user_info' => $user, 'url' => $payment_url];
         Mail::send('mail.welcome', $data, function ($message) use($user) {
             $message->to($user['email'], $user['name'])->subject('Welcome Email');
             $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
-        });
+        });  
+        }
+     
         return 1;
     }
     

@@ -59,15 +59,24 @@ class WebsiteformController extends Controller
         if(Auth::check()){
             $city_id=Auth::user()->city_id;
         }
-        if($city_id1 && $city_id1 !=null){
+        if(isset($city_id1) && $city_id1 !=null){
             $city_id=$city_id1;
         }
-        if(Auth::check() || ($city_id1 && $city_id1 !=null)){
-            $announcements=$announcements->where('city_id',$city_id)->orwhere('city_id',0);
-           $advertisements_query=$advertisements_query->where('users.city_id',$city_id)->orwhere('college_id',1);//1 id for admin
-           //city id 0 for admin inserted annppuncment/advertisement
+        if(Auth::check() || (isset($city_id1) && $city_id1 !=null)){
+            $announcements=$announcements
+            ->Where(function ($query) use($city_id) {
+                $query->where('city_id',$city_id)
+                ->orwhere('city_id',0);
+            });
+                
+                
+           $advertisements_query=$advertisements_query
+           ->Where(function ($query) use($city_id) {
+            $query->where('users.city_id',$city_id)
+            ->orwhere('advertisement_enquiries.college_id',1);
+            });
+           //1 id for admin   //city id 0 for admin inserted announcement/advertisement
         }
-    
            
         $announcements= $announcements->get();
         $advertisements_650=(clone $advertisements_query)
@@ -85,14 +94,28 @@ class WebsiteformController extends Controller
     }
 
      public function get_listing_page_data(Request $request){
-        $advertisements=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')
-        ->where('image','!=',null)
-        ->select('advertisement_enquiries.*')
-        ->where('users.city_id',$request->city_id)
-        ->where('location','listing')
-        ->where('status','Active')
-        ->take(8)
+      
+       
+
+        $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','listing')->where('status','Active')->select('advertisement_enquiries.*'); //we need to add city id condition
+        if(Auth::check()){
+            $city_id=Auth::user()->city_id;
+        }
+        if(isset($city_id1) && $city_id1 !=null){
+            $city_id=$city_id1;
+        }
+        if(Auth::check() || (isset($city_id1) && $city_id1 !=null)){
+           $advertisements_query=$advertisements_query
+           ->Where(function ($query) use($city_id) {
+            $query->where('users.city_id',$city_id)->orwhere('advertisement_enquiries.college_id',1);
+            });
+           //1 id for admin
+           //city id 0 for admin inserted annppuncment/advertisement
+        }
+        $advertisements=$advertisements_query->take(8)
         ->get();
+    
+
         $view=view('Website.college-listing.listing-advertisement',compact('advertisements'))->render();
         return response()->json($view);
     }
@@ -257,7 +280,7 @@ public function database_backup(){
         ->where('users.active', '1')
         ->where('users.id', $request->id)
         ->where('user_school_institute_detail.subscription_status', '1')
-        ->select('user_school_institute_detail.*', 'user_school_institute.*')
+        ->select('user_school_institute_detail.*', 'user_school_institute.*','users.email')
         ->first();
         $advertisements=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','listing')->where('status','Active')->select('advertisement_enquiries.*')->get();
         

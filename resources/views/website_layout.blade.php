@@ -1660,7 +1660,18 @@ fetch(google_url).then(function(response) {
     
             
         })
-
+        $("#current_location, #current_location2").on('keyup', function() {
+            if($(this).val().trim().length>0){
+                $('.detect-location').addClass('fade-out');
+           setTimeout(() => {
+               $('.detect-location').remove();
+           }, 2500);  
+            }else{
+                $(this).after('<div class="pac-container pac-logo hdpi detect-location"><div class="pac-item"><div class="marker-icon"></div><span class="pac-item-query detect-location-text">Detect Location</span></div></div>');
+     
+            }
+      
+        })
         $("#current_location, #current_location2").on('focusout', function() {
            $('.detect-location').addClass('fade-out');
            setTimeout(() => {
@@ -1690,6 +1701,10 @@ fetch(google_url).then(function(response) {
                     } 
                     if(current_Route=='college_listing' || current_Route=='listing-details'){
                         get_listing_page_data(city_id);
+                    }
+                    else{
+                    $(".loader-container").hide();
+
                     }
 
                 },

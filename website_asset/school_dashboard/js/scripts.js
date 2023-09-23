@@ -171,6 +171,32 @@ function initHomeradar() {
         ]
     });
 
+    $('.listing-carousel-video').slick({
+        infinite: true,
+        slidesToShow: 1,
+        dots: true,
+        arrows: false,
+       autoplay:false,
+       centerMode: true,   // Enable center mode
+       centerPadding: '0', // Adjust this value as needed for spacing
+      
+        responsive: [{
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                }
+            },
+            {
+                breakpoint: 650,
+                settings: {
+                    slidesToShow: 1,
+                    centerMode: true,
+                }
+            }
+        ]
+    });
+
     setTimeout(()=>{
         var icon = $(".swiper-button-prev i.far.fa-angle-left");
         icon.removeClass("far").addClass("fa"); 

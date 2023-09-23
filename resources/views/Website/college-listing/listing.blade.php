@@ -446,7 +446,7 @@
                                         </div>
                                     </div> --}}
                                     @if (request()->segment(2) && request()->segment(2) == 'tutorjob')
-                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0 && auth()->user()->tutordetail->subscription_status != '1')
+                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0 && (!auth()->user() || auth()->user()->tutordetail->subscription_status != '1'))
                                         <div id="popup2" class="popup2">
                                             <div class="popup-content">
                                                 <span class="close2">&times;</span>

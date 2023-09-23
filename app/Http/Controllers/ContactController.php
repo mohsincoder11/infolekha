@@ -31,10 +31,9 @@ class ContactController extends Controller
         ];
 
         Mail::send('Website.mail', $lst, function ($message) {
-            $message->to('shivanidakare2221@gmail.com', 'testing')->subject('Enquiry');
-            $message->from(
-                'sharique.aspect@gmail.com'
-            );
+            $message->to('mohsinshaikh1104@gmail.com', 'testing')->subject('Enquiry');
+            $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
+
         });
 
         return redirect()->back()->with(['success'=>'Mail sent successfully.']);

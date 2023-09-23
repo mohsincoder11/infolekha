@@ -211,7 +211,7 @@
                                     <div class="col-md-6">
 									    <div class="listsearch-input-item">
                                     <label style="font-size:16px;">Upload Logo</label>
-                                    <input type="file" name="logo" class="upload" value="{{ $data->logo }}" />
+                                    <input type="file" name="logo" class="upload" value="{{ $data->logo }}"  accept="image/*" />
                                     <img height="50px" width="50px" src="{{ asset('public') . '/' . $data->logo }}"
                                         alt="">
 									</div>
@@ -219,7 +219,7 @@
                                 <div class="col-md-6">
                                     <div class="listsearch-input-item">
                                 <label style="font-size:16px;">Upload Banner</label>
-                                <input type="file" name="banner_image" class="upload" value="{{ $data->banner_image }}" />
+                                <input type="file" name="banner_image" class="upload" value="{{ $data->banner_image }}" accept="image/*"  />
                                 <img height="50px" width="50px" src="{{ isset($data->banner_image) ? asset('public').'/'.($data->banner_image) : 'https://via.placeholder.com/950x250' }}"
                                 alt="">
                                 </div>

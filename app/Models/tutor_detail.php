@@ -15,7 +15,7 @@ class tutor_detail extends Model
         'experiance',
         'mob',
         'job_type',
-        'email',
+        //'email',
         'address',
         'pin_code',
         'declaration',

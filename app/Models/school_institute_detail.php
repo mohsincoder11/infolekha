@@ -21,7 +21,7 @@ class school_institute_detail extends Model
         'oprating_since',
         'registration_no',
         'mob',
-        'email',
+        //'email',
         'website',
         'fb',
         'insta',

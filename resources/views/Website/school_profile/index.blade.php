@@ -6,6 +6,11 @@
             max-width: 100%;
             height: auto;
         }
+		
+		 .video {
+            max-width: 100%;
+           width:333px;
+        }
     }
 
     .social-icons {
@@ -32,8 +37,8 @@
 
     }
     .slick-slide {
-width: 350px; /* Set a global width for all slides */
-}
+width: 0px; /* Set a global width for all slides*/
+} 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.css"
     integrity="sha512-yexU9hwne3MaLL2PG+YJDhaySS9NWcj6z7MvUDSoMhwNghPgXgcvYgVhfj4FMYpPh1Of7bt8/RK5A0rQ9fPMOw=="
@@ -207,7 +212,7 @@ width: 350px; /* Set a global width for all slides */
                                 <!-- section end-->
                                 <div class="container" style="margin-bottom:5%">
                                     <!-- section-title -->
-                                    <div class="section-title st-center fl-wrap">
+                                    <div class="section-title st-center fl-wrap ">
                                         <label style="color:#144273; text-align:center; font-size: 20px; margin-top:40px;">
                                             Videos</label>
 
@@ -215,13 +220,14 @@ width: 350px; /* Set a global width for all slides */
                                     <!-- section-title end -->
                                     <div class="clearfix"></div>
                                     <div class="listing-carousel-wrapper lc_hero carousel-wrap fl-wrap">
-                                        <div class="listing-carousel carousel">
+                                        <div class="listing-carousel-video carousel" >
                                             <!-- slick-slide-item -->
                                             @if ($user_data->video != null)
                                                 @foreach (json_decode($user_data->video) as $i)
-                                                    <div class="slick-slide-item" style="width:250px !important;">
+<div   >
+												      <div class="slick-slide-item" >
                                                         <!-- agent card item -->
-                                                        <div class="listing-item">
+                                                        <div class="listing-item" >
                                                             <article class="geodir-category-listing fl-wrap">
                                                                 <div class="geodir-category-img fl-wrap agent_card">
 
@@ -237,6 +243,7 @@ width: 350px; /* Set a global width for all slides */
                                                         </div>
                                                         <!-- agent card item end -->
                                                     </div>
+											</div>
                                                 @endforeach
                                             @endif
                                             <!-- slick-slide-item end -->
@@ -334,6 +341,8 @@ width: 350px; /* Set a global width for all slides */
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
+            $(document).on('click','.plyr__sr-only',function() {
+            })
             var videoElements = document.querySelectorAll('.container video');
 
             // Loop through each video element and initialize Plyr
@@ -341,7 +350,7 @@ width: 350px; /* Set a global width for all slides */
                 var player = new Plyr(videoElement, {
                     muted: false,
                     volume: 1,
-                    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume',
+                    controls: ['play-large', 'play', 'progress', 'current-time',  'volume',
                         'fullscreen'
                     ],
                 });

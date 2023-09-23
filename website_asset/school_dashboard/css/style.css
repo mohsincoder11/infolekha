@@ -3095,10 +3095,14 @@ section.single-par2  .scroll-down-wrap{
 .listing-carousel-wrapper .section-tile {
 	left:-10px;
 }
-.listing-carousel  {
+.listing-carousel, .listing-carousel-video  {
     margin :0 -10px  ; 
 }
-.listing-carousel .listing-item , .featured-carosuel .listing-item {
+.listing-carousel-video{
+    margin :0 25%  ; 
+
+}
+.listing-carousel .listing-item ,.listing-carousel-video .listing-item , .featured-carosuel .listing-item {
 	width:100%;
 	padding: 0;
 	margin: 0;
@@ -3108,6 +3112,9 @@ section.single-par2  .scroll-down-wrap{
 	width:100%;
 }
 .listing-carousel .slick-slide{
+    padding : 0 10px;
+}
+.listing-carousel-video .slick-slide{
     padding : 0 10px;
 }
 .geodir-category-img_item {
@@ -3275,6 +3282,12 @@ section.single-par2  .scroll-down-wrap{
 	bottom: -40px;
 }
 .listing-carousel   .slick-dots li button {
+	background:#ccc;
+}
+.listing-carousel-video .slick-dots {
+	bottom: -40px;
+}
+.listing-carousel-video   .slick-dots li button {
 	background:#ccc;
 }
 .lc-wbtn {

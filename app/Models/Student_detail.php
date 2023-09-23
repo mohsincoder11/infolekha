@@ -13,7 +13,7 @@ class Student_detail extends Model
                             'name',
                             'class',
                             'mob',
-                            'email',
+                           // 'email',
                             'address',
                             'state',
                             'city',

@@ -1,4 +1,3 @@
-@if(count($announcements)>0)
 <section class="flat-row section-about1 parallax parallax3">
     <div class="container">
 
@@ -58,7 +57,6 @@
         </div>
     </div>
 </section>
-@endif
 
 <section class="flat-row blog-shortcode">
     <div class="container">
