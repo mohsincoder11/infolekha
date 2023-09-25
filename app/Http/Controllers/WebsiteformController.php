@@ -544,7 +544,12 @@ public function database_backup(){
             } catch (DecryptException $e) {
             }
         }
-        return redirect()->route('payment_form');
+        $transaction = transaction::find($transaction_id);
+        if($transaction->type=='Announcement'){
+            return redirect()->route('school_profile.announcement-package', $transaction->AnnouncementID);
+        }else{
+            return redirect()->route('payment_form');
+        }
 
     }
 

@@ -245,6 +245,9 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
        
        //Mail
        Route::get('subscription_mail/{id}', [MailController::class, 'subscription_mail'])->name('subscription_mail');
+       Route::get('tutor_subscription_mail/{id}', [MailController::class, 'tutor_subscription_mail'])->name('tutor_subscription_mail');
+       Route::get('announcement_due_mail/{id}', [MailController::class, 'announcement_due_mail'])->name('announcement_due_mail');
+       
        Route::get('buy-subscription-email/{id}', [MailController::class, 'buy_subscription_email'])->name('buy-subscription-email');
 
 

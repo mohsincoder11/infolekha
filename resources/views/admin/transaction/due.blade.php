@@ -3,6 +3,8 @@
     <div class="page-wrapper">
         <div class="page-content">
             <div class="row">
+                @include('alerts')
+
                 <div class="col-md-12 mx-auto">
 
                     <div class="card">
@@ -112,13 +114,26 @@
                                             <td>{!! $transaction->expiry_difference !!}</td>
 
                                             <td>
-                                                <button title="Send subscription mail" class="btn btn-warning">
-                                                    <a  href="{{route('admin.subscription_mail',$transaction->id)}}" >
-                                                        <i
-                                                        class='bx bx-envelope me-0'></i>
-                                                        </button>
-                                                </a> 
-                                                </button>
+
+                                                @if ($transaction->type == 'Announcement')
+                                                    <a class="btn btn-warning"
+                                                        href="{{ route('admin.announcement_due_mail', $transaction->id) }}">
+                                                        <i class='bx bx-envelope me-0'></i>
+                                                    </a>
+                                                @elseif($transaction->type == 'Subscription')
+                                                    @if($transaction->entity_name=='Tutor')
+                                                        <a class="btn btn-warning"
+                                                            href="{{ route('admin.tutor_subscription_mail', $transaction->id) }}">
+                                                            <i class='bx bx-envelope me-0'></i>
+                                                        </a>
+                                                    @else
+                                                        <a class="btn btn-warning"
+                                                            href="{{ route('admin.subscription_mail', $transaction->id) }}">
+                                                            <i class='bx bx-envelope me-0'></i>
+                                                        </a>
+                                                    @endif
+                                                @endif
+
                                             </td>
 
                                         </tr>

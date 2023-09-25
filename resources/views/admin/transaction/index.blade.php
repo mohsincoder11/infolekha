@@ -3,6 +3,8 @@
 <div class="page-wrapper">
     <div class="page-content">
         <div class="row">
+            @include('alerts')
+
             <div class="col-md-12 mx-auto" >
             
         <div class="card">

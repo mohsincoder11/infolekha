@@ -96,30 +96,29 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 style="font-size: 24px;">Payment Due for Listing at INFOlekha.org</h1>
+            <h1 style="font-size: 24px;">Payment Due for Announcement Subscription</h1>
         </div>
         <div class="content">
             <p style="font-size: 18px;">Dear {{ $user_info['name'] }},</p>
             <p class="content-p mb-10">
-                We hope this message finds you well. We wanted to remind you that the payment for Listing of your
-                Organization on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> is now due.
+                We hope this message finds you well. We wanted to remind you that the payment for your Announcement Subscription on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> is now due.
             </p>
             <p class="content-p">
                 Here are the subscription details:
             </p>
-            <p class="content-p">Listing Plan: {{$transaction->transaction_subscription->plan}}
+            <p class="content-p">Announcement Plan: {{$transaction->transaction_subscription->PackageName}}
             </p>
             <p class="content-p">Start Date: {{date('M d,Y',strtotime($transaction->transaction_subscription->created_at))}}
             </p>
             <p class="content-p">End Date: {{date('M d,Y',strtotime($transaction['expiry']))}}
             </p>
-            <p class="content-p">Amount: {{$transaction->transaction_subscription->amount}}
+            <p class="content-p">Amount: {{$transaction->transaction_subscription->OriginalPrice}}
             </p>
             <p class="content-p">Due Date: {{date('M d,Y',strtotime($transaction['expiry']))}}
             </p>
             
             <p class="content-p">
-                To ensure the uninterrupted display of your organization on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> and to continue benefiting from our services, please make the payment as soon as possible
+                To ensure the uninterrupted display of your Announcement on INFOlekha and to continue benefiting from our advertising services, please make the payment as soon as possible.
             </p>
             <p class="content-p"><b>You can conveniently pay online using following link </b> <a  href="{{$url}}">Pay Now</a>
             </p>

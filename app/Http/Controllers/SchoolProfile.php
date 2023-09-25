@@ -425,6 +425,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
                'type' => 'Announcement',
                'AnnouncementID' => $request->get('announcement_id'),
               'coupon'=>isset($coupon) ? $coupon->code : null,
+              'expiry'=>\Carbon\Carbon::now()->addDays($request->SelectedDays)->format('Y-m-d'),
+
        
             ]
          );

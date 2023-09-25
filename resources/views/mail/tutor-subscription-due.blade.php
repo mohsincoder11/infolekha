@@ -96,13 +96,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 style="font-size: 24px;">Payment Due for Listing at INFOlekha.org</h1>
+            <h1 style="font-size: 24px;">Payment Due for Prime Membership Subscription</h1>
         </div>
         <div class="content">
             <p style="font-size: 18px;">Dear {{ $user_info['name'] }},</p>
             <p class="content-p mb-10">
-                We hope this message finds you well. We wanted to remind you that the payment for Listing of your
-                Organization on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> is now due.
+                We hope this message finds you well. We wanted to remind you that the payment for your Prime Membership Subscription on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> is now due.
             </p>
             <p class="content-p">
                 Here are the subscription details:
@@ -119,7 +118,7 @@
             </p>
             
             <p class="content-p">
-                To ensure the uninterrupted display of your organization on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> and to continue benefiting from our services, please make the payment as soon as possible
+                To ensure the uninterrupted display of your Prime Membership on <a target="_blank" href="{{ env('Web_URL') }}"> INFOlekha.org</a> and to continue benefiting from our services, please make the payment as soon as possible.
             </p>
             <p class="content-p"><b>You can conveniently pay online using following link </b> <a  href="{{$url}}">Pay Now</a>
             </p>
