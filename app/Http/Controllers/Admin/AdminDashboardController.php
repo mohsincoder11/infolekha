@@ -115,10 +115,24 @@ class AdminDashboardController extends Controller
     public function delete_user($id){
         $user = User::find($id);
         if($user){
-           $user->delete();
-        return back()->with(['status' => 'success', 'message' => 'User deleted successfully']);
+            if($user->role==1){
+                DB::table('users')->where('id', $id)->delete();
+                DB::table('user_school_institute_detail')->where('user_id', $id)->delete();
+                DB::table('user_school_institute')->where('user_id', $id)->delete();
+                
+        }
+        else if($user->role==2){
+            DB::table('users')->where('id', $id)->delete();
+            DB::table('user_tutor_detail')->where('user_id', $id)->delete();
+            DB::table('user_tutor')->where('user_id', $id)->delete();
+        }
+        else if($user->role==3){
+            DB::table('users')->where('id', $id)->delete();
+            DB::table('user_student')->where('user_id', $id)->delete();
+        }
+        return back()->with(['success'=> 'User deleted successfully']);
         }else{
-            return back()->with(['status' => 'error', 'message' => 'Something went wrong']);
+            return back()->with(['error'=> 'Something went wrong']);
 
         }
     }

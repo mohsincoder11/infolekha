@@ -28,6 +28,7 @@ use App\Http\Controllers\school_institute_profile_dashboard;
 use App\Http\Controllers\Easebuzzpay;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\CronJobController;
+use App\Http\Controllers\Master\BannerImageController;
 use App\Http\Controllers\Master\SubscriptionController;
 use App\Http\Controllers\UserLikeFeedback;
 use App\Http\Controllers\SignUpController;
@@ -46,9 +47,9 @@ use App\Http\Controllers\UserProfileController;
 |
 */
 
-Route::get('/2', function () {
-    return view('Website.login');
-});
+
+Route::get('array_merge', [WebsiteformController::class, 'array_merge'])->name('array_merge');
+
 
 Route::get('cron_job_testing', [CronJobController::class, 'cron_job_testing'])->name('cron_job_testing');
 
@@ -56,20 +57,9 @@ Route::get('/', [WebsiteformController::class, 'index'])->name('index');
 Route::get('save-city', [WebsiteformController::class, 'save_city'])->name('save-city');
 Route::get('get_home_page_data', [WebsiteformController::class, 'get_home_page_data'])->name('get_home_page_data');
 Route::get('get_listing_page_data', [WebsiteformController::class, 'get_listing_page_data'])->name('get_listing_page_data');
-
-
 Route::get('database-backup', [WebsiteformController::class, 'database_backup'])->name('database-backup');
-
-
-
-
-
-
-
-
 Route::get('blog', [WebsiteformController::class, 'blog'])->name('blog');
 Route::get('blog-details/{id}', [WebsiteformController::class, 'blog_details'])->name('blog-details');
-
 Route::get('role', [WebsiteformController::class, 'role'])->name('role');
 Route::get('stratigic', [WebsiteformController::class, 'stratigic'])->name('stratigic');
 Route::get('choosing', [WebsiteformController::class, 'choosing'])->name('choosing');
@@ -87,6 +77,7 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('delete-user/{id}', [AdminDashboardController::class, 'delete_user'])->name('delete-user');
     Route::post('activation', [AdminDashboardController::class, 'activation'])->name('activation');
     
+
     Route::get('logout', [AdminLoginController::class, 'logout'])->name('logout');
     Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
     Route::post('upload-advertisement', [AdvertisementController::class, 'uploadAdvertisement'])->name('upload-advertisement');
@@ -172,9 +163,15 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('edit-announcement/{id}', [AnnouncementController::class, 'edit'])->name('edit_announcement');
     Route::post('update_announcement', [AnnouncementController::class, 'update'])->name('update_announcement');
     Route::get('destroy_announcement/{id}', [AnnouncementController::class, 'destroy'])->name('destroy_announcement');
-
     Route::post('add-announcement', [AnnouncementController::class, 'add_announcement'])->name('add-announcement');
 
+    //Banner Images
+    Route::get('master/banner-image', [BannerImageController::class, 'index'])->name('master.banner-image');
+    Route::post('create-banner-image', [BannerImageController::class, 'create'])->name('master.create-banner-image');
+    Route::get('edit-banner-image/{id}', [BannerImageController::class, 'edit'])->name('master.edit-banner-image');
+    Route::post('update-banner-image', [BannerImageController::class, 'update'])->name('master.update-banner-image');
+    Route::get('destroy-banner-image/{id}', [BannerImageController::class, 'destroy'])->name('master.destroy-banner-image');
+    
 
     //blogs
     Route::get('blog', [BlogController::class, 'index'])->name('blog');

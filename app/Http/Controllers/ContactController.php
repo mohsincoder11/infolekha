@@ -31,7 +31,7 @@ class ContactController extends Controller
         ];
 
         Mail::send('Website.mail', $lst, function ($message) {
-            $message->to('mohsinshaikh1104@gmail.com', 'testing')->subject('Enquiry');
+            $message->to(env('MAIL_USERNAME') , env('MAIL_FROM_NAME'))->subject('Enquiry');
             $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
 
         });

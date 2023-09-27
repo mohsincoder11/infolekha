@@ -27,6 +27,7 @@ use App\Models\SchoolType;
 use App\Models\CollegelistingEnquiry;
 use App\Models\JobVacancy;
 use App\Models\JobVacancyApplied;
+use App\Models\Master\BannerImage;
 use App\Models\Master\Coupon;
 use App\Models\Master\Subscription;
 use App\Models\PostResult;
@@ -43,8 +44,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 class WebsiteformController extends Controller
-
-
 {
 
     public function index()
@@ -84,7 +83,9 @@ class WebsiteformController extends Controller
         
         $advertisements_370=(clone $advertisements_query)
         ->where(['BannerWidth'=>370,'BannerHeight'=>450])->get();
-        return ['announcements' => $announcements,'advertisements_650'=>$advertisements_650,'advertisements_370'=>$advertisements_370];
+        $banner_images=BannerImage::orderby('id','desc')->get();
+
+        return ['announcements' => $announcements,'advertisements_650'=>$advertisements_650,'advertisements_370'=>$advertisements_370,'banner_images'=>$banner_images];
     }
    
     public function get_home_page_data(Request $request){
@@ -617,5 +618,126 @@ public function database_backup(){
     public function remove_wishlist(Request $request){
         $delete=UserLikeModel::where('id',$request->id)->delete();
         return back()->with(['success'=>'Removed from the wishlist.']);
+    }
+
+    public function array_merge(){
+        $month=2;
+        if($month==1){
+            $month_array=['January','February','March'];
+        }
+        elseif($month==2){
+            $month_array=['April','May','June'];
+        }
+        elseif($month==3){
+            $month_array=['July','August','September'];
+        }
+        elseif($month==4){
+            $month_array=['Ocotober','November','December'];
+        }
+    $data = [
+        [
+            "monthname" => "April",
+            "doctorid" => 101,
+            "companyid" => 1,
+            "grandtotal" => 5000.00
+        ],
+        [
+            "monthname" => "May",
+            "doctorid" => 101,
+            "companyid" => 1,
+            "grandtotal" => 6000.00
+        ],
+        [
+            "monthname" => "June",
+            "doctorid" => 101,
+            "companyid" => 1,
+            "grandtotal" => 6000.00
+        ],
+        [
+            "monthname" => "April",
+            "doctorid" => 102,
+            "companyid" => 2,
+            "grandtotal" => 5500.00
+        ],
+        [
+            "monthname" => "May",
+            "doctorid" => 102,
+            "companyid" => 2,
+            "grandtotal" => 6500.00
+        ],
+        [
+            "monthname" => "June",
+            "doctorid" => 102,
+            "companyid" => 2,
+            "grandtotal" => 7000.00
+        ],
+        [
+            "monthname" => "April",
+            "doctorid" => 103,
+            "companyid" => 1,
+            "grandtotal" => 5500.00
+        ],
+        [
+            "monthname" => "May",
+            "doctorid" => 103,
+            "companyid" => 1,
+            "grandtotal" => 6000.00
+        ],
+        [
+            "monthname" => "June",
+            "doctorid" => 103,
+            "companyid" => 1,
+            "grandtotal" => 6500.00
+        ],
+        [
+            "monthname" => "April",
+            "doctorid" => 104,
+            "companyid" => 1,
+            "grandtotal" => 5000.00
+        ],
+        [
+            "monthname" => "May",
+            "doctorid" => 104,
+            "companyid" => 1,
+            "grandtotal" => 6000.00
+        ],
+        
+    ];
+    $groupedData = [];
+
+    foreach ($data as $record) {
+        $key = $record["doctorid"] . "-" . $record["companyid"];
+        
+        if (!isset($groupedData[$key])) {
+            $groupedData[$key] = [
+                "doctorid" => $record["doctorid"],
+                "companyid" => $record["companyid"],
+                "$month_array[0]" => 0.00,
+                "$month_array[1]" => 0.00,
+                "$month_array[2]" => 0.00,
+            ];
+        }
+        
+        // Assign the grand total to the respective month based on the month name
+        switch ($record["monthname"]) {
+            case "$month_array[0]":
+                $groupedData[$key]["$month_array[0]"] += $record["grandtotal"];
+                break;
+            case "$month_array[1]":
+                $groupedData[$key]["$month_array[1]"] += $record["grandtotal"];
+                break;
+            case "$month_array[2]":
+                $groupedData[$key]["$month_array[2]"] += $record["grandtotal"];
+                break;
+        }
+    }
+    
+    foreach ($groupedData as $record) {
+        echo "Doctor ID: " . $record["doctorid"] . "<br>";
+        echo "Company ID: " . $record["companyid"] . "<br>";
+        echo "$month_array[0]: $" . number_format($record["$month_array[0]"], 2) . "<br>";
+        echo "$month_array[1]: $" . number_format($record["$month_array[1]"], 2) . "<br>";
+        echo "$month_array[2]: $" . number_format($record["$month_array[2]"], 2) . "<br><br>";
+    }
     }
 }

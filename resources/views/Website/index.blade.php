@@ -6,21 +6,23 @@
     <div class="slider">
         <div class="slide_viewer">
             <div class="slide_group hh">
-                <div class="slide banner">
+                {{-- <div class="slide banner">
                     <a> <img src="{{ asset('website_asset/images/main-banner.png') }}"></a>
-                </div>
+                </div> --}}
+                @foreach($banner_images as $banner_image)
                 <div class="slide banner">
-                    <a href="{{ route('school_institute_register_form') }}"><img
-                            src="{{ asset('website_asset/images/slides/1.png') }}" width=100%></a>
+                    <a href="{{$banner_image->link}}"><img
+                            src="{{ asset('public/'.$banner_image->banner_image) }}" width=100%></a>
                 </div>
-                <div class="slide banner">
-                    <a href="{{ route('student_register_form') }}"><img
+                @endforeach
+                {{-- <div class="slide banner">
+                    <a href="{{ url('student_register_form') }}"><img
                             src="{{ asset('website_asset/images/slides/2.png') }}" width=100%></a>
                 </div>
                 <div class="slide banner">
-                    <a href="{{ route('tutor_register_form') }}"><img src="{{ asset('website_asset/images/slides/4.png') }}"
+                    <a href="{{ url('tutor_register_form') }}"><img src="{{ asset('website_asset/images/slides/4.png') }}"
                             width=100%></a>
-                </div>
+                </div> --}}
                 <!--<div class="slide banner">
                                         <a href="#"><img src="{{ asset('website_asset/images/slides/4.png') }}" width=100% ></a>
                                     </div>-->

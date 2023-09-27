@@ -43,7 +43,7 @@
 
                                 <div class="col-md-3">
                                     <label class="form-label">Select Duration</label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="type">
+                                    <select class="form-select mb-3" aria-label="Default select example" name="type" id="type">
                                         <option selected>Select Type</option>
                                         <option value="Month" @if ($edit->type == 'Month') selected @endif>Month
                                         </option>

@@ -467,12 +467,11 @@
                                                                 </td>
 
 
-                                                                <td style="background-color: #ffff;"><button
-                                                                        type="button" class="btn1 btn-outline-success"><i
-                                                                            class='bx bx-edit-alt me-0'></i></button>
-                                                                    <button type="button"
-                                                                        class="btn1 btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></button>
+                                                                <td style="background-color: #ffff;">
+                                                                  
+                                                                     <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                        class="btn btn-outline-danger"><i
+                                                                            class='bx bx-trash me-0'></i></a>
                                                                 </td>
 
                                                             </tr>
@@ -566,12 +565,10 @@
                                                                     </div>
 
                                                                 </td>
-                                                                <td style="background-color: #ffff;"><button
-                                                                        type="button" class="btn1 btn-outline-success"><i
-                                                                            class='bx bx-edit-alt me-0'></i></button>
-                                                                    <button type="button"
-                                                                        class="btn1 btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></button>
+                                                                <td style="background-color: #ffff;">
+                                                                     <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                        class="btn btn-outline-danger"><i
+                                                                            class='bx bx-trash me-0'></i></a>
                                                                 </td>
 
                                                             </tr>

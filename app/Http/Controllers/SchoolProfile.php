@@ -30,7 +30,8 @@ use PDF;
 class SchoolProfile extends Controller
 {
    public function download_profile(){
-      $data = DB::table('users')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+      $data = DB::table('users')
+      ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
       ->where('users.id', auth::user()->id)->first();
       $pdf=PDF::loadView('Website.school_profile.download-profile',['user_data' => $data]);
       return $pdf->download($data ->name.'.pdf');
@@ -40,7 +41,8 @@ class SchoolProfile extends Controller
    {
       $school_type = SchoolType::get();
 
-      $data = DB::table('users')->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+      $data = DB::table('users')
+      ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
         
 if($data){
