@@ -167,7 +167,7 @@
 @stop
 @section('website_content')
     <section class="main-content page-listing-grid">
-        <div>
+        <div id="1920_header">
             <img src="{{ asset('website_asset/images/Listing-banner-top.png') }}">
         </div>
         <div class="container">
@@ -206,7 +206,7 @@
                                                     <div class="form-group">
                                                         <select class="form-select select country-select filter filter_form"
                                                             name="board_type">
-                                                            <option value="">Select Board Type </option>
+                                                            <option value="">All (Select Board Type)</option>
                                                             @foreach ($school_type as $board_type)
                                                                 <option value="{{ $board_type->id }}"
                                                                     @if (request()->board_type == $board_type->id) selected @endif>
@@ -239,7 +239,7 @@
                                             <div class="col-lg-2" style="margin-bottom:20px;">
                                                 <div class="form-group ">
                                                     <input type="text" value="{{ request()->city }}" name="city"
-                                                        id="city_search" class="form-control f1 " placeholder="City">
+                                                        id="city_search" class="form-control f1 " placeholder="Type to search cities">
                                                 </div>
                                             </div>
                                             @if (auth()->check() && auth()->user()->role == '2' && auth()->user()->tutordetail->subscription_status == '1' && auth()->user()->active=='1')
@@ -392,13 +392,20 @@
                                                             Number</button> &nbsp;
                                                         &nbsp;</a>
 
-
-
-                                                        <button type="button"
+                                                     
+                                                        @if (auth()->check()) 
+                                                          <button type="button"
                                                             class="login-btn effect-button send_enquiry_modal"
                                                             college_id="{{ $anno->user_id }}"> <i
                                                                 class="fa fa-paper-plane"></i> Send
                                                             Enquiry</button>
+                                                             @else
+                                                          <a href="{{route('enquiry-login-redirect')}}">  <button type="button"
+                                                             class="login-btn effect-button "
+                                                             college_id="{{ $anno->user_id }}"> <i
+                                                                 class="fa fa-paper-plane"></i> Send
+                                                             Enquiry</button></a> 
+                                                            @endif
 
                                                     </div>
 
@@ -421,7 +428,7 @@
 
                                                 <div class="modal-body text-center clearfix">
                                                     <label class="form-label"
-                                                        style="color:#073D5F; font-size:20px; ">Mobile
+                                                        style="color:#073D5F; font-size:20px; ">Contact
                                                         Number</label><br>
                                                     <label style="color: black;" id="mobile_number"></label>
                                                 </div>
@@ -508,7 +515,7 @@
                                         </div> <!-- /.flat-pagination -->
                                     </div><!-- /.blog-pagination -->
                                 </div><!-- /.col-lg-9 -->
-                                <div class="col-lg-3" id="city-wise-data">
+                                <div class="col-lg-3">
                                     <div class="sidebar" style="margin-top:0.01rem;">
                                         <div class=" widget widget-form style2 ">
                         <span id="city-wise-data">
@@ -549,8 +556,15 @@
         $(document).ready(function() {
 
             $(document).on('change', '.filter_form', function() {
-                $(this).closest('form').submit();
-            })
+                if ($(this).attr('name') == 'type') {
+                    var selectedValue = $(this).val();
+                    
+                        var redirectURL = "{{ route('college_listing', ['type' => '']) }}/" + selectedValue;
+                        window.location.href = redirectURL;
+                } else {
+                    $(this).closest('form').submit();
+                }
+            });
 
             var autocomplete2 = new google.maps.places.Autocomplete(
                 (document.getElementById('city_search')), {

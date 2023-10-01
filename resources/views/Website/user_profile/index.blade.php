@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="col-md-4" style="margin-top: 5px;">
                                             <span style="font-size:15px; color:#144273;">
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                <i class="fa fa-phone" aria-hidden="true" style="transform:rotate(90deg)"></i>
                                                 {{ $user_data->mob }}
 
                                             </span>

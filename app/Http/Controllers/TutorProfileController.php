@@ -61,15 +61,13 @@ class TutorProfileController extends Controller
             }
             $city=trim(explode(',', $request->address)[0]);
             $createOrupdate=City::firstOrCreate(['city'=>$city]);
-        $user=User::find(Auth::user()->id);
-        $user->email=$request->email;
-        $user->city_id=$createOrupdate->id;
+            $user=User::find(Auth::user()->id);
+            $user->city_id=$createOrupdate->id;
 
-        $user_tutor=user_tutor::where('user_id',Auth::user()->id)->first();
-
-        $user_tutor->r_name=$request->name;
-        $user_tutor->address=$request->address;
-        $user_tutor->mob=$request->mob;
+            $user_tutor=user_tutor::where('user_id',Auth::user()->id)->first();
+            $user_tutor->r_name=$request->name;
+            $user_tutor->address=$request->address;
+            $user_tutor->mob=$request->mob;
 
         $user_tutor->save();
 
@@ -174,9 +172,7 @@ class TutorProfileController extends Controller
              'category' => 'required',
              'blog_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4048',
              'content1' => 'required',
-             'content2' => 'required',
-             'content3' => 'required',
-             'content4' => 'required',
+           
           ]
        );
        if ($validator->fails()) {
@@ -222,9 +218,7 @@ class TutorProfileController extends Controller
              'subject' => 'required',
              'category' => 'required',
              'content1' => 'required',
-             'content2' => 'required',
-             'content3' => 'required',
-             'content4' => 'required',
+            
           ]
        );
        if ($validator->fails()) {
@@ -247,6 +241,8 @@ class TutorProfileController extends Controller
              $blog->content2= $request['content2'];
              $blog->content3= $request['content3'];
              $blog->content4= $request['content4'];
+            $blog->status = 'Pending';
+
  
              $blog->save();
       return redirect('tutor-profile/blog')->with(['success' => 'Blog updated successfully.']);

@@ -300,7 +300,7 @@ Route::post('school_institute_detail_create', [SignUpController::class, 'school_
 // 
 // ------------------------------------------------------tutor college form routes-----------------------------------------------------------//
 
-Route::get('tutor_register_form', [SignUpController::class, 'tutor_register_form'])->name('tutor_register_form');
+Route::get('tutor-register-form', [SignUpController::class, 'tutor_register_form'])->name('tutor_register_form');
 Route::post('tutor_register_user_create', [SignUpController::class, 'tutor_register_user_create'])->name('tutor_register_user_create');
 Route::post('tutor_detail_create/{data}', [SignUpController::class, 'tutor_detail_create'])->name('tutor_detail_create');
 // --------------------------------------------------------end school institutude college ----------------------------------------------------//
@@ -325,9 +325,9 @@ Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('payment-form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
     Route::get('apply_subscription_amount', [WebsiteformController::class, 'apply_subscription_amount'])->name('apply_subscription_amount');
     
-    Route::get('school_institute_detail_form/{data}', [SignUpController::class, 'school_institute_detail_form'])->name('school_institute_detail_form');
+    Route::get('school-institute-detail-form/{data}', [SignUpController::class, 'school_institute_detail_form'])->name('school_institute_detail_form');
     Route::get('student_detail_form/{data}', [SignUpController::class, 'student_detail_form'])->name('student_detail_form');
-    Route::get('tutor_detail_form/{data}', [SignUpController::class, 'tutor_detail_form'])->name('tutor_detail_form');
+    Route::get('tutor-detail-form/{data}', [SignUpController::class, 'tutor_detail_form'])->name('tutor_detail_form');
 
     Route::post('like_unlike', [UserLikeFeedback::class, 'like_unlike'])->name('like_unlike');
     Route::post('insert_feedback', [UserLikeFeedback::class, 'insert_feedback'])->name('insert_feedback');
@@ -338,7 +338,7 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     //school only route
     Route::group(['middleware' => ['role:1']], function () {
-        Route::get('download_profile', [SchoolProfile::class, 'download_profile'])->name('school_profile.download_profile');
+        Route::get('download-profile', [SchoolProfile::class, 'download_profile'])->name('school_profile.download_profile');
         Route::get('profile', [SchoolProfile::class, 'home'])->name('school_profile.home');
         Route::get('school_profile/update-profile', [SchoolProfile::class, 'update_profile'])->name('school_profile.update_profile');
         Route::post('school_profile/post_update_profile',[SchoolProfile::class,'post_update_profile'])->name('school_profile.post_update_profile');
@@ -439,6 +439,7 @@ Route::post('apply-for-job', [WebsiteformController::class, 'apply_for_job'])->n
 
 
 Route::get('like-login-redirect', [UserLikeFeedback::class, 'like_login_redirect'])->name('like-login-redirect');
+Route::get('enquiry-login-redirect', [UserLikeFeedback::class, 'enquiry_login_redirect'])->name('enquiry-login-redirect');
 
 Route::get('event', [WebsiteformController::class, 'event'])->name('event');
 Route::get('coming-soon', [WebsiteformController::class, 'coming_soon'])->name('coming_soon');
@@ -472,7 +473,7 @@ Route::post('initiatePaymentAPI', [Easebuzzpay::class, 'initiatePaymentAPI'])->n
 
 
 Route::post('mail', [ContactController::class, 'mail'])->name('mail');
-Route::get('test-mail/{id}', [MailController::class, 'welcome_email'])->name('test-maill');
+Route::get('test-mail', [MailController::class, 'test_email'])->name('test-maill');
 
 
 Route::get('val_form', [WebsiteformController::class, 'val_form'])->name('val_form');

@@ -1,5 +1,4 @@
-ALTER TABLE `coupons` CHANGE `coupon_for` `coupon_for` ENUM('1','2','3','4') CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '1' COMMENT '1 is school,2 is tutor,3 for advertisement,4 announcement\r\n';
 
 
 
-CREATE TABLE banner_images ( id INT AUTO_INCREMENT PRIMARY KEY, banner_image VARCHAR(255) NOT NULL, link VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP );
+

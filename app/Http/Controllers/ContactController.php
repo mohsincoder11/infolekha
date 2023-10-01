@@ -29,14 +29,18 @@ class ContactController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'), 'phone_no' => $request->get('mob'), 'msg' => $request->get('msg')
         ];
-
-        Mail::send('Website.mail', $lst, function ($message) {
+        try {
+             Mail::send('Website.mail', $lst, function ($message) {
             $message->to(env('MAIL_USERNAME') , env('MAIL_FROM_NAME'))->subject('Enquiry');
             $message->from(env('MAIL_USERNAME'), env('MAIL_FROM_NAME'));
 
         });
+         } catch (\Exception $e) {
+            return redirect()->back()->with(['error'=>'Something went wrong. Please try after some time.']);
 
-        return redirect()->back()->with(['success'=>'Mail sent successfully.']);
+        }
+
+        return redirect()->back()->with(['success'=>'Thanks for connecting us. We will get back to you soon.']);
     }
 }
 //     public function index()

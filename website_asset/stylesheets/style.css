@@ -3076,3 +3076,25 @@ footer a:hover {
     background-color: #d9534f;
     border-color: #d9534f;
 	}
+
+	.listing-carousel, .listing-carousel-video  {
+		margin :0 -10px  ; 
+	}
+	.listing-carousel-video{
+		margin :0 25%  ; 
+	
+	}
+	.listing-carousel .listing-item ,.listing-carousel-video .listing-item , .featured-carosuel .listing-item {
+		width:100%;
+		padding: 0;
+		margin: 0;
+	}
+	.listing-carousel-video .slick-slide{
+		padding : 0 10px;
+	}
+	.listing-carousel-video .slick-dots {
+		bottom: -40px;
+	}
+	.listing-carousel-video   .slick-dots li button {
+		background:#ccc;
+	}

@@ -66,7 +66,7 @@
                         @enderror
 
 
-                        <span class="input-login icon-form"><input type="text" placeholder="Address*"
+                        <span class="input-login icon-form"><input type="text" placeholder="City name*"
                                 id="current_location_at_form" name="address" required="required"><i
                                 class="fa fa-envelope"></i></span>
 
@@ -393,7 +393,7 @@
             /* var input = document.getElementById('current_location');*/
             var input = new google.maps.places.Autocomplete(
                 (document.getElementById('current_location_at_form')), {
-                    types: ['geocode']
+                    types: ['locality']
                 });
              
                 input.setComponentRestrictions({

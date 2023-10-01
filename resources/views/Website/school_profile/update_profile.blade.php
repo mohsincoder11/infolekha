@@ -203,7 +203,7 @@
                 <div class="col-md-12">
                         <div class="custom-form">
                             <form action="{{ route('school_profile.post_update_profile') }}" 
-                            method="post" enctype="multipart/form-data">
+                            method="post" enctype="multipart/form-data" id="form2">
                                 @csrf
                                 <div class="row">
 							
@@ -327,12 +327,12 @@
 
                                 <div class="col-md-6">
                                     <label style="font-size:16px;">Linkedin Link</label>
-                                    <input type="text" placeholder="Linkdin Link" name="google"
+                                    <input type="text" placeholder="Linkedin Link" name="google"
                                         value="{{ $data->google }}" />
                                 </div>
                                 <div class="col-md-6 ">
-                                    <label style="font-size:16px;"> Address </label>
-                                    <input type="text" placeholder="Address" id="current_location_at_form" name="address" value="{{ $data->address }}" />
+                                    <label style="font-size:16px;"> City </label>
+                                    <input type="text" placeholder="Enter city name" id="current_location_at_form" name="address" value="{{ $data->address }}" />
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="form-group">
@@ -355,7 +355,7 @@
                                 <div class="col-md-12">
 
 
-                                    <label style="font-size:16px;">About Us <span id="charcount">0 out of 500 characters</span> </label>
+                                    <label style="font-size:16px;">About Us <span id="charcount">{{strlen($data->about)}} out of 500 characters</span> </label>
                                     <textarea cols="40" rows="3" maxlength="500" placeholder="About Me" style="margin-bottom:20px;" name="about" onkeyup="charcountupdate(this.value)">{{ $data->about }}</textarea>
                                 </div>
                                 <div class="col-md-4">
@@ -534,6 +534,10 @@ https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.js
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.8/plyr.min.js" integrity="sha512-vONptKEoKbP1gaC5UkbYDa9OPr04ur4bxaaqT7DAJxGHB2oogtseCPrl5e5hPFokGYotlGNV4d+GM593ka7iNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+    function charcountupdate(str) {
+        var lng = str.length;
+        document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
+    }
     $(document).ready(function() {
         var videoElements = document.querySelectorAll('.container video');
 
@@ -574,10 +578,7 @@ $( "#timepicker2" ).timepicker({
   });
 
 
-    function charcountupdate(str) {
-        var lng = str.length;
-        document.getElementById("charcount").innerHTML = lng + ' out of 500 characters';
-    }
+    
    
 $('#course').select2({
     closeOnSelect: false
@@ -815,6 +816,14 @@ src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAm
             autocomplete.setComponentRestrictions({
              'country': 'in'
          });
+         autocomplete.addListener('place_changed', function() {
+                var place = autocomplete.getPlace();
+                var address = place.formatted_address;
+                var city_name = address.substr(0, address.indexOf(',')).trim();
+                $("#current_location_at_form").val(city_name);
+                $("#current_location2").val(city_name);
+            });
+
         /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
         autocomplete.addListener('place_changed', function() {
@@ -822,5 +831,137 @@ src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAm
 
         });
     }
+
+    jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
+    return this.optional(element) || /^(https?:\/\/)?(www\.)?[\w-]+(\.[\w-]+)+(\/[\w-]*)*\/?$/.test(value);
+}, "Please enter a valid URL.");
+
+
+
+$("#form2").validate({
+    rules: {
+        school_institute: {
+        required: true,
+      },
+      website: {
+        httpOrHttpsUrl: true,
+      },
+      fb: {
+        httpOrHttpsUrl: true,
+      },
+      insta: {
+        httpOrHttpsUrl: true,
+      },
+      google: {
+        httpOrHttpsUrl: true,
+      },
+      address: {
+        required: true,
+      },
+      school: {
+        required: true,
+      },
+      pin_code: {
+        required: true,
+        digits: true,
+        minlength: 6,
+        maxlength: 6,
+      }, 
+      about: {
+        minlength: 20,
+        maxlength: 500,
+      },
+      oprating_since: {
+        required: true,
+      },
+      mob: {
+        required: true,
+      },
+      email: {
+        required: true,
+        email: true,
+      },
+      'course[]': {
+        required: true,
+      },
+      'facilities[]': {
+        required: true,
+      },
+      policy_checkbox:{
+        required:true
+      },
+
+    },
+    messages: {
+      school_institute: {
+        required: "This field is required",
+      },
+      website: {
+        httpOrHttpsUrl: "Please enter valid URL.",
+      },
+      fb: {
+        httpOrHttpsUrl: "Please enter valid URL.",
+      },
+      insta: {
+        httpOrHttpsUrl: "Please enter valid URL.",
+      },
+      google: {
+        httpOrHttpsUrl: "Please enter valid URL.",
+      },
+      about: {
+        minlength: "Please enter minimum 20 character description.",
+        maxlength:  "Please enter maximum 500 character description.",
+      },
+      address: {
+        required: "This field is required.",
+      },
+      pin_code: {
+        required: "This field is required.",
+        minlength: "Please enter 6 digit pincode.",
+        maxlength: "Please enter 6 digit pincode.",
+        digits: "Pincode number must be integer only.",
+      },
+      oprating_since: {
+        required: "This field is required.",
+      },
+      mob: {
+        required: "This field is required.",
+      }, 
+      school: {
+        required: "This field is required.",
+      },
+      email: {
+        required: "This field is required.",
+        email: "Please enter valid email address.",
+      },
+      'course[]': {
+        required: "This field is required.",
+      },
+      'facilities[]': {
+        required: "This field is required.",
+      },
+      policy_checkbox:{
+        required: "Accept terms and conditions to submit.",
+      },
+    
+    },
+    submitHandler: function(form) {
+      return true;
+    },
+    errorPlacement: function(error, element) {
+        if (element.attr("name") ==="policy_checkbox") { 
+                    error.insertAfter(element.closest('.policy_checkbox_class'));
+                }
+                else if (element.attr("name") ==="facilities[]" || element.attr("name") ==="course[]") { 
+                    error.insertAfter(element.closest('.form-group'));
+                }else{
+                    error.insertAfter(element); // Corrected error placement
+
+                }
+    },
+  });
+
+
+
 </script>
 @stop

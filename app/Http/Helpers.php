@@ -78,7 +78,7 @@ function check_announcement_payment($AnnouncementID=null){
 }
 
 function checkpayment_status(){
-    $check_transaction=transaction::where('user_id',auth::user()->id)->where('type','Subscription')->where('transaction_status','success')->first();
+    $check_transaction=transaction::where('user_id',auth::user()->id)->where('type','Subscription')->where('transaction_status','success')->orderby('id','desc')->first();
     if($check_transaction){
     $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
     $active_status=User::find(auth::user()->id);
@@ -94,7 +94,7 @@ else{
 }
 
 function checkreject_status(){
-    $check_transaction=transaction::where('user_id',auth::user()->id)->where('type','Subscription')->where('transaction_status','success')->first();
+    $check_transaction=transaction::where('user_id',auth::user()->id)->where('type','Subscription')->where('transaction_status','success')->orderby('id','desc')->first();
     if($check_transaction){
     $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
     $active_status=User::find(auth::user()->id);

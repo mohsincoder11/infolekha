@@ -19,7 +19,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-title-heading">
-                        <h1 class="title">User</h1>
+                        <h3 class="title" style="color:white;">Welcome</h3><br>
+                    <h1 class="title">{{$data->r_name}}</h1>
                     </div><!-- /.page-title-captions -->
                     <div class="breadcrumbs">
 
@@ -128,10 +129,10 @@
 
                                                             <div class="col-lg-6">
                                                                 <div class="form-group">
-                                                                    <label class="form-control-label">Address </label>
+                                                                    <label class="form-control-label">City Name </label>
                                                                     <input type="text" class="form-control"
                                                                         value="{{ $data->address }}"
-                                                                        placeholder="	Address.... " name="address" readonly>
+                                                                        placeholder="Enter city name" name="address" readonly>
                                                                 </div>
                                                             </div>
 
@@ -167,8 +168,8 @@
                                                                             name="policy_checkbox" id="checkbox"
                                                                             style="margin-right: 1%;">
                                                                         <label for="checkbox">I have read and accepted the
-                                                                            <spam style="color:#073D5F;cursor: pointer;"
-                                                                                onclick="openPopup1()">Terms & Condition
+                                                                        </label> <label><spam style="color:#073D5F;cursor: pointer;"
+                                                                                onclick="openPopup1()"> Terms & Condition
                                                                             </spam></label>
 
 
@@ -295,14 +296,15 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="update-profile"
-                                                                style="margin-left: 37%; margin-top: 5%;">
+                                                            <div class="col-lg-12">
+                                                                <div class="centered-container mt-4">
 
 
 
                                                                 <button type="submit"
                                                                     class="btn btn-primary">Submit</button>
                                                             </div>
+                                                        </div>
                                                         </div>
                                                         <div id="popup" class="popup">
                                                             <a class="close-btn" onclick="closePopup()"></a>

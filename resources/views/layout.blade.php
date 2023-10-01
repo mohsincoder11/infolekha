@@ -139,11 +139,11 @@
 
 				<div class="sidebar-header">
 					<div>
-						<img src="{{asset('images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
+						<img src="{{asset('images/logo-icon.png')}}" class="logo-icon" alt="Infolekha">
 					</div>
 					<div>
 						<h4 class="logo-text">
-							<img src="{{asset('images/logo-img.png')}}" width="100%" height="30%" alt="logo icon">
+							<img src="{{asset('images/logo-img.png')}}" width="100%" height="30%" alt="Infolekha">
 						</h4>
 					</div>
 					<div class="toggle-icon ms-auto">

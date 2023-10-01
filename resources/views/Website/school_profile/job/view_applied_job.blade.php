@@ -17,7 +17,7 @@
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="dashboard-title fl-wrap">
-                <div class="dashboard-title-item">Job For vacancy1</div>
+                <div class="dashboard-title-item">Job For vacancy</div>
                 @include('Website.school_profile.profile_header')
 
                 <!--Tariff Plan menu-->

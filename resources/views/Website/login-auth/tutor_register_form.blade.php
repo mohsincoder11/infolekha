@@ -61,7 +61,7 @@
                                 class="fa fa-envelope"></i></span>
 
                                 <span class="input-login icon-form">
-                                    <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
+                                    <input type="text" placeholder="Enter city name" id="current_location_at_form" name="address"
                                         required="required">
                                     <i class="fa fa-envelope-o"></i>
                                 </span>

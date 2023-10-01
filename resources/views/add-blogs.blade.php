@@ -163,31 +163,25 @@
 
                         <div class="col-md-12" >
                             <label for="about_from"></label><br>
-                            <div id="editor1" style="height: 150px;"></div>
-                            <input type="hidden" name="content1" id="editor_content1" />
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content1" id="editor1" /></textarea>
+
 
                             <br><br>
                         </div>
 
                         <div class="col-md-12" >
                             <label for="about_to"></label><br>
-                            <div id="editor2" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content2" id="editor_content2" /><br><br>
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden" name="content2" id="editor2" /></textarea>
                         </div>
 
                         <div class="col-md-12" >
                             <label for="tourist_attraction"></label><br>
-                            <div id="editor3" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content3" id="editor_content3" /><br><br>
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden" name="content3" id="editor3" /></textarea>
                         </div>
 
                         <div class="col-md-12" >
                             <label for="tourist_attraction"></label><br>
-                            <div id="editor4" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content4" id="editor_content4" /><br><br>
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content4" id="editor4" /></textarea>
                         </div>
 
                         <div class="col-md-4 form-group">
@@ -249,37 +243,33 @@
                         </div>
                         <div class="col-md-6">
 							<label for="inputFirstName" class="form-label">Upload Blog Image*</label>
-							<input type="file" class="form-control" id="inputFirstName" placeholder="" name="blog_image">
+							<input type="file" class="form-control" id="inputFirstName" placeholder="" name="blog_image" accept="image/*">
 						</div>
 
 
                         <div class="col-md-12">
                             <label for="about_from"></label><br>
-                            <div id="editor12" style="height: 150px;"></div>
-                            <input type="hidden" name="content1" id="editor_content12" />
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content1" type="hidden" name="content1" id="editor_content1" /></textarea>
 
                             <br><br>
                         </div>
 
                         <div class="col-md-12">
                             <label for="about_to"></label><br>
-                            <div id="editor22" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content2" id="editor_content22" /><br><br>
+                           
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden" name="content2" id="editor_content2" /></textarea>
                         </div>
 
                         <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                            <div id="editor32" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content3" id="editor_content32" /><br><br>
+                          
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden" name="content3" id="editor_content3" /></textarea>
                         </div>
 
                         <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                            <div id="editor42" style="height: 150px;">
-                            </div>
-							<input type="hidden" name="content4" id="editor_content42" /><br><br>
+                           
+                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content4" id="editor_content4" /></textarea>
                         </div>
 
                         <div class="col-md-4 form-group">
@@ -311,72 +301,72 @@
 
     <script>
         $(document).ready(function(){
-            var toolbar=  [
-                        ['bold', 'italic', 'underline', 'strike'],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['link', 'image', 'video'],
-                        ['clean']
-                    ];
+            // var toolbar=  [
+            //             ['bold', 'italic', 'underline', 'strike'],
+            //             [{
+            //                 'list': 'ordered'
+            //             }, {
+            //                 'list': 'bullet'
+            //             }],
+            //             ['link', 'image', 'video'],
+            //             ['clean']
+            //         ];
 
-                    var editor1 = new Quill("#exampleModal #editor1", {
-                theme: "snow",
-                modules: {
-                   toolbar:toolbar
-                }
-            });
+            //         var editor1 = new Quill("#exampleModal #editor1", {
+            //     theme: "snow",
+            //     modules: {
+            //        toolbar:toolbar
+            //     }
+            // });
 
-            var editor2 = new Quill("#exampleModal #editor2", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor2 = new Quill("#exampleModal #editor2", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
-            var editor3 = new Quill("#exampleModal #editor3", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor3 = new Quill("#exampleModal #editor3", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
-            var editor4 = new Quill("#exampleModal #editor4", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor4 = new Quill("#exampleModal #editor4", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
-            var editor12 = new Quill("#exampleModal2 #editor12", {
-                theme: "snow",
-                modules: {
-                   toolbar:toolbar
-                }
-            });
+            // var editor12 = new Quill("#exampleModal2 #editor12", {
+            //     theme: "snow",
+            //     modules: {
+            //        toolbar:toolbar
+            //     }
+            // });
 
-            var editor22 = new Quill("#exampleModal2 #editor22", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor22 = new Quill("#exampleModal2 #editor22", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
-            var editor32 = new Quill("#exampleModal2 #editor32", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor32 = new Quill("#exampleModal2 #editor32", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
-            var editor42 = new Quill("#exampleModal2 #editor42", {
-                theme: "snow",
-                modules: {
-                    toolbar:toolbar
-                }
-            });
+            // var editor42 = new Quill("#exampleModal2 #editor42", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar:toolbar
+            //     }
+            // });
 
         });
 
@@ -402,10 +392,10 @@
 					$("#category").val(data.category).change();
 					$("#subject").val(data.subject);
 					$("#BlogID").val(data.id);
-					$("#editor1 .ql-editor").html(data.content1);
-					$("#editor2 .ql-editor").html(data.content2);
-					$("#editor3 .ql-editor").html(data.content3);
-					$("#editor4 .ql-editor").html(data.content4);
+					$("#editor1").text(data.content1);
+					$("#editor2").text(data.content2);
+					$("#editor3").text(data.content3);
+					$("#editor4").text(data.content4);
                 },
                 error: function(data) {
 
@@ -416,22 +406,22 @@
             
         })
 
-        $("#exampleModal #form").submit(function(e) {
-            $('#editor_content1').val(JSON.stringify($("#editor1 .ql-editor").html()));
-            $('#editor_content2').val(JSON.stringify($("#editor2 .ql-editor").html()));
-            $('#editor_content3').val(JSON.stringify($("#editor3 .ql-editor").html()));
-            $('#editor_content4').val(JSON.stringify($("#editor4 .ql-editor").html()));
-            return;
-            return true;
-        });
+        // $("#exampleModal #form").submit(function(e) {
+        //     $('#editor_content1').val(JSON.stringify($("#editor1 .ql-editor").html()));
+        //     $('#editor_content2').val(JSON.stringify($("#editor2 .ql-editor").html()));
+        //     $('#editor_content3').val(JSON.stringify($("#editor3 .ql-editor").html()));
+        //     $('#editor_content4').val(JSON.stringify($("#editor4 .ql-editor").html()));
+        //     return;
+        //     return true;
+        // });
 
-        $("#exampleModal2 #form").submit(function(e) {
-            $('#editor_content12').val(JSON.stringify($("#editor12 .ql-editor").html()));
-            $('#editor_content22').val(JSON.stringify($("#editor22 .ql-editor").html()));
-            $('#editor_content32').val(JSON.stringify($("#editor32 .ql-editor").html()));
-            $('#editor_content42').val(JSON.stringify($("#editor42 .ql-editor").html()));
-            return true;
-        });
+        // $("#exampleModal2 #form").submit(function(e) {
+        //     $('#editor_content12').val(JSON.stringify($("#editor12 .ql-editor").html()));
+        //     $('#editor_content22').val(JSON.stringify($("#editor22 .ql-editor").html()));
+        //     $('#editor_content32').val(JSON.stringify($("#editor32 .ql-editor").html()));
+        //     $('#editor_content42').val(JSON.stringify($("#editor42 .ql-editor").html()));
+        //     return true;
+        // });
     </script>
 
 @stop

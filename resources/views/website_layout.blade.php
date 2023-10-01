@@ -1748,7 +1748,10 @@ fetch(google_url).then(function(response) {
                     city_id: city_id
                 },
                 success: function(data) {
-                    $("#city-wise-data").html(data);
+                    $("#city-wise-data").html(data.advertisements_290);
+                    if(data.advertisements_1920){
+                        $("#1920_header").html(data.advertisements_1920);
+                    }
                     $(".loader-container").hide();
 
                 },

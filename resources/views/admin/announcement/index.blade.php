@@ -73,7 +73,7 @@
                                             </td>
                                             <td>{{ $announcements->PackageName }}</td>
                                             </td>
-                                            <td>{{ $announcements->SelectedDays > 0 ? $announcements->SelectedDays . ' days' : (isset($announcements->SelectedDays) ?  $announcements->SelectedDays. ' day' : 'Infinite') }}</td>
+                                            <td>{!! $announcements->SelectedDays > 0 ? $announcements->SelectedDays . ' days' : (isset($announcements->SelectedDays) ?  $announcements->SelectedDays. ' day' : '<i class="bx bx-infinite"></i>') !!}</td>
                                             </td>
                                             <td>{{ $announcements->TotalAmount }}
                                                 ({{ check_announcement_payment_status($announcements->id, $announcements->college_id) }})

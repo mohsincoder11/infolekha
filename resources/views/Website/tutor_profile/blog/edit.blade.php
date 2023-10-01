@@ -72,31 +72,30 @@
                                 </div>
 
                                 <div class="col-md-12" style="margin-top:10px;">
-                                    <textarea name="content1" id="content1" rows="8" style="height: 150px;">
-                                          {!! $edit_data->content1 !!}</textarea>
+            <textarea  placeholder="Content1" name="content1" id="content1" rows="8" style="height: 150px;">{!! html_entity_decode($edit_data->content1) !!}</textarea>
 
 
                                     <span class="editor_error"></span>
                                 </div>
 
                                 <div class="col-md-12" style="margin-top:10px;">
-                                    <textarea name="content2" id="content2" rows="8" style="height: 150px;">
-                                              {!! $edit_data->content2 !!}</textarea>
+                                    <textarea  placeholder="Content2" name="content2" id="content2" rows="8" style="height: 150px;">{!! html_entity_decode($edit_data->content2) !!}</textarea>
+
+
+
+                                    <span class="editor_error"></span>
+                                </div>
+
+                                <div class="col-md-12" style="margin-top:10px;">
+                                    <textarea  placeholder="Content3" name="content3" id="content3" rows="8" style="height: 150px;">{!! html_entity_decode($edit_data->content3) !!}</textarea>
 
 
                                     <span class="editor_error"></span>
                                 </div>
 
                                 <div class="col-md-12" style="margin-top:10px;">
-                                    <textarea name="content3" id="content3" rows="8" style="height: 150px;">
-                                                  {!! $edit_data->content3 !!}</textarea>
+                                    <textarea  placeholder="Content4" name="content4" id="content4" rows="8" style="height: 150px;">{!! html_entity_decode($edit_data->content4) !!}</textarea>
 
-                                    <span class="editor_error"></span>
-                                </div>
-
-                                <div class="col-md-12" style="margin-top:10px;">
-                                    <textarea name="content4" id="content4" rows="8" style="height: 150px;">
-                                                      {!! $edit_data->content4 !!}</textarea>
 
                                     <span class="editor_error"></span>
                                 </div>
@@ -120,46 +119,46 @@
 
     <script>
         $(document).ready(function() {
-            var toolbar = [
-                ['bold', 'italic', 'underline', 'strike'],
-                [{
-                    'list': 'ordered'
-                }, {
-                    'list': 'bullet'
-                }],
-                ['link', 'image', 'video'],
-                ['clean']
-            ];
+            // var toolbar = [
+            //     ['bold', 'italic', 'underline', 'strike'],
+            //     [{
+            //         'list': 'ordered'
+            //     }, {
+            //         'list': 'bullet'
+            //     }],
+            //     ['link', 'image', 'video'],
+            //     ['clean']
+            // ];
 
 
 
-            var description1 = new Quill("#content1", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+            // var description1 = new Quill("#content1", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar: toolbar
+            //     }
+            // });
 
-            var description2 = new Quill("#content2", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+            // var description2 = new Quill("#content2", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar: toolbar
+            //     }
+            // });
 
-            var description3 = new Quill("#content3", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+            // var description3 = new Quill("#content3", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar: toolbar
+            //     }
+            // });
 
-            var description4 = new Quill("#content4", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+            // var description4 = new Quill("#content4", {
+            //     theme: "snow",
+            //     modules: {
+            //         toolbar: toolbar
+            //     }
+            // });
         });
     </script>
     <script>

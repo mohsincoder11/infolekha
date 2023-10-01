@@ -224,7 +224,7 @@ width: 0px; /* Set a global width for all slides*/
                                             <!-- slick-slide-item -->
                                             @if ($user_data->video != null)
                                                 @foreach (json_decode($user_data->video) as $i)
-<div   >
+                                                <div>
 												      <div class="slick-slide-item" >
                                                         <!-- agent card item -->
                                                         <div class="listing-item" >
@@ -278,7 +278,7 @@ width: 0px; /* Set a global width for all slides*/
                                             @endif
                                             @if ($user_data->website)
                                                 <li><a href="{{ $user_data->website }}" target="_blank"><i
-                                                            class="fab fa-twitter"></i></a></li>
+                                                            class="fa fa-globe"></i></a></li>
                                             @endif
                                             @if ($user_data->insta)
                                                 <li><a href="{{ $user_data->insta }}" target="_blank"><i

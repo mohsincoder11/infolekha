@@ -49,10 +49,10 @@ class BlogController extends Controller
             $newblog->status=$request->status;
             $newblog->user_id=Auth::guard('admin')->user()->id;
             $newblog->category=$request->category;
-            $newblog->content1=substr($request->content1, 1, -1);
-            $newblog->content2=substr($request->content2, 1, -1);
-            $newblog->content3=substr($request->content3, 1, -1);
-            $newblog->content4=substr($request->content4, 1, -1);
+            $newblog->content1=$request->content1;
+            $newblog->content2=$request->content2;
+            $newblog->content3=$request->content3;
+            $newblog->content4=$request->content4;
             $newblog->save();
         return redirect(route('admin.blog'))->with(['success'=>'Blog added successfully.']);
      }
@@ -91,10 +91,11 @@ public function change_blog_status(Request $request){
         $updateblog->subject=$request->subject;
         $updateblog->status=$request->status;
         $updateblog->category=$request->category;
-        $updateblog->content1=substr($request->content1, 1, -1);;
-        $updateblog->content2=substr($request->content2, 1, -1);;
-        $updateblog->content3=substr($request->content3, 1, -1);;
-        $updateblog->content4=substr($request->content4, 1, -1);;
+        $updateblog->category=$request->category;
+        $updateblog->content1=$request->content1;
+        $updateblog->content2=$request->content2;
+        $updateblog->content3=$request->content3;
+        $updateblog->content4=$request->content4;
         $updateblog->reject_reason=$request->reject_reason;
         $updateblog->save();
         if($request->status=='Active'){

@@ -1,1 +1,2 @@
 1)if announcement placed on 10 and active on 12. when expiry will be conidered.
+2)do we need to redirect by announcment or advertisement.

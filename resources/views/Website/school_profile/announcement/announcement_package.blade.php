@@ -141,7 +141,7 @@
                                             <label style="text-align: center !important;"> Apply Coupon Code</label>
                                             <input type="text" value="" />
                                         </div>
-                                        <button class="btn btn-standard">Pay now</button>
+                                        <button class="btn btn-standard">Pay Now</button>
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +171,7 @@
                                             <label style="text-align: center !important;"> Apply Coupon Code</label>
                                             <input type="text" value="" />
                                         </div>
-                                        <button class="btn btn-standard">Pay now</button>
+                                        <button class="btn btn-standard">Pay Now</button>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@
                                             <label style="text-align: center !important;"> Apply Coupon Code</label>
                                             <input type="text" value="" />
                                         </div>
-                                        <button class="btn btn-standard">Pay now</button>
+                                        <button class="btn btn-standard">Pay Now</button>
                                     </div>
                                 </div>
                             </div>

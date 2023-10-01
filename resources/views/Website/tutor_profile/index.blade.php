@@ -1,4 +1,13 @@
 @extends('Website.tutor_profile.layout')
+@section('css')
+<style>
+    .contats-list.fl-wrap a{
+        text-decoration: none;
+        cursor: text;
+
+    }
+</style>
+@stop
 @section('profile_content')
 
     <div class="dashboard-content">
@@ -38,7 +47,7 @@
                                             @endif
                                         </div>
                                         <div class="profile-widget-header-title">
-                                            <h4 style="font-size:22px;"><a href="agent-single.html">{{ $user_data->name }}</a></h4>
+                                            <h4 style="font-size:22px;">{{ $user_data->name }}</h4>
                                           
                                         
                                         </div>
@@ -47,16 +56,16 @@
                                 <div class="profile-widget-content fl-wrap">
                                     <div class="contats-list fl-wrap" style="padding-left:10px; padding-right:10px;">
                                         <ul class="no-list-style">
-                                            <li><span> <i class="fa fa-phone" aria-hidden="true"></i>  Phone :</span> <a href="#">{{ $user_data->mob }}</a></li>
-                                            <li><span>  <i class="fa fa-envelope" aria-hidden="true"></i> Mail :</span> <a href="#">{{ $user_data->email }}</a></li>
-                                            <li><span>  <i class="fa fa-book"></i>Subject :</span> <a href="#">{{ $user_data->subject }}
+                                            <li><span> <i style="transform: rotate(90deg);" class="fa fa-phone" aria-hidden="true"></i>  Phone :</span> <a href="javascript:void(0)">{{ $user_data->mob }}</a></li>
+                                            <li><span>  <i class="fa fa-envelope" aria-hidden="true"></i> Mail :</span> <a href="javascript:void(0)">{{ $user_data->email }}</a></li>
+                                            <li><span>  <i class="fa fa-book"></i>Subject :</span> <a href="javascript:void(0)">{{ $user_data->subject }}
                                             </a></li>
-                                            <li><span><i class="fal fa-file-pdf"></i> CV:</span> <a target="_blank" href="{{asset('public/'.$user_data->cv)}}">View CV</a></li>
-                                            <li><span>  <i class="fa fa-table" aria-hidden="true"></i> Experience :</span> <a href="#"> {{ $user_data->experiance }}
+                                            <li><span><i class="fal fa-file-pdf"></i> CV:</span> <a style="text-decoration: underline; !important;cursor:pointer;" target="_blank" href="{{asset('public/'.$user_data->cv)}}">View CV</a></li>
+                                            <li><span>  <i class="fa fa-table" aria-hidden="true"></i> Experience :</span> <a href="javascript:void(0)"> {{ $user_data->experiance }}
                                                 {{ $user_data->experiance > 0 ? 'Years' : 'Year' }}</a></li>
-                                            <li><span>  <i class="fa fa-briefcase" aria-hidden="true"></i> Job Type :</span> <a href="#">{{ $user_data->job_type }}</a></li>
-                                            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i> Address :</span> <a href="#">{{ $user_data->address }}</a></li>
-                                            <li><span>   <i class="fa fa-location-arrow" aria-hidden="true"></i>Pin code :</span> <a href="#">{{ $user_data->pin_code }}
+                                            <li><span>  <i class="fa fa-briefcase" aria-hidden="true"></i> Job Type :</span> <a href="javascript:void(0)">{{ $user_data->job_type }}</a></li>
+                                            <li><span><i class="fa fa-map-marker" aria-hidden="true"></i> Address :</span> <a href="javascript:void(0)">{{ $user_data->address }}</a></li>
+                                            <li><span>   <i class="fa fa-location-arrow" aria-hidden="true"></i>Pin code :</span> <a href="javascript:void(0)">{{ $user_data->pin_code }}
                                             </a></li>
 
                                         </ul>
@@ -68,8 +77,7 @@
                                     </div> -->
                                 </div>
 								
-								             <div class="col-md-12 "   style="margin-top:5%;
-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);" >
+								             <div class="col-md-12 "   style="margin-top:5%;border:1px solid #eee;padding:10px;" >
 
                             <span 
 								  style="color:#3c628b; text-align:center;"><b>Declaration</b></span>

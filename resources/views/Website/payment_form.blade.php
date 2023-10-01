@@ -124,17 +124,13 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-title-heading">
-                        <h1 class="title">User</h1>
+                        <h1 class="title"> @if(auth()->user()->role==1)
+                            Activate Profile
+                            @else
+                            Become Prime Member
+                            @endif</h1>
                     </div><!-- /.page-title-captions -->
-                    <div class="breadcrumbs">
-                        <ul>
-                            <li><a href="index.html">Home</a></li>
-                            <li> - </li>
-                            <li><a href="index.html">Page</a></li>
-                            <li> - </li>
-                            <li>User</li>
-                        </ul>
-                    </div><!-- /.breadcrumbs -->
+                   
                 </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
@@ -179,7 +175,8 @@
                                                                                    <span class="rupee"> ₹</span> <span class="subscription_amt" data-amount="{{ round($subscription->amount) }}">
                                                                                     {{ round($subscription->amount) }}
                                                                                 </span>
-                                                                                    / Per {{ $subscription->type }}</h6>
+                                                                                    {{-- / Per {{ $subscription->type }} --}}
+                                                                                </h6>
                                                                             </li>
 
                                                                             <li class="card-element">
@@ -198,7 +195,7 @@
                                                                             </li>
                                                                         </ul>
                                                                         <button class="btn btn-standard">Pay
-                                                                            now</button>
+                                                                            Now</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

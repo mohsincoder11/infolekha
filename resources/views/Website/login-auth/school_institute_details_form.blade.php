@@ -89,9 +89,9 @@
 
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Address*</label>
+                                                            <label class="form-control-label">City Name*</label>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Address" name="address" required="required"
+                                                                placeholder="Enter city name" name="address" required="required"
                                                                 value="{{$data->address}}" readonly>
 
                                                         </div>
@@ -100,14 +100,12 @@
                                                     <div class="col-lg-12">
                                                         <div class="form-group">
                                                             <label class="form-control-label">About
-                                                                School/College/institution <span id="charcount">0 out of
+                                                                School/College/Institution <span id="charcount">0 out of
                                                                     500 characters</span></label><br>
                                                             <span id=charcount></span>
                                                             <textarea minlength="20" maxlength="500" name="about"
                                                                 id="about"
                                                                 onkeyup="charcountupdate(this.value)"></textarea>
-
-
 
 
                                                         </div>
@@ -202,10 +200,9 @@
 
                                                     <div class="col-lg-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Google
-                                                                Business</label>
+                                                            <label class="form-control-label">LinkedIn URL</label>
                                                             <input type="text" class="form-control"
-                                                                placeholder="Google Business URL" name="google">
+                                                                placeholder="LinkedIn URL" name="google">
 
                                                         </div>
                                                     </div>
@@ -403,10 +400,10 @@
                                                                 <input class="form-control-lable" type="checkbox"
                                                                     name="policy_checkbox" id="checkbox"
                                                                     style="margin-right: 1%;">
-                                                                <label for="checkbox">I have read and accepted the <spam
-                                                                        style="color:#073D5F;cursor: pointer;"
-                                                                        onclick="openPopup1()">Terms & Condition</spam>
-                                                                    </label>
+                                                                    <label for="checkbox">I have read and accepted the
+                                                                    </label> <label><spam style="color:#073D5F;cursor: pointer;"
+                                                                            onclick="openPopup1()"> Terms & Condition
+                                                                        </spam></label>
 
                                                             </div>
 
@@ -962,8 +959,8 @@ $( "#timepicker2" ).timepicker();
       }, jQuery.validator.format("File size must be less than {0}MB."));
 
       jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {
-    return this.optional(element) || /^(https?:\/\/)?(www\.)?[\w-]+(\.[\w-]+)+$/.test(value);
-  }, "Please enter a valid URL.");
+    return this.optional(element) || /^(https?:\/\/)?(www\.)?[\w-]+(\.[\w-]+)+(\/[\w-]*)*\/?$/.test(value);
+}, "Please enter a valid URL.");
 
       
     //   jQuery.validator.addMethod("httpOrHttpsUrl", function(value, element) {

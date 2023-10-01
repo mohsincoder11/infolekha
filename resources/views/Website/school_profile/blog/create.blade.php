@@ -40,8 +40,7 @@
                     <div class="row">
                         <form method="post" action="{{route('school_profile.insert-blog')}}" id="blog_form" enctype="multipart/form-data">
                         <div class="custom-form">
-@csrf
-
+                            @csrf
 
                             <div class="col-md-12 mt">
                                 <label style="font-size:16px;" class="mt">Subject of Blog </label>
@@ -68,35 +67,33 @@
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea name="content1" id="content1" rows="8"  style="height: 150px;" >
-                                  </textarea>
-                                  
+                                <textarea placeholder="Content1" name="content1" id="content1" rows="8"  style="height: 150px;" ></textarea>
+
 
                                   <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea name="content2" id="content2" rows="8"  style="height: 150px;" >
-                                      </textarea>
+                            <textarea placeholder="Content2" name="content2" id="content2" rows="8"  style="height: 150px;" ></textarea>
                             
 
                                       <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea name="content3" id="content3" rows="8"  style="height: 150px;" >
-                                          </textarea>
+                                <textarea placeholder="Content3" name="content3" id="content3" rows="8"  style="height: 150px;" ></textarea>
+
                                           
                                           <span class="editor_error"></span>
                             </div>
 
                             <div class="col-md-12" style="margin-top:10px;">
-                                <textarea name="content4" id="content4" rows="8"  style="height: 150px;" >
-                                              </textarea>
+                            <textarea placeholder="Content4" name="content4" id="content4" rows="8"  style="height: 150px;" ></textarea>
+
                                               
                                               <span class="editor_error"></span>
                             </div>
-                            <div class="col-md-12 mt-2">
+                            <div class="col-md-12 mt1">
                                 <button class="btn  color-bg  float-btn">Save </button>
 
                             </div>
@@ -116,45 +113,46 @@
 
 <script>
    $(document).ready(function() {
-    var toolbar=[   ['bold', 'italic', 'underline', 'strike'],
-                        [{
-                            'list': 'ordered'
-                        }, {
-                            'list': 'bullet'
-                        }],
-                        ['link', 'image', 'video'],
-                        ['clean']
-                    ];
+
+    // var toolbar=[   ['bold', 'italic', 'underline', 'strike'],
+    //                     [{
+    //                         'list': 'ordered'
+    //                     }, {
+    //                         'list': 'bullet'
+    //                     }],
+    //                     ['link', 'image', 'video'],
+    //                     ['clean']
+    //                 ];
 
 
 
-    var description1 = new Quill("#content1", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+    // var description1 = new Quill("#content1", {
+    //             theme: "snow",
+    //             modules: {
+    //                 toolbar: toolbar
+    //             }
+    //         });
 
-            var description2 = new Quill("#content2", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+    //         var description2 = new Quill("#content2", {
+    //             theme: "snow",
+    //             modules: {
+    //                 toolbar: toolbar
+    //             }
+    //         });
 
-            var description3 = new Quill("#content3", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+    //         var description3 = new Quill("#content3", {
+    //             theme: "snow",
+    //             modules: {
+    //                 toolbar: toolbar
+    //             }
+    //         });
 
-            var description4 = new Quill("#content4", {
-                theme: "snow",
-                modules: {
-                    toolbar: toolbar
-                }
-            });
+    //         var description4 = new Quill("#content4", {
+    //             theme: "snow",
+    //             modules: {
+    //                 toolbar: toolbar
+    //             }
+    //         });
   });
  
 </script>

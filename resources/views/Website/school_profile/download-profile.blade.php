@@ -31,94 +31,100 @@
         <h1 style="color: #144273; margin-top:10%;" align="center">Courses</h1>
 
 
-        <table style="margin-left:10px;">
+        @php
+            $courses = json_decode($user_data->course);
+        @endphp
+        <table>
+            <tr style="margin-bottom:5px;">
+                @if ($courses)
+                    @foreach ($courses as $index => $c)
+                        <td style="width:5%;" class="h">&nbsp;&nbsp;&nbsp;<img style="margin-right:5px;"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/graduation2.png')) }}">{{ $c }}</td>
+
+                        @if (($index + 1) % 4 == 0)
+            </tr>
+            <tr style="margin-bottom:5px;"> <!-- Start a new row after every 4 iterations -->
+                @endif
+                @endforeach
+                @endif
+            </tr>
+        </table>
+
+
+        <hr style="color: #8ca9c9; ">
+        <h1 style="color: #144273 ; margin-top:10%;" align="center">Facilities</h1>
+
+        @php
+            $facilities = json_decode($user_data->facilities);
+        @endphp
+        <table>
+            <tr style="margin-bottom:5px;">
+                @if ($facilities)
+                    @foreach ($facilities as $index => $f)
+                        <td style="width:5%;" class="h">&nbsp;&nbsp;&nbsp;<img style="margin-right:5px;"
+                                src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/book-2.png')) }}">{{ $f }}</td>
+
+                        @if (($index + 1) % 4 == 0)
+            </tr>
+            <tr style="margin-bottom:5px;"> <!-- Start a new row after every 4 iterations -->
+                @endif
+                @endforeach
+                @endif
+            </tr>
+        </table>
+
+        <hr style="color: #8ca9c9; ">
+
+        <table style="">
+            <h1 style="color: #144273; margin-top:2%;" align="center">Images of School</h1>
             <tr>
-                @if (json_decode($user_data->course))
-                    @foreach (json_decode($user_data->course) as $c)
-                        @if ($loop->index % 3 == 0 && $loop->index != 0)
-                            <br><br>
-                        @endif
-                        <td style="width:5%;" class="h">&nbsp;&nbsp;&nbsp;<img src="{{asset('website_asset/icon/graduation2.png')}}" >
-                            {{ $c }}
+                @if ($user_data->image != null)
+                    @foreach (json_decode($user_data->image) as $i)
+                        <td>
+                            <img src="{{ asset('public') . '/' . $i }}" height="150" width="150">
                         </td>
-    
-    @endforeach
-    @endif
+                    @endforeach
+                @endif
 
-
-    </tr>
-
-
-
-
-    </table>
-    <hr style="color: #8ca9c9; ">
-    <h1 style="color: #144273 ; margin-top:10%;" align="center">Facilities</h1>
-
-    <table>
-        <tr>
-            @if (json_decode($user_data->facilities))
-                @foreach (json_decode($user_data->facilities) as $c)
-                    @if ($loop->index % 3 == 0 && $loop->index != 0)
-                        <br><br>
-                    @endif
-                    <td style="width:5%;" class="h">&nbsp;&nbsp;&nbsp;<img src="{{asset('website_asset/icon/book-2.png')}}">
-                        {{ $c }}
-                    </td>
-                @endforeach
-            @endif
-        </tr>
-
-    </table>
-
-    <hr style="color: #8ca9c9; ">
-
-    <table style="">
-        <h1 style="color: #144273; margin-top:2%;" align="center">Images of School</h1>
-        <tr>
-            @if ($user_data->image != null)
-                @foreach (json_decode($user_data->image) as $i)
-                    <td style="width: 20%;">
-                        <img src="{{ asset('public') . '/' . $i }}" height="100" width="100">
-                    </td>
-                @endforeach
-            @endif
-
-        </tr>
-        <tr>
+            </tr>
+            <tr>
 
 
 
-        </tr>
-    </table>
+            </tr>
+        </table>
 
-    <h1 class="h" align="center">Contact Us</h1>
-    <p style="color: #144273; font-size: 20px;"><b>Name</b> :<span style="color: #144273; font-size:18px;">
-            {{ ucfirst($user_data->entity_name) ?? '' }}</span> </p>
-    <p style="color: #144273; font-size: 20px;"><b> Address : </b><span
-            style="color: #144273; font-size:18px;">{{ $user_data->address ?? '' }}</span></p>
-    <p style="color: #144273; font-size: 20px;"><b> Mobile No :</b><span style="color: #144273; font-size:18px;">
-            {{ $user_data->mob ?? '' }}</span></p>
-    <p style="color: #144273; font-size: 20px;"><b>Email ID : </b><span style="color: #144273; font-size:18px;">
-            {{ $user_data->email ?? '' }}</span></p>
-    <p style="color: #144273; font-size: 20px;"><b>Website :</b><span style="color: #144273; font-size:18px;">
-        <a href="{{ $user_data->website }}"> {{ $user_data->website ?? '' }}</a></span></p>
-    @if ($user_data->fb || $user_data->website || $user_data->insta || $user_data->yt || $user_data->google)
-        <p style="color: #144273; font-size: 20px;"><b>social media handles : </b>
-            @if ($user_data->fb)
-               <a target="_blank" href="{{ $user_data->fb }}">    <img src="{{asset('website_asset/icon/facebook-fill.png')}}"></a>
-            @endif
-            @if ($user_data->insta)
-               <a target="_blank" href="{{ $user_data->insta }}">  <img src="{{asset('website_asset/icon/instagram-fill.png')}}"></a>
-            @endif
-            @if ($user_data->yt)
-               <a target="_blank" href="{{ $user_data->yt }}">  <img src="{{asset('website_asset/icon/youtube-fill.png')}}"></a>
-            @endif
-            @if ($user_data->google)
-                <a target="_blank" href="{{ $user_data->google }}"> <img src="{{asset('website_asset/icon/linkedin-fill.png')}}"></a>
-            @endif
-        </p>
-    @endif
+        <h1 class="h" align="center">Contact Us</h1>
+        <p style="color: #144273; font-size: 20px;"><b>Name</b> :<span style="color: #144273; font-size:18px;">
+                {{ ucfirst($user_data->entity_name) ?? '' }}</span> </p>
+        <p style="color: #144273; font-size: 20px;"><b> Address : </b><span
+                style="color: #144273; font-size:18px;">{{ $user_data->address ?? '' }}</span></p>
+        <p style="color: #144273; font-size: 20px;"><b> Mobile No :</b><span style="color: #144273; font-size:18px;">
+                {{ $user_data->mob ?? '' }}</span></p>
+        <p style="color: #144273; font-size: 20px;"><b>Email ID : </b><span style="color: #144273; font-size:18px;">
+                {{ $user_data->email ?? '' }}</span></p>
+        <p style="color: #144273; font-size: 20px;"><b>Website :</b><span style="color: #144273; font-size:18px;">
+                <a href="{{ $user_data->website }}"> {{ $user_data->website ?? '' }}</a></span></p>
+        @if ($user_data->fb || $user_data->website || $user_data->insta || $user_data->yt || $user_data->google)
+            <p style="color: #144273; font-size: 20px;"><b>Social Media Handles : </b>
+                @if ($user_data->fb)
+                    <a target="_blank" href="{{ $user_data->fb }}"> <img
+                            src="{{ asset('website_asset/icon/facebook-fill.png') }}"></a>
+                @endif
+                @if ($user_data->insta)
+                    <a target="_blank" href="{{ $user_data->insta }}"> <img
+                            src="{{ asset('website_asset/icon/instagram-fill.png') }}"></a>
+                @endif
+                @if ($user_data->yt)
+                    <a target="_blank" href="{{ $user_data->yt }}"> <img
+                            src="{{ asset('website_asset/icon/youtube-fill.png') }}"></a>
+                @endif
+                @if ($user_data->google)
+                    <a target="_blank" href="{{ $user_data->google }}"> <img
+                            src="{{ asset('website_asset/icon/linkedin-fill.png') }}"></a>
+                @endif
+            </p>
+        @endif
 
 
 

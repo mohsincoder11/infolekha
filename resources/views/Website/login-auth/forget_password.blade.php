@@ -114,12 +114,12 @@
             },
             messages: {
                 r_mob: {
-                    required: " Please enter email.",
+                    required: " Please enter valid mobile number.",
                 },
                 otp: {
-                    required: " Please enter otp.",
-                    maxlength: " Please enter valid otp.",
-                    minlength: " Please enter valid otp.",
+                    required: "Please enter otp.",
+                    maxlength: "Please enter valid otp.",
+                    minlength: "Please enter valid otp.",
                 },
                 password: {
                     required: "This field is required.",

@@ -48,16 +48,18 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d-m-Y', strtotime($advertisement->created_at)) }}</td>
-                                            <td>{{ $advertisement->user_name}}
+                                            <td>{{ $advertisement->user_name }}
                                             </td>
                                             <td>{{ $advertisement->location == 'home' ? 'Home Page' : 'Listing Page' }}</td>
                                             <td>{{ $advertisement->PackageName }}</td>
                                             <td>
-@if(isset($advertisement->BannerWidth) && isset($advertisement->BannerHeight) ){{ $advertisement->BannerWidth }}*{{ $advertisement->BannerHeight }} px @endif
+                                                @if (isset($advertisement->BannerWidth) && isset($advertisement->BannerHeight))
+                                                    {{ $advertisement->BannerWidth }}*{{ $advertisement->BannerHeight }} px
+                                                @endif
                                             </td>
-                                            <td>{{ $advertisement->SelectedDays > 0 ? $advertisement->SelectedDays . ' days' : (isset($advertisement->SelectedDays) ? $advertisement->SelectedDays . ' days':'') }}
+                                            <td>{!! $advertisement->SelectedDays > 0 ? $advertisement->SelectedDays . ' days' : (isset($advertisement->SelectedDays) ? $advertisement->SelectedDays . ' days' : '<i class="bx bx-infinite"></i>') !!}
                                             </td>
-                                            <td>{{ $advertisement->TotalAmount }}
+                                            <td>{{ $advertisement->TotalAmount ?? 0 }}
                                             </td>
                                             <td>
                                                 @if (isset($advertisement->image))
@@ -93,19 +95,19 @@
 
                                             <td>
 
-                                                <button title="upload image" type="button" class="btn1 btn-outline-primary open_modal"
+                                                <button title="upload image" type="button"
+                                                    class="btn1 btn-outline-primary open_modal"
                                                     EnquiryID="{{ $advertisement->EnquiryID }}"
                                                     width="{{ $advertisement->BannerWidth }}"
                                                     height="{{ $advertisement->BannerHeight }}"><i
                                                         class="fadeIn animated bx bx-upload"></i></button>
-                                                <a title="delete" 
-                                                href="{{route('admin.delete-advertisement',$advertisement->EnquiryID)}}" >
-                                                <button class="btn1 btn-outline-danger">
+                                                <a title="delete"
+                                                    href="{{ route('admin.delete-advertisement', $advertisement->EnquiryID) }}">
+                                                    <button class="btn1 btn-outline-danger">
 
-                                                <i
-                                                        class='bx bx-trash me-0'></i>
-                                                </button>
-                                            </a>
+                                                        <i class='bx bx-trash me-0'></i>
+                                                    </button>
+                                                </a>
 
                                             </td>
 
@@ -167,54 +169,58 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-    
+
                     <form id="form" action="{{ route('admin.add-advertisement') }}" method="post"
                         enctype="multipart/form-data" class="row g-2" id="advertisement_form">
                         @csrf
-                        
+
                         <div class="col-md-6 ">
                             <label>Status Location</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="location" id="location">
+                            <select class="form-select mb-3" aria-label="Default select example" name="location"
+                                id="location">
                                 <option value="">Select</option>
                                 <option value="home">Home</option>
                                 <option value="listing">Listing</option>
                             </select>
                         </div>
 
-                         <div class="col-md-6 ">
+                        <div class="col-md-6 ">
                             <label>Select Size(px)</label>
                             <span id="advertisement_area">
-                                <select class="form-select mb-3" aria-label="Default select example" name="size" id="size">
-                                
-                            </select>
+                                <select class="form-select mb-3" aria-label="Default select example" name="size"
+                                    id="size">
+
+                                </select>
                             </span>
                         </div>
-                      
-                    
+
+
                         <div class="col-md-6">
                             <label for="inputFirstName" class="form-label"> Image*</label>
-                            <input type="file" class="form-control" id="inputFirstName" placeholder="" name="image" accept="image/*">
+                            <input type="file" class="form-control" id="inputFirstName" placeholder=""
+                                name="image" accept="image/*">
                         </div>
                         <div class="col-md-6 ">
                             <label>Status</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="status" id="status2">
+                            <select class="form-select mb-3" aria-label="Default select example" name="status"
+                                id="status2">
                                 <option value="">Select</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Active">Active</option>
                                 <option value="Rejected">Rejected</option>
                                 <option value="Disabled">Disabled</option>
-    
+
                             </select>
                         </div>
-                    
-    
+
+
                         <div class="col-md-12" align="center">
                             <button type="submit" class="btn btn-primary px-5">Save</button>
                         </div>
                     </form>
-    
+
                 </div>
-    
+
             </div>
         </div>
     </div>
@@ -234,15 +240,15 @@
                     dataType: "json",
                     success: function(data) {
                         $("#advertisement_area").html(data);
-                       
+
                     }
                 })
             })
 
 
             $(document).on('click', '.add-advertisement', function(e) {
-            $("#exampleModal2").modal('show');
-        })
+                $("#exampleModal2").modal('show');
+            })
 
             $(document).on('click', '.open_modal', function(e) {
                 $("#exampleModal").modal('show');

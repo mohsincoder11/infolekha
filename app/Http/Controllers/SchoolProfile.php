@@ -23,6 +23,7 @@ use App\Models\Master\Coupon;
 use App\Models\JobVacancyApplied;
 use App\Models\Master\Subscription;
 use App\Models\SchoolType;
+use App\Models\user_school_institute;
 use App\Models\UserEnquiry;
 use Illuminate\Support\Facades\Hash;
 use PDF;
@@ -33,6 +34,7 @@ class SchoolProfile extends Controller
       $data = DB::table('users')
       ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
       ->where('users.id', auth::user()->id)->first();
+     // return view('Website.school_profile.download-profile',['user_data' => $data]);
       $pdf=PDF::loadView('Website.school_profile.download-profile',['user_data' => $data]);
       return $pdf->download($data ->name.'.pdf');
    }
@@ -93,7 +95,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       $validator = Validator::make(
          $request->all(),
          [
-             'name' => 'required',
+         'name' => 'required',
           'entity_name'=>'required',
           'address'=>'required',
           'about'=>'required',
@@ -134,6 +136,9 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          $video_name = $array_video;
       }
       $school_detail = school_institute_detail::where('user_id', auth::user()->id)->first();
+      $user_school_institute = user_school_institute::where('user_id', auth::user()->id)->first();
+      $user_school_institute->address=$city;
+      $user_school_institute->save();
 
       $exist_image_array = json_decode($school_detail->image);
       $exist_video_array = json_decode($school_detail->video);
@@ -158,6 +163,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          'banner_image'=>$request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image,
          'opening_time' => $request->get('opening_time'),
          'closing_time' => $request->get('closing_time'),
+         'address'=>$city
 
       ]);
 
@@ -672,6 +678,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             $blog->content2= $request['content2'];
             $blog->content3= $request['content3'];
             $blog->content4= $request['content4'];
+            $blog->status = 'Pending';
+
 
             $blog->save();
      return redirect('school-profile/blog')->with(['success' => 'Blog updated successfully.']);

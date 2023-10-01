@@ -21,32 +21,32 @@
 
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Name of Tutor </label>
-                                            <input name="name" type="text" placeholder="Noory" value="{{$user_data->name}}" />
+                                            <input name="name" type="text" placeholder="Name" value="{{$user_data->name}}" />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Subject </label>
-                                            <input name="subject" type="text" placeholder="English" value="{{$user_data->tutor_detail->subject}}"  />
+                                            <input name="subject" type="text" placeholder="Subject" value="{{$user_data->tutor_detail->subject}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Year of Experience </label>
-                                            <input name="experiance" type="number" step="0.1" placeholder="" value="{{$user_data->tutor_detail->experiance}}"  />
+                                            <input name="experiance" type="number" step="0.1" placeholder="Experience" value="{{$user_data->tutor_detail->experiance}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Mobile </label>
-                                            <input name="mob" type="text" placeholder="987655988" value="{{$user_data->mob}}"  />
+                                            <input name="mob" type="text" placeholder="Mobile" value="{{$user_data->mob}}" readonly  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Email ID </label>
-                                            <input name="email" type="text" placeholder="shiv12@gmail.com" value="{{$user_data->email}}"  />
+                                            <input name="email" type="text" placeholder="Email id" value="{{$user_data->email}}" readonly />
                                         </div>
     
                                         <div class="col-md-6">
-                                            <label style="font-size:16px;">Address </label>
-                                            <input name="address" id="address" type="text" placeholder="Address" value="{{$user_data->address}}"  />
+                                            <label style="font-size:16px;">City </label>
+                                            <input name="address" id="address" type="text" placeholder="Enter city name" value="{{$user_data->address}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Pin Code </label>
-                                            <input name="pin_code" type="number" placeholder="444604" value="{{$user_data->tutor_detail->pin_code}}"  />
+                                            <input name="pin_code" type="number" placeholder="Pin code" value="{{$user_data->tutor_detail->pin_code}}"  />
                                         </div>
                                         <div class="col-md-6">
                                             <label style="font-size:16px;">Select Type </label>

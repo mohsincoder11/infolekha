@@ -585,21 +585,20 @@ width: 0px; /* Set a global width for all slides*/
                                         <div class="flat-client" data-item="4" data-nav="true" data-dots="false"
                                             data-auto="false">
                                             @foreach (json_decode($details->video) as $i)
-                                                <div class="client">
-                                                    <div class="featured-client">
-                                                        <a target="_blank" href="{{ asset('public') . '/' . $i }}"
-                                                            class="geodir-category-img_item">
-                                                             <video controls crossorigin playsinline poster="{{asset('website_asset/icon/video-play-icon.png')}}" style="height:30vh">
-                                                                        <source src="{{ asset('public') . '/' . $i }}" type="video/mp4" size="576">
-                                                               
-                                                                           <!-- Caption files -->
-                                                                           <!-- Fallback for browsers that don't support the <video> element -->
-                                                                          
-                                                                   </video>
-                                                        </a>
-                                                    </div>
+                                            <div class="listing-item" style="width:110%;">
+                                                <article class="geodir-category-listing fl-wrap">
+                                                    <div class="geodir-category-img fl-wrap agent_card">
 
-                                                </div>
+                                                        <video controls crossorigin playsinline poster="{{asset('website_asset/icon/video-play-icon.png')}}" style="height:30vh">
+                                                            <source src="{{ asset('public') . '/' . $i }}" type="video/mp4" size="576">
+                                                   
+                                                               <!-- Caption files -->
+                                                               <!-- Fallback for browsers that don't support the <video> element -->
+                                                               <a>Video Oynatılamıyor</a>
+                                                       </video>
+                                                    </div>
+                                                </article>
+                                            </div>
                                             @endforeach
 
                                         </div><!-- /.flat-client -->
@@ -737,15 +736,20 @@ width: 0px; /* Set a global width for all slides*/
                                             <li class="comment">
                                                 <article class="comment-body clearfix">
                                                     <div class="comment-author">
-                                                        <img style="object-fit: cover;" width="46px" height="46px"
+                                                        @if(isset( $review->logo) && $review->logo!=null)
+                                                            <img style="object-fit: cover;" width="46px" height="46px"
                                                             src="{{ asset('public/' . $review->logo) }}" alt="image">
+                                                        @else
+                                                            <img src="{{ asset('public/icon/user.png') }}" alt=""
+                                                            width="46px" height="46px" style="object-fit: cover;">
+                                                        @endif
                                                     </div><!-- .comment-author -->
                                                     <div class="comment-text">
                                                         @php
                                                             $filledStars = floor($review->rating);
                                                         @endphp
                                                         <div class="comment-metadata">
-                                                            <h5><a href="#">{{ $review->name }}</a></h5>
+                                                            <h5>{{ $review->name }}</h5>
                                                             <p class="day">
                                                                 {{ date('d/m/Y', strtotime($review->created_at)) }}</p>
                                                             <div class="flat-start">

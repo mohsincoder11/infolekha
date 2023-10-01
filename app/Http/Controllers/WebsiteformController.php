@@ -94,33 +94,6 @@ class WebsiteformController extends Controller
         return response()->json($view);
     }
 
-     public function get_listing_page_data(Request $request){
-      
-       
-
-        $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','listing')->where('status','Active')->select('advertisement_enquiries.*'); //we need to add city id condition
-        if(Auth::check()){
-            $city_id=Auth::user()->city_id;
-        }
-        if(isset($city_id1) && $city_id1 !=null){
-            $city_id=$city_id1;
-        }
-        if(Auth::check() || (isset($city_id1) && $city_id1 !=null)){
-           $advertisements_query=$advertisements_query
-           ->Where(function ($query) use($city_id) {
-            $query->where('users.city_id',$city_id)->orwhere('advertisement_enquiries.college_id',1);
-            });
-           //1 id for admin
-           //city id 0 for admin inserted annppuncment/advertisement
-        }
-        $advertisements=$advertisements_query->take(8)
-        ->get();
-    
-
-        $view=view('Website.college-listing.listing-advertisement',compact('advertisements'))->render();
-        return response()->json($view);
-    }
-
     public function save_city(Request $request){
         $validator = Validator::make(
             $request->all(),
@@ -226,6 +199,10 @@ public function database_backup(){
 
     public function college_listing(Request $request)
     {
+        if(auth()->check() && auth()->user()->role!=2 && $request->type=='tutorjob'){
+            return redirect()->route('index')->with(['error'=>'Please register as tutor to access tutor page.']);
+        }
+        
         $main_query = school_institute_detail::join('users', 'users.id', '=', 'user_school_institute_detail.user_id')
         ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
         ->where('users.active', '1')
@@ -261,17 +238,43 @@ public function database_backup(){
     $college_list = $main_query->paginate(10);
     
     // The $college_list variable now contains the paginated results based on the conditions
-    
-                    
-                
             
        // exit();
         $entities = Entity::orderby('entity','asc')->get();
         $school_type = SchoolType::get();
 
-        $advertisements=AdvertisementEnquiry::where('image','!=',null)->where('location','listing')->where('status','Active')->take(8)->get();
+        return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type]);
+    }
 
-        return view('Website.college-listing.listing', ['college_list' => $college_list,'entities'=>$entities,'school_type'=>$school_type,'advertisements'=>$advertisements]);
+    public function get_listing_page_data(Request $request){
+      
+        $advertisements_query=AdvertisementEnquiry::join('users','users.id','=','advertisement_enquiries.college_id')->where('image','!=',null)->where('location','listing')
+        ->where('status','Active')
+        ->select('advertisement_enquiries.*'); //we need to add city id condition
+        if(Auth::check()){
+            $city_id=Auth::user()->city_id;
+        }
+        if(isset($city_id1) && $city_id1 !=null){
+            $city_id=$city_id1;
+        }
+        if(Auth::check() || (isset($city_id1) && $city_id1 !=null)){
+           $advertisements_query=$advertisements_query
+           ->Where(function ($query) use($city_id) {
+            $query->where('users.city_id',$city_id)->orwhere('advertisement_enquiries.college_id',1);
+            });
+           //1 id for admin
+           //city id 0 for admin inserted annppuncment/advertisement
+        }
+        $advertisements_290=(clone $advertisements_query)->where(['BannerWidth'=>290,'BannerHeight'=>220])
+        ->take(8)->get();
+        $advertisements_1920=(clone $advertisements_query)->where(['BannerWidth'=>1920,'BannerHeight'=>400])
+        ->first();
+
+        $view=view('Website.college-listing.listing-advertisement',compact('advertisements_290','advertisements_1920'))->render();
+        return response()->json([
+            'advertisements_290' => $view,
+            'advertisements_1920' => isset($advertisements_1920) ? '<img src="'.asset('public/'.(isset($advertisements_1920) ? $advertisements_1920->image : null)).'">' : null
+        ]);
     }
 
     public function listing_details(Request $request)
@@ -388,11 +391,11 @@ public function database_backup(){
 
         $user=User::find($request->user_id);
         if ($user) {
-            $user->password=Hash::make($request->new_password);
+            $user->password=Hash::make($request->password);
             $user->save();
-            app('App\Http\Controllers\Admin\MailController')->password_reset_mail($request->user_id);
+           // app('App\Http\Controllers\Admin\MailController')->password_reset_mail($request->user_id);
 
-            return redirect()->back()->with(['success'=>'Password has been updated.']);
+            return redirect()->route('login')->with(['success'=>'Password has been updated.']);
         }else{
             return redirect()->back()->with(['error'=>'Existing password do not match.']);
 
@@ -474,8 +477,11 @@ public function database_backup(){
 
     public function blog_details(Request $request)
     {
-        $blog=Blog::find($request->id);
-        return view('Website.blogs.blog-details',compact('blog'));
+        $blog=Blog::where('id',$request->id)->where('status','Active')->first();
+        if($blog){
+            return view('Website.blogs.blog-details',compact('blog'));
+        }
+        abort(404);
     }
 
     public function payfail(Request $request)
