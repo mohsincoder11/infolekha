@@ -76,6 +76,15 @@
             margin-left:2%;
         }
     }
+	
+	.row{
+	padding-left:10px;
+	padding-right:5px !important;
+	}
+	
+	.container div{
+	word-wrap: break-word !important;
+	}
    
 </style>
 
@@ -148,7 +157,7 @@
                                                  </div>
                                                 
 
-                                                 <div class="row">
+                                                 <div class="para1" >
                                                     {!! html_entity_decode($blog->content1) !!}
                                                 </div>
                                                    

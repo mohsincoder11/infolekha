@@ -179,7 +179,7 @@
                                                             </span>
                                                             <a href="#" class="review" style="font-size:15px;">(4.9 )</a>
                                                         </div>
-                                                        <p style="font-size:16px;">{{$anno->address}}</p>
+                                                        <p style="font-size:16px;">{{$anno->address_details}}</p>
                                                        
                                                     </div>
                                                     <div class="info-product" style="margin-top:-6;">

@@ -311,9 +311,18 @@
                             }
 
                             if (coupon.type == 'FLAT') {
-                                total_amount = parseFloat(total_amount) - parseFloat(coupon.discount);
+                                if(total_amount<coupon.discount){
+                                    Toast.fire({
+                                    icon: 'error',
+                                    title: "Announcement amount must be greater than discount amount."
+                                })
+                                total_amount=parseFloat(total_amount);
+                                }else{
+                                    total_amount = parseFloat(total_amount) - parseFloat(coupon.discount);
                                 parent_div.find('.discount_span').text(coupon.discount + ' RS');
                                 parent_div.find('.discount_input').val(coupon.discount);
+                                }
+                                
                             }
 
                         } else {

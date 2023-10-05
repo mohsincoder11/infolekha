@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\RegistrationController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\WebsiteSettingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Master\BrochureController;
 use App\Http\Controllers\Master\CouponController;
@@ -172,6 +173,11 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::post('update-banner-image', [BannerImageController::class, 'update'])->name('master.update-banner-image');
     Route::get('destroy-banner-image/{id}', [BannerImageController::class, 'destroy'])->name('master.destroy-banner-image');
     
+//default OTP
+Route::get('master/default-otp', [WebsiteSettingController::class, 'index'])->name('master.default-otp');
+    Route::post('update-default-otp', [WebsiteSettingController::class, 'update'])->name('master.update-default-otp');
+   
+
 
     //blogs
     Route::get('blog', [BlogController::class, 'index'])->name('blog');

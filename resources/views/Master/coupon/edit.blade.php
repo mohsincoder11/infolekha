@@ -38,10 +38,11 @@
                                         <option value="PERCENT" @if($edit->type=='PERCENT') selected @endif>PERCENT</option>
                                     </select>
                                 </div>
+                                
                                 <div class="col-md-6">
                                     <label for="inputDiscount" class="form-label">Coupon Discount</label>
                                     <input type="number" class="form-control" placeholder="Coupon Discount"
-                                        name="discount" value="{{$edit->discount}}">
+                                        name="discount" value="{{$edit->discount}}" step="0.01">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputStatus" class="form-label">Coupon For</label>

@@ -42,7 +42,7 @@
                                         {{$job->status}}
                                     </td>
                                     <td>
-                                        <a href="{{route('tutor_profile.job_remove',$job->id)}}" class="btn1 btn-outline-success"><i class="fa fa-trash"
+                                        <a href="{{route('tutor_profile.job_remove',$job->id)}}" class="btn1 "><i class="fa fa-trash"
                                                 aria-hidden="true"></i></a></td>
                                 </tr>
                                 @endforeach

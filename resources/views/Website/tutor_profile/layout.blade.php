@@ -457,19 +457,14 @@ font-size: 16px;
                                         class="fal fa-briefcase"></i>Job Applied</a>
 
                             </li>
-                            <li><a href="{{ route('tutor_profile.blog') }}"
-                                @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog' || $routeName == 'tutor_profile.edit-blog') class="user-profile-act" @endif><i
-                                    class="fal fa-file"></i> Write a Blog</a>
-                            </li>
+                            
                             @else
                             <li>
                                 <a href="javascript:void(0)" class="disable-li" ><i
                                         class="fal fa-heart"></i>Job Applied</a>
 
                             </li>
-                            <li><a href="javascript:void(0)" class="disable-li" ><i
-                                    class="fal fa-file"></i> Write a Blog</a>
-                            </li>
+                           
                             @if(Auth::user()->active!='2')
 
                             <li>
@@ -480,6 +475,10 @@ font-size: 16px;
                             </li>
                             @endif
                             @endif
+							 <li><a href="{{ route('tutor_profile.blog') }}"
+                                @if ($routeName == 'tutor_profile.blog' || $routeName == 'tutor_profile.write-blog' || $routeName == 'tutor_profile.edit-blog') class="user-profile-act" @endif><i
+                                    class="fal fa-file"></i> Write a Blog</a>
+                            </li>
 
                             <li>
                                 <a href="{{ route('tutor_profile.user_change_password') }}" @if ($routeName == 'tutor_profile.user_change_password') class="user-profile-act" @endif><i

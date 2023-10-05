@@ -2,36 +2,36 @@
 @section('css')
     <style>
         /*   .sidebar {
-                              height: 100%;
-                              overflow: hidden;
-                            }*/
+                                  height: 100%;
+                                  overflow: hidden;
+                                }*/
 
         /*.marquee ul {
-                              list-style: none;
-                              padding: 0;
-                              margin: 0;
-                              animation: scroll 15s linear infinite;
-                              animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
+                                  list-style: none;
+                                  padding: 0;
+                                  margin: 0;
+                                  animation: scroll 15s linear infinite;
+                                  animation-delay: -1.5s; /* Add a negative delay to smooth out the repeat */
         }
 
         /*.marquee ul li {
-                              margin-bottom: 10px;
-                            }
+                                  margin-bottom: 10px;
+                                }
 
-                            .marquee ul li img {
-                              display: block;
-                              max-width: 100%;
-                              height: auto;
-                            }
+                                .marquee ul li img {
+                                  display: block;
+                                  max-width: 100%;
+                                  height: auto;
+                                }
 
-                            @keyframes scroll {
-                              0% {
-                                transform: translateY(0%);
-                              }
-                              100% {
-                                transform: translateY(-100%);
-                              }
-                            }*/
+                                @keyframes scroll {
+                                  0% {
+                                    transform: translateY(0%);
+                                  }
+                                  100% {
+                                    transform: translateY(-100%);
+                                  }
+                                }*/
     </style>
 
 
@@ -45,7 +45,7 @@
             /* background-color: #000; */
             position: relative;
             /* behavior: scroll;
-                                 direction: up; */
+                                     direction: up; */
         }
 
         /* nested div inside the container */
@@ -117,7 +117,7 @@
 
         .popup2 h2 {
             font-size: 24px;
-            margin : 15px 0;
+            margin: 15px 0;
             text-transform: uppercase;
         }
 
@@ -161,7 +161,29 @@
         .pac-container {
             width: 33%;
         }
-    
+
+        .no-record img {
+            margin-top: 10px;
+            height: 10rem;
+            width: auto;
+
+        }
+
+        .centered-container {
+            flex-direction: column;
+            /* Stack items vertically */
+        }
+
+        .centered-container div {
+            text-align: center;
+            /* Optional: Center the content within each div */
+            margin: 10px 0;
+            /* Optional: Add spacing between the elements */
+        }
+
+        .centered-container div p {
+            font-size: 1.5em;
+        }
     </style>
 
 @stop
@@ -212,7 +234,9 @@
                                                                     @if (request()->board_type == $board_type->id) selected @endif>
                                                                     {{ $board_type->type }}</option>
                                                             @endforeach
-                                                            <option value="Other"  @if (request()->board_type == 'Other') selected @endif>Other</option>
+                                                            <option value="Other"
+                                                                @if (request()->board_type == 'Other') selected @endif>Other
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -239,10 +263,14 @@
                                             <div class="col-lg-2" style="margin-bottom:20px;">
                                                 <div class="form-group ">
                                                     <input type="text" value="{{ request()->city }}" name="city"
-                                                        id="city_search" class="form-control f1 " placeholder="Type to search cities">
+                                                        id="city_search" class="form-control f1 "
+                                                        placeholder="Type to search cities">
                                                 </div>
                                             </div>
-                                            @if (auth()->check() && auth()->user()->role == '2' && auth()->user()->tutordetail->subscription_status == '1' && auth()->user()->active=='1')
+                                            @if (auth()->check() &&
+                                                    auth()->user()->role == '2' &&
+                                                    auth()->user()->tutordetail->subscription_status == '1' &&
+                                                    auth()->user()->active == '1')
                                                 <div class="col-lg-2">
                                                     <div class="form-group">
                                                         <select class="form-select select country-select filter filter_form"
@@ -345,7 +373,7 @@
                                                             <a href="{{ route('listing-details', $anno->user_id) }}">
                                                                 <h4 class="title"> {{ $anno->entity_name }}</h4>
                                                             </a>
-                                                            <p>{{ Str::limit($anno->about, 40) }}</p>
+                                                            <p>{{ Str::limit($anno->about, 100) }}</p>
                                                             @if (auth()->check())
                                                                 <a class="heart like_college {{ check_if_like($anno->user_id) }}"
                                                                     college_id="{{ $anno->user_id }}"
@@ -381,7 +409,7 @@
                                                             <label href="#" class="review"
                                                                 style="background-color:rgb(151, 201, 2); padding:2px 4px; border-radius:5px; color:#fff;margin-left:5px;"><b>{{ $rating_count }}</b></label>
                                                         </div>
-                                                        <p style="font-size:16px;">{{ $anno->address }}</p>
+                                                        <p style="font-size:16px;">{{ $anno->address_details }}</p>
 
                                                     </div>
                                                     <div class="info-product" style="margin-top:-6;">
@@ -392,20 +420,22 @@
                                                             Number</button> &nbsp;
                                                         &nbsp;</a>
 
-                                                     
-                                                        @if (auth()->check()) 
-                                                          <button type="button"
-                                                            class="login-btn effect-button send_enquiry_modal"
-                                                            college_id="{{ $anno->user_id }}"> <i
-                                                                class="fa fa-paper-plane"></i> Send
-                                                            Enquiry</button>
-                                                             @else
-                                                          <a href="{{route('enquiry-login-redirect')}}">  <button type="button"
-                                                             class="login-btn effect-button "
-                                                             college_id="{{ $anno->user_id }}"> <i
-                                                                 class="fa fa-paper-plane"></i> Send
-                                                             Enquiry</button></a> 
+
+                                                        @if (auth()->check())
+                                                            @if (auth()->user()->role != '2')
+                                                                <button type="button"
+                                                                    class="login-btn effect-button send_enquiry_modal"
+                                                                    college_id="{{ $anno->user_id }}"> <i
+                                                                        class="fa fa-paper-plane"></i> Send
+                                                                    Enquiry</button>
                                                             @endif
+                                                        @else
+                                                            <a href="{{ route('enquiry-login-redirect') }}"> <button
+                                                                    type="button" class="login-btn effect-button "
+                                                                    college_id="{{ $anno->user_id }}"> <i
+                                                                        class="fa fa-paper-plane"></i> Send
+                                                                    Enquiry</button></a>
+                                                        @endif
 
                                                     </div>
 
@@ -415,7 +445,14 @@
 
                                         </div>
                                     @empty
-                                        <div class="listing-list">No Record Found</div>
+                                        <div class="listing-list no-record centered-container">
+                                            <div>
+                                                <img src="{{ asset('website_asset/icon/no-record.svg') }}" alt="">
+                                            </div>
+                                            <div>
+                                                <p>No Record Found</p>
+                                            </div>
+                                        </div>
                                     @endforelse
 
                                     <div class="modal fade flat-popupform" id="popup_login">
@@ -453,18 +490,22 @@
                                         </div>
                                     </div> --}}
                                     @if (request()->segment(2) && request()->segment(2) == 'tutorjob')
-                                    @if ((!auth()->check() || auth()->user()->active != '1') && vacancy_count()>0 && (!auth()->user() || auth()->user()->tutordetail->subscription_status != '1'))
-                                        <div id="popup2" class="popup2">
-                                            <div class="popup-content">
-                                                <span class="close2">&times;</span>
-                                                <h2>{{ vacancy_count() }} Vacancies are available in your area</h2>
-                                                <p>Apply now!</p>
-                                                <div class="center">
-                                                    <a href="{{ route('tutor_subscription') }}">Click here for details</a>
+                                        @if (
+                                            (!auth()->check() || auth()->user()->active != '1') &&
+                                                vacancy_count() > 0 &&
+                                                (!auth()->user() || auth()->user()->tutordetail->subscription_status != '1'))
+                                            <div id="popup2" class="popup2">
+                                                <div class="popup-content">
+                                                    <span class="close2">&times;</span>
+                                                    <h2>{{ vacancy_count() }} Vacancies are available in your area</h2>
+                                                    <p>Apply now!</p>
+                                                    <div class="center">
+                                                        <a href="{{ route('tutor_subscription') }}">Click here for
+                                                            details</a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endif
+                                        @endif
                                     @endif
 
 
@@ -492,7 +533,10 @@
                                                                 placeholder="E-mail*" name="email" required="required"
                                                                 value="{{ auth()->check() ? auth()->user()->email : '' }}"><i
                                                                 class="fa fa-envelope-o"></i></span>
-                                                        <!-- <span class="input-login icon-form"><input type="text" placeholder="Mobile Number*" name="mobile_no" required="required"><i class="fa fa-phone" aria-hidden="true"></i></span> -->
+                                                        <span class="input-login icon-form">
+                                                            <input type="text"
+                                                                placeholder="Mobile Number*" name="mobile"
+                                                                required="required"  value=""></span>
                                                         <span class="input-login icon-form">
                                                             <textarea type="text" placeholder="Message" name="message" required="required" rows="4" cols="50"></textarea>
                                                         </span>
@@ -518,12 +562,12 @@
                                 <div class="col-lg-3">
                                     <div class="sidebar" style="margin-top:0.01rem;">
                                         <div class=" widget widget-form style2 ">
-                        <span id="city-wise-data">
-                            <div class="card">
-                                <div class="cover-image-skeleton"></div>
-                               
-                            </div>
-                            {{-- @foreach ($advertisements as $advertisement)
+                                            <span id="city-wise-data">
+                                                <div class="card">
+                                                    <div class="cover-image-skeleton"></div>
+
+                                                </div>
+                                                {{-- @foreach ($advertisements as $advertisement)
                                                 <span><img class="listing_image"
                                                         src="{{ asset('public/' . $advertisement->image) }}"
                                                         alt="image">
@@ -531,7 +575,7 @@
                                                 <br>
                                                 <br>
                                             @endforeach --}}
-                        </span>
+                                            </span>
 
                                         </div>
 
@@ -558,9 +602,9 @@
             $(document).on('change', '.filter_form', function() {
                 if ($(this).attr('name') == 'type') {
                     var selectedValue = $(this).val();
-                    
-                        var redirectURL = "{{ route('college_listing', ['type' => '']) }}/" + selectedValue;
-                        window.location.href = redirectURL;
+
+                    var redirectURL = "{{ route('college_listing', ['type' => '']) }}/" + selectedValue;
+                    window.location.href = redirectURL;
                 } else {
                     $(this).closest('form').submit();
                 }

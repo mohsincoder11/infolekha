@@ -42,7 +42,7 @@
                                 <div class="col-md-6">
                                     <label for="inputDiscount" class="form-label">Coupon Discount</label>
                                     <input type="number" class="form-control" placeholder="Coupon Discount"
-                                        name="discount">
+                                        name="discount" step="0.01">
                                 </div>
                                 
 

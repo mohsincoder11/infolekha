@@ -1,4 +1,13 @@
 
 
+ALTER TABLE `user_school_institute` ADD `address_details` VARCHAR(255) NULL DEFAULT NULL AFTER `address`;
 
+//add mobile number in enquiey
+
+ CREATE TABLE website_settings (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                otp VARCHAR(4),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+            );
 

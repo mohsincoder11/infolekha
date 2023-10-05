@@ -69,7 +69,7 @@
 
                 </table>
                 @if(count($blogs) == 0)
-				   <p>No Record Found</p>
+				   <p align="center">No Record Found</p>
 
                 @endif
             </div>

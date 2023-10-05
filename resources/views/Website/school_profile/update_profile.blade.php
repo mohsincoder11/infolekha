@@ -331,6 +331,10 @@
                                         value="{{ $data->google }}" />
                                 </div>
                                 <div class="col-md-6 ">
+                                    <label style="font-size:16px;"> Address </label>
+                                    <input type="text" placeholder="Enter address"  name="address_details" value="{{ $data->address_details }}" />
+                                </div>
+                                <div class="col-md-6 ">
                                     <label style="font-size:16px;"> City </label>
                                     <input type="text" placeholder="Enter city name" id="current_location_at_form" name="address" value="{{ $data->address }}" />
                                 </div>

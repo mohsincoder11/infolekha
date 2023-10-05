@@ -30,6 +30,7 @@
                             <th>SN</th>
                             <th>Name</th>
                             <th>Email</th>
+                            <th>Mobile</th>
                             <th>Message</th>
 
                         </thead>
@@ -41,13 +42,16 @@
                                     <td>
                                         <a href="mailto:{{ $enquirie->email }}">{{ $enquirie->email }}</a>
                                     </td>
+                                    <td>
+                                        <a href="tel:+91{{ $enquirie->mobile }}">{{ $enquirie->mobile }}</a>
+                                    </td>
                                     <td>{{ $enquirie->message }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                     @if (count($enquiries) == 0)
-                        <p>No Record Found</p>
+                        <p align="center">No Record Found</p>
                     @endif
                 </div>
 

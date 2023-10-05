@@ -79,6 +79,7 @@ class SignUpController extends Controller
                     'r_contact_person' => $request->get('contact_person'),
                     'r_mob' => $request->get('r_mob'),
                     'address' => $request->get('address'),
+                    'address_details' => $request->get('address_details'),
                     'user_id' => $users1->id,
                     'r_entity' => $request->get('entity'),
                 ]);

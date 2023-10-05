@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\WebsiteSetting;
 use App\Models\AdvertisementEnquiry;
 use Illuminate\Http\Request;
 use App\Models\user_student;
@@ -207,7 +208,7 @@ public function database_backup(){
         ->join('user_school_institute', 'user_school_institute.user_id', '=', 'user_school_institute_detail.user_id')
         ->where('users.active', '1')
         ->where('user_school_institute_detail.subscription_status', '1')
-        ->select('user_school_institute_detail.*', 'users.logo', 'users.city_id')
+        ->select('user_school_institute_detail.*', 'users.logo', 'users.city_id','user_school_institute.address_details')
         ->groupBy('users.id');
     if (isset($request->type) && $request->type != 'tutorjob' && $request->type != null) {
         $main_query->where('user_school_institute.r_entity', $request->type);
@@ -345,6 +346,7 @@ public function database_backup(){
     {
         //$otp=$this->send_otp($request->mob);
         $otp=send_sms($request->mob);
+        //return response()->json(['otp'=>$otp,'default_otp'=>WebsiteSetting::first()->otp]);
         return response()->json($otp);
     }
 
@@ -528,6 +530,10 @@ public function database_backup(){
                 $payable_amount=$subscription->amount-($subscription->amount/100*$coupon->discount);
             }else{
                 $payable_amount=$subscription->amount-$coupon->discount;
+            }
+            if($payable_amount<0){
+                return response()->json(['status'=>false,'message'=>'Subscription amount must be greater than discount amount.']);
+
             }
             return response()->json(['status'=>true,'amount'=>$payable_amount,'discount'=>round($subscription->amount-$payable_amount)]);
 

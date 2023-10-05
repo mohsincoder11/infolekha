@@ -476,7 +476,7 @@ width: 0px; /* Set a global width for all slides*/
                                     </div>
 
 
-                                    <p>{{ $details->address }}</p>
+                                    <p>{{ $details->address_details }}</p>
                                 </div>
                                 <div class="info-product" style="margin-top:-6;">
 
@@ -484,12 +484,15 @@ width: 0px; /* Set a global width for all slides*/
                                         mobile_number="{{ $details->r_mob }}">
                                         <i class="fa fa-phone" aria-hidden="true"></i> Show
                                         Number</button> &nbsp; &nbsp; --}}
-                                    <button type="button" class="login-btn effect-button send_enquiry_modal"
+                                     @if (auth()->check() && auth()->user()->role != '2')
+									<button type="button" class="login-btn effect-button send_enquiry_modal"
                                         college_id="{{ $details->user_id }}"> <i class="fa fa-paper-plane"></i> Send
-                                        Enquiry</button>
-
-
-
+                                        Enquiry</button>&nbsp;
+									@endif
+                             
+									 <button type="button" class="login-btn effect-button start-review"
+                                        college_id="{{ $details->user_id }}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Write A
+                                        Review</button>
                                 </div>
                             </div>
                         </div>
@@ -840,7 +843,7 @@ width: 0px; /* Set a global width for all slides*/
                         <div class="widget widget-contact">
                             <h5 class="widget-title">Contact Us</h5>
                             <ul>
-                                <li class="adress">{{ $details->address ?? '' }}</li>
+                                <li class="adress">{{ $details->address_details ?? '' }}</li>
                                 <li class="phone">
                                     <a href="tel:{{ $details->r_mob }}"">
                                         {{ $details->r_mob ?? '' }}
@@ -881,8 +884,7 @@ width: 0px; /* Set a global width for all slides*/
                                     <a target="_blank" href="{{ $details->google }}"><i class="fab fa-google"></i></a>
                                 @endif
                                 @if (isset($details->website) && $details->website != null)
-                                    <a target="_blank" href="{{ URL::to($details->website) }}"><i
-                                            class="fas fa-globe"></i></a>
+                                    <a target="_blank" href="{{ URL::to($details->website) }}"><i class="fab fa-twitter"></i></a>
                                 @endif
 
 
@@ -996,7 +998,13 @@ width: 0px; /* Set a global width for all slides*/
                                                 class="fa fa-calendar"></i>{{ $job->experience_required }}</button>
 
                                         <br>
+                                        @if(check_user_applied_job($job->id))
+                                        <label for="" class="text-success">Applied <i class="fa fa-check"></i></label>
+
+                                        @else
                                         <button type="submit" class="apply-btn" >Apply Now</button>
+
+                                        @endif
                                     </form>
                                 </div>
                             @endforeach

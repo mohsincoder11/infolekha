@@ -214,7 +214,7 @@
 
                     </table>
                     @if(count($advertisements)==0)
-                            <p>No Record Found</p>
+                            <p align="center">No Record Found</p>
                             @endif
  </div>
 
@@ -314,9 +314,17 @@
                             }
 
                             if(coupon.type=='FLAT'){
+                                if(total_amount<coupon.discount){
+                                    Toast.fire({
+                                    icon: 'error',
+                                    title: "Advertisement amount must be greater than discount amount."
+                                })
+                                total_amount=parseFloat(total_amount);
+                                }else{
                                 total_amount=parseFloat(total_amount)-parseFloat(coupon.discount);
                                 parent_div.find('.discount_span').text(coupon.discount+' RS');
                             parent_div.find('.discount_input').val(coupon.discount);
+                            }
                             }
                                 
                         }else{

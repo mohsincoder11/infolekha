@@ -36,7 +36,12 @@ class AdvertisementEnquiry extends Model
             return 'Infolekha';
         }else{
             $data=user_school_institute::where('user_id',$this->college_id)->first();
-            return $data->r_name.' ('.$data->r_entity.')';
+            if(isset($data)){
+                return $data->r_name.' ('.$data->r_entity.')';
+
+            }else{
+                return 'NA';
+            }
         }
     }
 

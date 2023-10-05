@@ -202,8 +202,11 @@
 							</li>
 							<li> <a href="{{route('admin.master.announcement')}}"><i class="bx bx-right-arrow-alt"></i>Announcements Package</a>
 							</li>
-								<li> <a href="{{route('admin.master.banner-image')}}"><i class="bx bx-right-arrow-alt"></i>Banner Image</a>
+							<li> <a href="{{route('admin.master.banner-image')}}"><i class="bx bx-right-arrow-alt"></i>Banner Image</a>
 							</li>
+							<li> <a href="{{route('admin.master.default-otp')}}"><i class="bx bx-right-arrow-alt"></i>Default OTP</a>
+							</li>
+							
 	
 	
 						</ul>

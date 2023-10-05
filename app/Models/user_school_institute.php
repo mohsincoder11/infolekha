@@ -16,6 +16,7 @@ class user_school_institute extends Model
         'r_contact_person',
         'r_mob',
         'address',
+        'address_details',
         'user_id',
     ];
 }

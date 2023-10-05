@@ -30,53 +30,51 @@ use PDF;
 
 class SchoolProfile extends Controller
 {
-   public function download_profile(){
+   public function download_profile()
+   {
       $data = DB::table('users')
-      ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
-      ->where('users.id', auth::user()->id)->first();
-     // return view('Website.school_profile.download-profile',['user_data' => $data]);
-      $pdf=PDF::loadView('Website.school_profile.download-profile',['user_data' => $data]);
-      return $pdf->download($data ->name.'.pdf');
+         ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+         ->where('users.id', auth::user()->id)->first();
+      // return view('Website.school_profile.download-profile',['user_data' => $data]);
+      $pdf = PDF::loadView('Website.school_profile.download-profile', ['user_data' => $data]);
+      return $pdf->download($data->name . '.pdf');
    }
-   
+
    public function home(Request $request)
    {
       $school_type = SchoolType::get();
 
       $data = DB::table('users')
-      ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
+         ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
-        
-if($data){
-   return view('Website.school_profile.index', ['user_data' => $data,'school_type'=>$school_type]);
 
-}else{
-   $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
-   ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
+      if ($data) {
+         return view('Website.school_profile.index', ['user_data' => $data, 'school_type' => $school_type]);
+      } else {
+         $data = DB::table('users')->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
+            ->select('users.*', 'user_school_institute.*')->where('user_school_institute.user_id', auth::user()->id)->first();
 
-return view('Website.login-auth.school_institute_details_form', ['data' => $data,'school_type'=>$school_type]);
-}
-   }
-
-   public function activate_profile(){
-      $check_transaction=transaction::where('user_id',Auth::user()->id)->where('transaction_status', 'success')->where('type','Subscription')->orderby('id','desc')->first();
-      if($check_transaction){
-      $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
-
-      if(!$expiry_check->isPast()){
-         if(Auth::user()->role=='1'){
-            return redirect()->route('school_profile.home')->with(['info'=>'Profile is under review. Please wait for admin approval.']);
-
-         } 
-         if(Auth::user()->role=='2'){
-            return redirect()->route('tutor_profile.home')->with(['info'=>'Profile is under review. Please wait for admin approval.']);
-
-         }
+         return view('Website.login-auth.school_institute_details_form', ['data' => $data, 'school_type' => $school_type]);
       }
    }
 
-      return redirect()->route('payment_form');
+   public function activate_profile()
+   {
+      $check_transaction = transaction::where('user_id', Auth::user()->id)->where('transaction_status', 'success')->where('type', 'Subscription')->orderby('id', 'desc')->first();
+      if ($check_transaction) {
+         $expiry_check = \Carbon\Carbon::parse($check_transaction->expiry);
 
+         if (!$expiry_check->isPast()) {
+            if (Auth::user()->role == '1') {
+               return redirect()->route('school_profile.home')->with(['info' => 'Profile is under review. Please wait for admin approval.']);
+            }
+            if (Auth::user()->role == '2') {
+               return redirect()->route('tutor_profile.home')->with(['info' => 'Profile is under review. Please wait for admin approval.']);
+            }
+         }
+      }
+
+      return redirect()->route('payment_form');
    }
 
    public function update_profile(Request $request)
@@ -85,7 +83,7 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          ->join('user_school_institute_detail', 'user_school_institute_detail.user_id', '=', 'users.id')
          ->join('user_school_institute', 'user_school_institute.user_id', '=', 'users.id')
          ->where('users.id', auth::user()->id)->first();
-       
+
 
       return view('Website.school_profile.update_profile', ['data' => $data]);
    }
@@ -95,21 +93,22 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       $validator = Validator::make(
          $request->all(),
          [
-         'name' => 'required',
-          'entity_name'=>'required',
-          'address'=>'required',
-          'about'=>'required',
-         ]);
-         if ($validator->fails()) {
-             return back()->with(['error'=>'Please fill all the fields.']);
-         }
+            'name' => 'required',
+            'entity_name' => 'required',
+            'address' => 'required',
+            'about' => 'required',
+         ]
+      );
+      if ($validator->fails()) {
+         return back()->with(['error' => 'Please fill all the fields.']);
+      }
 
       $user = User::find(auth::user()->id);
-      $city=trim(explode(',', $request->address)[0]);
-      $createOrupdate=City::firstOrCreate(['city'=>$city]);
-      $user->city_id=$createOrupdate->id;
+      $city = trim(explode(',', $request->address)[0]);
+      $createOrupdate = City::firstOrCreate(['city' => $city]);
+      $user->city_id = $createOrupdate->id;
 
-     
+
       if ($request->hasfile('logo')) {
          $logo = time() . '.' . $request->file("logo")->getClientOriginalExtension();
          $request->logo->move(public_path('database_files/school_institute/logo/'), $logo);
@@ -137,7 +136,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       }
       $school_detail = school_institute_detail::where('user_id', auth::user()->id)->first();
       $user_school_institute = user_school_institute::where('user_id', auth::user()->id)->first();
-      $user_school_institute->address=$city;
+      $user_school_institute->address = $city;
+      $user_school_institute->address_details = $request->address_details;
       $user_school_institute->save();
 
       $exist_image_array = json_decode($school_detail->image);
@@ -160,10 +160,10 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          'about' => $request->about,
          'image' => array_merge($image_name, $exist_image_array),
          'video' => array_merge($video_name, $exist_video_array),
-         'banner_image'=>$request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image,
+         'banner_image' => $request->hasfile('banner_image') ? $banner_image : $school_detail->banner_image,
          'opening_time' => $request->get('opening_time'),
          'closing_time' => $request->get('closing_time'),
-         'address'=>$city
+         'address' => $city
 
       ]);
 
@@ -276,7 +276,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       }
    }
 
-   public function delete_image(Request $request){
+   public function delete_image(Request $request)
+   {
       $validator = Validator::make(
          $request->all(),
          [
@@ -286,21 +287,20 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       );
       if ($validator->fails()) {
          return redirect()->back()->with(['error' => 'Please select image.']);
-
       }
-      $images=school_institute_detail::where('user_id', auth::user()->id)->first();
+      $images = school_institute_detail::where('user_id', auth::user()->id)->first();
 
-      $image=json_decode($images->image);
+      $image = json_decode($images->image);
       $imageNameArray = array_diff($image, [$request->image_name]);
-    
 
-      $images->image=json_encode(array_values($imageNameArray));
+
+      $images->image = json_encode(array_values($imageNameArray));
       $images->save();
       return redirect()->back()->with(['success' => 'Image deleted successfully.']);
-
    }
 
-   public function delete_video(Request $request){
+   public function delete_video(Request $request)
+   {
       $validator = Validator::make(
          $request->all(),
          [
@@ -310,18 +310,16 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       );
       if ($validator->fails()) {
          return redirect()->back()->with(['error' => 'Please select video.']);
-
       }
-      $videos=school_institute_detail::where('user_id', auth::user()->id)->first();
+      $videos = school_institute_detail::where('user_id', auth::user()->id)->first();
 
-      $video=json_decode($videos->video);
+      $video = json_decode($videos->video);
       $videoNameArray = array_diff($video, [$request->video_name]);
-    
 
-      $videos->video=json_encode(array_values($videoNameArray));
+
+      $videos->video = json_encode(array_values($videoNameArray));
       $videos->save();
       return redirect()->back()->with(['success' => 'video deleted successfully.']);
-
    }
 
    public function post_announcement(Request $request)
@@ -384,65 +382,65 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       }
       if ($validator->passes()) {
 
-      
-      $package = AnnouncementPackage::find($request->PackageID);
-    
-      if ($package) {
-         $coupon=Coupon::where('code',$request->CouponCode)->where('status','active')->first();
-         $payable_amount=$package->OriginalPrice*$request->SelectedDays;
-         
-           if(isset($coupon)){
-               if($coupon->type=="PERCENT"){
-                   $payable_amount=$package->OriginalPrice*$request->SelectedDays-($package->OriginalPrice*$request->SelectedDays/100*$coupon->discount);
-               }else{
-                   $payable_amount=$package->OriginalPrice*$request->SelectedDays-$coupon->discount;
+
+         $package = AnnouncementPackage::find($request->PackageID);
+
+         if ($package) {
+            $coupon = Coupon::where('code', $request->CouponCode)->where('status', 'active')->first();
+            $payable_amount = $package->OriginalPrice * $request->SelectedDays;
+
+            if (isset($coupon)) {
+               if ($coupon->type == "PERCENT") {
+                  $payable_amount = $package->OriginalPrice * $request->SelectedDays - ($package->OriginalPrice * $request->SelectedDays / 100 * $coupon->discount);
+               } else {
+                  $payable_amount = $package->OriginalPrice * $request->SelectedDays - $coupon->discount;
                }
             }
-             
-         $exist = Announcement::find($request->announcement_id);
-          $exist->PackageName=$package->PackageName;
-          $exist->OriginalPrice=$package->OriginalPrice;
-          $exist->Discount=$package->Discount;
-          $exist->MinDays=$package->MinDays;
-          $exist->MaxDays=$package->MaxDays;
-          $exist->SelectedDays=$request->SelectedDays;
-          $exist->TotalAmount=$request->TotalAmount;
-          
-         $exist->save();
-      
 
-        
+            $exist = Announcement::find($request->announcement_id);
+            $exist->PackageName = $package->PackageName;
+            $exist->OriginalPrice = $package->OriginalPrice;
+            $exist->Discount = $package->Discount;
+            $exist->MinDays = $package->MinDays;
+            $exist->MaxDays = $package->MaxDays;
+            $exist->SelectedDays = $request->SelectedDays;
+            $exist->TotalAmount = $request->TotalAmount;
 
-         $txnid = 'I-LEKHA' . rand(1111, 9999) . time() . rand(001, 999);
-         $it = transaction::updateOrCreate(
-            [
-               'user_id' => auth::user()->id,
-               'type' => 'Announcement',
-               'AnnouncementID' => $request->get('announcement_id'),
-            ],
-            [
-               'name' => auth::user()->school_detail->entity_name,
-               'mob' => auth::user()->school_detail->mob,
-               'address' => auth::user()->school_detail->address,
-               'user_id' => auth::user()->id,
-               "amount" => number_format($payable_amount,2),
-               'user_role' => auth::user()->role,
-               'transaction_id' => $txnid,
-               'type' => 'Announcement',
-               'transaction_status'=>$request->TotalAmount==0 ? 'success' : 'NA',
-               'type' => 'Announcement',
-               'AnnouncementID' => $request->get('announcement_id'),
-              'coupon'=>isset($coupon) ? $coupon->code : null,
-              'expiry'=>\Carbon\Carbon::now()->addDays($request->SelectedDays)->format('Y-m-d'),
+            $exist->save();
 
-       
-            ]
-         );
-      }
 
-         if((int)$payable_amount==0){
+
+
+            $txnid = 'I-LEKHA' . rand(1111, 9999) . time() . rand(001, 999);
+            $it = transaction::updateOrCreate(
+               [
+                  'user_id' => auth::user()->id,
+                  'type' => 'Announcement',
+                  'AnnouncementID' => $request->get('announcement_id'),
+               ],
+               [
+                  'name' => auth::user()->school_detail->entity_name,
+                  'mob' => auth::user()->school_detail->mob,
+                  'address' => auth::user()->school_detail->address,
+                  'user_id' => auth::user()->id,
+                  "amount" => number_format($payable_amount, 2),
+                  'user_role' => auth::user()->role,
+                  'transaction_id' => $txnid,
+                  'type' => 'Announcement',
+                  'transaction_status' => $request->TotalAmount == 0 ? 'success' : 'NA',
+                  'type' => 'Announcement',
+                  'AnnouncementID' => $request->get('announcement_id'),
+                  'coupon' => isset($coupon) ? $coupon->code : null,
+                  'expiry' => \Carbon\Carbon::now()->addDays($request->SelectedDays)->format('Y-m-d'),
+
+
+               ]
+            );
+         }
+
+         if ((int)$payable_amount == 0) {
             return redirect()->route('school_profile.post_announcement')->with(['success' => 'Announcement sent successfully.']);;
-          }
+         }
 
 
          $MERCHANT_KEY = env('MERCHANT_KEY', null);
@@ -533,22 +531,21 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       $view = view('Website.school_profile.advertisement.packages')->with(['advertisements' => $advertisements])->render();
       return response()->json($view);
    }
-   
-   public function get_coupon_val(Request $request){
-      $coupon=Coupon::where('code',$request->code)->where('status','=','active')
-      ->where('coupon_for',$request->coupon_for)->first();
-      if($coupon){
-         return response()->json(['status'=>true,'coupon'=>$coupon]);
-      }
-      else{
-         return response()->json(['status'=>false,'coupon'=>[]]);
-      }
 
+   public function get_coupon_val(Request $request)
+   {
+      $coupon = Coupon::where('code', $request->code)->where('status', '=', 'active')
+         ->where('coupon_for', $request->coupon_for)->first();
+      if ($coupon) {
+         return response()->json(['status' => true, 'coupon' => $coupon]);
+      } else {
+         return response()->json(['status' => false, 'coupon' => []]);
+      }
    }
 
    public function insert_advertisement(Request $request)
    {
-     
+
       $validator = Validator::make(
          $request->all(),
          [
@@ -585,7 +582,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
       }
    }
 
-   public function delete_advertisement($id){
+   public function delete_advertisement($id)
+   {
       AdvertisementEnquiry::where('EnquiryID', $id)->delete();
       return redirect()->back()->with(['success' => 'Advertisement enquiry deleted successfully.']);
    }
@@ -600,7 +598,8 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
    {
       return view('Website.school_profile.blog.create');
    }
-   public function insert_blog(Request $request){
+   public function insert_blog(Request $request)
+   {
       $validator = Validator::make(
          $request->all(),
          [
@@ -608,13 +607,13 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             'category' => 'required',
             'blog_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:4048',
             'content1' => 'required',
-           
+
          ]
       );
       if ($validator->fails()) {
          return  redirect()
             ->back()
-            ->with(['error'=>'Please enter all the details.']);
+            ->with(['error' => 'Please enter all the details.']);
       }
       if ($request->hasFile('blog_image')) {
          $file = $request->file('blog_image');
@@ -622,32 +621,34 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
          $file->move(public_path('/blog/'), $filename);
       }
 
-     Blog::create([
-      'subject' => $request['subject'],
-            'category' => $request['category'],
-            'user_id' => Auth::id(),
-            'blog_image' => 'blog/'.$filename,
-            'content1' => $request['content1'],
-            'content2' => $request['content2'],
-            'content3' => $request['content3'],
-            'content4' => $request['content4'],
-            'status' => 'Pending',
-     ]);
-     return redirect('school-profile/blog')->with(['success' => 'Blog created successfully.']);
-
+      Blog::create([
+         'subject' => $request['subject'],
+         'category' => $request['category'],
+         'user_id' => Auth::id(),
+         'blog_image' => 'blog/' . $filename,
+         'content1' => $request['content1'],
+         'content2' => $request['content2'],
+         'content3' => $request['content3'],
+         'content4' => $request['content4'],
+         'status' => 'Pending',
+      ]);
+      return redirect('school-profile/blog')->with(['success' => 'Blog created successfully.']);
    }
 
-   public function delete_blog($id){
+   public function delete_blog($id)
+   {
       Blog::where('id', $id)->delete();
       return redirect()->back()->with(['success' => 'Blog deleted successfully.']);
    }
-   public function edit_blog($id){
-      $edit_data=Blog::where('id', $id)->first();
-      return view('Website.school_profile.blog.edit',compact('edit_data'));
+   public function edit_blog($id)
+   {
+      $edit_data = Blog::where('id', $id)->first();
+      return view('Website.school_profile.blog.edit', compact('edit_data'));
    }
 
-   public function update_blog(Request $request){
-     
+   public function update_blog(Request $request)
+   {
+
       $validator = Validator::make(
          $request->all(),
          [
@@ -663,45 +664,42 @@ return view('Website.login-auth.school_institute_details_form', ['data' => $data
             ->withErrors($validator)
             ->withInput();
       }
-      $blog=Blog::find($request->id);
-      if($blog){
+      $blog = Blog::find($request->id);
+      if ($blog) {
          if ($request->hasFile('blog_image')) {
             $file = $request->file('blog_image');
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/blog/'), $filename);
-            $blog->blog_image= 'blog/'.$filename;
+            $blog->blog_image = 'blog/' . $filename;
          }
 
-            $blog->subject= $request['subject'];
-            $blog->category= isset($request['other_category']) && $request['other_category']!=null  ? $request['other_category'] : $request['category'];
-            $blog->content1= $request['content1'];
-            $blog->content2= $request['content2'];
-            $blog->content3= $request['content3'];
-            $blog->content4= $request['content4'];
-            $blog->status = 'Pending';
+         $blog->subject = $request['subject'];
+         $blog->category = isset($request['other_category']) && $request['other_category'] != null  ? $request['other_category'] : $request['category'];
+         $blog->content1 = $request['content1'];
+         $blog->content2 = $request['content2'];
+         $blog->content3 = $request['content3'];
+         $blog->content4 = $request['content4'];
+         $blog->status = 'Pending';
 
 
-            $blog->save();
-     return redirect('school-profile/blog')->with(['success' => 'Blog updated successfully.']);
-   }
-   else{
-      return redirect()->back()->with(['error' => 'Blog not found.']);
-   }
-
+         $blog->save();
+         return redirect('school-profile/blog')->with(['success' => 'Blog updated successfully.']);
+      } else {
+         return redirect()->back()->with(['error' => 'Blog not found.']);
+      }
    }
 
-  
+
 
    public function change_password(Request $request)
    {
-     // User::where('id',251)->update(['password'=>Hash::make(123456789)]);
+      // User::where('id',251)->update(['password'=>Hash::make(123456789)]);
       return view('Website.school_profile.change_password');
    }
- 
-   public function enquiries(){
-      $enquiries =UserEnquiry::where('college_id',Auth::user()->id)->orderby('id','desc')->get();
-      return view('Website.school_profile.enquiries',compact('enquiries'));
+
+   public function enquiries()
+   {
+      $enquiries = UserEnquiry::where('college_id', Auth::user()->id)->orderby('id', 'desc')->get();
+      return view('Website.school_profile.enquiries', compact('enquiries'));
    }
-
-
 }

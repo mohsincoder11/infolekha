@@ -44,7 +44,7 @@
                                 
                             </h6> -->
                             <div class="text">
-                                <p>Exploring Opportunities After 10th Standard: A Guide to Shaping Your Future
+                                <p>Exploring Opportunities After 10th Standard...
                                 </p>
                             </div>
                        
@@ -69,7 +69,7 @@
                         <div class="content-product">
                       
                             <div class="text">
-                                <p>Unlocking Your Potential: How Early Career Planning Can Help You Achieve Your Goals
+                                <p>Unlocking Your Potential: How Early Career ...
                                 </p>
                             </div>
                        
@@ -95,7 +95,7 @@
                         <div class="content-product">
                            
                             <div class="text">
-                                <p>Effective Study Habits and Time Management for Student &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                <p>Effective Study Habits and Time ...</p>
                             </div>
                        
 
@@ -120,7 +120,7 @@
                         <div class="content-product">
                            
                             <div class="text">
-                                <p>The Role of Apprenticeships and Internships in Promoting Career Readiness
+                                <p>The Role of Apprenticeships and Internships ...
                                 </p>
                             </div>
                        
@@ -146,7 +146,7 @@
                         <div class="content-product">
                           
                             <div class="text">
-                                <p>The benefits and challenges of online learning in the modern age
+                                <p>The benefits and challenges of online learning ...
                                 </p>
                             </div>
                        

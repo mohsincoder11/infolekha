@@ -110,7 +110,7 @@
                                                         No.:</b>{{ $dt->r_mob }}</label><br>
                                                 <label><b>Email
                                                         Id:</b>{{ $dt->email }}</label><br>
-                                                <label><b>Address:</b>{{ $dt->address }}</label><br>
+                                                <label><b>Address:</b>{{ $dt->address_details }}</label><br>
 
 
                                             </div>

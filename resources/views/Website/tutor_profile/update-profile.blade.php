@@ -58,7 +58,7 @@
                                             </select>
                                         </div>
 										
-										  <div class="col-md-8">
+										  <div class="col-md-7">
                                             <label style="font-size:16px;">Upload CV</label>
                                             <input type="file" class="upload" name="cv" accept=".pdf,.doc,.docx" />
                                             <a style="color:#3030f0;text-decoration:underline" target="_blank" href="{{asset('public/'.$user_data->tutor_detail->cv)}}">
@@ -66,18 +66,19 @@
                                                 Open CV
                                                 </b>
                                             </a></div>
-                                        <div class="col-md-4">
-                                            <label style="font-size:16px;">Upload Logo</label>
+                                        <div class="col-md-5">
+                                            <label style="font-size:16px;">Upload Profile Pic</label>
                                             <input type="file" class="upload" name="logo" accept="image/*" />
                                         </div> 
                                       
                                         
-    
+    <div class="col-md-12">
                                         <label style="font-size:16px;">Declaration </label>
                                         <textarea name="declaration" cols="40" rows="3" placeholder=""
                                             style="margin-bottom:20px;  color:#144273;">{{$user_data->tutor_detail->declaration}}</textarea>
                                         <button class="btn    color-bg  float-btn">Save Changes</button>
                                     </div>
+									</div>
                             </form>
                             </div>
                         </div>

@@ -7,6 +7,8 @@ use App\Models\UserLikeModel;
 use App\Models\UserFeedbackModel;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserEnquiry;
+use Validator;
+
 
 class UserLikeFeedback extends Controller
 {
@@ -50,11 +52,28 @@ class UserLikeFeedback extends Controller
 
     public function post_enquiry(Request $request)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+               'name' => 'required',
+               'email' => 'required',
+               'mobile' => 'required',
+               'message' => 'required',
+              
+            ]
+         );
+         if ($validator->fails()) {
+            return  redirect()
+               ->back()
+               ->with(['error'=>'Please enter all the details.']);
+         }
+
         $contact = new UserEnquiry;
         $contact->user_id = Auth::user()->id;
         $contact->college_id = $request->college_id;
         $contact->name = $request->get('name');
         $contact->email = $request->get('email');
+        $contact->mobile = $request->get('mobile');
         $contact->message = $request->get('message');
         $contact->save();
 

@@ -43,6 +43,16 @@ else{
 }
 
 
+function check_user_applied_job($job_id){
+    if(DB::table('job_vacancy_applieds')->where(['tutor_id'=>Auth::user()->id,'job_vacancy_id'=>$job_id])->exists()) {
+        return true;
+    }else{
+        return false;
+    }
+
+}
+
+
 function get_college_rating($college_id)
 {  
     $averageRating = DB::table('user_feedback')

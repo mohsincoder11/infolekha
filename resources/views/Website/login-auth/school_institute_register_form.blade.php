@@ -1,16 +1,14 @@
 @extends('website_layout')
 @section('css')
-<style>
-    .condition-label {
-  color: red;
-}
+    <style>
+        .condition-label {
+            color: red;
+        }
 
-.condition-label.valid {
-  color: green;
-}
-	
-
-</style>
+        .condition-label.valid {
+            color: green;
+        }
+    </style>
 @stop
 @section('website_content')
 
@@ -69,19 +67,24 @@
 
                         <span class="input-login icon-form"><input type="text" placeholder="Mobile No*" id="mob"
                                 name="r_mob" maxlength=10 required="required">
-                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up" style="margin-top:15px;"
-                          >Verify Mobile</button>
+                            <button id="login-button2" disabled type="button" class="btn" title="Sign Up"
+                                style="margin-top:15px;">Verify Mobile</button>
                         </span>
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
                                 required="required"><i class="fa fa-envelope"></i></span>
-
+        
                         <span class="input-login icon-form">
-                            <input type="text" placeholder="Address*" id="current_location_at_form" name="address"
+                            <input type="text" placeholder="Address*"  name="address_details"
                                 required="required">
                             <i class="fa fa-envelope-o"></i>
                         </span>
-
+                        
+                        <span class="input-login icon-form">
+                            <input type="text" placeholder="City*" id="current_location_at_form" name="address"
+                                required="required">
+                            <i class="fa fa-envelope-o"></i>
+                        </span>
 
 
 
@@ -107,7 +110,7 @@
                                 Submit</button>
 
 
-                    </div>
+                        </div>
 
                     </form>
 
@@ -135,13 +138,15 @@
                                             name="otp" required="required"><i
                                             class="fa fa-user field-icon toggle-password"></i>
                                     </span>
+                                    <p id="resend-otp" style="text-align:right;width:100%;color:#073D5F">Resend OTP</p>
 
                                     <div class="otp_error" style="text-align: left;margin-top:-10px;">
                                     </div>
                                 </span>
 
                                 <span class="">
-                                    <button type="submit" id="login-button" class="btn" title="log in" style="margin-top:20px;">
+                                    <button type="submit" id="login-button" class="btn" title="log in"
+                                        style="margin-top:20px;">
                                         Verify</button>
                                 </span>
                         </form>
@@ -168,8 +173,6 @@
             });
 
         });
-		
-		
     </script>
 
     <script>
@@ -196,13 +199,15 @@
                         },
                         // Custom success function
                         dataFilter: function(response) {
+            $(".loader-container").hide();
+
                             if (response === false || response === 'false') {
                                 $("#login-button2").prop('disabled', true);
 
                                 this.valid = false;
                                 return 'false';
                             } else if (response === true || response === 'true') {
-
+                                $("#login-button2").prop('disabled', false);
 
                                 this.valid = true;
                                 return 'true';
@@ -253,7 +258,7 @@
                 password: {
                     required: "This field is required.",
                     minlength: "Minimum password length should be 8 digit.",
-                   strongPassword: "Password must contain at least one uppecase,one lowercase,one digit,one special character."
+                    strongPassword: "Password must contain at least one uppecase,one lowercase,one digit,one special character."
                 },
                 password_confirmation: {
                     required: "This field is required.",
@@ -268,7 +273,7 @@
                 return true;
             },
             errorPlacement: function(error, element) {
-				 $(element).next("i.toggle-password").addClass("error");
+                $(element).next("i.toggle-password").addClass("error");
                 error.insertAfter(element);
                 if (element.attr("name") === "r_mob") {
                     error.insertAfter(element.closest('.input-login'));
@@ -279,37 +284,38 @@
             },
         });
 
-    //      $('#password').on('input', function() {
-    //   var password = $(this).val();
-    //         $('.condition-label').each(function() {
-    //             var label = $(this);
-    //             var condition = label.text().trim();
-    //             var isValid = false;
+        //      $('#password').on('input', function() {
+        //   var password = $(this).val();
+        //         $('.condition-label').each(function() {
+        //             var label = $(this);
+        //             var condition = label.text().trim();
+        //             var isValid = false;
 
-    //             if (condition === 'Use 8 or more characters.') {
-    //                 isValid = password.length >= 8;
-    //             } else if (condition === 'Use uppercase letter.') {
-    //                 isValid = /[A-Z]/.test(password);
-    //               } else if (condition === 'Use a number.') {
-    //                 isValid = /[0-9]/.test(password);
-    //             } else if (condition === 'Use lowercase letter.') {
-    //                 isValid = /[a-z]/.test(password);
-    //             } else if (condition === 'Use special character.') {
-    //                 isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-    //             }
+        //             if (condition === 'Use 8 or more characters.') {
+        //                 isValid = password.length >= 8;
+        //             } else if (condition === 'Use uppercase letter.') {
+        //                 isValid = /[A-Z]/.test(password);
+        //               } else if (condition === 'Use a number.') {
+        //                 isValid = /[0-9]/.test(password);
+        //             } else if (condition === 'Use lowercase letter.') {
+        //                 isValid = /[a-z]/.test(password);
+        //             } else if (condition === 'Use special character.') {
+        //                 isValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+        //             }
 
-    //             label.toggleClass('valid', isValid);
-    //         });
-    //     });
-    $('#mob').on('keypress', function(event) {
-    var keyCode = event.which ? event.which : event.keyCode;
-    if ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 46 || keyCode == 9 || (keyCode >= 37 && keyCode <= 40)) {
-      return true;
-    } else {
-      event.preventDefault();
-      return false;
-    }
-  });
+        //             label.toggleClass('valid', isValid);
+        //         });
+        //     });
+        $('#mob').on('keypress', function(event) {
+            var keyCode = event.which ? event.which : event.keyCode;
+            if ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 46 || keyCode == 9 || (keyCode >=
+                    37 && keyCode <= 40)) {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        });
         $("#modal_form").validate({
             rules: {
 
@@ -378,19 +384,29 @@
             $('#popup_login').modal('show');
             otp();
         })
+        $("#resend-otp").on('click', function(e) {
+            $('#otp').val("");
+            otp();
+        })
 
         $("#mob").on('keyup', function(e) {
             $("#login-button1").prop('disabled', true);
             var value = $(this).val();
 
-            if (/^\d+$/.test(value) && value.length === 10)
-                $("#login-button2").prop('disabled', false);
-            else
+            if (/^\d+$/.test(value) && value.length === 10) {
+           // $(".loader-container").show();
+
+                $(this).valid();
+            } else {
                 $("#login-button2").prop('disabled', true);
+
+            }
         })
 
 
         function otp() {
+                        $(".loader-container").show();
+
             $("#login-button1").prop("disabled", true);
 
             const mob = $("#mob").val();
@@ -398,10 +414,12 @@
                 type: 'GET',
                 url: 'send_mobile_verify_otp/' + mob,
                 success: function(data) {
-                    $("#exist_otp").val(data);
+                    $("#exist_otp").val(data);            $(".loader-container").hide();
+
                     //console.log(data);
                 },
                 error: function(data) {
+            $(".loader-container").hide();
 
                     //console.log(data);
                 }
@@ -440,18 +458,19 @@
                 (document.getElementById('current_location_at_form')), {
                     types: ['locality']
                 });
-                autocomplete.setComponentRestrictions({
-                 'country': 'in'
-             });
+            autocomplete.setComponentRestrictions({
+                'country': 'in'
+            });
             /*var autocomplete = new google.maps.places.Autocomplete(input);*/
 
             autocomplete.addListener('place_changed', function() {
                 var place = autocomplete.getPlace();
+                var address = place.formatted_address;
+                var city_name = address.substr(0, address.indexOf(',')).trim();
+                $("#current_location_at_form").val(city_name);
 
             });
         }
-		
-		
     </script>
 
 @stop

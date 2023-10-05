@@ -6,6 +6,9 @@
             max-width: 100%;
             height: auto;
         }
+		.pd{
+			margin-left:35% ! important;
+		}
 		
 		 .video {
             max-width: 100%;
@@ -81,9 +84,9 @@ width: 0px; /* Set a global width for all slides*/
                             <div class="">
                                 <div class="banner"
                                     style="background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }} ">
-                                    <img class="mt" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
+                                    <img class="mt pd" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
                                         alt=""
-                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index:2; margin-top:180px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
+                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index:2; margin-left:40%; margin-top:180px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
                                 </div>
 
 
@@ -196,9 +199,9 @@ width: 0px; /* Set a global width for all slides*/
                                                     @endforeach
                                                 @endif
                                             </div>
-                                            <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i
+                                            <div class="swiper-button-prev lc-wbtn lc-wbtn_prev" style="text-align:center ! important;"><i
                                                     class="fa fa-caret-left"></i></div>
-                                            <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i
+                                            <div class="swiper-button-next lc-wbtn lc-wbtn_next" style="text-align:center ! important;"><i
                                                     class="fa fa-caret-right"></i></div>
                                         </div>
 
@@ -248,9 +251,9 @@ width: 0px; /* Set a global width for all slides*/
                                             @endif
                                             <!-- slick-slide-item end -->
                                         </div>
-                                        <div class="swiper-button-prev lc-wbtn lc-wbtn_prev"><i
+                                        <div class="swiper-button-prev lc-wbtn lc-wbtn_prev" style="text-align:center ! important;"><i
                                                 class="fa fa-caret-left"></i></div>
-                                        <div class="swiper-button-next lc-wbtn lc-wbtn_next"><i
+                                        <div class="swiper-button-next lc-wbtn lc-wbtn_next" style="text-align:center ! important;"><i
                                                 class="fa fa-caret-right"></i></div>
                                     </div>
 
@@ -278,7 +281,7 @@ width: 0px; /* Set a global width for all slides*/
                                             @endif
                                             @if ($user_data->website)
                                                 <li><a href="{{ $user_data->website }}" target="_blank"><i
-                                                            class="fa fa-globe"></i></a></li>
+                                                            class="fab fa-twitter"></i></a></li>
                                             @endif
                                             @if ($user_data->insta)
                                                 <li><a href="{{ $user_data->insta }}" target="_blank"><i

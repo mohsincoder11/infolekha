@@ -114,6 +114,9 @@
                 <p class="content-p">
                     Contact Information: {{ $enquiry->email}}
                 </p>
+                <p class="content-p">
+                     {{ $enquiry->mobile}}
+                </p>
 
             <p class="content-p mt-10 mb-10">
                 The prospective student/parent has shown interest in your institution. They are looking for more information about your institution and would appreciate your prompt response to their inquiry.

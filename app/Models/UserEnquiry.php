@@ -14,6 +14,7 @@ class UserEnquiry extends Model
         'college_id',
         'name',
          'email', 
+         'mobile',
          'message',
          
         ];

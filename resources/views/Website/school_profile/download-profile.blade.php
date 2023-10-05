@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 </head>
 <style>
@@ -74,15 +74,21 @@
         </table>
 
         <hr style="color: #8ca9c9; ">
+		<div style="page-break-before:always;"></div>
+		        <h1 class="h" align="center">Images </h1>
 
-        <table style="">
-            <h1 style="color: #144273; margin-top:2%;" align="center">Images of School</h1>
+        <table style="width:100%;">
+		
             <tr>
                 @if ($user_data->image != null)
-                    @foreach (json_decode($user_data->image) as $i)
+                    @foreach (json_decode($user_data->image) as  $index=>$i)
                         <td>
                             <img src="{{ asset('public') . '/' . $i }}" height="150" width="150">
                         </td>
+				  @if (($index + 1) % 4 == 0)
+            </tr>
+			 <tr>
+				 @endif
                     @endforeach
                 @endif
 
@@ -109,19 +115,19 @@
             <p style="color: #144273; font-size: 20px;"><b>Social Media Handles : </b>
                 @if ($user_data->fb)
                     <a target="_blank" href="{{ $user_data->fb }}"> <img
-                            src="{{ asset('website_asset/icon/facebook-fill.png') }}"></a>
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/facebook-fill.png')) }}"></a>
                 @endif
                 @if ($user_data->insta)
                     <a target="_blank" href="{{ $user_data->insta }}"> <img
-                            src="{{ asset('website_asset/icon/instagram-fill.png') }}"></a>
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/instagram-fill.png')) }}"></a>
                 @endif
                 @if ($user_data->yt)
                     <a target="_blank" href="{{ $user_data->yt }}"> <img
-                            src="{{ asset('website_asset/icon/youtube-fill.png') }}"></a>
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/youtube-fill.png')) }}"></a>
                 @endif
                 @if ($user_data->google)
                     <a target="_blank" href="{{ $user_data->google }}"> <img
-                            src="{{ asset('website_asset/icon/linkedin-fill.png') }}"></a>
+                            src="data:image/png;base64,{{ base64_encode(file_get_contents('website_asset/icon/linkedin-fill.png')) }}"></a>
                 @endif
             </p>
         @endif

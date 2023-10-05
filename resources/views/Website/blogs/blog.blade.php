@@ -1,4 +1,7 @@
 @extends('website_layout')
+@section('css')
+
+@stop
 @section('website_content')
     <div class="page-title parallax parallax1">
         <div class="section-overlay">
@@ -37,7 +40,7 @@
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/Opportunity1.jpg') }}" alt="image">
+                                    <img src="{{ asset('website_asset/images/Opportunity1.jpg') }}" alt="image"  style="width:650px; height:250px;">
 
                                 </div>
 
@@ -46,7 +49,7 @@
                                         
                                     </h6> -->
                                     <div class="text">
-                                        <p>Exploring Opportunities After 10th Standard: A Guide to Shaping Your Future
+                                        <p>Exploring Opportunities After 10th Standard: ...
                                         </p>
                                     </div>
 
@@ -64,15 +67,14 @@
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/Cover-photo.jpg') }}" alt="image">
+                                    <img src="{{ asset('website_asset/images/Cover-photo.jpg') }}" alt="image"  style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>Unlocking Your Potential: How Early Career Planning Can Help You Achieve Your
-                                            Goals
+                                        <p>Unlocking Your Potential: How Early ...
                                         </p>
                                     </div>
 
@@ -92,14 +94,14 @@
                             <div class="flat-product">
                                 <div class="featured-product">
                                     <img src="{{ asset('website_asset/images/featured-time-management-final.jpg') }}"
-                                        alt="image">
+                                        alt="image"  style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>Effective Study Habits and Time Management for Student</p>
+                                        <p>Effective Study Habits and Time ...</p>
 
                                     </div>
 
@@ -118,14 +120,14 @@
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/blog-cover-04.jpg') }}" alt="image">
+                                    <img src="{{ asset('website_asset/images/blog-cover-04.jpg') }}" alt="image"  style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>The Role of Apprenticeships and Internships in Promoting Career Readiness
+                                        <p>The Role of Apprenticeships and Internships ...
                                         </p>
                                     </div>
 
@@ -145,14 +147,14 @@
                             <div class="flat-product">
                                 <div class="featured-product">
                                     <img src="{{ asset('website_asset/images/internship-training-in-chennai-kk-nagar-5.jpg') }}"
-                                        alt="image">
+                                        alt="image"  style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>The benefits and challenges of online learning in the modern age
+                                        <p>The benefits and challenges of online ...
                                         </p>
 
 
@@ -172,7 +174,7 @@
                             <div class="col-md-4">
                                 <div class="flat-product">
                                     <div class="featured-product">
-                                        <img src="{{ asset('public/' . $blog->blog_image) }}" alt="image">
+                                        <img src="{{ asset('public/' . $blog->blog_image) }}" alt="image" style="width:650px; height:250px;">
 
                                     </div>
 
@@ -181,7 +183,7 @@
                                             
                                         </h6> -->
                                         <div class="text">
-                                            <p>{{ $blog->subject }}
+                                            <p>{{ Str::limit($blog->subject, 40, '...'); }}
                                             </p>
                                         </div>
 

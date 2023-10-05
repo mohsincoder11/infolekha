@@ -273,8 +273,13 @@
                         img.src = e.target.result;
                         img.onload = function() {
                             var width = this.width;
+                           
                             var height = this.height;
-                            if (width === $("#Width").val() && height === $("#Height").val()) {
+                            console.log(width);
+                            console.log(height);
+                            console.log($("#Width").val());
+                            console.log($("#Height").val());
+                            if (width == $("#Width").val() && height == $("#Height").val()) {
                                 $("#image_resolution_error").addClass("d-none");
                                 $(".modal_submit").prop("disabled", false);
                             } else {

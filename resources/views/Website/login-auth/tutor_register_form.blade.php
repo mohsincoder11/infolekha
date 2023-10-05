@@ -116,6 +116,8 @@
                                             name="otp" required="required"><i
                                             class="fa fa-user field-icon toggle-password"></i>
                                     </span>
+                                    <br>
+                                    <p id="resend-otp" style="text-align:right;width:100%;color:#073D5F">Resend OTP</p>
 
                                     <div class="otp_error" style="text-align: left;margin-top:10px;">
                                     </div>
@@ -160,14 +162,14 @@
                         },
                         // Custom success function
                         dataFilter: function(response) {
+                            $(".loader-container").hide();
+
                             if (response === false || response === 'false') {
                                 $("#login-button2").prop('disabled', true);
-
                                 this.valid = false;
                                 return 'false';
                             } else if (response === true || response === 'true') {
-
-
+                                $("#login-button2").prop('disabled', false);
                                 this.valid = true;
                                 return 'true';
                             }
@@ -240,10 +242,13 @@
         });
 
         $('#mob').on('keypress', function(event) {
+            $(".loader-container").hide();
+
     var keyCode = event.which ? event.which : event.keyCode;
     if ((keyCode >= 48 && keyCode <= 57) || keyCode == 8 || keyCode == 46 || keyCode == 9 || (keyCode >= 37 && keyCode <= 40)) {
       return true;
     } else {
+
       event.preventDefault();
       return false;
     }
@@ -317,13 +322,20 @@
             $('#popup_login').modal('show');
             otp();
         })
+        $("#resend-otp").on('click', function(e) {
+            $('#otp').val("");
+            otp();
+        })
 
         $("#mob").on('keyup', function(e) {
+
             $("#login-button1").prop('disabled', true);
             var value = $(this).val();
 
-            if (/^\d+$/.test(value) && value.length === 10)
-                $("#login-button2").prop('disabled', false);
+            if (/^\d+$/.test(value) && value.length === 10){
+
+                $(this).valid();
+            }
             else
                 $("#login-button2").prop('disabled', true);
         })
@@ -331,6 +343,7 @@
 
         function otp() {
             $("#login-button1").prop("disabled", true);
+            $(".loader-container").show();
 
             const mob = $("#mob").val();
             $.ajax({
@@ -338,9 +351,12 @@
                 url: 'send_mobile_verify_otp/' + mob,
                 success: function(data) {
                     $("#exist_otp").val(data);
+                $(".loader-container").hide();
+
                     //console.log(data);
                 },
                 error: function(data) {
+                    $(".loader-container").hide();
 
                     //console.log(data);
                 }
