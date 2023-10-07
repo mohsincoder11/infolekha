@@ -90,6 +90,7 @@ class SchoolProfile extends Controller
 
    public function post_update_profile(Request $request)
    {
+	  
       $validator = Validator::make(
          $request->all(),
          [

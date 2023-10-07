@@ -1,6 +1,15 @@
 @extends('website_layout')
 @section('css')
+<style>
 
+
+.text p{
+ white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+width:98%;
+
+	</style>
 @stop
 @section('website_content')
     <div class="page-title parallax parallax1">
@@ -49,7 +58,7 @@
                                         
                                     </h6> -->
                                     <div class="text">
-                                        <p>Exploring Opportunities After 10th Standard: ...
+                                        <p>Exploring Opportunities After 10th Standard: A Guide to Shaping Your Future
                                         </p>
                                     </div>
 
@@ -74,7 +83,8 @@
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>Unlocking Your Potential: How Early ...
+                                        <p>Unlocking Your Potential: How Early Career Planning Can Help You Achieve Your Goals
+
                                         </p>
                                     </div>
 
@@ -101,7 +111,8 @@
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>Effective Study Habits and Time ...</p>
+                                        <p>EFFECTIVE STUDY HABITS AND TIME MANAGEMENT FOR STUDENTS
+</p>
 
                                     </div>
 
@@ -127,7 +138,8 @@
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>The Role of Apprenticeships and Internships ...
+                                        <p>The Role of Apprenticeships and Internships in Promoting Career Readiness
+
                                         </p>
                                     </div>
 
@@ -154,7 +166,8 @@
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>The benefits and challenges of online ...
+                                        <p>The benefits and challenges of online learning in the modern age
+
                                         </p>
 
 
@@ -183,7 +196,7 @@
                                             
                                         </h6> -->
                                         <div class="text">
-                                            <p>{{ Str::limit($blog->subject, 40, '...'); }}
+                                            <p>{{$blog->subject }}
                                             </p>
                                         </div>
 

@@ -109,8 +109,9 @@
                                                         content="{{ $announcements->main_content }}"><i
                                                             class="fadeIn animated bx bx-refresh"></i>
                                                         </button>
-                                                <button title="delete" type="button" class="btn1 btn-outline-danger"><i
-                                                        class='bx bx-trash me-0'></i></button>
+                                                        <a href="{{ route('admin.destroy_announcement2', $announcements->id) }}">
+                                                            <button type="button" class="btn1 btn-outline-danger"><i
+                                                                    class='bx bx-trash me-0'></i></button> </a>
 
                                             </td>
 

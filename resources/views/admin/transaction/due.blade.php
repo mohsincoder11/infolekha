@@ -93,6 +93,7 @@
                                         <th>User</th>
                                         <th>Entity</th>
                                         <th>Type</th>
+                                        <th>Plan</th>
                                         <th>Amount</th>
                                         <th>Status</th>
                                         <th>Expire In</th>
@@ -108,6 +109,7 @@
                                             <td>{{ $transaction->name }}</td>
                                             <td>{{ $transaction->entity_name }}</td>
                                             <td>{{ $transaction->type }}</td>
+                                            <td>{{ $transaction->TransactionSubscription->plan }}</td>
 
                                             <td>{{ $transaction->amount }}</td>
                                             <td>{{ $transaction->transaction_status }}</td>
@@ -121,7 +123,7 @@
                                                         <i class='bx bx-envelope me-0'></i>
                                                     </a>
                                                 @elseif($transaction->type == 'Subscription')
-                                                    @if($transaction->entity_name=='Tutor')
+                                                    @if ($transaction->entity_name == 'Tutor')
                                                         <a class="btn btn-warning"
                                                             href="{{ route('admin.tutor_subscription_mail', $transaction->id) }}">
                                                             <i class='bx bx-envelope me-0'></i>

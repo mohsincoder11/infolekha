@@ -240,7 +240,7 @@
 
                         </div>
                         <div class="col-md-4">
-                            <img id="announcement_image" src="">
+                          <a href="" target="_blank" download>  <img id="announcement_image" src=""></a> 
                         </div>
                     </div>
 
@@ -345,6 +345,7 @@
             $("#announcement_modal").modal('show');
             $("#announcement_heading").text($(this).attr('heading'));
             $("#announcement_image").attr('src', $(this).attr('image'));
+            $("#announcement_image").parent('a').attr('href', $(this).attr('image'));
             $("#announcement_content").html($(this).attr('content'));
         })
     </script>

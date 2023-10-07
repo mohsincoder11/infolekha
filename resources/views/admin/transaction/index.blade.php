@@ -81,6 +81,7 @@
                                 <th>User</th>
                                 <th>Entity</th>  
                                 <th>Type</th>
+                                <th>Plan</th>
                                 <th>Amount</th>
                                 <th>Status</th>
                                 {{-- <th>Action</th> --}}
@@ -96,6 +97,7 @@
                                 <td>{{$transaction->name}}</td>
                                 <td>{{$transaction->entity_name}}</td>
                                 <td>{{$transaction->type}}</td>
+                                <td>{{$transaction->TransactionSubscription->plan}}</td>
 
                                 <td>{{$transaction->amount}}</td>
                                 <td>{{$transaction->transaction_status}}</td>

@@ -164,6 +164,7 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::get('edit-announcement/{id}', [AnnouncementController::class, 'edit'])->name('edit_announcement');
     Route::post('update_announcement', [AnnouncementController::class, 'update'])->name('update_announcement');
     Route::get('destroy_announcement/{id}', [AnnouncementController::class, 'destroy'])->name('destroy_announcement');
+    Route::get('destroy_announcement2/{id}', [AnnouncementController::class, 'destroy2'])->name('destroy_announcement2');
     Route::post('add-announcement', [AnnouncementController::class, 'add_announcement'])->name('add-announcement');
 
     //Banner Images

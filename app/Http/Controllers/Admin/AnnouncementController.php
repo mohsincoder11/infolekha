@@ -128,14 +128,23 @@ class AnnouncementController extends Controller
         return redirect()->route('admin.master.announcement')->with(['success'=>'Announcement Package Successfully Updated.']);
        }
 
-        public function destroy($id)
-        {
-            $Announcement = AnnouncementPackage::where('PackageID',$id)->first();
-            if ($Announcement) {
-                $Announcement->delete();
-            }
-            return redirect()->route('admin.master.announcement')->with(['success'=>'Announcement Package Successfully Deleted.']);
-        }
+       public function destroy($id)
+       {
+           $Announcement = AnnouncementPackage::where('PackageID',$id)->first();
+           if ($Announcement) {
+               $Announcement->delete();
+           }
+           return redirect()->route('admin.master.announcement')->with(['success'=>'Announcement Package Successfully Deleted.']);
+       }
+
+       public function destroy2($id)
+       {
+           $Announcement = Announcement::where('id',$id)->first();
+           if ($Announcement) {
+               $Announcement->delete();
+           }
+           return redirect()->back()->with(['success'=>'Announcement Successfully Deleted.']);
+       }
 
         public function add_announcement(Request $request){
             $validator = Validator::make(
@@ -144,7 +153,7 @@ class AnnouncementController extends Controller
                 'heading' => 'required|string|max:255',
                 'main_content' => 'required',
                 'status' => 'required',
-                'image' => 'required',
+               // 'image' => 'required',
             ]);
         if ($validator->fails()) {
             $errors = '';
@@ -159,6 +168,9 @@ class AnnouncementController extends Controller
             $filename = time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('/announcement/'), $filename);
             $announcement_image = '/announcement/' . $filename;
+         }
+         else{
+            $announcement_image = '/announcement/default-image.jpg';
          }
 
         // Create new coupon and save in the database
