@@ -87,8 +87,11 @@ class UserLikeFeedback extends Controller
         return back()->with(['error' =>'Please login to wishlist.']);;
     }
 
-    public function enquiry_login_redirect(){
-        return back()->with(['error' =>'Please login to send enquiry.']);;
+    public function enquiry_login_redirect($type){
+        if($type==1)
+        return back()->with(['error' =>'Please login to show mobile number.']);
+        else
+        return back()->with(['error' =>'Please login to send enquiry.']);
     }
     
 

@@ -414,14 +414,12 @@
                                                     </div>
                                                     <div class="info-product" style="margin-top:-6;">
 
+                                                        @if (auth()->check())
                                                         <button type="button" class="login-btn effect-button mobile1"
                                                             mobile_number="{{ $anno->mob }}">
                                                             <i class="fa fa-phone" aria-hidden="true"></i> Show
                                                             Number</button> &nbsp;
-                                                        &nbsp;</a>
-
-
-                                                        @if (auth()->check())
+                                                        &nbsp;
                                                             @if (auth()->user()->role != '2')
                                                                 <button type="button"
                                                                     class="login-btn effect-button send_enquiry_modal"
@@ -430,11 +428,16 @@
                                                                     Enquiry</button>
                                                             @endif
                                                         @else
-                                                            <a href="{{ route('enquiry-login-redirect') }}"> <button
-                                                                    type="button" class="login-btn effect-button "
-                                                                    college_id="{{ $anno->user_id }}"> <i
-                                                                        class="fa fa-paper-plane"></i> Send
-                                                                    Enquiry</button></a>
+                                                        <a href="{{ route('enquiry-login-redirect',1) }}"> <button
+                                                            type="button" class="login-btn effect-button "
+                                                            > <i
+                                                                class="fa fa-phone"></i>  Show
+                                                                Number</button></a>&nbsp;
+                                                            <a href="{{ route('enquiry-login-redirect',2) }}"> <button
+                                                                type="button" class="login-btn effect-button "
+                                                                > <i
+                                                                    class="fa fa-paper-plane"></i> Send
+                                                                Enquiry</button></a>
                                                         @endif
 
                                                     </div>

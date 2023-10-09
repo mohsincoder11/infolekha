@@ -446,7 +446,7 @@ Route::post('apply-for-job', [WebsiteformController::class, 'apply_for_job'])->n
 
 
 Route::get('like-login-redirect', [UserLikeFeedback::class, 'like_login_redirect'])->name('like-login-redirect');
-Route::get('enquiry-login-redirect', [UserLikeFeedback::class, 'enquiry_login_redirect'])->name('enquiry-login-redirect');
+Route::get('enquiry-login-redirect/{type}', [UserLikeFeedback::class, 'enquiry_login_redirect'])->name('enquiry-login-redirect');
 
 Route::get('event', [WebsiteformController::class, 'event'])->name('event');
 Route::get('coming-soon', [WebsiteformController::class, 'coming_soon'])->name('coming_soon');
