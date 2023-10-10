@@ -623,6 +623,7 @@
 										
 													     <div class="col-md-4">
                                                 <div class="upload-img">
+												
                                                 <label>
                                                 <input id="image1" type="file" name="logo" style="display:none;">
                                                 <img  id="category-img-tag" src="{{asset('website_asset/images/223.jpg')}}" class="dropzone" >

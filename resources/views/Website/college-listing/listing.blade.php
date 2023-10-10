@@ -412,6 +412,7 @@
                                                         <p style="font-size:16px;">{{ $anno->address_details }}</p>
 
                                                     </div>
+													
                                                     <div class="info-product" style="margin-top:-6;">
 
                                                         @if (auth()->check())
@@ -427,7 +428,7 @@
                                                                         class="fa fa-paper-plane"></i> Send
                                                                     Enquiry</button>
                                                             @endif
-                                                        @else
+                                                         @else
                                                         <a href="{{ route('enquiry-login-redirect',1) }}"> <button
                                                             type="button" class="login-btn effect-button "
                                                             > <i
@@ -526,7 +527,17 @@
                                                         <input type="hidden" name="college_id" id="college_id">
 
                                                         <h3 class="title-formlogin">Send Enquiry</h3>
+@php
+    $mob='';
+    if(auth()->check() && auth()->user()->role == '1'){
+        $mob=auth()->user()->SchoolDetail->mob;
+    }
+    if(auth()->check() && auth()->user()->role == '3'){
+        $mob=auth()->user()->UserStudent->mob;
+    }
+    
 
+@endphp
                                                         <span class="input-login icon-form"><input type="text"
                                                                 placeholder="Your Name*" name="name"
                                                                 required="required"
@@ -539,7 +550,7 @@
                                                         <span class="input-login icon-form">
                                                             <input type="text"
                                                                 placeholder="Mobile Number*" name="mobile"
-                                                                required="required"  value=""></span>
+                                                                required="required"  value="{{$mob}}"></span>
                                                         <span class="input-login icon-form">
                                                             <textarea type="text" placeholder="Message" name="message" required="required" rows="4" cols="50"></textarea>
                                                         </span>

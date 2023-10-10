@@ -52,7 +52,7 @@ width: 0px; /* Set a global width for all slides*/
    
 
     <div class="dashboard-content">
-        <div class="dashboard-menu-btn color-bg"><span><i class="fas fa-bars"></i></span>Dashboard Menu</div>
+        <div class="dashboard-menu-btn color-bg"><span align="center"><i class="fas fa-bars"></i></span>Dashboard Menu</div>
         <div class="container dasboard-container">
             <!-- dashboard-title -->
             <div class="col-md-3"></div>
@@ -83,10 +83,11 @@ width: 0px; /* Set a global width for all slides*/
                         <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
                             <div class="">
                                 <div class="banner"
-                                    style="background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }} ">
+                                    style="250px;
+                                        width: 100%;  border: 1px solid #073D5F; background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }}  "  >
                                     <img class="mt pd" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
                                         alt=""
-                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid white; z-index:2; margin-left:40%; margin-top:180px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
+                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid #073D5F; z-index:2; margin-left:44%; margin-top:190px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
                                 </div>
 
 
@@ -129,7 +130,7 @@ width: 0px; /* Set a global width for all slides*/
 
                                                 <span style="font-size:15px; color:#144273; text-align:left;">
 
-                                                    <i class="fa fa-graduation-cap" style="float:left"></i>
+                                                    <i class="fa fa-graduation-cap" style="float:left"></i>&nbsp;
                                                     {{ $c }}</span>
                                             </div>
                                         @endforeach
@@ -146,11 +147,11 @@ width: 0px; /* Set a global width for all slides*/
                                     @if (json_decode($user_data->facilities))
                                         @foreach (json_decode($user_data->facilities) as $c)
                                             @if ($loop->index % 3 == 0 && $loop->index != 0)
-                                                <br><br><br><br>
+                                              
                                             @endif
                                             <div class="col-md-4">
                                                 <span style="font-size:15px; color:#144273;">
-                                                    <i class="fa fa-book" style="float:left"></i>
+                                                    <i class="fa fa-book" style="float:left"></i>&nbsp;
                                                     {{ $c }}<br><br>
 
                                             </div>
@@ -205,11 +206,11 @@ width: 0px; /* Set a global width for all slides*/
                                                     class="fa fa-caret-right"></i></div>
                                         </div>
 
+									</div>
 
 
 
-
-                                    </div>
+                                  
                                 </section>
 
                                 <!-- section end-->
@@ -217,7 +218,7 @@ width: 0px; /* Set a global width for all slides*/
                                     <!-- section-title -->
                                     <div class="section-title st-center fl-wrap ">
                                         <label style="color:#144273; text-align:center; font-size: 20px; margin-top:40px;">
-                                            Videos</label>
+                                          Videos  </label>
 
                                     </div>
                                     <!-- section-title end -->

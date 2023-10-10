@@ -47,7 +47,7 @@
 
                                                     <div class="widget widget_categories">
 
-                                                        <img src="images/blog/blog-5.png">
+                                                        <img src="images/blog/blog-5.png" height="257" width="840">
 
 
                                                     </div>

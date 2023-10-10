@@ -806,15 +806,15 @@ width: 0px; /* Set a global width for all slides*/
                                                 </p>
                                             </div>
                                             <p class="comment-form-comment">
-                                                <textarea class="" tabindex="4" placeholder="write review" name="comment" required></textarea>
+                                                <textarea class="" tabindex="4" placeholder="write review" name="comment" ></textarea>
                                                 <span style="line-height:24px" id="feedback_comment"></span>
 
 
                                             </p>
-                                            <input type="hidden" name="rating" id="rating" value="0">
+                                            <input type="hidden" name="rating" id="rating" value="1">
                                             <div class="rating-box">
                                                 <div class="stars">
-                                                    <i class="fas fa-star"></i>
+                                                    <i class="fas fa-star active"></i>
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
                                                     <i class="fas fa-star"></i>
@@ -940,29 +940,46 @@ width: 0px; /* Set a global width for all slides*/
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body text-center clearfix">
-                    <form class="form-login form-listing" action="{{ route('post_enquiry') }}" method="post">
-                        @csrf
-                        <input type="hidden" name="college_id" id="college_id">
+                    <form class="form-login form-listing"
+                    action="{{ route('post_enquiry') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="college_id" id="college_id">
 
-                        <h3 class="title-formlogin">Send Enquiry</h3>
+                    <h3 class="title-formlogin" style="font-size: 30px;line-height: 30px;font-weight:600;">Send Enquiry</h3>
+                        @php
+                        $mob='';
+                        if(auth()->check() && auth()->user()->role == '1'){
+                        $mob=auth()->user()->SchoolDetail->mob;
+                        }
+                        if(auth()->check() && auth()->user()->role == '3'){
+                        $mob=auth()->user()->UserStudent->mob;
+                        }
 
-                        <span class="input-login icon-form"><input type="text" placeholder="Your Name*"
-                                name="name" required="required"
-                                value="{{ auth()->check() ? auth()->user()->name : '' }}"><i
-                                class="fa fa-user"></i></span>
-                        <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
-                                required="required" value="{{ auth()->check() ? auth()->user()->email : '' }}"><i
-                                class="fa fa-envelope-o"></i></span>
-                        <!-- <span class="input-login icon-form"><input type="text" placeholder="Mobile Number*" name="mobile_no" required="required"><i class="fa fa-phone" aria-hidden="true"></i></span> -->
-                        <span class="input-login icon-form">
-                            <textarea type="text" placeholder="Message" name="message" required="required" rows="4" cols="50"></textarea>
-                        </span>
-                        <div class="wrap-button signup">
-                            <button type="submit" id="logup-button" class=" login-btn effect-button"
-                                title="log in">SEND</button>
-                        </div>
 
-                    </form>
+                        @endphp
+                    <span class="input-login icon-form"><input type="text"
+                            placeholder="Your Name*" name="name"
+                            required="required"
+                            value="{{ auth()->check() ? auth()->user()->name : '' }}"><i
+                            class="fa fa-user"></i></span>
+                    <span class="input-login icon-form"><input type="text"
+                            placeholder="E-mail*" name="email" required="required"
+                            value="{{ auth()->check() ? auth()->user()->email : '' }}"><i
+                            class="fa fa-envelope-o"></i></span>
+                    <span class="input-login icon-form">
+                        <input type="text"
+                            placeholder="Mobile Number*" name="mobile"
+                            required="required"  value="{{$mob}}"></span>
+                    <span class="input-login icon-form">
+                        <textarea type="text" placeholder="Message" name="message" required="required" rows="4" cols="50"></textarea>
+                    </span>
+                    <div class="wrap-button signup">
+                        <button type="submit" id="logup-button"
+                            class=" login-btn effect-button"
+                            title="log in">SEND</button>
+                    </div>
+
+                </form>
                 </div>
             </div>
         </div>
@@ -1121,9 +1138,9 @@ width: 0px; /* Set a global width for all slides*/
                         required: true,
                         customEmail: true,
                     },
-                    comment: {
-                        required: true,
-                    },
+                    // comment: {
+                    //     required: true,
+                    // },
                 },
                 messages: {
                     name: {
@@ -1133,10 +1150,10 @@ width: 0px; /* Set a global width for all slides*/
                         required: "This field is required.",
                         customEmail: "Please enter valid email address.",
                     },
-                    comment: {
-                        required: "This field is required.",
+                    // comment: {
+                    //     required: "This field is required.",
 
-                    },
+                    // },
                 },
                 submitHandler: function(form) {
                     return true;

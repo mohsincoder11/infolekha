@@ -59,6 +59,10 @@ class User extends Authenticatable
     public function getSchoolDetailAttribute(){
         return school_institute_detail::where('user_id',$this->id)->first();
     }
+    public function getUserStudentAttribute(){
+        return user_student::where('user_id',$this->id)->first();
+    }
+    
 
     public function getTutorDetailAttribute(){
         return tutor_detail::where('user_id',$this->id)->first();

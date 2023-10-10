@@ -50,7 +50,7 @@
                                                     <div class="widget widget_categories">
                                                         <!-- 
                                                         <img src="{{asset('website_asset/images/Cover-photo1.jpg')}}"> -->
-                                                        <img src="images/blog/blog2.png">
+                                                        <img src="images/blog/blog2.png" height="257" width="840">
 
                                                     </div>
 

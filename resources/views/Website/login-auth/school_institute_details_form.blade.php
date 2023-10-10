@@ -29,7 +29,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="page-title-heading">
-                    <h3 class="title" style="color:white;">Welcome</h3><br>
+                    <h3 class="title" style="color:white;">Welcome1</h3><br>
                     <h1 class="title">{{$data->r_name}}</h1>
                 </div><!-- /.page-title-captions -->
                 <div class="breadcrumbs">
@@ -559,6 +559,7 @@
                         <div class="col-md-4">
                             <div class="upload-img">
                                 <label>
+									<span style="font-size:14px;">(Size 200x200px)</span>
                                     <input id="image1" type="file" name="logo" style="display:none;">
                                     <img id="category-img-tag" src="{{asset('website_asset/images/223.jpg')}}"
                                         class="dropzone">

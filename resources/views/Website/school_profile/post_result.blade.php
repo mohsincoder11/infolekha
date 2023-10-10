@@ -110,7 +110,7 @@
                                     </table>
                                     @if(count($school_post_result)==0)
 
-                                    <p class="text-center">No Record Found</p>
+                                    <p align="center">No Record Found</p>
                             @endif
 
 
