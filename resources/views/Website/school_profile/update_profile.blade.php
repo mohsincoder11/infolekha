@@ -807,7 +807,7 @@ $(document).on('mouseenter', '.select2-results__options', function() {
 	
 </script>
 <script type="text/javascript"
-src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places"></script>
+src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI&libraries=places"></script>
 <script>
     google.maps.event.addDomListener(window, 'load', initialize);
 

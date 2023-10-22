@@ -409,7 +409,7 @@
                                                             <label href="#" class="review"
                                                                 style="background-color:rgb(151, 201, 2); padding:2px 4px; border-radius:5px; color:#fff;margin-left:5px;"><b>{{ $rating_count }}</b></label>
                                                         </div>
-                                                        <p style="font-size:16px;">{{ $anno->address_details }}</p>
+                                                        <p style="font-size:16px;">{{ $anno->address_details }},{{ $anno->address }}</p>
 
                                                     </div>
 													

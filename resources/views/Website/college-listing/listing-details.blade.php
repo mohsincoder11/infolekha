@@ -476,7 +476,7 @@ width: 0px; /* Set a global width for all slides*/
                                     </div>
 
 
-                                    <p>{{ $details->address_details }}</p>
+                                    <p>{{ $details->address_details }},{{ $details->address }}</p>
                                 </div>
                                 <div class="info-product" style="margin-top:-6;">
 

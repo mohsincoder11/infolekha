@@ -1452,7 +1452,7 @@ body {
 
 let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
    .latitude + ',' +
-   position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+   position.coords.longitude + '&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
 fetch(google_url).then(function(response) {
    return response.json();
 }).then(function(data) {
@@ -1494,7 +1494,7 @@ function showPosition2(position) {
 
 let google_url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords
    .latitude + ',' +
-   position.coords.longitude + '&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E';
+   position.coords.longitude + '&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
 fetch(google_url).then(function(response) {
    return response.json();
 }).then(function(data) {
@@ -1576,7 +1576,7 @@ fetch(google_url).then(function(response) {
     </script>
              <script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.3/jquery.timepicker.min.js"></script>
              <script type="text/javascript"
-             src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyDkFrL3p2KR9iAmFiuhmkszKgMHIon1Y0E&libraries=places">
+             src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI&libraries=places">
          </script>
     @yield('js')
 

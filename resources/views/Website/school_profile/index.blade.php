@@ -87,7 +87,7 @@ width: 0px; /* Set a global width for all slides*/
                                         width: 100%;  border: 1px solid #073D5F; background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }}  "  >
                                     <img class="mt pd" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
                                         alt=""
-                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid #073D5F; z-index:2; margin-left:44%; margin-top:190px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
+                                        style="height:130px; width:130px; border-radius:50%; border: 2px solid #073D5F; z-index:2; margin-left:4%; margin-top:160px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
                                 </div>
 
 
