@@ -57,7 +57,11 @@
                                                     {{ $advertisement->BannerWidth }}*{{ $advertisement->BannerHeight }} px
                                                 @endif
                                             </td>
-                                            <td>{!! $advertisement->SelectedDays > 0 ? $advertisement->SelectedDays . ' days' : (isset($advertisement->SelectedDays) ? $advertisement->SelectedDays . ' days' : '<i class="bx bx-infinite"></i>') !!}
+                                            <td>{!! $advertisement->SelectedDays > 0
+                                                ? $advertisement->SelectedDays . ' days'
+                                                : (isset($advertisement->SelectedDays)
+                                                    ? $advertisement->SelectedDays . ' days'
+                                                    : '<i class="bx bx-infinite"></i>') !!}
                                             </td>
                                             <td>{{ $advertisement->TotalAmount ?? 0 }}
                                             </td>
@@ -101,12 +105,14 @@
                                                     width="{{ $advertisement->BannerWidth }}"
                                                     height="{{ $advertisement->BannerHeight }}"><i
                                                         class="fadeIn animated bx bx-upload"></i></button>
-                                                <a title="delete"
-                                                    href="{{ route('admin.delete-advertisement', $advertisement->EnquiryID) }}">
-                                                    <button class="btn1 btn-outline-danger">
+                                                @if (can_view_this('admin.delete-advertisement'))
+                                                    <a title="delete"
+                                                        href="{{ route('admin.delete-advertisement', $advertisement->EnquiryID) }}">
+                                                        <button class="btn1 btn-outline-danger">
 
-                                                        <i class='bx bx-trash me-0'></i>
-                                                    </button>
+                                                            <i class='bx bx-trash me-0'></i>
+                                                        </button>
+                                                @endif
                                                 </a>
 
                                             </td>
@@ -273,7 +279,7 @@
                         img.src = e.target.result;
                         img.onload = function() {
                             var width = this.width;
-                           
+
                             var height = this.height;
                             console.log(width);
                             console.log(height);

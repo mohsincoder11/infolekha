@@ -92,7 +92,7 @@
 
        @section('js')
        <script type="text/javascript"
-       src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI&libraries=places">
+       src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places">
    </script>
        <script>
         google.maps.event.addDomListener(window, 'load', initialize);

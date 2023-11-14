@@ -369,12 +369,11 @@
 
 
                                                                 <td style="background-color: #ffff;">
-                                                                    {{-- <button
-                                                                        type="button" class="btn1 btn-outline-success"><i
-                                                                            class='bx bx-edit-alt me-0'></i></button> --}}
+                                                                    @if (can_view_this('admin.delete-user'))
                                                                     <a href="{{ route('admin.delete-user', $dt->user_id) }}"
                                                                         class="btn btn-outline-danger"><i
                                                                             class='bx bx-trash me-0'></i></a>
+                                                                    @endif
                                                                     @if ($dt->subscription_status == 0)
                                                                         <a href="{{ route('admin.buy-subscription-email', $dt->user_id) }}"
                                                                             title="Send subscription mail"
@@ -469,9 +468,11 @@
 
                                                                 <td style="background-color: #ffff;">
                                                                   
-                                                                     <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                    @if (can_view_this('admin.delete-user'))
+                                                                    <a href="{{ route('admin.delete-user', $dt->user_id) }}"
                                                                         class="btn btn-outline-danger"><i
                                                                             class='bx bx-trash me-0'></i></a>
+                                                                            @endif
                                                                 </td>
 
                                                             </tr>
@@ -566,9 +567,11 @@
 
                                                                 </td>
                                                                 <td style="background-color: #ffff;">
-                                                                     <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                    @if (can_view_this('admin.delete-user'))
+                                                                    <a href="{{ route('admin.delete-user', $dt->user_id) }}"
                                                                         class="btn btn-outline-danger"><i
                                                                             class='bx bx-trash me-0'></i></a>
+                                                                            @endif
                                                                 </td>
 
                                                             </tr>

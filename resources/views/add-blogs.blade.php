@@ -102,13 +102,17 @@
                                             <td>{{ $blog->status }}</td>
 
                                             <td>
-                                                <button type="button" class="btn1 btn-outline-primary open_modal"
-                                                    BlogID="{{ $blog->id }}"><i
-                                                        class="fadeIn animated bx bx-edit"></i></button>
+                                                @if (can_view_this('admin.edit_blog'))
+                                                    <button type="button" class="btn1 btn-outline-primary open_modal"
+                                                        BlogID="{{ $blog->id }}"><i
+                                                            class="fadeIn animated bx bx-edit"></i></button>
+                                                @endif
 
-                                                <a href="{{ route('admin.destroy_blog', $blog->id) }}">
-                                                    <button type="button" class="btn1 btn-outline-danger"><i
-                                                            class='bx bx-trash me-0'></i></button> </a>
+                                                @if (can_view_this('admin.destroy_blog'))
+                                                    <a href="{{ route('admin.destroy_blog', $blog->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>
@@ -139,54 +143,60 @@
 
                         <div class="col-md-12">
                             <label>Subject</label>
-                            <input class="form-control mb-3" name="subject"  id="subject" type="text" aria-label=""
+                            <input class="form-control mb-3" name="subject" id="subject" type="text" aria-label=""
                                 placeholder="Subject">
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label>Category</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="category" id="category">
+                            <select class="form-select mb-3" aria-label="Default select example" name="category"
+                                id="category">
                                 @foreach (get_blog_categories() as $cat)
-                                    <option value="{{$cat}}" >{{$cat}}</option>
+                                    <option value="{{ $cat }}">{{ $cat }}</option>
                                 @endforeach
-                                    <option value="Other" >Other</option>
+                                <option value="Other">Other</option>
 
                             </select>
                         </div>
                         <div class="col-md-1"></div>
                         <div class="col-md-5 form-group">
-                            <a href="" target="_blank" >
-                            <img src="" alt="" height="100" width="100" id="blog_image">
-                        </a>
+                            <a href="" target="_blank">
+                                <img src="" alt="" height="100" width="100" id="blog_image">
+                            </a>
                         </div>
 
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <label for="about_from"></label><br>
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content1" id="editor1" /></textarea>
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden"
+                                name="content1" id="editor1" /></textarea>
 
 
                             <br><br>
                         </div>
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <label for="about_to"></label><br>
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden" name="content2" id="editor2" /></textarea>
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden"
+                                name="content2" id="editor2" /></textarea>
                         </div>
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden" name="content3" id="editor3" /></textarea>
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden"
+                                name="content3" id="editor3" /></textarea>
                         </div>
 
-                        <div class="col-md-12" >
+                        <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content4" id="editor4" /></textarea>
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden"
+                                name="content4" id="editor4" /></textarea>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label>Status</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="status" id="status">
+                            <select class="form-select mb-3" aria-label="Default select example" name="status"
+                                id="status">
                                 <option value="">Select</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Active">Active</option>
@@ -196,8 +206,8 @@
                         </div>
                         <div class="col-md-8 ">
                             <label>Note</label>
-                            <textarea rows="4" class="form-control mb-3" name="reject_reason" id="note" type="text" aria-label="default input example"
-                                placeholder="Note"></textarea>
+                            <textarea rows="4" class="form-control mb-3" name="reject_reason" id="note" type="text"
+                                aria-label="default input example" placeholder="Note"></textarea>
                         </div>
 
                         <div class="col-md-12" align="center">
@@ -227,13 +237,14 @@
 
                         <div class="col-md-12">
                             <label>Subject</label>
-                            <input class="form-control mb-3" name="subject"  id="subject2" type="text" aria-label=""
-                                placeholder="Subject">
+                            <input class="form-control mb-3" name="subject" id="subject2" type="text"
+                                aria-label="" placeholder="Subject">
                         </div>
 
                         <div class="col-md-6 form-group">
                             <label>Category</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="category" id="category2">
+                            <select class="form-select mb-3" aria-label="Default select example" name="category"
+                                id="category2">
                                 <option value="">Select</option>
                                 <option>Physics</option>
                                 <option>Mathematics</option>
@@ -242,39 +253,45 @@
                             </select>
                         </div>
                         <div class="col-md-6">
-							<label for="inputFirstName" class="form-label">Upload Blog Image*</label>
-							<input type="file" class="form-control" id="inputFirstName" placeholder="" name="blog_image" accept="image/*">
-						</div>
+                            <label for="inputFirstName" class="form-label">Upload Blog Image*</label>
+                            <input type="file" class="form-control" id="inputFirstName" placeholder=""
+                                name="blog_image" accept="image/*">
+                        </div>
 
 
                         <div class="col-md-12">
                             <label for="about_from"></label><br>
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content1" type="hidden" name="content1" id="editor_content1" /></textarea>
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content1" type="hidden"
+                                name="content1" id="editor_content1" /></textarea>
 
                             <br><br>
                         </div>
 
                         <div class="col-md-12">
                             <label for="about_to"></label><br>
-                           
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden" name="content2" id="editor_content2" /></textarea>
+
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content2" type="hidden"
+                                name="content2" id="editor_content2" /></textarea>
                         </div>
 
                         <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                          
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden" name="content3" id="editor_content3" /></textarea>
+
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content3" type="hidden"
+                                name="content3" id="editor_content3" /></textarea>
                         </div>
 
                         <div class="col-md-12">
                             <label for="tourist_attraction"></label><br>
-                           
-                            <textarea rows="8"  style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden" name="content4" id="editor_content4" /></textarea>
+
+                            <textarea rows="8" style="height: 150px;" class="form-control" Placeholder="Content4" type="hidden"
+                                name="content4" id="editor_content4" /></textarea>
                         </div>
 
                         <div class="col-md-4 form-group">
                             <label>Status</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="status" id="status2">
+                            <select class="form-select mb-3" aria-label="Default select example" name="status"
+                                id="status2">
                                 <option value="">Select</option>
                                 <option value="Pending">Pending</option>
                                 <option value="Active">Active</option>
@@ -282,7 +299,7 @@
 
                             </select>
                         </div>
-                    
+
 
                         <div class="col-md-12" align="center">
                             <button type="submit" class="btn btn-primary px-5">Save</button>
@@ -300,7 +317,7 @@
 @section('js')
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function() {
             // var toolbar=  [
             //             ['bold', 'italic', 'underline', 'strike'],
             //             [{
@@ -370,32 +387,33 @@
 
         });
 
-        
+
         $(document).on('click', '.add-blog', function(e) {
             $("#exampleModal2").modal('show');
         })
 
         $(document).on('click', '.open_modal', function(e) {
             $("#exampleModal").modal('show');
-			$.ajax({
+            $.ajax({
                 type: 'GET',
                 url: '{{ route('admin.get-blog') }}',
                 data: {
                     BlogID: $(this).attr('BlogID'),
                 },
                 success: function(data) {
-					$("#status").val(data.status).change();
+                    $("#status").val(data.status).change();
                     $("#blog_image").attr('src', '{{ asset('/public/') }}/' + data.blog_image);
-                    $("#blog_image").closest('a').attr('href', '{{ asset('/public/') }}/' + data.blog_image);
-                    
-					$("#note").val(data.reject_reason);
-					$("#category").val(data.category).change();
-					$("#subject").val(data.subject);
-					$("#BlogID").val(data.id);
-					$("#editor1").text(data.content1);
-					$("#editor2").text(data.content2);
-					$("#editor3").text(data.content3);
-					$("#editor4").text(data.content4);
+                    $("#blog_image").closest('a').attr('href', '{{ asset('/public/') }}/' + data
+                        .blog_image);
+
+                    $("#note").val(data.reject_reason);
+                    $("#category").val(data.category).change();
+                    $("#subject").val(data.subject);
+                    $("#BlogID").val(data.id);
+                    $("#editor1").text(data.content1);
+                    $("#editor2").text(data.content2);
+                    $("#editor3").text(data.content3);
+                    $("#editor4").text(data.content4);
                 },
                 error: function(data) {
 
@@ -403,7 +421,7 @@
                 }
             });
 
-            
+
         })
 
         // $("#exampleModal #form").submit(function(e) {

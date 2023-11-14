@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-10 mx-auto">
-					@include('alerts')
+                    @include('alerts')
 
                     <div class="card">
                         <div class="card-body">
@@ -18,56 +18,59 @@
                             <form class="row g-2" action="{{ route('admin.master.update_advertisement') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id" value="{{$edit->PackageID}}">
-									<div class="col-md-2">
-										<label>Location</label>
-										<select class="form-select mb-3" aria-label="Default select example" name="location"
-											>
-											<option value="" selected>Select</option>
-											<option value="home">Home</option>
-											<option value="listing">Listing</option>
-										</select>
-									</div>
-									<div class="col-md-2">
-										<label>Package Name</label>
-										<input class="form-control mb-3" type="text" placeholder="Package name"
-											aria-label="default input example" name="PackageName" value="{{$edit->PackageName}}">
-									</div>
-									<div class="col-md-2">
-										<label>Label</label>
-										<input class="form-control mb-3" type="text" placeholder="Label"
-											aria-label="default input example" name="label" value="{{$edit->label}}">
-									</div>
-									<div class="col-md-2">
-										<label>Banner Width</label>
-										<input class="form-control mb-3" type="number" placeholder="Banner width"
-											aria-label="default input example" name="BannerWidth" value="{{$edit->BannerWidth}}">
-									</div>
-									<div class="col-md-2">
-										<label>Banner Height</label>
-										<input class="form-control mb-3" type="number" placeholder="Banner Height"
-											aria-label="default input example" name="BannerHeight" value="{{$edit->BannerHeight}}">
-									</div>
-									<div class="col-md-2">
-										<label>Price</label>
-										<input class="form-control mb-3" type="number" placeholder="Price"
-											aria-label="default input example" name="OriginalPrice" value="{{$edit->OriginalPrice}}">
-									</div>
-									{{-- <div class="col-md-2">
+                                <input type="hidden" name="id" value="{{ $edit->PackageID }}">
+                                <div class="col-md-2">
+                                    <label>Location</label>
+                                    <select class="form-select mb-3" aria-label="Default select example" name="location">
+                                        <option value="" selected>Select</option>
+                                        <option value="home">Home</option>
+                                        <option value="listing">Listing</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Package Name</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Package name"
+                                        aria-label="default input example" name="PackageName"
+                                        value="{{ $edit->PackageName }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Label</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Label"
+                                        aria-label="default input example" name="label" value="{{ $edit->label }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Banner Width</label>
+                                    <input class="form-control mb-3" type="number" placeholder="Banner width"
+                                        aria-label="default input example" name="BannerWidth"
+                                        value="{{ $edit->BannerWidth }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Banner Height</label>
+                                    <input class="form-control mb-3" type="number" placeholder="Banner Height"
+                                        aria-label="default input example" name="BannerHeight"
+                                        value="{{ $edit->BannerHeight }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Price</label>
+                                    <input class="form-control mb-3" type="number" placeholder="Price"
+                                        aria-label="default input example" name="OriginalPrice"
+                                        value="{{ $edit->OriginalPrice }}">
+                                </div>
+                                {{-- <div class="col-md-2">
 										<label>Discount</label>
 										<input class="form-control mb-3" type="text" placeholder="Discount"
 											aria-label="default input example" name="">
 									</div> --}}
-									<div class="col-md-2">
-										<label>Min Days</label>
-										<input class="form-control mb-3" type="text" placeholder="Min days"
-											aria-label="default input example" name="MinDays" value="{{$edit->MinDays}}">
-									</div>
-									<div class="col-md-2">
-										<label>Max Days</label>
-										<input class="form-control mb-3" type="text" placeholder="Max days"
-											aria-label="default input example" name="MaxDays" value="{{$edit->MaxDays}}">
-									</div>
+                                <div class="col-md-2">
+                                    <label>Min Days</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Min days"
+                                        aria-label="default input example" name="MinDays" value="{{ $edit->MinDays }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Max Days</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Max days"
+                                        aria-label="default input example" name="MaxDays" value="{{ $edit->MaxDays }}">
+                                </div>
 
                                 <div class="col-md-12" style="margin-top:2%;">
                                     <button type="submit" class="btn btn-primary px-3"><i class="lni lni-circle-plus"></i>
@@ -111,22 +114,28 @@
                                     @foreach ($Advertisement as $advertisement)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                          <td>{{$advertisement->location}}</td>
-                                          <td>{{$advertisement->PackageName}}</td>
-                                          <td>{{$advertisement->label}}</td>
-                                          <td>{{$advertisement->BannerWidth}}px</td>
-                                          <td>{{$advertisement->BannerHeight}}px</td>
-                                          <td>{{$advertisement->OriginalPrice}}</td>
-                                          <td>{{$advertisement->MinDays}}</td>
-                                          <td>{{$advertisement->MaxDays}}</td>
+                                            <td>{{ $advertisement->location }}</td>
+                                            <td>{{ $advertisement->PackageName }}</td>
+                                            <td>{{ $advertisement->label }}</td>
+                                            <td>{{ $advertisement->BannerWidth }}px</td>
+                                            <td>{{ $advertisement->BannerHeight }}px</td>
+                                            <td>{{ $advertisement->OriginalPrice }}</td>
+                                            <td>{{ $advertisement->MinDays }}</td>
+                                            <td>{{ $advertisement->MaxDays }}</td>
 
                                             <td>
-                                                <a href="{{ route('admin.master.edit_advertisement', $advertisement->PackageID) }}">
-                                                    <button type="button" class="btn1 btn-outline-success"><i
-                                                            class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a href="{{ route('admin.master.destroy_advertisement', $advertisement->PackageID) }}">
-                                                    <button type="button" class="btn1 btn-outline-danger"><i
-                                                            class='bx bx-trash me-0'></i></button> </a>
+                                                @if (can_view_this('admin.master.edit_advertisement'))
+                                                    <a
+                                                        href="{{ route('admin.master.edit_advertisement', $advertisement->PackageID) }}">
+                                                        <button type="button" class="btn1 btn-outline-success"><i
+                                                                class='bx bx-edit-alt me-0'></i></button> </a>
+                                                @endif
+                                                @if (can_view_this('admin.master.destroy_advertisement'))
+                                                    <a
+                                                        href="{{ route('admin.master.destroy_advertisement', $advertisement->PackageID) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>

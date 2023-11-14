@@ -870,11 +870,11 @@ function showPosition(position) {
 //   alert("Latitude: "  + position.coords.latitude + 
 
 //         "Longitude: " + position.coords.longitude);
-let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+ position.coords.latitude + ','+ position.coords.longitude +'&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
-//   <--yavatmal-->   let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng=20.388794, 78.120407&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
-//   <--Rajkot-->     let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng= 26.9176300, 70.800705&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
-//   <-- jaiselmer --> let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng= 26.9176300, 70.9038700&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
-//  <--salod--> let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng=  20.686765, 77.833869&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI';
+let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+ position.coords.latitude + ','+ position.coords.longitude +'&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4';
+//   <--yavatmal-->   let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng=20.388794, 78.120407&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4';
+//   <--Rajkot-->     let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng= 26.9176300, 70.800705&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4';
+//   <-- jaiselmer --> let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng= 26.9176300, 70.9038700&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4';
+//  <--salod--> let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng=  20.686765, 77.833869&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4';
 
         fetch(google_url).then(function(response) {
         return response.json();
@@ -951,7 +951,7 @@ let google_url='https://maps.googleapis.com/maps/api/geocode/json?latlng='+ posi
      crossorigin="anonymous"></script>
 	
 	<script type="text/javascript"
-        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1kU2qPwMsA-VTbi1fm6kb9M8d7utT0rI&libraries=places" ></script>
+        src="https://maps.google.com/maps/api/js?countrycode:IN&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places" ></script>
     
     <script>
         google.maps.event.addDomListener(window, 'load', initialize);

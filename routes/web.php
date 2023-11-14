@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\MailController;
 use App\Http\Controllers\Admin\RegistrationController;
 use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WebsiteSettingController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\Master\BrochureController;
@@ -254,6 +255,13 @@ Route::get('master/default-otp', [WebsiteSettingController::class, 'index'])->na
        
        Route::get('buy-subscription-email/{id}', [MailController::class, 'buy_subscription_email'])->name('buy-subscription-email');
 
+       Route::get('users', [UserController::class, 'index'])->name('users');
+       Route::post('create_user', [UserController::class, 'create_user'])->name('create_user');
+       Route::get('delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
+       Route::get('edit_user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
+       Route::post('update_user', [UserController::class, 'update_user'])->name('update_user');
+
+
 
 });
 Route::get('admin-login-to-user/{id}', [RegistrationController::class, 'admin_login_to_user'])->name('admin-login-to-user');
@@ -327,6 +335,7 @@ Route::get('state', [state_city::class, 'state'])->name('state');
 Route::post('state_create', [state_city::class, 'state_create'])->name('state_create');
 Route::get('city', [state_city::class, 'city'])->name('city');
 Route::post('city_create', [state_city::class, 'city_create'])->name('city_create');
+Route::get('check_login_msg/{msg}', [WebsiteformController::class, 'check_login_msg'])->name('check_login_msg');
 
 Route::group(['middleware' => ['AuthCheck']], function () {
     Route::get('payment-form', [WebsiteformController::class, 'payment_form'])->name('payment_form');
@@ -338,7 +347,11 @@ Route::group(['middleware' => ['AuthCheck']], function () {
 
     Route::post('like_unlike', [UserLikeFeedback::class, 'like_unlike'])->name('like_unlike');
     Route::post('insert_feedback', [UserLikeFeedback::class, 'insert_feedback'])->name('insert_feedback');
-
+    
+    Route::post('like_unlike_blog', [WebsiteformController::class, 'like_unlike_blog'])->name('like_unlike_blog');
+    Route::post('blog_comment', [WebsiteformController::class, 'blog_comment'])->name('blog_comment');
+    Route::post('blog_share', [WebsiteformController::class, 'blog_share'])->name('blog_share');
+    
     Route::post('post_enquiry', [UserLikeFeedback::class, 'post_enquiry'])->name('post_enquiry');
     Route::get('listing-details/{id}', [WebsiteformController::class, 'listing_details'])->name('listing-details');
     Route::get('remove-wishlist/{id}', [WebsiteformController::class, 'remove_wishlist'])->name('remove-wishlist');

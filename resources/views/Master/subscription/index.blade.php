@@ -120,14 +120,17 @@
                                             <td>{{ ucFirst($subscription->status) }}</td>
 
                                             <td>
-                                                {{-- <button type="button" class="btn"><div class="form-check form-switch">  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">  </div>	</button> --}}
+                                                @if (can_view_this('admin.master.edit_subscription'))
                                                 <a href="{{ route('admin.master.edit_subscription', $subscription->id) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
                                                             class='bx bx-edit-alt me-0'></i></button> </a>
+                                                @endif
+                                                @if (can_view_this('admin.master.destroy_subscription'))
                                                 <a
                                                     href="{{ route('admin.master.destroy_subscription', $subscription->id) }}">
                                                     <button type="button" class="btn1 btn-outline-danger"><i
                                                             class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>

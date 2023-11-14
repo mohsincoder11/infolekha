@@ -110,15 +110,18 @@
 
                                           <td>{{ucFirst($Coupon->status)}}</td>
 
-                                            <td>
-                                                {{-- <button type="button" class="btn"><div class="form-check form-switch">  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">  </div>	</button> --}}
+                                          <td>
+                                            @if (can_view_this('admin.master.edit_coupon'))
                                                 <a href="{{ route('admin.master.edit_coupon', $Coupon->id) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
                                                             class='bx bx-edit-alt me-0'></i></button> </a>
+                                            @endif
+                                            @if (can_view_this('admin.master.destroy_coupon'))
                                                 <a href="{{ route('admin.master.destroy_coupon', $Coupon->id) }}">
                                                     <button type="button" class="btn1 btn-outline-danger"><i
                                                             class='bx bx-trash me-0'></i></button> </a>
-                                            </td>
+                                            @endif
+                                        </td>
 
                                         </tr>
                                     @endforeach

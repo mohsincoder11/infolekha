@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserFeedbackModel;
 use App\Models\school_institute_detail;
+use DB;
 
 class User extends Authenticatable
 {
@@ -69,4 +70,13 @@ class User extends Authenticatable
         return $entity_name->r_entity ?? '';
 
     }
+
+    public function getPermissionsArrayAttribute(){
+        $record = DB::table('user_permissions')->where('user_id', $this->id)->first();
+       return $record ? json_decode($record->permissions,true) : [];
+    }
+
+    // public function UserPermissions(){
+    //    return $this->hasOne(UserPermission::class,'user_id','id');
+    // }
 }

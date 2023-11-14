@@ -14,6 +14,9 @@ use App\Models\tutor_detail;
 use App\Models\transaction;
 use App\Models\Announcement;
 use App\Models\Blog;
+use App\Models\BlogComment;
+use App\Models\BlogLike;
+use App\Models\BlogShare;
 use App\Models\City;
 use App\Models\Contact_Us;
 use App\Models\Master\state;
@@ -473,18 +476,126 @@ public function database_backup(){
 
     public function blog(Request $request)
     {
-        $blogs=Blog::select('id','subject','blog_image')->where('status','Active')->get();
+       if(isset($request->type) && $request->type!='All'){
+        $blogs=Blog::
+        select('blogs.id','subject','blog_image')->where('status','Active')
+        ->leftjoin('blog_likes', 'blogs.id', '=', 'blog_likes.blog_id')
+        ->groupBy('blogs.id')
+        ->orderByDesc(\DB::raw('COUNT(blog_likes.id)'))
+        ->take(10)
+        ->get();
+       }
+        else{
+        $blogs=Blog::
+        select('id','subject','blog_image')->where('status','Active')
+        ->get();
+        }
         return view('Website.blogs.blog',compact('blogs'));
     }
 
     public function blog_details(Request $request)
     {
         $blog=Blog::where('id',$request->id)->where('status','Active')->first();
+        $blog_comments=BlogComment::where('blog_id',$request->id)
+        ->latest()
+        ->take(10)
+        ->with(['user' => function ($query) {
+            $query->select('name', 'logo','id'); // Specify the fields you want to retrieve from the User model
+        }])
+        ->get();
         if($blog){
-            return view('Website.blogs.blog-details',compact('blog'));
+            return view('Website.blogs.blog-details',compact('blog','blog_comments'));
         }
         abort(404);
     }
+
+    public function check_login_msg($msg){
+        return redirect()->back()->with(['error' => "Please log in to $msg."]);
+
+    }
+
+    public function like_unlike_blog(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'blog_id' => 'required',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return response()->json(['status' => false, 'message' => 'Something went wrong.']);
+            }
+        $check_exist_like = BlogLike::where(
+            [
+                'user_id' => Auth::user()->id, 
+                'blog_id' => $request->blog_id
+            ]
+        )->first();
+        if ($check_exist_like) {
+            $check_exist_like->delete();
+            return response()->json(['status' => true, 'message' => 'Unlike successfully.']);
+
+        } else {
+            BlogLike::create(
+                [
+                    'user_id' => Auth::user()->id,
+                    'blog_id' => $request->blog_id
+                ]
+            );
+            return response()->json(['status' => true, 'message' => 'Like successfully.']);
+
+        }
+    }
+
+    public function blog_comment(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'blog_id' => 'required',
+                'comment' => 'required',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return redirect()->back()->with(['error' => 'Something went wrong.']);
+            }
+           // BlogComment::UpdateOrCreate(
+                BlogComment::Create(
+            //         [
+            //     'user_id' => Auth::user()->id, 
+            //     'blog_id' => $request->blog_id
+            // ],
+            [
+                'user_id' => Auth::user()->id, 
+                'blog_id' => $request->blog_id,
+                'comment' => $request->comment,
+            ]
+            );
+            return redirect()->back()->with(['success' => 'Comment added successfully.']);
+        }
+
+    public function blog_share(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'blog_id' => 'required',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return response()->json(['status' => false, 'message' => 'Something went wrong.']);
+            }
+        BlogShare::create([
+            'user_id' => Auth::user()->id, 
+            'blog_id' => $request->blog_id,
+        ]);
+        return response()->json(['status' => true, 'message' => '']);
+
+    }
+
 
     public function payfail(Request $request)
     {

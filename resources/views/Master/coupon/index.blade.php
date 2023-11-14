@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-					@include('alerts')
+                    @include('alerts')
 
                     <div class="card">
                         <div class="card-body">
@@ -41,10 +41,10 @@
 
                                 <div class="col-md-6">
                                     <label for="inputDiscount" class="form-label">Coupon Discount</label>
-                                    <input type="number" class="form-control" placeholder="Coupon Discount"
-                                        name="discount" step="0.01">
+                                    <input type="number" class="form-control" placeholder="Coupon Discount" name="discount"
+                                        step="0.01">
                                 </div>
-                                
+
 
                                 <div class="col-md-6">
                                     <label for="inputStatus" class="form-label">Coupon For</label>
@@ -105,21 +105,24 @@
                                     @foreach ($Coupon as $Coupon)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                          <td>{{$Coupon->title}}</td>
-                                          <td>{{$Coupon->code}}</td>
-                                          <td>{{$Coupon->type}}</td>
-                                          <td>{{$Coupon->discount}}</td>
-                                          <td>{{$Coupon->coupon_for_name}}</td>
-                                          <td>{{ucFirst($Coupon->status)}}</td>
+                                            <td>{{ $Coupon->title }}</td>
+                                            <td>{{ $Coupon->code }}</td>
+                                            <td>{{ $Coupon->type }}</td>
+                                            <td>{{ $Coupon->discount }}</td>
+                                            <td>{{ $Coupon->coupon_for_name }}</td>
+                                            <td>{{ ucFirst($Coupon->status) }}</td>
 
                                             <td>
-                                               
-                                                <a href="{{ route('admin.master.edit_coupon', $Coupon->id) }}">
-                                                    <button type="button" class="btn1 btn-outline-success"><i
-                                                            class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a href="{{ route('admin.master.destroy_coupon', $Coupon->id) }}">
-                                                    <button type="button" class="btn1 btn-outline-danger"><i
-                                                            class='bx bx-trash me-0'></i></button> </a>
+                                                @if (can_view_this('admin.master.edit_coupon'))
+                                                    <a href="{{ route('admin.master.edit_coupon', $Coupon->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-success"><i
+                                                                class='bx bx-edit-alt me-0'></i></button> </a>
+                                                @endif
+                                                @if (can_view_this('admin.master.destroy_coupon'))
+                                                    <a href="{{ route('admin.master.destroy_coupon', $Coupon->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>
@@ -139,7 +142,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
-                
+
             // $('.select_box').select2();
             // ClassicEditor
             //     .create(document.querySelector('#editor'))

@@ -1,22 +1,20 @@
 @extends('layout')
 @section('css')
-<style>
-    .close{
+    <style>
+        .close {
 
-    float: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-    line-height: 1;
-    color: #000;
-    opacity: .5;
-    padding: 0;
-    cursor: pointer;
-    background: transparent;
-    border: 0;
-}
-
-    
-</style>
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            opacity: .5;
+            padding: 0;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+        }
+    </style>
 
 @stop
 
@@ -68,12 +66,16 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ date('d-m-Y', strtotime($announcements->created_at)) }}</td>
-                                            <td>{{ $announcements->college_details ? $announcements->college_details->r_name : ($announcements->college_id==1 ? 'Infolekha' : 'N/A') }}
+                                            <td>{{ $announcements->college_details ? $announcements->college_details->r_name : ($announcements->college_id == 1 ? 'Infolekha' : 'N/A') }}
                                                 ({{ $announcements->college_details ? $announcements->college_details->r_entity : 'N/A' }})
                                             </td>
                                             <td>{{ $announcements->PackageName }}</td>
                                             </td>
-                                            <td>{!! $announcements->SelectedDays > 0 ? $announcements->SelectedDays . ' days' : (isset($announcements->SelectedDays) ?  $announcements->SelectedDays. ' day' : '<i class="bx bx-infinite"></i>') !!}</td>
+                                            <td>{!! $announcements->SelectedDays > 0
+                                                ? $announcements->SelectedDays . ' days'
+                                                : (isset($announcements->SelectedDays)
+                                                    ? $announcements->SelectedDays . ' day'
+                                                    : '<i class="bx bx-infinite"></i>') !!}</td>
                                             </td>
                                             <td>{{ $announcements->TotalAmount }}
                                                 ({{ check_announcement_payment_status($announcements->id, $announcements->college_id) }})
@@ -91,27 +93,39 @@
                                                 @endif
                                             </td>
                                             <td>
-                                              
-                                               <span class="badge @if($announcements->status=='Pending') bg-secondary @elseif($announcements->status=='Active') bg-primary @elseif($announcements->status=='Reject') bg-danger @endif">  {{ $announcements->status }}
-                                            </span>
+
+                                                <span
+                                                    class="badge @if ($announcements->status == 'Pending') bg-secondary @elseif($announcements->status == 'Active') bg-primary @elseif($announcements->status == 'Reject') bg-danger @endif">
+                                                    {{ $announcements->status }}
+                                                </span>
 
                                             <td>
 
-                                                <button type="button" class="btn1 btn-outline-primary open_announcement_modal" title="Preview"  
-                                                heading="{{ $announcements->heading }}"
+                                                <button type="button"
+                                                    class="btn1 btn-outline-primary open_announcement_modal" title="Preview"
+                                                    heading="{{ $announcements->heading }}"
                                                     image={{ asset('public/' . $announcements->image) }}
                                                     content="{{ $announcements->main_content }}"
                                                     EnquiryID="{{ $announcements->id }}"><i
                                                         class="fadeIn animated bx bx-unite"></i></button>
-                                                        <button title="update status" type="button" class="btn1 btn-outline-primary open_modal"
-                                                        EnquiryID="{{ $announcements->id }}" current_status="{{ $announcements->status }}" notes="{{ $announcements->note }}"  heading="{{ $announcements->heading }}"
+                                                @if (can_view_this('admin.edit_announcement'))
+                                                    <button title="update status" type="button"
+                                                        class="btn1 btn-outline-primary open_modal"
+                                                        EnquiryID="{{ $announcements->id }}"
+                                                        current_status="{{ $announcements->status }}"
+                                                        notes="{{ $announcements->note }}"
+                                                        heading="{{ $announcements->heading }}"
                                                         image={{ asset('public/' . $announcements->image) }}
                                                         content="{{ $announcements->main_content }}"><i
                                                             class="fadeIn animated bx bx-refresh"></i>
-                                                        </button>
-                                                        <a href="{{ route('admin.destroy_announcement2', $announcements->id) }}">
-                                                            <button type="button" class="btn1 btn-outline-danger"><i
-                                                                    class='bx bx-trash me-0'></i></button> </a>
+                                                    </button>
+                                                @endif
+                                                @if (can_view_this('admin.destroy_announcement2'))
+                                                    <a
+                                                        href="{{ route('admin.destroy_announcement2', $announcements->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
 
                                             </td>
 
@@ -142,25 +156,27 @@
                         <input type="hidden" id="EnquiryID" name="AnnouncementID">
                         <div class="col-md-12">
                             <label>Title*</label>
-                            <input class="form-control mb-3" name="heading"  id="heading" type="text" aria-label=""
+                            <input class="form-control mb-3" name="heading" id="heading" type="text" aria-label=""
                                 placeholder="Title">
                         </div>
-    
+
                         <div class="col-md-12">
                             <label for="inputFirstName" class="form-label"> Main Content*</label>
-                            <textarea class="form-control" name="main_content" id="main_content"  rows="6"></textarea>
-                       
+                            <textarea class="form-control" name="main_content" id="main_content" rows="6"></textarea>
+
                         </div>
                         <div class="col-md-6">
                             <label for="inputFirstName" class="form-label"> Image*</label>
-                            <input type="file" class="form-control" id="inputFirstName" placeholder="" name="image" accept="image/*">
+                            <input type="file" class="form-control" id="inputFirstName" placeholder="" name="image"
+                                accept="image/*">
                         </div>
                         <div class="col-md-6">
                             <img src="" id="image" alt="" style="height:100px;width:auto;">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Status</label>
-                            <select class="form-select mb-3" aria-label="Default select example" name="status" id="status">
+                            <select class="form-select mb-3" aria-label="Default select example" name="status"
+                                id="status">
                                 <option value="">Select</option>
                                 <option>Pending</option>
                                 <option>Active</option>
@@ -170,9 +186,10 @@
                         </div>
                         <div class="col-md-12">
                             <label>Note</label>
-                            <textarea class="form-control mb-3" name="note" type="text" aria-label="default input example" placeholder="Note" id="note"></textarea>
+                            <textarea class="form-control mb-3" name="note" type="text" aria-label="default input example"
+                                placeholder="Note" id="note"></textarea>
                         </div>
-                        <div class="col-md-6" >
+                        <div class="col-md-6">
                             <div class="col">
                                 <button type="submit" class="btn btn-primary px-5"> <i
                                         class="lni lni-circle-plus"></i>Submit</button>
@@ -187,83 +204,85 @@
         </div>
     </div>
 
-<div class="modal fade " id="announcement_modal" style="padding-top: 5%;">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <div class="modal fade " id="announcement_modal" style="padding-top: 5%;">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <h3 align="center" id="announcement_heading"></h3>
+                <div class="modal-body clearfix">
+
+                    <div class="row">
+
+                        <div class="col-md-8">
+                            <p id="announcement_content" align="justify"></p>
+
+                        </div>
+                        <div class="col-md-4">
+                            <img width="100%" height="auto" id="announcement_image" src="">
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <h3 align="center" id="announcement_heading"></h3>
-            <div class="modal-body clearfix">
+        </div>
+    </div>
 
-                <div class="row">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Announcement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
 
-                    <div class="col-md-8">
-                        <p id="announcement_content" align="justify"></p>
+                    <form id="form" action="{{ route('admin.add-announcement') }}" method="post"
+                        enctype="multipart/form-data" class="row g-2" id="announcement_form">
+                        @csrf
 
-                    </div>
-                    <div class="col-md-4">
-                        <img width="100%" height="auto" id="announcement_image" src="">
-                    </div>
+                        <div class="col-md-12">
+                            <label>Title*</label>
+                            <input class="form-control mb-3" name="heading" id="heading" type="text"
+                                aria-label="" placeholder="Title">
+                        </div>
+
+
+
+                        <div class="col-md-12">
+                            <label for="inputFirstName" class="form-label"> Main Content*</label>
+                            <textarea class="form-control" name="main_content" id="main_content" rows="6"></textarea>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputFirstName" class="form-label"> Image*</label>
+                            <input type="file" class="form-control" id="inputFirstName" placeholder=""
+                                name="image" accept="image/*">
+                        </div>
+                        <div class="col-md-6 ">
+                            <label>Status</label>
+                            <select class="form-select mb-3" aria-label="Default select example" name="status"
+                                id="status2">
+                                <option value="">Select</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Active">Active</option>
+                                <option value="Reject">Rejected</option>
+
+                            </select>
+                        </div>
+
+
+                        <div class="col-md-12" align="center">
+                            <button type="submit" class="btn btn-primary px-5">Save</button>
+                        </div>
+                    </form>
+
                 </div>
 
             </div>
         </div>
     </div>
-</div>
-
-<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content ">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Announcement</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <form id="form" action="{{ route('admin.add-announcement') }}" method="post"
-                    enctype="multipart/form-data" class="row g-2" id="announcement_form">
-                    @csrf
-
-                    <div class="col-md-12">
-                        <label>Title*</label>
-                        <input class="form-control mb-3" name="heading"  id="heading" type="text" aria-label=""
-                            placeholder="Title">
-                    </div>
-
-                    
-                  
-                    <div class="col-md-12">
-                        <label for="inputFirstName" class="form-label"> Main Content*</label>
-                        <textarea class="form-control" name="main_content" id="main_content"  rows="6"></textarea>
-                   
-                    </div>
-                    <div class="col-md-6">
-                        <label for="inputFirstName" class="form-label"> Image*</label>
-                        <input type="file" class="form-control" id="inputFirstName" placeholder="" name="image" accept="image/*">
-                    </div>
-                    <div class="col-md-6 ">
-                        <label>Status</label>
-                        <select class="form-select mb-3" aria-label="Default select example" name="status" id="status2">
-                            <option value="">Select</option>
-                            <option value="Pending">Pending</option>
-                            <option value="Active">Active</option>
-                            <option value="Reject">Rejected</option>
-
-                        </select>
-                    </div>
-                
-
-                    <div class="col-md-12" align="center">
-                        <button type="submit" class="btn btn-primary px-5">Save</button>
-                    </div>
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-</div>
 @stop
 
 @section('js')
@@ -271,8 +290,8 @@
     <script>
         $(document).ready(function() {
             $(document).on('click', '.add-announcement', function(e) {
-            $("#exampleModal2").modal('show');
-        })
+                $("#exampleModal2").modal('show');
+            })
 
 
             $(document).on('click', '.open_modal', function(e) {
@@ -281,8 +300,8 @@
                 $("#status").val($(this).attr('current_status'));
                 $("#note").text($(this).attr('notes'));
                 $("#heading").val($(this).attr('heading'));
-            $("#image").attr('src', $(this).attr('image'));
-            $("#main_content").text($(this).attr('content'));
+                $("#image").attr('src', $(this).attr('image'));
+                $("#main_content").text($(this).attr('content'));
 
             })
 
@@ -314,14 +333,14 @@
 
 
             $(document).on('click', '.open_announcement_modal', function() {
-            $("#announcement_modal").modal('show');
-            $("#announcement_heading").text($(this).attr('heading'));
-            $("#announcement_image").attr('src', $(this).attr('image'));
-            $("#announcement_content").html($(this).attr('content'));
-        })
-        $(document).on('click', '.close', function() {
-            $("#announcement_modal").modal('hide');
-        })
+                $("#announcement_modal").modal('show');
+                $("#announcement_heading").text($(this).attr('heading'));
+                $("#announcement_image").attr('src', $(this).attr('image'));
+                $("#announcement_content").html($(this).attr('content'));
+            })
+            $(document).on('click', '.close', function() {
+                $("#announcement_modal").modal('hide');
+            })
         })
     </script>
 @stop

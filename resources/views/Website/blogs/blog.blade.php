@@ -1,15 +1,13 @@
 @extends('website_layout')
 @section('css')
-<style>
-
-
-.text p{
- white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-width:98%;
-
-	</style>
+    <style>
+        .text p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 98%;
+        }
+    </style>
 @stop
 @section('website_content')
     <div class="page-title parallax parallax1">
@@ -18,14 +16,15 @@ width:98%;
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                   
                     <div class="page-title-heading">
                         <h1 class="title">Blogs</h1>
                     </div><!-- /.page-title-captions -->
                     <div class="breadcrumbs">
                         <!-- <ul>
-                                    <li><a href="index.html"></a></li>
-                                  
-                                </ul>                    -->
+                                        <li><a href="index.html"></a></li>
+                                      
+                                    </ul>                    -->
                     </div><!-- /.breadcrumbs -->
                 </div><!-- /.col-md-12 -->
             </div><!-- /.row -->
@@ -36,7 +35,22 @@ width:98%;
 
     <section class="main-content page-listing-grid">
         <div class="container">
+
             <div class="row">
+                <div class="col-lg-12">
+                    <form action="">
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <div class="form-group">
+                                <select class="form-select select country-select filter filter_form" name="type">
+                                    <option value="All" @if (request()->type == 'All') selected @endif>All Blogs </option>
+                                    <option value="10" @if (request()->type == '10') selected @endif>Top 10 Blogs</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                </div>
                 <div class="col-lg-12">
                     <div class="title-section text-center" style="margin-top: 7px;">
 
@@ -49,14 +63,15 @@ width:98%;
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/Opportunity1.jpg') }}" alt="image"  style="width:650px; height:250px;">
+                                    <img src="{{ asset('website_asset/images/Opportunity1.jpg') }}" alt="image"
+                                        style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
                                     <!-- <h6 class="widget-title">by : Youness &nbsp;| 23-02-2021 &nbsp;
-                                        
-                                    </h6> -->
+                                            
+                                        </h6> -->
                                     <div class="text">
                                         <p>Exploring Opportunities After 10th Standard: A Guide to Shaping Your Future
                                         </p>
@@ -76,14 +91,16 @@ width:98%;
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/Cover-photo.jpg') }}" alt="image"  style="width:650px; height:250px;">
+                                    <img src="{{ asset('website_asset/images/Cover-photo.jpg') }}" alt="image"
+                                        style="width:650px; height:250px;">
 
                                 </div>
 
                                 <div class="content-product">
 
                                     <div class="text">
-                                        <p>Unlocking Your Potential: How Early Career Planning Can Help You Achieve Your Goals
+                                        <p>Unlocking Your Potential: How Early Career Planning Can Help You Achieve Your
+                                            Goals
 
                                         </p>
                                     </div>
@@ -104,7 +121,7 @@ width:98%;
                             <div class="flat-product">
                                 <div class="featured-product">
                                     <img src="{{ asset('website_asset/images/featured-time-management-final.jpg') }}"
-                                        alt="image"  style="width:650px; height:250px;">
+                                        alt="image" style="width:650px; height:250px;">
 
                                 </div>
 
@@ -112,7 +129,7 @@ width:98%;
 
                                     <div class="text">
                                         <p>EFFECTIVE STUDY HABITS AND TIME MANAGEMENT FOR STUDENTS
-</p>
+                                        </p>
 
                                     </div>
 
@@ -131,7 +148,8 @@ width:98%;
                         <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
-                                    <img src="{{ asset('website_asset/images/blog-cover-04.jpg') }}" alt="image"  style="width:650px; height:250px;">
+                                    <img src="{{ asset('website_asset/images/blog-cover-04.jpg') }}" alt="image"
+                                        style="width:650px; height:250px;">
 
                                 </div>
 
@@ -159,7 +177,7 @@ width:98%;
                             <div class="flat-product">
                                 <div class="featured-product">
                                     <img src="{{ asset('website_asset/images/internship-training-in-chennai-kk-nagar-5.jpg') }}"
-                                        alt="image"  style="width:650px; height:250px;">
+                                        alt="image" style="width:650px; height:250px;">
 
                                 </div>
 
@@ -187,23 +205,25 @@ width:98%;
                             <div class="col-md-4">
                                 <div class="flat-product">
                                     <div class="featured-product">
-                                        <img src="{{ asset('public/' . $blog->blog_image) }}" alt="image" style="width:650px; height:250px;">
+                                        <img src="{{ asset('public/' . $blog->blog_image) }}" alt="image"
+                                            style="width:650px; height:250px;">
 
                                     </div>
 
                                     <div class="content-product">
                                         <!-- <h6 class="widget-title">by : Youness &nbsp;| 23-02-2021 &nbsp;
-                                            
-                                        </h6> -->
+                                                
+                                            </h6> -->
                                         <div class="text">
-                                            <p>{{$blog->subject }}
+                                            <p>{{ $blog->subject }}
                                             </p>
                                         </div>
 
 
                                     </div>
                                     <a href="{{ route('blog-details', $blog->id) }}" alt="image">
-                                        <button type="button" class="btn" style="color:white !important; width: 100%;">
+                                        <button type="button" class="btn"
+                                            style="color:white !important; width: 100%;">
                                             Read More...
 
                                         </button>
@@ -229,6 +249,12 @@ width:98%;
     <script>
         $(window).load(function() {
             $('#blog').hide();
+            $(document).on('change', '.filter_form', function() {
+
+$(this).closest('form').submit();
+
+});
+            
         });
     </script>
 @stop

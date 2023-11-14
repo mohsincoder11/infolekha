@@ -93,14 +93,20 @@
                                           <td>{{$announcement->MinDays}}</td>
                                           <td>{{$announcement->MaxDays}}</td>
 
-                                            <td>
-                                                <a href="{{ route('admin.master.edit_announcement', $announcement->PackageID) }}">
+                                          <td>
+                                            @if (can_view_this('admin.master.edit_announcement'))
+                                                <a
+                                                    href="{{ route('admin.master.edit_announcement', $announcement->PackageID) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
                                                             class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a href="{{ route('admin.master.destroy_announcement', $announcement->PackageID) }}">
+                                            @endif
+                                            @if (can_view_this('admin.master.destroy_announcement'))
+                                                <a
+                                                    href="{{ route('admin.master.destroy_announcement', $announcement->PackageID) }}">
                                                     <button type="button" class="btn1 btn-outline-danger"><i
                                                             class='bx bx-trash me-0'></i></button> </a>
-                                            </td>
+                                            @endif
+                                        </td>
 
                                         </tr>
                                     @endforeach

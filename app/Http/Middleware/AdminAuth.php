@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\UserPermission;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,18 @@ class AdminAuth
     public function handle(Request $request, Closure $next)
     {
         $admin=Auth::guard('admin')->user();
-        if ($admin && $admin->role==0) {
+        if ($admin && ($admin->role==0 || $admin->role==4)) {
+            if($admin->role==4){
+                if(can_access_route()){
+                return $next($request);
+                }
+                elseif(can_access_filtered_route('check')){
+                    return redirect()->route(can_access_filtered_route('route_name'));
+                }
+                else{
+                    return redirect()->route('admin.login')->with(['error'=>'You dont have permission to access this url']);
+                }
+            }
             return $next($request);
         } else {
             return redirect()->route('admin.login');

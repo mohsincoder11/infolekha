@@ -33,17 +33,21 @@
                                         aria-label="default input example" name="amount" value="{{ $edit->amount }}">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label">User Type</label>		
-                                    <select class="form-select mb-3" aria-label="Default select example" name="user_type" id="user_type">
+                                    <label class="form-label">User Type</label>
+                                    <select class="form-select mb-3" aria-label="Default select example" name="user_type"
+                                        id="user_type">
                                         <option selected disabled>Select User</option>
-                                        <option value="1"  @if ($edit->user_type == '1') selected @endif>School/Institute/College</option>
-                                        <option value="2"  @if ($edit->user_type == '2') selected @endif>Tutor</option>
+                                        <option value="1" @if ($edit->user_type == '1') selected @endif>
+                                            School/Institute/College</option>
+                                        <option value="2" @if ($edit->user_type == '2') selected @endif>Tutor
+                                        </option>
                                     </select>
                                 </div>
 
                                 <div class="col-md-3">
                                     <label class="form-label">Select Duration</label>
-                                    <select class="form-select mb-3" aria-label="Default select example" name="type" id="type">
+                                    <select class="form-select mb-3" aria-label="Default select example" name="type"
+                                        id="type">
                                         <option selected>Select Type</option>
                                         <option value="Month" @if ($edit->type == 'Month') selected @endif>Month
                                         </option>
@@ -53,10 +57,10 @@
                                         </option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 @if($edit->type != 'Days') d-none @endif" id="days_div">
+                                <div class="col-md-4 @if ($edit->type != 'Days') d-none @endif" id="days_div">
                                     <label class="form-label">Enter Days</label>
-                                    <input class="form-control" type="number" step="1" name="days" value="{{$edit->days}}"
-                                        id="days">
+                                    <input class="form-control" type="number" step="1" name="days"
+                                        value="{{ $edit->days }}" id="days">
                                 </div>
                                 <div class="col-md-3">
                                     <label class="form-label">Status</label>
@@ -125,14 +129,19 @@
                                             <td>{{ ucFirst($subscription->status) }}</td>
 
                                             <td>
-                                                {{-- <button type="button" class="btn"><div class="form-check form-switch">  <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">  </div>	</button> --}}
-                                                <a href="{{ route('admin.master.edit_subscription', $subscription->id) }}">
-                                                    <button type="button" class="btn1 btn-outline-success"><i
-                                                            class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a
-                                                    href="{{ route('admin.master.destroy_subscription', $subscription->id) }}">
-                                                    <button type="button" class="btn1 btn-outline-danger"><i
-                                                            class='bx bx-trash me-0'></i></button> </a>
+                                                @if (can_view_this('admin.master.edit_subscription'))
+                                                    <a
+                                                        href="{{ route('admin.master.edit_subscription', $subscription->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-success"><i
+                                                                class='bx bx-edit-alt me-0'></i></button>
+                                                    </a>
+                                                @endif
+                                                @if (can_view_this('admin.master.destroy_subscription'))
+                                                    <a
+                                                        href="{{ route('admin.master.destroy_subscription', $subscription->id) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>

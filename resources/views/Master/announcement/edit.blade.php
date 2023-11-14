@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-10 mx-auto">
-					@include('alerts')
+                    @include('alerts')
 
                     <div class="card">
                         <div class="card-body">
@@ -18,34 +18,36 @@
                             <form class="row g-2" action="{{ route('admin.master.update_announcement') }}" method="post"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id" value="{{$edit->PackageID}}">
-									
-									<div class="col-md-2">
-										<label>Package Name</label>
-										<input class="form-control mb-3" type="text" placeholder="Package name"
-											aria-label="default input example" name="PackageName" value="{{$edit->PackageName}}">
-									</div>
-									
-									<div class="col-md-2">
-										<label>Price</label>
-										<input class="form-control mb-3" type="number" placeholder="Price"
-											aria-label="default input example" name="OriginalPrice" value="{{$edit->OriginalPrice}}">
-									</div>
-									{{-- <div class="col-md-2">
+                                <input type="hidden" name="id" value="{{ $edit->PackageID }}">
+
+                                <div class="col-md-2">
+                                    <label>Package Name</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Package name"
+                                        aria-label="default input example" name="PackageName"
+                                        value="{{ $edit->PackageName }}">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label>Price</label>
+                                    <input class="form-control mb-3" type="number" placeholder="Price"
+                                        aria-label="default input example" name="OriginalPrice"
+                                        value="{{ $edit->OriginalPrice }}">
+                                </div>
+                                {{-- <div class="col-md-2">
 										<label>Discount</label>
 										<input class="form-control mb-3" type="text" placeholder="Discount"
 											aria-label="default input example" name="">
 									</div> --}}
-									<div class="col-md-2">
-										<label>Min Days</label>
-										<input class="form-control mb-3" type="text" placeholder="Min days"
-											aria-label="default input example" name="MinDays" value="{{$edit->MinDays}}">
-									</div>
-									<div class="col-md-2">
-										<label>Max Days</label>
-										<input class="form-control mb-3" type="text" placeholder="Max days"
-											aria-label="default input example" name="MaxDays" value="{{$edit->MaxDays}}">
-									</div>
+                                <div class="col-md-2">
+                                    <label>Min Days</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Min days"
+                                        aria-label="default input example" name="MinDays" value="{{ $edit->MinDays }}">
+                                </div>
+                                <div class="col-md-2">
+                                    <label>Max Days</label>
+                                    <input class="form-control mb-3" type="text" placeholder="Max days"
+                                        aria-label="default input example" name="MaxDays" value="{{ $edit->MaxDays }}">
+                                </div>
 
                                 <div class="col-md-12" style="margin-top:2%;">
                                     <button type="submit" class="btn btn-primary px-3"><i class="lni lni-circle-plus"></i>
@@ -73,9 +75,9 @@
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                    
+
                                         <th>Package Name</th>
-                                     
+
                                         <th>Price</th>
                                         <th>Min days</th>
                                         <th>Max days</th>
@@ -87,19 +89,25 @@
                                     @foreach ($Announcement as $announcement)
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
-                                          <td>{{$announcement->PackageName}}</td>
-                                         
-                                          <td>{{$announcement->OriginalPrice}}</td>
-                                          <td>{{$announcement->MinDays}}</td>
-                                          <td>{{$announcement->MaxDays}}</td>
+                                            <td>{{ $announcement->PackageName }}</td>
+
+                                            <td>{{ $announcement->OriginalPrice }}</td>
+                                            <td>{{ $announcement->MinDays }}</td>
+                                            <td>{{ $announcement->MaxDays }}</td>
 
                                             <td>
-                                                <a href="{{ route('admin.master.edit_announcement', $announcement->PackageID) }}">
-                                                    <button type="button" class="btn1 btn-outline-success"><i
-                                                            class='bx bx-edit-alt me-0'></i></button> </a>
-                                                <a href="{{ route('admin.master.destroy_announcement', $announcement->PackageID) }}">
-                                                    <button type="button" class="btn1 btn-outline-danger"><i
-                                                            class='bx bx-trash me-0'></i></button> </a>
+                                                @if (can_view_this('admin.master.edit_announcement'))
+                                                    <a
+                                                        href="{{ route('admin.master.edit_announcement', $announcement->PackageID) }}">
+                                                        <button type="button" class="btn1 btn-outline-success"><i
+                                                                class='bx bx-edit-alt me-0'></i></button> </a>
+                                                @endif
+                                                @if (can_view_this('admin.master.destroy_announcement'))
+                                                    <a
+                                                        href="{{ route('admin.master.destroy_announcement', $announcement->PackageID) }}">
+                                                        <button type="button" class="btn1 btn-outline-danger"><i
+                                                                class='bx bx-trash me-0'></i></button> </a>
+                                                @endif
                                             </td>
 
                                         </tr>
