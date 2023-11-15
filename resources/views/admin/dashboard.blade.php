@@ -9,7 +9,7 @@
             <h6 class="mb-0 text-uppercase"></h6>
 
 
-@include('alerts')
+            @include('alerts')
             <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
                 <div class="col">
                     <div class="card radius-10">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="col-xl-4 mx-auto">
                     <h6 class="mb-0 text-uppercase">Announcements</h6>
                     <hr />
@@ -370,9 +370,9 @@
 
                                                                 <td style="background-color: #ffff;">
                                                                     @if (can_view_this('admin.delete-user'))
-                                                                    <a href="{{ route('admin.delete-user', $dt->user_id) }}"
-                                                                        class="btn btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></a>
+                                                                        <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                            class="btn btn-outline-danger"><i
+                                                                                class='bx bx-trash me-0'></i></a>
                                                                     @endif
                                                                     @if ($dt->subscription_status == 0)
                                                                         <a href="{{ route('admin.buy-subscription-email', $dt->user_id) }}"
@@ -467,12 +467,12 @@
 
 
                                                                 <td style="background-color: #ffff;">
-                                                                  
+
                                                                     @if (can_view_this('admin.delete-user'))
-                                                                    <a href="{{ route('admin.delete-user', $dt->user_id) }}"
-                                                                        class="btn btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></a>
-                                                                            @endif
+                                                                        <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                            class="btn btn-outline-danger"><i
+                                                                                class='bx bx-trash me-0'></i></a>
+                                                                    @endif
                                                                 </td>
 
                                                             </tr>
@@ -568,10 +568,10 @@
                                                                 </td>
                                                                 <td style="background-color: #ffff;">
                                                                     @if (can_view_this('admin.delete-user'))
-                                                                    <a href="{{ route('admin.delete-user', $dt->user_id) }}"
-                                                                        class="btn btn-outline-danger"><i
-                                                                            class='bx bx-trash me-0'></i></a>
-                                                                            @endif
+                                                                        <a href="{{ route('admin.delete-user', $dt->user_id) }}"
+                                                                            class="btn btn-outline-danger"><i
+                                                                                class='bx bx-trash me-0'></i></a>
+                                                                    @endif
                                                                 </td>
 
                                                             </tr>

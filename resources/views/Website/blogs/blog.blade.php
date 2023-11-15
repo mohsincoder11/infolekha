@@ -60,7 +60,7 @@
                     <div class="row listing-grid">
 
 
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="flat-product">
                                 <div class="featured-product">
                                     <img src="{{ asset('website_asset/images/Opportunity1.jpg') }}" alt="image"
@@ -201,6 +201,7 @@
                             </div>
 
                         </div>
+                         --}}
                         @forelse ($blogs as $blog)
                             <div class="col-md-4">
                                 <div class="flat-product">

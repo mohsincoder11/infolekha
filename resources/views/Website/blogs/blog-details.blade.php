@@ -441,9 +441,15 @@
                                                                 <li class="comment">
                                                                     <article class="comment-body clearfix">
                                                                         <div class="comment-author">
+                                                                            @if(isset($blog_comment->user->logo))
                                                                             <img src="{{ asset('public/' . $blog_comment->user->logo) }}"
                                                                                 alt="image" height="50"
                                                                                 width="50">
+                                                                                @else
+                                                                                <img src="{{ asset('public/logo/user.png') }}"
+                                                                                alt="image" height="50"
+                                                                                width="50">
+                                                                                @endif
                                                                         </div><!-- .comment-author -->
                                                                         <div class="comment-text">
                                                                             <div class="comment-metadata">
