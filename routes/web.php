@@ -258,7 +258,7 @@ Route::get('master/default-otp', [WebsiteSettingController::class, 'index'])->na
        Route::get('users', [UserController::class, 'index'])->name('users');
        Route::post('create_user', [UserController::class, 'create_user'])->name('create_user');
        Route::get('delete_user/{id}', [UserController::class, 'delete_user'])->name('delete_user');
-       Route::get('edit_user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
+       Route::get('edit-user/{id}', [UserController::class, 'edit_user'])->name('edit_user');
        Route::post('update_user', [UserController::class, 'update_user'])->name('update_user');
 
 

@@ -9,6 +9,7 @@
         }
         .featured-product{
             height: 200px; /* Same as the width to create a square */
+			width: 100%;
       overflow: hidden; /* Ensure the content does not overflow */
         }
         .featured-product img {

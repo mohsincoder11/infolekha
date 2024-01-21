@@ -73,13 +73,12 @@
 
                         <span class="input-login icon-form"><input type="text" placeholder="E-mail*" name="email"
                                 required="required"><i class="fa fa-envelope"></i></span>
-        
+
                         <span class="input-login icon-form">
-                            <input type="text" placeholder="Address*"  name="address_details"
-                                required="required">
+                            <input type="text" placeholder="Address*" name="address_details" required="required">
                             <i class="fa fa-envelope-o"></i>
                         </span>
-                        
+
                         <span class="input-login icon-form">
                             <input type="text" placeholder="City*" id="current_location_at_form" name="address"
                                 required="required">
@@ -167,7 +166,6 @@
             $('#password_confirmation').val('');
         }, 1000);
         $('#sel').on('change', function() {
-            //console.log($('#sel').children("option:selected").val());
             $('#entity').attr({
                 "placeholder": ' Name of ' + $('#sel').children("option:selected").val()
             });
@@ -199,7 +197,7 @@
                         },
                         // Custom success function
                         dataFilter: function(response) {
-            $(".loader-container").hide();
+                            $(".loader-container").hide();
 
                             if (response === false || response === 'false') {
                                 $("#login-button2").prop('disabled', true);
@@ -316,20 +314,22 @@
                 return false;
             }
         });
+
+
+       
+
         $("#modal_form").validate({
             rules: {
 
                 exist_otp: {
                     required: true,
-
                 },
                 otp: {
                     minlength: 4,
                     maxlength: 4,
                     required: true,
-                    equalTo: "#exist_otp",
+                    CustomEqualTo: true,
                     digits: true
-
                 },
 
             },
@@ -339,7 +339,7 @@
                 },
                 otp: {
                     required: "Please enter otp.",
-                    equalTo: "Please enter valid otp.",
+                    CustomEqualTo: "Please enter valid otp.",
                     minlength: "Please enter 4 digit otp.",
                     maxlength: "Please enter 4 digit otp.",
                     digits: "Please enter numeric otp.",
@@ -348,7 +348,7 @@
 
             },
             submitHandler: function(form) {
-                if ($("#exist_otp").val() == $("#otp").val()) {
+                if ($("#exist_otp").val() == $("#otp").val() || parseInt($("#otp").val()) == parseInt(default_otp)) {
                     $("#login-button1").prop("disabled", false);
 
                     $('#popup_login').modal('hide');
@@ -394,7 +394,7 @@
             var value = $(this).val();
 
             if (/^\d+$/.test(value) && value.length === 10) {
-           // $(".loader-container").show();
+                // $(".loader-container").show();
 
                 $(this).valid();
             } else {
@@ -403,9 +403,10 @@
             }
         })
 
+        var default_otp;
 
         function otp() {
-                        $(".loader-container").show();
+            $(".loader-container").show();
 
             $("#login-button1").prop("disabled", true);
 
@@ -414,14 +415,12 @@
                 type: 'GET',
                 url: 'send_mobile_verify_otp/' + mob,
                 success: function(data) {
-                    $("#exist_otp").val(data);            $(".loader-container").hide();
-
-                    //console.log(data);
+                    $("#exist_otp").val(data['user_otp']);
+                    default_otp = data['default_otp'];
+                    $(".loader-container").hide();
                 },
                 error: function(data) {
-            $(".loader-container").hide();
-
-                    //console.log(data);
+                    $(".loader-container").hide();
                 }
             });
 

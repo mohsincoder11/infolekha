@@ -5,7 +5,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-					@include('alerts')
+                    @include('alerts')
 
                     <div class="card">
                         <div class="card-body">
@@ -38,56 +38,84 @@
                                     <input type="file" class="form-control" name="logo">
                                 </div>
 
-                                
+
                                 <div class="row pt-2">
-                                        <label for=""> <b> Permission </b> </label>
+                                    <label for=""> <b> Permission </b> </label>
                                 </div>
                                 <div class="row">
-                                    <table  class="table table-striped table-bordered">
+                                    <table class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
                                                 <th width="40">Page</th>
-                                                <th width="20">View 
-                                                    <input type="checkbox" class="form-check-input checkbox-column" data-column="2">
+                                                <th width="20">View
+                                                    <input type="checkbox" class="form-check-input checkbox-column"
+                                                        data-column="2">
                                                 </th>
                                                 <th width="20">Edit
-                                                    <input type="checkbox" class="form-check-input checkbox-column" data-column="3">
-                                                    
+                                                    <input type="checkbox" class="form-check-input checkbox-column"
+                                                        data-column="3">
+
                                                 </th>
                                                 <th width="20">Delete
-                                                    <input type="checkbox" class="form-check-input checkbox-column" data-column="4">
+                                                    <input type="checkbox" class="form-check-input checkbox-column"
+                                                        data-column="4">
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            {!!permission_row('Dashboard','admin.dashboard',NULL,NULL)!!}
+                                            {!! permission_row('Dashboard', 'admin.dashboard', null, null) !!}
 
-                                            {!!permission_row('Subscription','admin.master.subscription','admin.master.edit_subscription','admin.master.destroy_subscription')!!}
+                                            {!! permission_row(
+                                                'Subscription',
+                                                'admin.master.subscription',
+                                                'admin.master.edit_subscription',
+                                                'admin.master.destroy_subscription',
+                                            ) !!}
 
-                                            {!!permission_row('coupon','admin.master.coupon','admin.master.edit_coupon','admin.master.destroy_coupon')!!}
+                                            {!! permission_row('coupon', 'admin.master.coupon', 'admin.master.edit_coupon', 'admin.master.destroy_coupon') !!}
 
-                                            {!!permission_row('advertisement master','admin.master.advertisement','admin.master.edit_advertisement','admin.master.destroy_advertisement')!!}
+                                            {!! permission_row(
+                                                'advertisement master',
+                                                'admin.master.advertisement',
+                                                'admin.master.edit_advertisement',
+                                                'admin.master.destroy_advertisement',
+                                            ) !!}
 
-                                            {!!permission_row('announcement master','admin.master.announcement','admin.master.edit_announcement','admin.master.destroy_announcement')!!}
+                                            {!! permission_row(
+                                                'announcement master',
+                                                'admin.master.announcement',
+                                                'admin.master.edit_announcement',
+                                                'admin.master.destroy_announcement',
+                                            ) !!}
 
-                                            {!!permission_row('Banner Image','admin.master.banner-image','admin.master.edit-banner-image','admin.master.destroy-banner-image')!!}
+                                            {!! permission_row(
+                                                'Banner Image',
+                                                'admin.master.banner-image',
+                                                'admin.master.edit-banner-image',
+                                                'admin.master.destroy-banner-image',
+                                            ) !!}
 
-                                            {!!permission_row('Default OTP','admin.master.default-otp',NULL,NULL)!!}
+                                            {!! permission_row('Default OTP', 'admin.master.default-otp', null, null) !!}
 
-                                            {!!permission_row('Registration-College','admin.registration.college',NULL,'admin.delete-user')!!}
-                                            {!!permission_row('Registration-School','admin.registration.school',NULL,'admin.delete-user')!!}
-                                            {!!permission_row('Registration-Institute','admin.registration.institute',NULL,'admin.delete-user')!!}
-                                            {!!permission_row('Registration-Student','admin.registration.student',NULL,'admin.delete-user')!!}
-                                            {!!permission_row('Registration-Tutor','admin.registration.tutor',NULL,'admin.delete-user')!!}
+                                            {!! permission_row('Registration-College', 'admin.registration.college', null, 'admin.delete-user') !!}
+                                            {!! permission_row('Registration-School', 'admin.registration.school', null, 'admin.delete-user') !!}
+                                            {!! permission_row('Registration-Institute', 'admin.registration.institute', null, 'admin.delete-user') !!}
+                                            {!! permission_row('Registration-Student', 'admin.registration.student', null, 'admin.delete-user') !!}
+                                            {!! permission_row('Registration-Tutor', 'admin.registration.tutor', null, 'admin.delete-user') !!}
 
-                                            {!!permission_row('Transaction','admin.transaction',NULL,NULL)!!}
+                                            {!! permission_row('Transaction', 'admin.transaction', null, null) !!}
 
-                                            {!!permission_row('announcement','admin.announcement','admin.edit_announcement','admin.destroy_announcement')!!}
+                                            {!! permission_row(
+                                                'announcement',
+                                                'admin.announcement',
+                                                'admin.edit_announcement',
+                                                'admin.destroy_announcement',
+                                            ) !!}
 
-                                            {!!permission_row('advertisement','admin.advertisement',NULL,'admin.delete-advertisement')!!}
+                                            {!! permission_row('advertisement', 'admin.advertisement', null, 'admin.delete-advertisement') !!}
 
-                                            {!!permission_row('Blog','admin.blog','admin.edit_blog','admin.destroy_blog')!!}
+                                            {!! permission_row('Blog', 'admin.blog', 'admin.edit_blog', 'admin.destroy_blog') !!}
 
                                         </tbody>
                                     </table>
@@ -130,13 +158,14 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td>{{ $loop->index + 1 }} </td>
-                                          <td>{{$user->name}}</td>
-                                          <td>{{$user->email}}</td>
-                                          <td>
-                                            <a href="javascrip:void(0)" class="view_permission_modal" permission="{{implode(',',$user->permissions_array)}}">
-                                                <button type="button" class="btn1 btn-outline-primary"><i
-                                                        class='bx bx-unite me-0'></i></button> View</a>
-                                          </td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+                                            <td>
+                                                <a href="javascrip:void(0)" class="view_permission_modal"
+                                                    permission="{{ implode(',', $user->permissions_array) }}">
+                                                    <button type="button" class="btn1 btn-outline-primary"><i
+                                                            class='bx bx-unite me-0'></i></button> View</a>
+                                            </td>
                                             <td>
                                                 <a href="{{ route('admin.edit_user', $user->id) }}">
                                                     <button type="button" class="btn1 btn-outline-success"><i
@@ -166,11 +195,11 @@
                 </div>
                 <div class="modal-body">
 
-                        <div class="row pt-2">
-                            <label for=""> <b> Permission </b> </label>
+                    <div class="row pt-2">
+                        <label for=""> <b> Permission </b> </label>
                     </div>
                     <div class="row">
-                        <table  class="table table-striped table-bordered">
+                        <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
                                     <th width="40">Page</th>
@@ -181,57 +210,88 @@
                             </thead>
                             <tbody>
 
-                                {!!permission_row_model('Dashboard','admin.dashboard',NULL,NULL)!!}
+                                {!! permission_row_model('Dashboard', 'admin.dashboard', null, null) !!}
 
-                                {!!permission_row_model('Subscription','admin.master.subscription','admin.master.edit_subscription','admin.master.destroy_subscription')!!}
+                                {!! permission_row_model(
+                                    'Subscription',
+                                    'admin.master.subscription',
+                                    'admin.master.edit_subscription',
+                                    'admin.master.destroy_subscription',
+                                ) !!}
 
-                                {!!permission_row_model('coupon','admin.master.coupon','admin.master.edit_coupon','admin.master.destroy_coupon')!!}
+                                {!! permission_row_model(
+                                    'coupon',
+                                    'admin.master.coupon',
+                                    'admin.master.edit_coupon',
+                                    'admin.master.destroy_coupon',
+                                ) !!}
 
-                                {!!permission_row_model('advertisement master','admin.master.advertisement','admin.master.edit_advertisement','admin.master.destroy_advertisement')!!}
+                                {!! permission_row_model(
+                                    'advertisement master',
+                                    'admin.master.advertisement',
+                                    'admin.master.edit_advertisement',
+                                    'admin.master.destroy_advertisement',
+                                ) !!}
 
-                                {!!permission_row_model('announcement master','admin.master.announcement','admin.master.edit_announcement','admin.master.destroy_announcement')!!}
+                                {!! permission_row_model(
+                                    'announcement master',
+                                    'admin.master.announcement',
+                                    'admin.master.edit_announcement',
+                                    'admin.master.destroy_announcement',
+                                ) !!}
 
-                                {!!permission_row_model('Banner Image','admin.master.banner-image','admin.master.edit-banner-image','admin.master.destroy-banner-image')!!}
+                                {!! permission_row_model(
+                                    'Banner Image',
+                                    'admin.master.banner-image',
+                                    'admin.master.edit-banner-image',
+                                    'admin.master.destroy-banner-image',
+                                ) !!}
 
-                                {!!permission_row_model('Default OTP','admin.master.default-otp',NULL,NULL)!!}
+                                {!! permission_row_model('Default OTP', 'admin.master.default-otp', null, null) !!}
 
-                                {!!permission_row_model('Registration-College','admin.registration.college',NULL,'admin.delete-user')!!}
-                                {!!permission_row_model('Registration-School','admin.registration.school',NULL,'admin.delete-user')!!}
-                                {!!permission_row_model('Registration-Institute','admin.registration.institute',NULL,'admin.delete-user')!!}
-                                {!!permission_row_model('Registration-Student','admin.registration.student',NULL,'admin.delete-user')!!}
-                                {!!permission_row_model('Registration-Tutor','admin.registration.tutor',NULL,'admin.delete-user')!!}
+                                {!! permission_row_model('Registration-College', 'admin.registration.college', null, 'admin.delete-user') !!}
+                                {!! permission_row_model('Registration-School', 'admin.registration.school', null, 'admin.delete-user') !!}
+                                {!! permission_row_model('Registration-Institute', 'admin.registration.institute', null, 'admin.delete-user') !!}
+                                {!! permission_row_model('Registration-Student', 'admin.registration.student', null, 'admin.delete-user') !!}
+                                {!! permission_row_model('Registration-Tutor', 'admin.registration.tutor', null, 'admin.delete-user') !!}
 
-                                {!!permission_row_model('Transaction','admin.transaction',NULL,NULL)!!}
+                                {!! permission_row_model('Transaction', 'admin.transaction', null, null) !!}
 
-                                {!!permission_row_model('announcement','admin.announcement','admin.edit_announcement','admin.destroy_announcement2')!!}
+                                {!! permission_row_model(
+                                    'announcement',
+                                    'admin.announcement',
+                                    'admin.edit_announcement',
+                                    'admin.destroy_announcement2',
+                                ) !!}
 
-                                {!!permission_row_model('advertisement','admin.advertisement',NULL,'admin.delete-advertisement')!!}
+                                {!! permission_row_model('advertisement', 'admin.advertisement', null, 'admin.delete-advertisement') !!}
 
-                                {!!permission_row_model('Blog','admin.blog','admin.edit_blog','admin.destroy_blog')!!}
+                                {!! permission_row_model('Blog', 'admin.blog', 'admin.edit_blog', 'admin.destroy_blog') !!}
 
                             </tbody>
                         </table>
                     </div>
-                    </div>
-
                 </div>
 
             </div>
+
         </div>
+    </div>
     <!--end page wrapper -->
 @stop
 
- 
+
 @section('js')
     <script>
         $(document).ready(function() {
-            $('.checkbox-column').on('change', function () {
-        var columnNumber = $(this).data('column');
-        var isChecked = $(this).prop('checked');
+            $('.checkbox-column').on('change', function() {
+                var columnNumber = $(this).data('column');
+                var isChecked = $(this).prop('checked');
 
-        // Check/uncheck all checkboxes in the column
-        $('table tbody td:nth-child(' + columnNumber + ') input[type="checkbox"]').prop('checked', isChecked);
-    });
+                // Check/uncheck all checkboxes in the column
+                $('table tbody td:nth-child(' + columnNumber + ') input[type="checkbox"]').prop('checked',
+                    isChecked);
+            });
             $(document).on('click', '.view_permission_modal', function(e) {
                 $(".model_checkbox").prop('checked', false);
                 let checked_Array = $(this).attr('permission').split(',');
@@ -240,7 +300,7 @@
                 });
                 $("#exampleModal2").modal('show');
             })
-                
+
             // $('.select_box').select2();
             // ClassicEditor
             //     .create(document.querySelector('#editor'))

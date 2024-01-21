@@ -349,27 +349,30 @@ public function database_backup(){
     {
         //$otp=$this->send_otp($request->mob);
         $otp=send_sms($request->mob);
+        $default_otp=WebsiteSetting::first()->value('otp');
         //return response()->json(['otp'=>$otp,'default_otp'=>WebsiteSetting::first()->otp]);
-        return response()->json($otp);
+        return response()->json(['default_otp'=>$default_otp,'user_otp'=>$otp]);
     }
 
     public function send_forget_otp(Request $request)
     {
         $check_user_exist1=DB::table('user_student')->where('mob',$request->mob)->first();
+        $default_otp=WebsiteSetting::first()->value('otp');
+
         if($check_user_exist1){
             $otp=send_sms($request->mob);
-            return response()->json(['user_id'=>$check_user_exist1->user_id,'status'=>true,'otp'=>$otp]);
+            return response()->json(['user_id'=>$check_user_exist1->user_id,'status'=>true,'otp'=>$otp,'default_otp'=>$default_otp]);
         }
         else{
             $check_user_exist2=DB::table('user_tutor')->where('mob',$request->mob)->first();
             if($check_user_exist2){
                 $otp=send_sms($request->mob);
-                return response()->json(['user_id'=>$check_user_exist2->user_id,'status'=>true,'otp'=>$otp]);
+                return response()->json(['user_id'=>$check_user_exist2->user_id,'status'=>true,'otp'=>$otp,'default_otp'=>$default_otp]);
             }else{
                 $check_user_exist3=DB::table('user_school_institute')->where('r_mob',$request->mob)->first();
                 if($check_user_exist3){
                     $otp=send_sms($request->mob);
-                    return response()->json(['user_id'=>$check_user_exist3->user_id,'status'=>true,'otp'=>$otp]);
+                    return response()->json(['user_id'=>$check_user_exist3->user_id,'status'=>true,'otp'=>$otp,'default_otp'=>$default_otp]);
             }else{
                 return response()->json(['status'=>false,'otp'=>'User does not exist.']);
             }

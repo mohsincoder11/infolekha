@@ -229,15 +229,10 @@
         }
 
         @media (max-width: 600px) {
-            .blog-footer {
-                flex-direction: column;
-                /* Display icons in a column on small screens */
-                align-items: center;
-                /* Center icons on small screens */
-            }
+          
 
             .icon {
-                margin: 10px 0;
+                margin: 10px 20px;
                 /* Add space between icons in mobile view */
             }
         }
@@ -545,7 +540,8 @@
 
         $(".like_blog").on("click", function() {
             var likeCountSpan = $(this).next('span');
-        var currentCount = parseInt(likeCountSpan.text());
+            var currentCount = parseInt(likeCountSpan.text());
+            console.error(currentCount);
             $(this).toggleClass("active_like");
             $.ajax({
                 url: '{{ route('like_unlike_blog') }}',

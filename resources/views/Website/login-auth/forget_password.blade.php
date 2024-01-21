@@ -84,9 +84,16 @@
 @section('js')
     <script>
         $.validator.addMethod("checkExistOtp", function(value, element) {
-            // Compare the value of "#exist_otp" with the value of "#otp"
-            return $("#exist_otp").val() === value;
-        }, "Please enter valid otp.");
+            var enteredOtp = $(element).val();
+            var existOtp = $("#exist_otp").val();
+
+            if ((existOtp && enteredOtp === existOtp) || parseInt(enteredOtp) === parseInt(default_otp)) {
+                return true;
+            } else {
+                return false;
+            }
+        }, "Enter valid OTP");
+        
 
         $("#forget_form").validate({
             rules: {
@@ -164,7 +171,7 @@
         });
         $('#otp').on('keyup', function(event) {
             $("#forget_form").validate();
-            if ($("#exist_otp").val() && $("#otp").val() && $("#exist_otp").val() === $("#otp").val()) {
+            if (($("#exist_otp").val() && $("#otp").val() && $("#exist_otp").val() === $("#otp").val()) ||  parseInt($("#otp").val()) == parseInt(default_otp) ) {
                 $("#login-button").prop('disabled', false);
             } else {
                 $("#login-button").prop('disabled', true);
@@ -198,6 +205,7 @@
             otp();
         })
 
+var default_otp;
         function otp() {
             const mob = $("#mob").val();
             $.ajax({
@@ -206,7 +214,8 @@
                 success: function(data) {
                     if (data.status) {
                         $("#user_id").val(data.user_id);
-                        $("#exist_otp").val(data.otp);
+                        $("#exist_otp").val(data['otp']);
+                        default_otp=data['default_otp'];
                         Toast2.fire({
                             icon: 'success',
                             title: "OTP send successfully."

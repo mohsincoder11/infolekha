@@ -29,7 +29,7 @@ class WebsiteSettingController extends Controller
         }
     
         $otp = $request->input('otp');
-        $websiteSetting = WebsiteSetting::first()->update(['otp' => $otp]);
+        WebsiteSetting::first()->update(['otp' => $otp]);
         return redirect()->back()->with('success', 'OTP updated successfully.');
 
     }

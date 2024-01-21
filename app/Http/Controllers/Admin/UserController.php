@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
-    public function index(){
-        $users=User::where('role','4')->latest()->get();
-        return view('admin.users.index',compact('users'));
+    public function index()
+    {
+        $users = User::where('role', '4')->latest()->get();
+        return view('admin.users.index', compact('users'));
     }
 
-    public function create_user(Request $request){
+    public function create_user(Request $request)
+    {
         $validator = Validator::make(
             $request->all(),
             [
@@ -28,40 +30,40 @@ class UserController extends Controller
         );
         if ($validator->fails()) {
             return redirect()->back()->with(['error' => 'Something went wrong.']);
-        }  
-        $logo='logo/user.png';
+        }
+        $logo = 'logo/user.png';
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $filename = rand(0123, 9999) . time() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('logo/'), $filename);
             $logo = 'logo/' . $filename;
         }
-        $user=User::create([
-            'name' =>$request->name,
-            'email' =>$request->email,
-            'password' =>Hash::make($request->password),
-            'role'=>'4',
-            'logo'=>$logo,
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => '4',//role 4 for subadmin
+            'logo' => $logo,
         ]);
-        if(count($request->permissions)>0){
+        if (count($request->permissions) > 0) {
             UserPermission::create([
-                'user_id'=>$user->id,
-                'permissions'=>$request->permissions,
+                'user_id' => $user->id,
+                'permissions' => $request->permissions ?? array(),
             ]);
         }
-       
+
         return redirect()->back()->with(['success' => 'User added successfully.']);
-        
     }
 
-    public function edit_user($id){
-        $users=User::where('role','4')->latest()->get();
-        $edit_user=User::find($id);
-     
-        return view('admin.users.edit',compact('edit_user','users'));
+    public function edit_user($id)
+    {
+        $users = User::where('role', '4')->latest()->get();
+        $edit_user = User::find($id);
 
+        return view('admin.users.edit', compact('edit_user', 'users'));
     }
-    public function update_user(Request $request){
+    public function update_user(Request $request)
+    {
         $validator = Validator::make(
             $request->all(),
             [
@@ -72,9 +74,9 @@ class UserController extends Controller
         );
         if ($validator->fails()) {
             return redirect()->back()->with(['error' => 'Something went wrong.']);
-        }  
-        $user=User::find($request->id);
-            if(!$user){
+        }
+        $user = User::find($request->id);
+        if (!$user) {
             return redirect()->back()->with(['error' => 'Something went wrong.']);
         }
         if ($request->hasFile('logo')) {
@@ -83,25 +85,27 @@ class UserController extends Controller
             $file->move(public_path('logo/'), $filename);
             $user->logo = 'logo/' . $filename;
         }
-            $user->name=$request->name;
-            $user->email=$request->email;
-            if(isset($request->password) && $request->password!=null)
-            $user->password=Hash::make($request->password);
-            $user->save();
-           
-            UserPermission::where('user_id',$user->id)->updateorCreate(
-                [
-                    'user_id'=>$user->id,
-                ],
-                [
-                'user_id'=>$user->id,
-                'permissions'=>$request->permissions,
-                ]);
-       
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if (isset($request->password) && $request->password != null)
+            $user->password = Hash::make($request->password);
+        $user->save();
+
+        UserPermission::where('user_id', $user->id)->updateorCreate(
+            [
+                'user_id' => $user->id,
+            ],
+            [
+                'user_id' => $user->id,
+                'permissions' => $request->permissions ?? array(),
+            ]
+        );
+
         return redirect()->route('admin.users')->with(['success' => 'User updated successfully.']);
     }
 
-    public function delete_user($id){
+    public function delete_user($id)
+    {
         User::find($id)->delete();
         UserPermission::whereUserId($id)->delete();
         return redirect()->back()->with(['success' => 'User deleted successfully.']);

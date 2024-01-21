@@ -1571,6 +1571,16 @@ fetch(google_url).then(function(response) {
     ""
 );
 
+$.validator.addMethod("CustomEqualTo", function(value, element) {
+            var enteredOtp = $(element).val();
+            var existOtp = $("#exist_otp").val();
+
+            if ((existOtp && enteredOtp === existOtp) || parseInt(enteredOtp) === parseInt(default_otp)) {
+                return true;
+            } else {
+                return false;
+            }
+        }, "Enter valid OTP");
        });
 
     </script>

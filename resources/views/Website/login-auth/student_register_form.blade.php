@@ -272,7 +272,7 @@
                     minlength: 4,
                     maxlength: 4,
                     required: true,
-                    equalTo: "#exist_otp",
+                    CustomEqualTo: true,
                     digits: true
 
                 },
@@ -284,7 +284,7 @@
                 },
                 otp: {
                     required: "Please enter otp.",
-                    equalTo: "Please enter valid otp.",
+                    CustomEqualTo: "Please enter valid otp.",
                     minlength: "Please enter 4 digit otp.",
                     maxlength: "Please enter 4 digit otp.",
                     digits: "Please enter numeric otp.",
@@ -293,7 +293,7 @@
 
             },
             submitHandler: function(form) {
-                if ($("#exist_otp").val() == $("#otp").val()) {
+                if ($("#exist_otp").val() == $("#otp").val() || parseInt($("#otp").val()) == parseInt(default_otp)) {
                     $("#login-button1").prop("disabled", false);
 
                     $('#popup_login').modal('hide');
@@ -347,7 +347,9 @@
         })
 
 
-        function otp() {
+var default_otp;
+        
+function otp() {
             $("#login-button1").prop("disabled", true);
             $(".loader-container").show();
 
@@ -356,7 +358,8 @@
                 type: 'GET',
                 url: 'send_mobile_verify_otp/' + mob,
                 success: function(data) {
-                    $("#exist_otp").val(data);
+                    $("#exist_otp").val(data['user_otp']);
+                    default_otp=data['default_otp'];
                     $(".loader-container").hide();
 
                     //console.log(data);

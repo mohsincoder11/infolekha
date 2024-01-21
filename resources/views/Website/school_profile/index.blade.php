@@ -7,7 +7,10 @@
             height: auto;
         }
 		.pd{
-			margin-left:35% ! important;
+			margin-left:33% ! important;
+		}
+		.pd1{
+			margin-top:-10%;
 		}
 		
 		 .video {
@@ -81,13 +84,13 @@ width: 0px; /* Set a global width for all slides*/
                         <div class="dasboard-widget-title fl-wrap">
                         </div>
                         <div class="dasboard-widget-box nopad-dash-widget-box fl-wrap">
-                            <div class="">
+                            <div class="pd1" style="margin-top:-10%; ">
                                 <div class="banner"
-                                    style="250px;
+                                    style="250px; 
                                         width: 100%;  border: 1px solid #073D5F; background-image: url('{{ asset('public') . '/' . ($user_data->banner_image ?? '') }}  "  >
                                     <img class="mt pd" src="{{ asset('public') . '/' . ($user_data->logo ?? '') }}"
                                         alt=""
-                                        style="height:130px; width:130px; border-radius:50%; border: 2px solid #073D5F; z-index:2; margin-left:4%; margin-top:160px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
+                                        style="height:100px; width:100px; border-radius:50%; border: 2px solid #073D5F; z-index:2; margin-left:41%; margin-top:230px;box-shadow: rgba(149, 157, 165, 0.3) 0px 8px 24px;">
                                 </div>
 
 

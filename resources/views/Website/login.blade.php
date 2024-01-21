@@ -47,7 +47,7 @@
                                     </span>
                                 </label> -->
                             <label class="float-right link-register">
-                                <a href="#">Forget Password?</a>
+                                <a href="{{route('forget-password')}}">Forget Password?</a>
                             </label>
                         </div>
                         <span class="">
