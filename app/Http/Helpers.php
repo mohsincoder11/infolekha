@@ -557,7 +557,8 @@ function can_access_filtered_route($mode)
     $filteredPermissions = array_values(array_intersect($filteredPermissions, $permissions));
     if ($mode == 'check' && count($permissions) > 0) {
         return true;
-    } elseif ($mode == 'route_name' && count($permissions) > 0) {
+    } elseif ($mode == 'route_name' && count($permissions) > 0 && count($filteredPermissions)>0) {
+
         return $filteredPermissions[0];
     }
     return false;

@@ -73,6 +73,7 @@ Route::get('admin',function(){
 });
 Route::view('admin/login', 'admin.login')->name('admin.login');
 Route::post('admin/post_login', [AdminLoginController::class, 'login_submit'])->name('admin.post_login');
+Route::get('admin/logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
 Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function () {
     Route::get('dashboard', [AdminDashboardController::class, 'dashboard'])->name('dashboard');
@@ -80,7 +81,6 @@ Route::prefix('admin')->name('admin.')->middleware('AdminAuth')->group(function 
     Route::post('activation', [AdminDashboardController::class, 'activation'])->name('activation');
     
 
-    Route::get('logout', [AdminLoginController::class, 'logout'])->name('logout');
     Route::get('advertisement', [AdvertisementController::class, 'index'])->name('advertisement');
     Route::post('upload-advertisement', [AdvertisementController::class, 'uploadAdvertisement'])->name('upload-advertisement');
     Route::post('change-advertisement-status', [AdvertisementController::class, 'ChangeAdvertisementStatus'])->name('change-advertisement-status');
