@@ -7,6 +7,15 @@
             text-overflow: ellipsis;
             width: 98%;
         }
+        .featured-product{
+            height: 200px; /* Same as the width to create a square */
+      overflow: hidden; /* Ensure the content does not overflow */
+        }
+        .featured-product img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* This will make sure the image covers the entire container without stretching */
+    }
     </style>
 @stop
 @section('website_content')
@@ -207,7 +216,7 @@
                                 <div class="flat-product">
                                     <div class="featured-product">
                                         <img src="{{ asset('public/' . $blog->blog_image) }}" alt="image"
-                                            style="width:650px; height:250px;">
+                                            >
 
                                     </div>
 

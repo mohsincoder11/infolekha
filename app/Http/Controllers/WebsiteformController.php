@@ -534,7 +534,7 @@ public function database_backup(){
         )->first();
         if ($check_exist_like) {
             $check_exist_like->delete();
-            return response()->json(['status' => true, 'message' => 'Unlike successfully.']);
+            return response()->json(['status' => true,'count'=>-1, 'message' => 'Unlike successfully.']);
 
         } else {
             BlogLike::create(
@@ -543,7 +543,7 @@ public function database_backup(){
                     'blog_id' => $request->blog_id
                 ]
             );
-            return response()->json(['status' => true, 'message' => 'Like successfully.']);
+            return response()->json(['status' => true,'count'=>1, 'message' => 'Like successfully.']);
 
         }
     }
